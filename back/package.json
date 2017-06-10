@@ -1,0 +1,23 @@
+{
+  "name": "back",
+  "version": "0.0.0",
+  "description": "Qwirk++ an application like Discord",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "SENECHAL Maxime aka Ravaniss",
+  "license": "ISC",
+  "dependencies": {
+    "debug-colour": "^1.0.4",
+    "kcors": "^2.2.1",
+    "koa": "^2.2.0",
+    "koa-body": "^2.1.0",
+    "koa-router": "^7.2.0",
+    "koa-static-folder": "^0.1.6",
+    "rethinkdb": "^2.3.3",
+    "socket.io": "^2.0.2",
+    "socket.io-redis": "^5.1.0",
+    "typings": "^2.1.1"
+  }
+}
