@@ -1,15 +1,17 @@
 <template>
-  <div id="app">
+  <section id="app">
+    <section class="title-bar">
+      <button class="win-minimize"></button>
+      <button class="win-maximize"></button>
+      <button class="win-close"></button>
+    </section>
     <router-view></router-view>
-  </div>
+  </section>
 </template>
 
 <script>
+  require('../../static/style/style.css')
   export default {
     name: 'front'
   }
 </script>
-
-<style>
-  /* CSS */
-</style>
