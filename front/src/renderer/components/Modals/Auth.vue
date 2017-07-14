@@ -1,21 +1,30 @@
 <template>
-  <section class="modal auth">
+  <section class="modal auth" @click="closeModal($event)">
     <section class="set auth">
       <section class="content auth">
         <section class="panel">
+          <div class="message" v-if="register.error">
+            {{ register.error }}
+          </div>
+
           <h2>S'inscrire</h2>
-          <form action="" method="POST">
+          <form method="POST">
             <div>
-              <input type="text" title="registerName" name="registerName" placeholder="Pseudo">
+              <input type="text" title="registerName" name="registerName" placeholder="Pseudo"
+                     v-model="register.pseudo">
             </div>
             <div>
-              <input type="email" title="registerEmail" name="registerEmail" placeholder="Email">
+              <input type="email" title="registerEmail" name="registerEmail" placeholder="Email"
+                     v-model="register.email">
             </div>
             <div>
-              <input type="password" title="registerPassword" name="registerPassword" placeholder="Mot de passe">
+              <input type="password" title="registerPassword" name="registerPassword" placeholder="Mot de passe"
+                     v-model="register.password">
             </div>
             <div>
-              <input type="password" title="registerVerifPassword" name="registerVerifPassword" placeholder="Confirmer le mot de passe">
+              <input type="password" title="registerVerifPassword" name="registerVerifPassword" placeholder="Confirmer le mot de passe"
+                     v-model="register.confirm"
+              >
             </div>
             <div class="special">
               <label class="file-select">
@@ -26,7 +35,7 @@
                 <input type="file"/>
               </label>
             </div>
-            <button type="submit">S'inscrire</button>
+            <button type="submit" @click.prevent="signUp()">S'inscrire</button>
           </form>
         </section>
         <hr>
@@ -34,18 +43,47 @@
           <h2>Se connecter</h2>
           <form action="" method="POST">
             <div>
-              <input type="email" title="loginEmail" name="loginEmail" placeholder="Email">
+              <input type="email" title="loginEmail" name="loginEmail" placeholder="Email" v-model="login.email">
             </div>
             <div>
-              <input type="password" title="loginPassword" name="loginPassword" placeholder="Mot de passe">
+              <input type="password" title="loginPassword" name="loginPassword" placeholder="Mot de passe"
+                     v-model="login.password">
             </div>
 
             <a href="#">Avez vous oublié votre mot de passe?</a>
 
-            <button type="submit">Se connecter</button>
+            <button type="submit" @click.prevent="authenticate()">Se connecter</button>
           </form>
         </section>
       </section>
     </section>
   </section>
 </template>
+
+<script>
+  export default {
+    data () {
+      return {
+        register: {
+          pseudo: '',
+          email: '',
+          password: '',
+          confirm: '',
+          error: null
+        },
+        login: {
+          email: '',
+          password: '',
+          error: null
+        }
+      }
+    },
+    methods: {
+      closeModal (e) {
+        if (e.target.classList.contains('modal')) {
+          this.$emit('close')
+        }
+      }
+    }
+  }
+</script>

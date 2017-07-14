@@ -1,11 +1,15 @@
 <template>
   <section id="wrapper">
-    <h2>Hello world ! :D</h2>
+    <friend></friend>
   </section>
 </template>
 
 <script>
+  import Friend from './Contents/Friends'
   export default {
-    name: 'landing-page'
+    name: 'landing-page',
+    components: {
+      Friend
+    }
   }
 </script>

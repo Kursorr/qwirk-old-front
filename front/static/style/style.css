@@ -8,6 +8,11 @@
   outline: none;
 }
 
+a {
+  color: #fff;
+  cursor: pointer;
+}
+
 li {
   list-style: none;
 }
@@ -23,12 +28,18 @@ html, body {
 }
 /*****/
 
-
 section#app {
   display: flex;
   flex-direction: column;
   width: 100vw;
   height: 100vh;
+}
+
+section#wrapper {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
 }
 
 
@@ -73,7 +84,6 @@ section#app {
       background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNiIgaGVpZ2h0PSIyNiI+CiAgPGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KICAgIDxwYXRoIGQ9Ik0xIDFoMjR2MjRIMVYxeiIvPgogICAgPHBhdGggZmlsbD0iI0ZGRiIgZD0iTTIwIDcuNDFMMTguNTkgNiAxMyAxMS41OSA3LjQxIDYgNiA3LjQxIDExLjU5IDEzIDYgMTguNTkgNy40MSAyMCAxMyAxNC40MSAxOC41OSAyMCAyMCAxOC41OSAxNC40MSAxMyAyMCA3LjQxeiIvPgogIDwvZz4KPC9zdmc+);
     }
 /*****/
-
 
 /* Modals Account Settings & Auth*/
 
@@ -276,7 +286,8 @@ section.modal {
 section.account {
   display: flex;
   align-items: center;
-  height: 90px;
+  height: 70px;
+  min-height: 70px;
   padding: 0 10px;
   background-color: #1C1E22;
   color: #FEFEFE;
@@ -442,6 +453,11 @@ section.rooms {
       display: block;
     }
 /*****/
+.full-content {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
 
 /* SideBar */
 
@@ -460,6 +476,173 @@ section.rooms {
   border-right: solid black 1px;
   overflow: auto;
 }
+/*****/
+
+/* Friends */
+/* Bar */
+section.global {
+  width: 100%;
+}
+
+  section.global > section.bar {
+    height: 57px;
+    border-bottom: 1px solid #282b30;
+    display: flex;
+    align-items: center;
+  }
+
+    section.global > section.bar > section.filters {
+      display: flex;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: .4px;
+      flex: 1;
+    }
+
+      section.global > section.bar > section.filters > a {
+        margin-left: 20px;
+        margin-right: 20px;
+        padding: 3px 5px;
+      }
+
+      div.separator {
+        background-color: hsla(0,0%,100%,.1);
+        width: 1px;
+        height: 22px;
+        flex-shrink: 0;
+      }
+
+      section.global > section.bar > section.filters > a.filt.add {
+        border-radius: 4px;
+        background-color: #7289da;
+      }
+
+      section.global > section.bar > section.filters > a.filt.add:hover {
+        border-radius: 4px;
+        background-color: #697ec4;
+      }
+
+/* Table Header */
+
+section.global > section.view > section.table-header {
+  display: flex;
+  border-bottom: 1px solid hsla(0,0%,100%,.1);
+  flex-direction: row;
+  padding: 8px 20px;
+  align-items: center;
+}
+
+  section.global > section.view > section.table-header > section.table-header-col {
+    color: hsla(0,0%,100%,.3);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: .025em;
+    font-weight: 500;
+  }
+
+    section.global > section.view > section.table-header > section.table-header-col.name {
+      width: 200px;
+    }
+
+    section.global > section.view > section.table-header > section.table-header-col.status, section.table-header-col.common {
+      width: 200px;
+      margin-left: 20px;
+    }
+
+/* Table Content */
+
+section.global > section.view > section.table-content {
+  height: 766px;
+  overflow: auto;
+}
+
+section.global > section.view > section.table-content > section.table-line {
+  height: 62px;
+  display: flex;
+  flex-direction: row;
+  padding: 2px 12px 0 12px;
+  font-weight: 500;
+  font-size: 16px;
+  overflow: hidden;
+  border-bottom: solid hsla(0,0%,100%,.3) 1px;
+}
+
+  section.global > section.view > section.table-content > section.table-line > section.table-line-name {
+    margin-left: 9px;
+    color: hsla(0,0%,100%,.6);
+    display: flex;
+    align-items: center;
+  }
+
+    section.global > section.view > section.table-content > section.table-line > section.table-line-name > section.avatar {
+      background-image: url(https://cdn.discordapp.com/avatars/187614835574439937/ffbf9cca6af3b6c1f3697acf1f438323.webp?size=256);
+    }
+
+    section.global > section.view > section.table-content > section.table-line > section.table-line-name > section.tag-name {
+      display: flex;
+      align-items: center;
+    }
+
+  section.global > section.view > section.table-content > section.table-line > section.table-line-status {
+    display: flex;
+    align-items: center;
+    margin-left: 72px;
+  }
+
+    section.global > section.view > section.table-content > section.table-line > section.table-line-status > div.status {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: red;
+    }
+
+  section.global > section.view > section.table-content > section.table-line > section.table-line-common {
+    display: flex;
+    align-items: center;
+    margin-left: 210px;
+  }
+
+    section.global > section.view > section.table-content > section.table-line > section.table-line-common > a > div.avatar-group {
+      height: 30px;
+      width: 30px;
+      background-image: url(https://cdn.discordapp.com/icons/85154866468487168/3c688e03576b5d129a527efc237ba24e.webp);
+      border-radius: 50%;
+      background-size: 30px 30px;
+    }
+
+  section.global > section.view > section.table-content > section.table-line > section.table-line-actions {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    visibility: hidden;
+  }
+
+    section.global > section.view > section.table-content > section.table-line > section.table-line-actions > button.action {
+      background-color: #2f3136;
+      background-size: 24px;
+      background-repeat: no-repeat;
+      background-position: 50%;
+      width: 36px;
+      height: 36px;
+      border-radius: 3px;
+    }
+
+    section.global > section.view > section.table-content > section.table-line > section.table-line-actions > button.action.voice-call {
+      background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICA8ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgogICAgPHBvbHlnb24gcG9pbnRzPSIwIDAgMjQgMCAyNCAyNCAwIDI0Ii8+CiAgICA8cGF0aCBmaWxsPSIjRkZGRkZGIiBkPSJNNy41LDEwLjUgQzguOTQsMTMuMzMgMTAuNjY5MTI4MSwxNS4wNSAxMy40OTkxMjgxLDE2LjUgTDE1LjQxLDE1LjE4IEMxNS42OCwxNC45MSAxNi4wOCwxNC44MiAxNi40MywxNC45NCBDMTcuNTUsMTUuMzEgMTguNzYsMTUuNTEgMjAsMTUuNTEgQzIwLjU1LDE1LjUxIDIxLDE1Ljk2IDIxLDE2LjUxIEwyMSwyMCBDMjEsMjAuNTUgMjAuNTUsMjEgMjAsMjEgQzEwLjYxLDIxIDIuNzkzOTk5MDcsMTMuNjQwNDQ0OSAzLDQgQzMuMDExNzQ5OTQsMy40NTAxMjU3MyAzLjQ1LDMgNCwzIEw3LjUsMyBDOC4wNSwzIDguNSwzLjQ1IDguNSw0IEM4LjUsNS4yNSA4LjcsNi40NSA5LjA3LDcuNTcgQzkuMTgsNy45MiA5LjEsOC4zMSA4LjgyLDguNTkgTDcuNSwxMC41IFoiLz4KICA8L2c+Cjwvc3ZnPgo=");    }
+
+    section.global > section.view > section.table-content > section.table-line > section.table-line-actions > button.action.remove {
+      background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCI+CiAgPGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KICAgIDxwYXRoIGZpbGw9IiNGRkYiIGQ9Ik0xMCAxMmMyLjIxIDAgNC0xLjc5IDQtNHMtMS43OS00LTQtNC00IDEuNzktNCA0IDEuNzkgNCA0IDR6bTAgMmMtMi42NyAwLTggMS4zNC04IDR2MmgxNnYtMmMwLTIuNjYtNS4zMy00LTgtNHptOS4zMDczOTk5LTMuNTA2NjMzM2wxLjY3MjQzMjYtMS42NzI0MzI1NWMuMTI0NTk2LS4xMjQ1OTYwNi4zOTY3NS0uMzk2NzUwMS0uMDA0MDIwMi0uNzk3NTIwMzctLjQwMDc3MDMtLjQwMDc3MDI4LS42NzY5MDA2LS4xMzI1OTI1LS44MDE0OTY3LS4wMDc5OTY0M2wtMS42NzI0MzI1IDEuNjcyNDMyNTItMS42MzY4MjEtMS42MzY4MjFjLS4xMjM2OTY0LS4xMjM2OTY0Ni0uNDI5NzE5MS0uNDI5NzE5MTctLjgzNDQ2NTctLjAyNDk3MjY1LS40MDQ3NDY1LjQwNDc0NjUzLS4wOTk1MDM5LjcxMTU0OTQuMDI0MTkyNS44MzUyNDU4NWwxLjYzNjgyMSAxLjYzNjgyMTAzLTEuNjI1ODI3MyAxLjYyNTgyNzNjLS4xMjM2OTY1LjEyMzY5NjUtLjQzODU5ODkuNDQ2NTUxNC0uMDM3ODI4Ni44NDczMjE3LjQwMDc3MDMuNDAwNzcwMi42NzkyMjgyLjEyMjMxMjMuODAyOTI0Ny0uMDAxMzg0MmwxLjY2NjI0OC0xLjY2NjI0OCAxLjY1NDAxNzQgMS42NTQwMTczYy4xMjQxNDYyLjEyNDE0NjMuNDE5OTIxNi40MTgzNjE0LjgyNDY2ODIuMDEzNjE0OS40MDQ3NDY1LS40MDQ3NDY2LjEwOTc1MTItLjY5OTc0MTgtLjAxNDM5NS0uODIzODg4MWwtMS42NTQwMTc0LTEuNjU0MDE3M3oiLz4KICAgIDxwYXRoIGQ9Ik0wIDBoMjR2MjRIMCIvPgogIDwvZz4KPC9zdmc+");
+    }
+
+  section.global > section.view > section.table-content > section.table-line:hover {
+    background: #414449;
+  }
+
+    section.global > section.view > section.table-content > section.table-line:hover > section.table-line-actions {
+      visibility: visible;
+    }
+/*****/
 
 /* Button */
 
@@ -521,7 +704,7 @@ div.status-offline {
 /* ScrollBar */
 
 ::-webkit-scrollbar {
-  width: 14px;
+  width: 7px;
 }
 
 ::-webkit-scrollbar-track-piece {

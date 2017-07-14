@@ -9,9 +9,9 @@
 </template>
 
 <script>
-  import Chans from './Chans.vue'
-  import Rooms from './Rooms.vue'
-  import Account from './Account.vue'
+  import Chans from './Sections/Chans.vue'
+  import Rooms from './Sections/Rooms.vue'
+  import Account from './Sections/Account.vue'
 
   export default {
     components: {
