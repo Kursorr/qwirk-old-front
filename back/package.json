@@ -4,7 +4,8 @@
   "description": "Qwirk++ an application like Discord",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+      "dev": "nodemon needsomethinghere",
+      "test": "echo\"Error: no test specified\" && exit 1"
   },
   "author": "SENECHAL Maxime aka Ravaniss",
   "license": "ISC",
