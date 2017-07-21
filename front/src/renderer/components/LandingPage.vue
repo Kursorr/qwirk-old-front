@@ -1,15 +1,15 @@
 <template>
   <section id="wrapper">
-    <friend></friend>
+    <emoji-picker></emoji-picker>
   </section>
 </template>
 
 <script>
-  import Friend from './Contents/Friends'
+  import EmojiPicker from './Tchat/EmojiPicker.vue'
   export default {
     name: 'landing-page',
     components: {
-      Friend
+      EmojiPicker
     }
   }
 </script>
