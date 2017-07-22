@@ -453,6 +453,7 @@ section.rooms {
       display: block;
     }
 /*****/
+
 .full-content {
   display: flex;
   flex-direction: row;
@@ -472,7 +473,7 @@ section.rooms {
   flex-direction: column;
   width: 300px;
   flex-grow: 1;
-  background: #2e3136;
+  background-color: #2e3136;
   border-right: solid black 1px;
   overflow: auto;
 }
@@ -593,7 +594,7 @@ section.global > section.view > section.table-content > section.table-line {
       width: 14px;
       height: 14px;
       border-radius: 50%;
-      background: red;
+      background-color: red;
     }
 
   section.global > section.view > section.table-content > section.table-line > section.table-line-common {
@@ -636,13 +637,172 @@ section.global > section.view > section.table-content > section.table-line {
     }
 
   section.global > section.view > section.table-content > section.table-line:hover {
-    background: #414449;
+    background-color: #414449;
   }
 
     section.global > section.view > section.table-content > section.table-line:hover > section.table-line-actions {
       visibility: visible;
     }
 /*****/
+
+/* Tchat & Components */
+/* Tchat */
+
+section#tchat > section#cpnts > section#convers {
+  height: 100%;
+  overflow-y: auto;
+}
+
+  section#tchat > section#cpnts > section#convers > section.onechat {
+    margin: 20px;
+    display: flex;
+    border-bottom: 1px solid hsla(0,0%,100%,.06);
+    padding-bottom: 15px;
+  }
+
+    section#tchat > section#cpnts > section#convers > section.onechat > section.text {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      width: 96%;
+    }
+
+      section#tchat > section#cpnts > section#convers > section.onechat > section.text > span.username {
+        margin-bottom: 15px;
+        margin-top: 8px;
+      }
+
+        section#tchat > section#cpnts > section#convers > section.onechat > section.text > span.username > span.hours {
+          color: hsla(0,0%,100%,.2);
+          font-size: 0.75rem;
+          letter-spacing: 0;
+          font-weight: 400;
+          text-transform: none;
+          margin-left: 6px;
+        }
+
+/* Component - InputBar */
+
+section#tchat > section#cpnts > form {
+  padding: 15px;
+  bottom: 0;
+  display: flex;
+  position: relative;
+  border-top: 1px solid hsla(0,0%,100%,.06);
+}
+
+  section#tchat > section#cpnts > form > button#file {
+    background: url('../../src/renderer/assets/sendfile.png');
+    background-repeat: no-repeat;
+    background-size: 25px;
+    opacity: 0.6;
+  }
+
+  section#tchat > section#cpnts > form > textarea#tchat {
+    color: hsla(0,0%,100%,.7);
+    background-color: transparent;
+    resize: none;
+    outline: none;
+    border: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    font-weight: 400;
+    font-size: 0.9375rem;
+    letter-spacing: -0.025rem;
+    max-height: 144px;
+    width: 100%;
+    min-height: 20px;
+    margin: 2px 2px 2px 0;
+  }
+
+  section#tchat > section#cpnts > form > button#emoji {
+    opacity: .6;
+    position: absolute;
+    top: 15px;
+    right: 0px;
+    background: none;
+    padding: 0;
+  }
+
+/* Component - DropZone */
+
+.dropzone.dz-clickable {
+  overflow-x: auto;
+  width: 896px;
+}
+
+i.material-icons {
+  display: none;
+}
+
+div.dz-default.dz-message {
+  display: none;
+}
+
+section#tchat > section#cpnts > form#myVueDropzone.dropzone.dz-clickable {
+  border-top: 1px solid hsla(0,0%,100%,.06);
+  background: none;
+  border-left: none;
+  border-right: 1px solid black;
+  border-bottom: none;
+  display: none;
+}
+
+/* Component - Emoji */
+
+section#tchat {
+  display: flex;
+  width: 100%;
+  color: #FFF;
+}
+
+  section#tchat > section#cpnts {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+    section#tchat > section#cpnts > div.emoji-mart {
+      width: 385px;
+      height: 325px;
+      overflow: hidden;
+      align-self: flex-end;
+      margin: 0 5px 5px 0;
+      display: none;
+    }
+
+      section#tchat > section#cpnts > div.emoji-mart > div.emoji-mart-bar {
+        display: none;
+      }
+
+/* Members */
+
+  section#tchat > section.members {
+    width: 20%;
+    background-color: #2e3136;
+    display: flex;
+    justify-content: center;
+    overflow: auto;
+  }
+
+    section#tchat > section.members > ul {
+      margin-top: 15px;
+      width: 100%;
+    }
+
+      section#tchat > section.members > ul > li {
+        display: flex;
+        flex-direction: row;
+        margin: 10px 0 10px 30px;
+      }
+
+        section#tchat > section.members > ul > li > section.profil {
+          display: flex;
+          align-items: center;
+        }
+/****/
 
 /* Button */
 
