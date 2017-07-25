@@ -35,7 +35,7 @@
                 <input type="file"/>
               </label>
             </div>
-            <button type="submit" @click.prevent="signUp()">S'inscrire</button>
+            <button type="submit" @click.prevent="signUp()" class="connect">S'inscrire</button>
           </form>
         </section>
         <hr>
@@ -52,7 +52,7 @@
 
             <a href="#">Avez vous oublié votre mot de passe?</a>
 
-            <button type="submit" @click.prevent="authenticate()">Se connecter</button>
+            <button type="submit" @click.prevent="authenticate()" class="connect">Se connecter</button>
           </form>
         </section>
       </section>
