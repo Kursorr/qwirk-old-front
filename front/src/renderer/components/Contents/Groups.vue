@@ -26,8 +26,7 @@
           <section class="table-line-name">
             <section class="avatar"></section>
             <section class="tag-name">
-              <span class="pseudo">Ravaniss</span>
-              <span class="tag">#2495</span>
+              <span class="pseudo">ES Community</span>
             </section>
           </section>
 
