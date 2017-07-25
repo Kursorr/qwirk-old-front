@@ -582,12 +582,13 @@ section.global > section.view > section.table-content > section.table-line {
     section.global > section.view > section.table-content > section.table-line > section.table-line-name > section.tag-name {
       display: flex;
       align-items: center;
+      width: 160px;
     }
 
   section.global > section.view > section.table-content > section.table-line > section.table-line-status {
     display: flex;
     align-items: center;
-    margin-left: 72px;
+    margin-left: 22px;
   }
 
     section.global > section.view > section.table-content > section.table-line > section.table-line-status > div.status {
@@ -643,6 +644,46 @@ section.global > section.view > section.table-content > section.table-line {
     section.global > section.view > section.table-content > section.table-line:hover > section.table-line-actions {
       visibility: visible;
     }
+/*****/
+
+/* Add Friend */
+
+section#add_friend {
+  padding: 15px;
+  color: white;
+}
+
+  section#add_friend > h1 {
+    text-transform: uppercase;
+  }
+
+  section#add_friend > p {
+    margin-bottom: 10px;
+  }
+
+  section#add_friend > form {
+    display: flex;
+  }
+
+    section#add_friend > form > input {
+      border-radius: 4px;
+      border: solid grey 1px;
+      height: 44px;
+      width: 240px;
+    }
+
+    section#add_friend > form > button {
+      border-radius: 4px;
+      border: solid #3F91C0 1px;
+      background-color: #3F91C0;
+      color: white;
+    }
+/*****/
+
+/* Creation & Edit modal of Group and Channel */
+
+
+
 /*****/
 
 /* Tchat & Components */
@@ -825,6 +866,14 @@ section.buttons {
   height: 60px;
 }
 
+ button.connect {
+   background-color: #7289da;
+ }
+
+ button.connect:hover {
+   background-color: #697ec4;
+ }
+
   section.buttons > button.danger {
     background-color: #f36c6c;
   }
@@ -840,6 +889,14 @@ section.buttons {
     section.buttons > button.success:hover {
       background-color: #3ca374;
     }
+
+section.global > section.view > section.table-content > section.table-line > section.table-line-actions > button.action.voice-call:hover {
+  background-color: #4F545C;
+}
+
+section.global > section.view > section.table-content > section.table-line > section.table-line-actions > button.remove:hover {
+  background-color: #DC4242;
+}
 /*****/
 
 /* Status */
