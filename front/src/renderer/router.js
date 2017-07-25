@@ -4,6 +4,10 @@ import LandingPage from './components/LandingPage.vue'
 import Channels from './components/Contents/Channels.vue'
 import Friends from './components/Contents/Friends.vue'
 import Groups from './components/Contents/Groups.vue'
+import AddFriend from './components/Contents/AddFriend.vue'
+import Grid from './components/Contents/Grids/Grid.vue'
+import Join from './components/Contents/Grids/Join.vue'
+import ChannelGrid from './components/Contents/Grids/ChannelGrid.vue'
 
 Vue.use(Router)
 
@@ -17,7 +21,19 @@ export default new Router({
     {
       path: '/friends',
       name: 'friends',
-      component: Friends
+      component: Friends,
+      children: [
+        {
+          path: '/add_friend',
+          name: 'addFriend',
+          component: AddFriend
+        },
+        {
+          path: '/all',
+          name: 'all',
+          component: Grid
+        }
+      ]
     },
     {
       path: '/groups',
@@ -27,7 +43,19 @@ export default new Router({
     {
       path: '/channels',
       name: 'channels',
-      component: Channels
+      component: Channels,
+      children: [
+        {
+          path: '/join',
+          name: 'join',
+          component: Join
+        },
+        {
+          path: '/all_channel',
+          name: 'all_channel',
+          component: ChannelGrid
+        }
+      ]
     },
     {
       path: '*',
