@@ -14,13 +14,12 @@
 
 <script>
   import Sidebar from './components/Sidebar/Sidebar.vue'
-  import EmojiPicker from './components/Tchat/EmojiPicker.vue'
   require('../../static/style/style.css')
 
   export default {
     name: 'front',
     components: {
-      Sidebar, EmojiPicker
+      Sidebar
     }
   }
 </script>
