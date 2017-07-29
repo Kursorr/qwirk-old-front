@@ -142,7 +142,6 @@ section.modal {
         background-color: #2E3136;
         color: #FDFDFD;
         text-align: left;
-        border: none;
         transition: all 200ms ease;
       }
 
@@ -844,6 +843,22 @@ section#tchat {
           align-items: center;
         }
 /****/
+
+/* Active tab & others~ */
+
+.tab.is-active {
+  border-left: 2px solid #7289da;
+  padding-left: 28px;
+  background-image: linear-gradient(to right,#282b30 80%,#2e3136);
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 300ms;
+}
+
+.fade-enter, .fade-leave-active {
+  opacity: 0;
+}
 
 /* Button */
 
