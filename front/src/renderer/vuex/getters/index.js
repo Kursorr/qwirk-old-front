@@ -1,17 +1,17 @@
-const files = require.context('.', false, /\.js$/);
-const getters = {};
+const files = require.context('.', false, /\.js$/)
+const getters = {}
 
 files.keys().forEach((key) => {
   if (key === './index.js') {
-    return;
+    return
   }
 
-  let file = files(key);
+  let file = files(key)
   for (let val in file) {
     if (file.hasOwnProperty(val)) {
-      getters[val] = file[val];
+      getters[val] = file[val]
     }
   }
-});
+})
 
-export default getters;
+export default getters

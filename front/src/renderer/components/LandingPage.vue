@@ -1,15 +1,16 @@
 <template>
   <section id="wrapper">
-    <emoji-picker></emoji-picker>
+    <tchat></tchat>
   </section>
 </template>
 
 <script>
-  import EmojiPicker from './Tchat/EmojiPicker.vue'
+  import Tchat from './Tchat/Tchat.vue'
+
   export default {
     name: 'landing-page',
     components: {
-      EmojiPicker
+      Tchat
     }
   }
 </script>

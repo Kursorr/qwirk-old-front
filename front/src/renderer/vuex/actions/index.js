@@ -1,17 +1,17 @@
-const files = require.context('.', false, /\.js$/);
-const actions = {};
+const files = require.context('.', false, /\.js$/)
+const actions = {}
 
 files.keys().forEach((key) => {
   if (key === './index.js') {
-    return;
+    return
   }
 
-  let file = files(key);
+  let file = files(key)
   for (let val in file) {
     if (file.hasOwnProperty(val)) {
-      actions[val] = file[val];
+      actions[val] = file[val]
     }
   }
-});
+})
 
-export default actions;
+export default actions
