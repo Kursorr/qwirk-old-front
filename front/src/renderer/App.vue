@@ -5,7 +5,6 @@
       <button class="win-maximize"></button>
       <button class="win-close"></button>
     </section>
-    <auth></auth>
     <section class="full-content">
       <sidebar></sidebar>
       <router-view></router-view>

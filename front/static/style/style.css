@@ -129,11 +129,22 @@ section.modal {
 
       section.modal > section.set > section.menu > h1.title {
         padding: 20px 0;
-        font-size: 18px;
+        font-size: 14px;
         font-weight: 300;
         text-align: center;
-        border-bottom: solid #1C1E22 2px;
-        color: #FFF;
+        color: #72767d;
+        text-transform: uppercase;
+      }
+
+      section.modal > section.set > section.menu > h1.subtitle {
+        padding: 20px 0;
+        font-size: 13px;
+        font-weight: 300;
+        text-align: center;
+        border-top: solid #1C1E22 1px;
+        margin-top: 20px;
+        color: #72767d;
+        text-transform: uppercase;
       }
 
       section.modal > section.set > section.menu > button.tab {
@@ -168,6 +179,8 @@ section.modal {
         flex: 1;
         color: #FFF;
         padding: 12px;
+        height: 90%;
+        overflow: auto;
       }
 
         section.modal > section.set > section.content > section.settings > form {
@@ -468,6 +481,10 @@ section.rooms {
   width: 300px;
 }
 
+.container.setting {
+  height: 90%;
+}
+
 .components {
   flex-direction: column;
   width: 300px;
@@ -512,12 +529,18 @@ section.global {
         flex-shrink: 0;
       }
 
-      section.global > section.bar > section.filters > a.filt.add {
+      section.global > section.bar > section.filters > button.filt.add, a.filt.add{
         border-radius: 4px;
         background-color: #7289da;
+        margin-left: 20px;
+        margin-right: 20px;
+        padding: 3px 5px;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 100;
       }
 
-      section.global > section.bar > section.filters > a.filt.add:hover {
+      section.global > section.bar > section.filters > button.filt.add:hover, a.filt.add:hover {
         border-radius: 4px;
         background-color: #697ec4;
       }
@@ -681,7 +704,23 @@ section#add_friend {
 
 /* Creation & Edit modal of Group and Channel */
 
+section#moderation > section.verification_members > section.text {
+  margin-bottom: 10px;
+}
 
+section#moderation > section.verification_members > section.group_modo {
+  display: flex;
+  padding: 10px;
+}
+
+section#moderation > section.verification_members > section.group_modo > label.label_checkbox > input.input_checkbox {
+  width: 24px;
+  height: 24px;
+  border-width: 1px;
+  border-style: solid;
+  background: rgba(32,34,37,.3);
+  border-color: #202225;
+}
 
 /*****/
 

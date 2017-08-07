@@ -1,8 +1,13 @@
 <template>
   <section class="global">
+    <transition name="fade">
+      <create-and-edit v-if="modal.createAndEdit"
+                       @close="setModal('createAndEdit', false)"></create-and-edit>
+    </transition>
+
     <section class="bar">
       <section class="filters">
-        <a href="#" class="filt add">Créer un channel</a>
+        <button class="filt add" @click="setModal('createAndEdit', true)">Créer un channel</button>
         <div class="separator"></div>
         <router-link to="/all_channel" class="filt">Tous</router-link>
         <a href="#" class="filt">Tous</a>
@@ -17,3 +22,26 @@
     <router-view></router-view>
   </section>
 </template>
+
+<script>
+  import CreateAndEdit from '../Modals/CreateAndEdit.vue'
+
+  export default {
+    components: {
+      CreateAndEdit
+    },
+    data () {
+      return {
+        modal: {
+          createAndEdit: false
+        },
+        title: 'Channel'
+      }
+    },
+    methods: {
+      setModal (modalName, value) {
+        this.modal[modalName] = value
+      }
+    }
+  }
+</script>

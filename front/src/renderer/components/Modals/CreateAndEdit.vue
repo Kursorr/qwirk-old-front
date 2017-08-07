@@ -1,17 +1,26 @@
 <template>
-  <section class="modal" id="create-group">
+  <section class="modal" id="create-group" @click="closeModal($event)">
     <section class="set">
       <section class="menu">
-        <h1 class="title">Paramètres du Groupe</h1>
-        <button class="tab">Vue d'ensemble</button>
-        <button class="tab">Invitations</button>
-        <button class="tab">Membres</button>
-        <button class="tab">Rôles</button>
-        <button class="tab">Bans</button>
+        <h1 class="title">Paramètres du groupe</h1>
+        <button class="tab" :class="{'is-active': tab === 'global-view'}"
+                @click="setTab('global-view')">Vue d'ensemble</button>
+        <button class="tab" :class="{'is-active': tab === 'moderation'}"
+                @click="setTab('moderation')">Moderation</button>
+        <button class="tab" :class="{'is-active': tab === 'roles'}"
+                @click="setTab('roles')">Rôles</button>
+
+        <h1 class="subtitle">Gestion des utilisateurs</h1>
+        <button class="tab" :class="{'is-active': tab === 'invitation'}"
+                @click="setTab('invitation')">Invitations</button>
+        <button class="tab" :class="{'is-active': tab === 'members'}"
+                @click="setTab('members')">Membres</button>
+        <button class="tab" :class="{'is-active': tab === 'bans'}"
+                @click="setTab('bans')">Bans</button>
       </section>
 
       <section class="content">
-        <section id="general" class="container setting">
+        <section id="general" class="settings" v-if="tab === 'global-view'">
           <section class="principal">
             <form class="form" method="POST">
               <label for="group_name">Nom du groupe</label>
@@ -21,7 +30,26 @@
           </section>
         </section>
 
-        <section id="invit" class="container setting" style="display:none">
+        <section id="moderation" v-if="tab === 'moderation'">
+          <section class="verification_members">
+            <section class="text">
+              <h1>Moderation</h1>
+              <h2>Niveau de vérification</h2>
+              <p>Les membres du serveur doivent répondre aux critères suivants avant de pouvoir envoyer des messages dans les salons de discussion ou initier une conversation privée. Ces exigences ne s'appliquent pas aux membres ayant un rôle assigné. Nous recommandons de définir un niveau de vérification pour un Qwirk public.</p>
+            </section>
+            <section class="group_modo">
+              <label class="label_checkbox">
+                <input type="checkbox" class="input_checkbox">
+              </label>
+              <section class="checkmark">
+                <h2>Aucun</h2>
+                <p>Aucune restriction</p>
+              </section>
+            </section>
+          </section>
+        </section>
+
+        <section id="invit" class="settings" v-if="tab === 'invitation'">
           <section class="listing">
             <table>
               <thead>
@@ -40,7 +68,7 @@
           </section>
         </section>
 
-        <section id="member" class="container setting" style="display:none">
+        <section id="member" class="settings" v-if="tab === 'members'">
           <section class="member">
             <section class="filter">
               <span>1 membre</span>
@@ -65,7 +93,7 @@
           </section>
         </section>
 
-        <section id="role" class="container setting" style="display:none">
+        <section id="role" class="settings" v-if="tab === 'roles'">
           <section class="role-content">
             <section class="role-list">
               <section class="add">
@@ -125,7 +153,7 @@
           </section>
         </section>
 
-        <section id="ban" class="container setting" style="display:none">
+        <section id="ban" class="settings" v-if="tab === 'bans'">
           <section class="listing">
             <table>
               <thead>
@@ -146,11 +174,34 @@
           </section>
 
         </section>
-        <section class="button">
-          <button class="cancel">Annuler</button>
-          <button class="end" type="submit">Terminer</button>
+        <section class="buttons">
+          <button class="success" @click="finish()">Terminer</button>
+          <button class="danger" @click="cancel()">Annuler</button>
         </section>
       </section>
     </section>
   </section>
 </template>
+
+<script>
+  export default {
+    data () {
+      return {
+        tab: 'global-view'
+      }
+    },
+    methods: {
+      closeModal (e) {
+        if (e.target.classList.contains('modal')) {
+          this.$emit('close')
+        }
+      },
+      finish () {
+        this.$emit('close')
+      },
+      setTab (tabName) {
+        this.tab = tabName
+      }
+    }
+  }
+</script>
