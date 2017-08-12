@@ -34,8 +34,7 @@
       return {
         modal: {
           createAndEdit: false
-        },
-        title: 'Channel'
+        }
       }
     },
     methods: {
