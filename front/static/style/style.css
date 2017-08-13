@@ -757,7 +757,7 @@ p.section-description {
 
 /* Global view */
 
-section#general > h2, section#moderation > h2, section#ban > h2, section#invit > h2 {
+section#general > h2, section#moderation > h2, section#ban > h2, section#invit > h2, section#member > h2 {
   font-size: 16px;
   text-transform: uppercase;
   margin-top: 7px;
@@ -973,6 +973,38 @@ h3.extreme {
   color: rgb(240, 71, 71);
 }
 
+/* Member on group / channel */
+
+section#member > h2 > a {
+  color: #f04747;
+  font-size: 12px;
+  text-transform: none;
+}
+
+section#member > section.listing {
+  margin-top: 25px;
+}
+
+  section#member > section.listing > section.member {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-top: solid hsla(218, 5%, 47%, .3) 1px;
+  }
+
+  section#member > section.listing > section.member:hover {
+    background-color: #33363c;
+    border-color: #2b2e32;
+    cursor: pointer;
+  }
+
+    section#member > section.listing > section.member > button.add-role {
+      background: none;
+      border: solid #4f545c 1px;
+      padding: 5px 10px;
+      margin-left: 15px;
+    }
+
 /* Invitation Member */
 
 section#invit > section.listing{
@@ -983,10 +1015,18 @@ section#invit > section.listing{
 
   section#invit > section.listing > table {
     width: 95%;
+    border-collapse: collapse;
   }
 
+    section#invit > section.listing > table > tr.remove-invitation > td {
+      padding: 20px 0;
+      border: 1px solid transparent;
+    }
+
     section#invit > section.listing > table > tr.remove-invitation:hover {
-      background: red;
+      cursor: pointer;
+      background-color: #33363c;
+      border-color: #2b2e32;
     }
 
     section#invit > section.listing > table > tr > th {
@@ -1024,7 +1064,6 @@ section#ban > section.listing {
     border-color: #2b2e32;
     cursor: pointer;
   }
-
 /*****/
 
 /* Tchat & Components */

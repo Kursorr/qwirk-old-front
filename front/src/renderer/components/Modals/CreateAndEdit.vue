@@ -285,34 +285,24 @@
         </section>
 
         <section id="member" class="settings" v-if="tab === 'members'">
-          <section class="member">
-            <section class="filter">
-              <span>1 membre</span>
-              <section class="seek">
-                <input type="text" placeholder="Rechercher un membre">
-                <select>
-                  <option value="">@everyone</option>
-                </select>
+          <h2>1 membre - <a href="#">Purger</a></h2>
+          <input type="text" placeholder="Rechercher un membre">
+
+          <section class="listing">
+            <section class="member">
+              <section class="avatar">
+                <img src="http://i0.wp.com/marioasselin.com/wp-content/plugins/buddypress/bp-core/images/mystery-man.jpg" alt="avatar">
               </section>
-            </section>
-            <section class="members">
-              <section class="one_member">
-                <section class="avbtn">
-                  <section class="avatar"></section>
-                  <button type="button" class="adds">+</button>
-                </section>
-                <section class="profil">
-                  <span class="pseudo">Ravaniss</span>
-                </section>
-              </section>
+              <span>Grafikart</span>
+              <span> #2497</span>
+              <button type="button" class="add-role">+</button>
             </section>
           </section>
         </section>
 
         <section id="invit" class="settings" v-if="tab === 'invitation'">
           <h2>Invites</h2>
-          <p class="section-description">Vous trouverez ici tout les liens d'invitation actif. Vous pouvez en
-            révoquer ou en créer une nouvelle.</p>
+          <p class="section-description">Vous trouverez ici tout les liens d'invitation actif. Vous pouvez en révoquer ou en créer une nouvelle.</p>
             <section class="listing">
               <table>
                 <tr>
@@ -346,8 +336,8 @@
               <span> #2497</span>
             </section>
           </section>
-
         </section>
+
         <section class="buttons">
           <button class="success" @click="finish()">Terminer</button>
           <button class="danger" @click="cancel()">Annuler</button>
