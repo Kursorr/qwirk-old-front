@@ -220,11 +220,23 @@
               </ul>
             </section>
             <section class="new-role">
-              <h1>Nom du rôle</h1>
+              <h2>Nom du rôle</h2>
               <input type="text" name="role_name" />
-              <section id="general-permission">
-                <h1>Permissions Générales</h1>
+              <section class="permission">
+                <h3>Permissions Générales</h3>
                 <ul>
+                  <li>
+                    <section class="role">
+                      <p>Administrateur</p>
+                      <div class="checkbox-green" style="display: flex;flex-direction: row-reverse;">
+                        <input type="checkbox" value="1" id="flatOneRoundedCheckbox" name="" style="display: none;"><label for="flatOneRoundedCheckbox"></label>
+                        <div></div>
+                      </div>
+                    </section>
+                    <p class="section-description">Les membres ayant cette permission peuvent changer leur propre
+                      pseudo.</p>
+                  </li>
+
                   <li>
                     <label><input name="administrator" type="checkbox" v-model="form.perm.admin" />
                       Administrateur
@@ -263,8 +275,54 @@
                       pseudo.</p>
                   </li>
                 </ul>
-                <h1>Permissions Vocales</h1>
+                <h3>Permissions de texte</h3>
                 <ul>
+                  <li>
+                    <label><input name="read_msg" type="checkbox">
+                      Lire les messages
+                    </label>
+                  </li>
+                  <li>
+                    <label><input name="send_msg" type="checkbox">
+                      Envoyer des messages
+                    </label>
+                  </li>
+                  <li>
+                    <label><input name="management_msg" type="checkbox">
+                      Gérer les messages
+                    </label>
+                    <p class="section-description">Les membres ayant cette permission peuvent supprimer les messages
+                    des autres membres ou épingler n'importe quel message.</p>
+                  </li>
+                  <li>
+                    <label><input name="links_on" type="checkbox">
+                      Intégrer des liens
+                    </label>
+                  </li>
+                  <li>
+                    <label><input name="file_pin" type="checkbox">
+                      Attacher des fichiers
+                    </label>
+                  </li>
+                  <li>
+                    <label><input name="see_old_msg" type="checkbox">
+                      Voir les anciens messages
+                    </label>
+                  </li>
+                  <li>
+                    <label><input name="mention" type="checkbox">
+                      Mentionner @Everyone
+                    </label>
+                    <p class="section-description">
+                      Les membres avec cette permission peuvent envoyer des notifications à tous les membres de ce salon en commançant leur message par @everyone.
+                    </p>
+                  </li>
+                </ul>
+                <h3>Permissions Vocales</h3>
+                <ul>
+                  <li>
+                    <label><input name="connect" type="checkbox" />Se connecter</label>
+                  </li>
                   <li>
                     <label><input name="speak_voc_managment" type="checkbox" />Parler</label>
                   </li>
@@ -276,10 +334,13 @@
                   </li>
                   <li>
                     <label><input name="move_members_voc_managment" type="checkbox" />Déplacer les membres</label>
+                    <p class="section-description">
+                      Les membres ayant cette permission peuvent déplacer d'autres membres présents dans le salon vers un autre salon, à condition qu'ils aient tous deux accès à cet autre salon.
+                    </p>
                   </li>
                 </ul>
               </section>
-              <button type="submit" class="cancel">Supprimer le rôle</button>
+              <button type="submit" class="delete-role">Supprimer</button>
             </section>
           </section>
         </section>

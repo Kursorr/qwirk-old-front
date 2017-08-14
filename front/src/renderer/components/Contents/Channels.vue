@@ -10,7 +10,6 @@
         <button class="filt add" @click="setModal('createAndEdit', true)">Créer un channel</button>
         <div class="separator"></div>
         <router-link to="/all_channel" class="filt">Tous</router-link>
-        <a href="#" class="filt">Tous</a>
         <a href="#" class="filt">En ligne</a>
         <a href="#" class="filt">En attente</a>
         <div class="separator"></div>
