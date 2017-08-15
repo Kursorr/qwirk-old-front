@@ -42,7 +42,6 @@ section#wrapper {
   height: 100%;
 }
 
-
 /* Top bar functionnalities */
 
   section#app > section.title-bar {
@@ -85,16 +84,63 @@ section#wrapper {
     }
 /*****/
 
-/* Modals Account Settings & Auth*/
+/* Modal principal configuration */
 
-section.modal.auth {
-  background-image: url('../../src/renderer/assets/back.jpg');
+hr {
+  border: solid hsla(218, 5%, 47%, .3) 1px;
+  margin: 25px 0;
 }
 
-  section.modal.auth > section.set.auth {
-    width: 800px;
-    height: 490px;
-  }
+h2.titleSection {
+  font-size: 16px;
+  text-transform: uppercase;
+  margin-top: 7px;
+}
+
+h3.sec-title {
+  font-weight: normal;
+}
+
+.information {
+  color: #b9bbbe;
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+p.section-description {
+  color: #72767d;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.checkbox {
+  border-radius: 5px;
+  background-color: rgba(32,34,37,.3);
+  border: 1px solid #202225;
+  padding: 0.8em;
+  margin: 1em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.fake-checkbox {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1em;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #72767d;
+  border-radius: 5px;
+}
+
+.fake-checkbox:after {
+  display: none;
+  content: '';
+}
 
 section.modal {
   position: absolute;
@@ -136,145 +182,113 @@ section.modal {
         text-transform: uppercase;
       }
 
-      section.modal > section.set > section.menu > h1.subtitle {
-        padding: 20px 0;
-        font-size: 13px;
-        font-weight: 300;
-        text-align: center;
-        border-top: solid #1C1E22 1px;
-        margin-top: 20px;
-        color: #72767d;
-        text-transform: uppercase;
-      }
+        section.modal > section.set > section.menu > h1.subtitle {
+          padding: 20px 0;
+          font-size: 13px;
+          font-weight: 300;
+          text-align: center;
+          border-top: solid #1C1E22 1px;
+          margin-top: 20px;
+          color: #72767d;
+          text-transform: uppercase;
+        }
 
       section.modal > section.set > section.menu > button.tab {
         padding: 12px 15px;
-        font-size: 16px;
+        font-size: 14px;
         background-color: #282b30;
         color: #FDFDFD;
         text-align: left;
         transition: all 200ms ease;
       }
 
-        section.modal > section.set > section.menu > button.tab:hover {
-          background-image: linear-gradient(to right,#2E3136 100%,#2e3130);
+      section.modal > section.set > section.menu > button.tab:hover {
+        background-image: linear-gradient(to right,#2E3136 100%,#2e3130);
+      }
+
+      section.modal > section.set > section.menu > button.tab:active {
+        border-left: 2px solid #7289da;
+        padding-left: 28px;
+        background-image: linear-gradient(to right,#282b30 80%,#2e3136);
+      }
+
+      section.modal > section.set > section.content {
+        flex: 1;
+        background-color: #2E3136;
+      }
+
+        section.modal > section.set > section.content > section.settings {
+          flex: 1;
+          color: #FFF;
+          padding: 12px;
+          height: 90%;
+          overflow: auto;
         }
 
-        section.modal > section.set > section.menu > button.tab:active {
-          border-left: 2px solid #7289da;
-          padding-left: 28px;
-          background-image: linear-gradient(to right,#282b30 80%,#2e3136);
-        }
+/* Auth modal */
 
-    section.modal > section.set > section.content {
-      flex: 1;
-      background-color: #2E3136;
-    }
+section.modal.auth {
+  background-image: url('../../src/renderer/assets/back.jpg');
+}
+
+  section.modal.auth > section.set.auth {
+    width: 800px;
+    height: 490px;
+  }
 
     section.modal > section.set > section.content.auth {
       display: flex;
+      background-color: rgba(46, 49, 54, 0.7);
     }
 
-      section.modal > section.set > section.content > section.settings {
-        flex: 1;
-        color: #FFF;
-        padding: 12px;
-        height: 90%;
-        overflow: auto;
-      }
-
-        section.modal > section.set > section.content > section.settings > form {
-          display: flex;
-          flex: 1;
-          flex-direction: column;
-        }
-
-          section.modal > section.set > section.content > section.settings > form > label {
-            margin: 10px 0;
-          }
-
-            section.modal > section.set > section.content > section.settings > form > input {
-              width: 90%;
-              padding: 5px 10px;
-              border-radius: 4px;
-              border: solid #2E3136 1px;
-            }
-
-            section.modal > section.set > section.content > section.settings > form > [type=submit] {
-              margin-top: 20px;
-              padding: 8px 0;
-              width: 90%;
-              font-size: 14px;
-              font-weight: normal;
-              background-color: #3498db;
-              color: #fdfdfd;
-            }
-
-            section.modal > section.set > section.content > section.settings > form > img {
-              margin-top: 25px;
-              margin-right: 35px;
-              width: 156px;
-              height: 156px;
-              border-radius: 50%;
-              cursor: pointer;
-            }
-
-      section.modal > section.set > section.content > section.panel {
+      section.modal > section.set > section.content.auth > section.panel {
         display: flex;
         flex-direction: column;
         align-items: center;
         width: 100%;
       }
 
-        section.modal > section.set > section.content > section.panel > h2 {
+        section.modal > section.set > section.content.auth > section.panel > h2 {
           margin-top: 40px;
           margin-bottom: 40px;
           color: #FFF;
         }
 
-        section.modal > section.set > section.content > section.panel > form {
+        section.modal > section.set > section.content.auth > section.panel > form {
           display: flex;
           flex: 2;
           flex-direction: column;
           width: 70%;
         }
 
-          section.modal > section.set > section.content > section.panel > form > a {
+          section.modal > section.set > section.content.auth > section.panel > form > a {
             color: #888;
             margin-bottom: 12px;
           }
 
-            section.modal > section.set > section.content > section.panel > form > a:hover {
-              color: #fff;
-            }
+          section.modal > section.set > section.content.auth > section.panel > form > a:hover {
+            color: #fff;
+          }
 
-          section.modal > section.set > section.content > section.panel > form > div {
+          section.modal > section.set > section.content.auth > section.panel > form > div {
             background: #F0EEF0;
             -webkit-border-radius:0.3em;
             border-radius:0.3em;
             margin-bottom: 12px;
           }
 
-            section.modal > section.set > section.content > section.panel > form > div > input {
+            section.modal > section.set > section.content.auth > section.panel > form > div > input {
               border-radius: 0.3em;
               height: 40px;
               width: 100%;
             }
 
-            input[type="text"], input[type="password"], input[type="email"] {
-              color: #888;
-              padding: 0.5em 2em 0.5em 1em;
-              outline: none;
-              background: none;
-              border: none;
-            }
-
-          section.modal > section.set > section.content > section.panel > form > div.special {
+          section.modal > section.set > section.content.auth > section.panel > form > div.special {
             height: 50px;
             width: 175px;
           }
 
-            section.modal > section.set > section.content > section.panel > form > div.special > label.file-select > div.select-button {
+            section.modal > section.set > section.content.auth > section.panel > form > div.special > label.file-select > div.select-button {
               padding: 1rem;
               color: #000;
               border-radius: .3rem;
@@ -284,13 +298,21 @@ section.modal {
               cursor: pointer;
             }
 
-            section.modal > section.set > section.content > section.panel > form > div.special > label.file-select > input[type="file"] {
+            section.modal > section.set > section.content.auth > section.panel > form > div.special > label.file-select > input[type="file"] {
               display: none;
             }
 
-              section.modal > section.set > section.content > section.panel > form > div.special > label.file-select > div.select-button > span {
-                margin-left: 15px;
-              }
+            section.modal > section.set > section.content.auth > section.panel > form > div.special > label.file-select > div.select-button > span {
+              margin-left: 15px;
+            }
+/*****/
+
+/* Account Settings modal */
+
+/* My Account */
+
+
+
 /*****/
 
 /* Account */
@@ -424,7 +446,7 @@ section.chan.set {
   section.chan:hover, section.chan:active {
     background: #545454;
   }
-
+/*****/
 
 /* Rooms */
 
@@ -659,6 +681,10 @@ section.global > section.view > section.table-content > section.table-line {
       background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCI+CiAgPGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KICAgIDxwYXRoIGZpbGw9IiNGRkYiIGQ9Ik0xMCAxMmMyLjIxIDAgNC0xLjc5IDQtNHMtMS43OS00LTQtNC00IDEuNzktNCA0IDEuNzkgNCA0IDR6bTAgMmMtMi42NyAwLTggMS4zNC04IDR2MmgxNnYtMmMwLTIuNjYtNS4zMy00LTgtNHptOS4zMDczOTk5LTMuNTA2NjMzM2wxLjY3MjQzMjYtMS42NzI0MzI1NWMuMTI0NTk2LS4xMjQ1OTYwNi4zOTY3NS0uMzk2NzUwMS0uMDA0MDIwMi0uNzk3NTIwMzctLjQwMDc3MDMtLjQwMDc3MDI4LS42NzY5MDA2LS4xMzI1OTI1LS44MDE0OTY3LS4wMDc5OTY0M2wtMS42NzI0MzI1IDEuNjcyNDMyNTItMS42MzY4MjEtMS42MzY4MjFjLS4xMjM2OTY0LS4xMjM2OTY0Ni0uNDI5NzE5MS0uNDI5NzE5MTctLjgzNDQ2NTctLjAyNDk3MjY1LS40MDQ3NDY1LjQwNDc0NjUzLS4wOTk1MDM5LjcxMTU0OTQuMDI0MTkyNS44MzUyNDU4NWwxLjYzNjgyMSAxLjYzNjgyMTAzLTEuNjI1ODI3MyAxLjYyNTgyNzNjLS4xMjM2OTY1LjEyMzY5NjUtLjQzODU5ODkuNDQ2NTUxNC0uMDM3ODI4Ni44NDczMjE3LjQwMDc3MDMuNDAwNzcwMi42NzkyMjgyLjEyMjMxMjMuODAyOTI0Ny0uMDAxMzg0MmwxLjY2NjI0OC0xLjY2NjI0OCAxLjY1NDAxNzQgMS42NTQwMTczYy4xMjQxNDYyLjEyNDE0NjMuNDE5OTIxNi40MTgzNjE0LjgyNDY2ODIuMDEzNjE0OS40MDQ3NDY1LS40MDQ3NDY2LjEwOTc1MTItLjY5OTc0MTgtLjAxNDM5NS0uODIzODg4MWwtMS42NTQwMTc0LTEuNjU0MDE3M3oiLz4KICAgIDxwYXRoIGQ9Ik0wIDBoMjR2MjRIMCIvPgogIDwvZz4KPC9zdmc+");
     }
 
+    section.global > section.view > section.table-content > section.table-line > section.table-line-actions > button.action.join {
+      background-image: url('../../src/renderer/assets/join.png');
+    }
+
   section.global > section.view > section.table-content > section.table-line:hover {
     background-color: #414449;
   }
@@ -702,66 +728,9 @@ section#add_friend {
     }
 /*****/
 
-/* Creation & Edit modal of Group and Channel */
-/* GLobal configuration for this modal */
-
-hr {
-  border: solid hsla(218, 5%, 47%, .3) 1px;
-  margin: 25px 0;
-}
-
-h3.sec-title {
-  font-weight: normal;
-}
-
-.information {
-  color: #b9bbbe;
-  font-size: 12px;
-  text-transform: uppercase;
-  font-weight: 600;
-}
-
-p.section-description {
-  color: #72767d;
-  font-size: 14px;
-  margin-top: 10px;
-}
-
-.checkbox {
-  border-radius: 5px;
-  background-color: rgba(32,34,37,.3);
-  border: 1px solid #202225;
-  padding: 0.8em;
-  margin: 1em;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-.fake-checkbox {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 1em;
-  width: 30px;
-  height: 30px;
-  border: 1px solid #72767d;
-  border-radius: 5px;
-}
-
-.fake-checkbox:after {
-  display: none;
-  content: '';
-}
+/* Create & Edit modal of Group and Channel */
 
 /* Global view */
-
-section#general > h2, section#moderation > h2, section#ban > h2, section#invit > h2, section#member > h2 {
-  font-size: 16px;
-  text-transform: uppercase;
-  margin-top: 7px;
-}
 
 section#general > section.principal > form {
   margin-top: 20px;
@@ -773,19 +742,16 @@ section#general > section.principal > form {
   }
 
     section#general > section.principal > form > section.logo > section.upload > p.section-description {
-      margin-left: 15px;
-      margin-right: 15px;
+      margin: 0 15px;
     }
 
-    section#general > section.principal > form > section.logo > section > section.logo-group {
+    section#general > section.principal > form > section.logo > section.logo-ce > section.logo-group, section#account > section#account-profil > section.logo-ce > section.logo-group {
       display: inline-block;
-      width: 128px;
-      height: 128px;
+      width: 100px;
+      height: 100px;
       border-radius: 50%;
-      background-color: #7289da;
       background-size: 128px 128px;
-      background-position: 50%;
-      background-repeat: no-repeat;
+      background: #7289da no-repeat 50%;
       position: relative;
       -webkit-box-sizing: border-box;
       box-sizing: border-box;
@@ -794,14 +760,15 @@ section#general > section.principal > form {
       transition: box-shadow .1s;
     }
 
-      section#general > section.principal > form > section.logo > section > section.logo-group > section.upload-file {
-        position: absolute;
-        top: 55px;
-        left: 10px;
+      section#general > section.principal > form > section.logo > section.logo-ce > section.logo-group > section.upload-file, section#account > section#account-profil > section.logo-ce > section.logo-group > section.upload-file {
         display: none;
+        position: absolute;
+        font-size: 12px;
+        top: 40px;
+        left: 9px;
       }
 
-      section#general > section.principal > form > section.logo > section > section.logo-group > section.bckg {
+      section#general > section.principal > form > section.logo > section.logo-ce > section.logo-group > section.bckg, section#account > section#account-profil > section.logo-ce > section.logo-group > section.bckg {
         height: 100%;
         width: 100%;
         border-radius: 50%;
@@ -809,7 +776,7 @@ section#general > section.principal > form {
         display: none;
       }
 
-      section#general > section.principal > form > section.logo > section > section.logo-group > input {
+      section#general > section.principal > form > section.logo > section.logo-ce > section.logo-group > input, section#account > section#account-profil > section.logo-ce > section.logo-group > input {
         position: absolute;
         top: 0px;
         left: 0px;
@@ -839,7 +806,7 @@ section#general > section.principal > form {
           border-color: hsla(0,0%,100%,.6);
         }
 
-        section#general > section.principal > form > section.logo > section > section.logo-group:hover > section.upload-file, section#general > section.principal > form > section.logo > section > section.logo-group:hover > section.bckg {
+        section#general > section.principal > form > section.logo > section.logo-ce > section.logo-group:hover > section.upload-file, section#general > section.principal > form > section.logo > section.logo-ce > section.logo-group:hover > section.bckg, section#account > section#account-profil > section.logo-ce > section.logo-group:hover > section.bckg, section#account > section#account-profil > section.logo-ce > section.logo-group:hover > section.upload-file {
           display: block;
         }
 
@@ -1065,52 +1032,52 @@ section#role > section.role-content {
           justify-content: space-between;
         }
 
-div.checkbox-green
-{
-  display: flex;
-  flex-direction: row-reverse;
-  position: relative;
-  width: 42px;
-  height: 24px;
-}
-div.checkbox-green div
-{
-  width: 100%;
-  height:100%;
-  background: #72767d;
-  border-radius: 50px;
-  position: relative;
-}
+          section#role > section.role-content > section.new-role > section.permission > ul > li > section.role > div.checkbox-green {
+            display: flex;
+            flex-direction: row-reverse;
+            position: relative;
+            width: 42px;
+            height: 24px;
+          }
 
-div.checkbox-green label
-{
-  display: block;
-  width: 15px;
-  height: 15px;
-  border-radius: 50px;
+            section#role > section.role-content > section.new-role > section.permission > ul > li > section.role > div.checkbox-green > input.checkboxNone {
+              display: none;
+            }
 
-  -webkit-transition: all .5s ease;
-  -moz-transition: all .5s ease;
-  -o-transition: all .5s ease;
-  -ms-transition: all .5s ease;
-  transition: all .5s ease;
+            section#role > section.role-content > section.new-role > section.permission > ul > li > section.role > div.checkbox-green > div {
+              width: 100%;
+              height: 100%;
+              background: #72767d;
+              border-radius: 50px;
+              position: relative;
+            }
 
-  cursor: pointer;
-  position: absolute;
-  top: 5px;
-  z-index: 1;
-  left: 8px;
-  background: #FFF;
-}
+section#role > section.role-content > section.new-role > section.permission > ul > li > section.role > div.checkbox-green > label {
+              display: block;
+              width: 15px;
+              height: 15px;
+              border-radius: 50px;
+              -webkit-transition: all .5s ease;
+              -moz-transition: all .5s ease;
+              -o-transition: all .5s ease;
+              -ms-transition: all .5s ease;
+              transition: all .5s ease;
+              cursor: pointer;
+              position: absolute;
+              top: 5px;
+              z-index: 1;
+              left: 8px;
+              background: #FFF;
+            }
 
-div.checkbox-green input[type=checkbox]:checked ~ div
-{
-  background: rgb(67, 181, 129);
-}
+            section#role > section.role-content > section.new-role > section.permission > ul > li > section.role > div.checkbox-green > input[type=checkbox]:checked ~ div
+            {
+              background: rgb(67, 181, 129);
+            }
 
-div.checkbox-green input[type=checkbox]:checked ~ label {
-  left: 20px;
-}
+            section#role > section.role-content > section.new-role > section.permission > ul > li > section.role > div.checkbox-green > input[type=checkbox]:checked ~ label {
+              left: 20px;
+            }
 
 /* Member on group / channel */
 
@@ -1336,6 +1303,7 @@ section#tchat {
       section#tchat > section#cpnts > div.emoji-mart > div.emoji-mart-bar {
         display: none;
       }
+/*****/
 
 /* Members */
 
@@ -1363,6 +1331,16 @@ section#tchat {
           align-items: center;
         }
 /****/
+
+/* Input */
+
+input[type="text"], input[type="password"], input[type="email"] {
+  color: #888;
+  padding: 0.5em 2em 0.5em 1em;
+  outline: none;
+  background: none;
+  border: none;
+}
 
 /* Active tab & others~ */
 
@@ -1430,8 +1408,12 @@ section.global > section.view > section.table-content > section.table-line > sec
   background-color: #4F545C;
 }
 
-section.global > section.view > section.table-content > section.table-line > section.table-line-actions > button.remove:hover {
+section.global > section.view > section.table-content > section.table-line > section.table-line-actions > button.action.remove:hover {
   background-color: #DC4242;
+}
+
+section.global > section.view > section.table-content > section.table-line > section.table-line-actions > button.action.join:hover {
+  background-color: #3ca374;
 }
 /*****/
 

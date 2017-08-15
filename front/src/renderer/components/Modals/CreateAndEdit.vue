@@ -21,11 +21,11 @@
 
       <section class="content">
         <section id="general" class="settings" v-if="tab === 'global-view'">
-          <h2 class="title">Vue d'ensemble du serveur</h2>
+          <h2 class="titleSection">Vue d'ensemble du serveur</h2>
           <section class="principal">
             <form class="form" method="POST">
               <section class="logo">
-                <section>
+                <section class="logo-ce">
                   <section class="logo-group">
                     <section class="bckg"></section>
                     <section class="upload-file">Changer l'icône</section>
@@ -41,7 +41,6 @@
                     </div>
                   </button>
                 </section>
-
                 <section class="name">
                   <label for="group_name" class="information">Nom du groupe</label>
                   <input type="text" name="group_name" id="group_name" v-model="form.groupName">
@@ -77,7 +76,7 @@
         </section>
 
         <section id="moderation" class="settings" v-if="tab === 'moderation'">
-          <h2>Moderation</h2>
+          <h2 class="titleSection">Moderation</h2>
           <section id="verification-members">
             <section class="text">
               <h2 class="information">Niveau de vérification</h2>
@@ -223,130 +222,253 @@
               <h2>Nom du rôle</h2>
               <input type="text" name="role_name" />
               <section class="permission">
+
                 <h3>Permissions Générales</h3>
                 <ul>
                   <li>
                     <section class="role">
                       <p>Administrateur</p>
-                      <div class="checkbox-green" style="display: flex;flex-direction: row-reverse;">
-                        <input type="checkbox" value="1" id="flatOneRoundedCheckbox" name="" style="display: none;"><label for="flatOneRoundedCheckbox"></label>
+                      <div class="checkbox-green">
+                        <input type="checkbox" value="1" class="checkboxNone" id="admin" name="admin"
+                               v-model="form.perm.admin"><label for="admin"></label>
+                        <div></div>
+                      </div>
+                    </section>
+                    <p class="section-description">Les membres ayant cette permission ont toutes les permissions et
+                      peuvent aussi passer outre les permissions associées à des salons spécifiques. Pensez-y à deux
+                      fois avant d'octroyer cette permission, c'est dangereux.
+                    </p>
+                  </li>
+
+                  <li>
+                    <section class="role">
+                      <p>Gérer le groupe</p>
+                      <div class="checkbox-green">
+                        <input type="checkbox" value="1" class="checkboxNone" id="manageGroup" name="manageGroup"
+                               v-model="form.perm.manageGroup"><label for="manageGroup"></label>
+                        <div></div>
+                      </div>
+                    </section>
+                    <p class="section-description">Les membres ayant cette permission peuvent changer le nom du groupe.
+                    </p>
+                  </li>
+
+                  <li>
+                    <section class="role">
+                      <p>Gérer les rôles</p>
+                      <div class="checkbox-green">
+                        <input type="checkbox" value="1" class="checkboxNone" id="manageRole" name="manageRole"
+                               v-model="form.perm.manageRole"><label for="manageRole"></label>
+                        <div></div>
+                      </div>
+                    </section>
+                    <p class="section-description">Les membres ayant cette permission peuvent créer de nouveaux rôles
+                      et modifier/effacer les rôles plus bas que celui-ci.
+                    </p>
+                  </li>
+
+                  <li>
+                    <section class="role">
+                      <p>Expulser les membres</p>
+                      <div class="checkbox-green">
+                        <input type="checkbox" value="1" class="checkboxNone" id="kick" name="kick"
+                               v-model="form.perm.kick"><label for="kick"></label>
+                        <div></div>
+                      </div>
+                    </section>
+                  </li>
+
+                  <li>
+                    <section class="role">
+                      <p>Bannir les membres</p>
+                      <div class="checkbox-green">
+                        <input type="checkbox" value="1" class="checkboxNone" id="banMember" name="banMember"
+                               v-model="form.perm.ban"><label for="banMember"></label>
+                        <div></div>
+                      </div>
+                    </section>
+                  </li>
+
+                  <li>
+                    <section class="role">
+                      <p>Créer une invitation</p>
+                      <div class="checkbox-green">
+                        <input type="checkbox" value="1" class="checkboxNone" id="createInvite" name="createInvite"
+                               v-model="form.perm.createInvite"><label for="createInvite"></label>
+                        <div></div>
+                      </div>
+                    </section>
+                  </li>
+
+                  <li>
+                    <section class="role">
+                      <p>Changer de pseudo</p>
+                      <div class="checkbox-green">
+                        <input type="checkbox" value="1" class="checkboxNone" id="changeName" name="changeName"
+                               v-model="form.perm.changeName"><label for="changeName"></label>
                         <div></div>
                       </div>
                     </section>
                     <p class="section-description">Les membres ayant cette permission peuvent changer leur propre
                       pseudo.</p>
                   </li>
-
-                  <li>
-                    <label><input name="administrator" type="checkbox" v-model="form.perm.admin" />
-                      Administrateur
-                    </label>
-                  </li>
-                  <li>
-                    <label><input name="group_managment" type="checkbox" v-model="form.perm.manageGroup" />
-                      Gérer le
-                      groupe</label>
-                  </li>
-                  <li>
-                    <label><input name="role_managment" type="checkbox" v-model="form.perm.manageRole" />
-                      Gérer les rôles
-                    </label>
-                  </li>
-                  <li>
-                    <label><input name="kick_members_managment" type="checkbox" v-model="form.perm.kick" />
-                      Expulser les membres
-                    </label>
-                  </li>
-                  <li>
-                    <label><input name="ban_members_managment" type="checkbox" v-model="form.perm.ban" />
-                      Bannir les membres
-                    </label>
-                  </li>
-                  <li>
-                    <label><input name="create_invit_managment" type="checkbox" v-model="form.perm.createInvite" />
-                      Créer une invitation
-                    </label>
-                  </li>
-                  <li>
-                    <label><input name="pseudo_change_managment" type="checkbox" v-model="form.perm.changeName" />
-                      Changer de pseudo
-                    </label>
-                    <p class="section-description">Les membres ayant cette permission peuvent changer leur propre
-                      pseudo.</p>
-                  </li>
                 </ul>
+
                 <h3>Permissions de texte</h3>
                 <ul>
                   <li>
-                    <label><input name="read_msg" type="checkbox">
-                      Lire les messages
-                    </label>
+                    <section class="role">
+                      <p>Lire les message</p>
+                      <div class="checkbox-green">
+                        <input type="checkbox" value="1" class="checkboxNone" id="readMsg" name="readMsg"
+                               ><label for="readMsg"></label>
+                        <div></div>
+                      </div>
+                    </section>
                   </li>
+
                   <li>
-                    <label><input name="send_msg" type="checkbox">
-                      Envoyer des messages
-                    </label>
+                    <section class="role">
+                      <p>Envoyer des messages</p>
+                      <div class="checkbox-green">
+                        <input type="checkbox" value="1" class="checkboxNone" id="sendMsg" name="sendMsg"
+                        ><label for="sendMsg"></label>
+                        <div></div>
+                      </div>
+                    </section>
                   </li>
+
                   <li>
-                    <label><input name="management_msg" type="checkbox">
-                      Gérer les messages
-                    </label>
+                    <section class="role">
+                      <p>Gérer les messages</p>
+                      <div class="checkbox-green">
+                        <input type="checkbox" value="1" class="checkboxNone" id="manageMsg" name="manageMsg"
+                        ><label for="manageMsg"></label>
+                        <div></div>
+                      </div>
+                    </section>
                     <p class="section-description">Les membres ayant cette permission peuvent supprimer les messages
-                    des autres membres ou épingler n'importe quel message.</p>
+                      des autres membres ou épingler n'importe quel message.</p>
                   </li>
+
                   <li>
-                    <label><input name="links_on" type="checkbox">
-                      Intégrer des liens
-                    </label>
+                    <section class="role">
+                      <p>Intégrer des liens</p>
+                      <div class="checkbox-green">
+                        <input type="checkbox" value="1" class="checkboxNone" id="linksOn" name="linksOn"
+                        ><label for="linksOn"></label>
+                        <div></div>
+                      </div>
+                    </section>
                   </li>
+
                   <li>
-                    <label><input name="file_pin" type="checkbox">
-                      Attacher des fichiers
-                    </label>
+                    <section class="role">
+                      <p>Attacher des fichiers</p>
+                      <div class="checkbox-green">
+                        <input type="checkbox" value="1" class="checkboxNone" id="pinFile" name="pinFile"
+                        ><label for="pinFile"></label>
+                        <div></div>
+                      </div>
+                    </section>
                   </li>
+
                   <li>
-                    <label><input name="see_old_msg" type="checkbox">
-                      Voir les anciens messages
-                    </label>
+                    <section class="role">
+                      <p>Voir les anciens messages</p>
+                      <div class="checkbox-green">
+                        <input type="checkbox" value="1" class="checkboxNone" id="seeOldMsg" name="seeOldMsg"
+                        ><label for="seeOldMsg"></label>
+                        <div></div>
+                      </div>
+                    </section>
                   </li>
+
                   <li>
-                    <label><input name="mention" type="checkbox">
-                      Mentionner @Everyone
-                    </label>
+                    <section class="role">
+                      <p>Mentionner @Everyone</p>
+                      <div class="checkbox-green">
+                        <input type="checkbox" value="1" class="checkboxNone" id="mention" name="mention"
+                        ><label for="mention"></label>
+                        <div></div>
+                      </div>
+                    </section>
                     <p class="section-description">
                       Les membres avec cette permission peuvent envoyer des notifications à tous les membres de ce salon en commançant leur message par @everyone.
                     </p>
                   </li>
                 </ul>
+
                 <h3>Permissions Vocales</h3>
                 <ul>
                   <li>
-                    <label><input name="connect" type="checkbox" />Se connecter</label>
+                    <section class="role">
+                      <p>Se connecter</p>
+                      <div class="checkbox-green">
+                        <input type="checkbox" value="1" class="checkboxNone" id="connect" name="connect"
+                        ><label for="connect"></label>
+                        <div></div>
+                      </div>
+                    </section>
                   </li>
+
                   <li>
-                    <label><input name="speak_voc_managment" type="checkbox" />Parler</label>
+                    <section class="role">
+                      <p>Parler</p>
+                      <div class="checkbox-green">
+                        <input type="checkbox" value="1" class="checkboxNone" id="speak" name="speak"
+                        ><label for="speak"></label>
+                        <div></div>
+                      </div>
+                    </section>
                   </li>
+
                   <li>
-                    <label><input name="mute_voc_managment" type="checkbox" />Rendre muets</label>
+                    <section class="role">
+                      <p>Rendre muets</p>
+                      <div class="checkbox-green">
+                        <input type="checkbox" value="1" class="checkboxNone" id="mute" name="mute"
+                        ><label for="mute"></label>
+                        <div></div>
+                      </div>
+                    </section>
                   </li>
+
                   <li>
-                    <label><input name="sourd_voc_managment" type="checkbox" />Rendre sourds</label>
+                    <section class="role">
+                      <p>Rendre sourds</p>
+                      <div class="checkbox-green">
+                        <input type="checkbox" value="1" class="checkboxNone" id="sourd" name="sourd"
+                        ><label for="sourd"></label>
+                        <div></div>
+                      </div>
+                    </section>
                   </li>
+
                   <li>
-                    <label><input name="move_members_voc_managment" type="checkbox" />Déplacer les membres</label>
+                    <section class="role">
+                      <p>Déplacer les membres</p>
+                      <div class="checkbox-green">
+                        <input type="checkbox" value="1" class="checkboxNone" id="memberManage" name="memberManage"
+                        ><label for="memberManage"></label>
+                        <div></div>
+                      </div>
+                    </section>
                     <p class="section-description">
-                      Les membres ayant cette permission peuvent déplacer d'autres membres présents dans le salon vers un autre salon, à condition qu'ils aient tous deux accès à cet autre salon.
+                      Les membres ayant cette permission peuvent déplacer d'autres membres présents dans le salon vers
+                      un autre salon, à condition qu'ils aient tous deux accès à cet autre salon.
                     </p>
                   </li>
                 </ul>
               </section>
+
               <button type="submit" class="delete-role">Supprimer</button>
             </section>
           </section>
         </section>
 
         <section id="member" class="settings" v-if="tab === 'members'">
-          <h2>1 membre - <a href="#">Purger</a></h2>
+          <h2 class="titleSection">1 membre - <a href="#">Purger</a></h2>
           <input type="text" placeholder="Rechercher un membre">
 
           <section class="listing">
@@ -362,7 +484,7 @@
         </section>
 
         <section id="invit" class="settings" v-if="tab === 'invitation'">
-          <h2>Invites</h2>
+          <h2 class="titleSection">Invites</h2>
           <p class="section-description">Vous trouverez ici tout les liens d'invitation actif. Vous pouvez en révoquer ou en créer une nouvelle.</p>
             <section class="listing">
               <table>
@@ -383,7 +505,7 @@
         </section>
 
         <section id="ban" class="settings" v-if="tab === 'bans'">
-          <h2>1 banni</h2>
+          <h2 class="titleSection">1 banni</h2>
           <p class="section-description">
             Les interdictions par défaut sont par compte et IP.
             Un utilisateur peut contourner une interdiction de propriété intellectuelle en utilisant un proxy.
