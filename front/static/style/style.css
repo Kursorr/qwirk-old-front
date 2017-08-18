@@ -101,6 +101,10 @@ h3.sec-title {
   font-weight: normal;
 }
 
+a.specialA:hover {
+  text-decoration: underline;
+}
+
 .information {
   color: #b9bbbe;
   font-size: 12px;
@@ -108,7 +112,11 @@ h3.sec-title {
   font-weight: 600;
 }
 
-p.section-description {
+.information.label {
+  color: hsla(210,3%,87%,.3);
+}
+
+.section-description {
   color: #72767d;
   font-size: 14px;
   margin-top: 10px;
@@ -310,6 +318,75 @@ section.modal.auth {
 /* Account Settings modal */
 
 /* My Account */
+
+section#account > section.account-profil {
+  background: rgba(32,34,37,.3);
+  border: solid #202225 1px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+  section#account > section.account-profil > section#entireForm {
+    display: flex;
+  }
+
+    section#account > section.account-profil > section#entireForm > section.logo-ce {
+      margin: 10px 20px 0 10px;
+    }
+
+    section#account > section.account-profil > section#entireForm > form, section#account > section.account-profil > section#entireForm > form > label {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      margin-top: 5px;
+    }
+
+      section#account > section.account-profil > section#entireForm > form > label > input {
+        color: #f6f6f7;
+        background-color: rgba(0,0,0,.1);
+        width: 100%;
+        border: 1px solid rgba(0, 0, 0, .3);
+        border-radius: 3px;
+        padding: 10px;
+        height: 30px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+
+  section#account > section.account-profil > section.buttons {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+    section#account > section.account-profil > section.buttons > a {
+      margin-right: 30px;
+    }
+
+section#account > section.account-profil.noEdit {
+  display: flex;
+}
+
+  section#account > section.account-profil.noEdit > section.logo-group {
+    margin: 5px 20px 5px 10px;
+  }
+
+  section#account > section.account-profil.noEdit > section#user-informations {
+    margin-top: 5px;
+    margin-right: 120px;
+  }
+
+    section#account > section.account-profil.noEdit > section#user-informations > h3.information.label.marg {
+      margin-top: 10px;
+    }
+
+    section#account > section.account-profil.noEdit > section#user-informations > span.information {
+      text-transform: inherit;
+      font-size: 14px;
+    }
+
+/* Confidential & Security */
 
 
 
@@ -665,10 +742,8 @@ section.global > section.view > section.table-content > section.table-line {
   }
 
     section.global > section.view > section.table-content > section.table-line > section.table-line-actions > button.action {
-      background-color: #2f3136;
       background-size: 24px;
-      background-repeat: no-repeat;
-      background-position: 50%;
+      background: #2f3136 no-repeat 50%;
       width: 36px;
       height: 36px;
       border-radius: 3px;
@@ -745,7 +820,7 @@ section#general > section.principal > form {
       margin: 0 15px;
     }
 
-    section#general > section.principal > form > section.logo > section.logo-ce > section.logo-group, section#account > section#account-profil > section.logo-ce > section.logo-group {
+    section#general > section.principal > form > section.logo > section.logo-ce > section.logo-group, section#account > section.account-profil > section#entireForm > section.logo-ce > section.logo-group, section#account > section.account-profil.noEdit > section.logo-group {
       display: inline-block;
       width: 100px;
       height: 100px;
@@ -760,7 +835,7 @@ section#general > section.principal > form {
       transition: box-shadow .1s;
     }
 
-      section#general > section.principal > form > section.logo > section.logo-ce > section.logo-group > section.upload-file, section#account > section#account-profil > section.logo-ce > section.logo-group > section.upload-file {
+      section#general > section.principal > form > section.logo > section.logo-ce > section.logo-group > section.upload-file, section#account > section.account-profil > section#entireForm > section.logo-ce > section.logo-group > section.upload-file {
         display: none;
         position: absolute;
         font-size: 12px;
@@ -768,7 +843,7 @@ section#general > section.principal > form {
         left: 9px;
       }
 
-      section#general > section.principal > form > section.logo > section.logo-ce > section.logo-group > section.bckg, section#account > section#account-profil > section.logo-ce > section.logo-group > section.bckg {
+      section#general > section.principal > form > section.logo > section.logo-ce > section.logo-group > section.bckg, section#account > section.account-profil > section#entireForm > section.logo-ce > section.logo-group > section.bckg {
         height: 100%;
         width: 100%;
         border-radius: 50%;
@@ -776,7 +851,7 @@ section#general > section.principal > form {
         display: none;
       }
 
-      section#general > section.principal > form > section.logo > section.logo-ce > section.logo-group > input, section#account > section#account-profil > section.logo-ce > section.logo-group > input {
+      section#general > section.principal > form > section.logo > section.logo-ce > section.logo-group > input, section#account > section.account-profil > section#entireForm > section.logo-ce > section.logo-group > input {
         position: absolute;
         top: 0px;
         left: 0px;
@@ -806,7 +881,7 @@ section#general > section.principal > form {
           border-color: hsla(0,0%,100%,.6);
         }
 
-        section#general > section.principal > form > section.logo > section.logo-ce > section.logo-group:hover > section.upload-file, section#general > section.principal > form > section.logo > section.logo-ce > section.logo-group:hover > section.bckg, section#account > section#account-profil > section.logo-ce > section.logo-group:hover > section.bckg, section#account > section#account-profil > section.logo-ce > section.logo-group:hover > section.upload-file {
+        section#general > section.principal > form > section.logo > section.logo-ce > section.logo-group:hover > section.upload-file, section#general > section.principal > form > section.logo > section.logo-ce > section.logo-group:hover > section.bckg, section#account > section.account-profil > section#entireForm > section.logo-ce > section.logo-group:hover > section.bckg, section#account > section.account-profil > section#entireForm > section.logo-ce > section.logo-group:hover > section.upload-file {
           display: block;
         }
 
@@ -1219,8 +1294,7 @@ section#tchat > section#cpnts > form {
 }
 
   section#tchat > section#cpnts > form > button#file {
-    background: url('../../src/renderer/assets/sendfile.png');
-    background-repeat: no-repeat;
+    background: url('../../src/renderer/assets/sendfile.png') no-repeat;
     background-size: 25px;
     opacity: 0.6;
   }
