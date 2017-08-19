@@ -10,7 +10,6 @@
           <span class="username">Ravaniss</span>
         </section>
       </li>
-      <li></li>
     </ul>
   </section>
 </template>

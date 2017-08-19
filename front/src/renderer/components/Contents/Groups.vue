@@ -1,8 +1,13 @@
 <template>
   <section class="global">
+    <transition name="fade">
+      <create-and-edit v-if="modal.createAndEdit"
+                       @close="setModal('createAndEdit', false)"></create-and-edit>
+    </transition>
+
     <section class="bar">
       <section class="filters">
-        <button class="filt add">Créer un groupe</button>
+        <button class="filt add" @click="setModal('createAndEdit', true)">Créer un groupe</button>
         <div class="separator"></div>
         <a href="#" class="filt">Tous</a>
         <a href="#" class="filt">En ligne</a>
@@ -50,3 +55,25 @@
     </section>
   </section>
 </template>
+
+<script>
+  import CreateAndEdit from '../Modals/CreateAndEdit.vue'
+
+  export default {
+    components: {
+      CreateAndEdit
+    },
+    data () {
+      return {
+        modal: {
+          createAndEdit: false
+        }
+      }
+    },
+    methods: {
+      setModal (modalName, value) {
+        this.modal[modalName] = value
+      }
+    }
+  }
+</script>

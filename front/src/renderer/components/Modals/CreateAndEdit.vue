@@ -51,14 +51,14 @@
 
               <section class="afk">
                 <section class="options">
-                  <section class="opt first">
+                  <section class="opt w">
                     <label for="salonAfk" class="information">Salon AFK</label>
                     <select name="salonAfk" id="salonAfk">
                       <option value="none">Aucun salon AFK</option>
                       <option value="general">General</option>
                     </select>
                   </section>
-                  <section class="opt second">
+                  <section class="opt w">
                     <label for="delay" class="information">Délai avant inactivité</label>
                     <select name="delay" id="delay">
                       <option value="1min">1 minute</option>
@@ -84,70 +84,72 @@
                 class="section-description">Les membres du serveur doivent répondre aux critères suivants avant de pouvoir envoyer des messages
                 dans les salons de discussion ou initier une conversation privée. Ces exigences ne s'appliquent pas aux membres ayant un rôle assigné. Nous recommandons de définir un niveau de vérification pour un Qwirk public.</p>
             </section>
-            <div>
-              <input checked id="faible" name="security" type="radio">
-              <section class="checkbox blue">
-                <div>
-                  <label class="fake-checkbox" for="faible"></label>
-                </div>
-                <div>
-                  <h3 class="sec-title weak">
-                    Faible
-                  </h3>
-                  <p class="section-description">
-                    Création d'un compte
-                  </p>
-                </div>
-              </section>
-            </div>
-            <div>
-              <input id="moyen" name="security" type="radio">
-              <section class="checkbox green">
-                <div>
-                  <label class="fake-checkbox" for="moyen"></label>
-                </div>
-                <div>
-                  <h3 class="sec-title medium">
-                    Moyen
-                  </h3>
-                  <p class="section-description">
-                    Doit aussi être inscrit sur Qwirk depuis plus de 5 minutes.
-                  </p>
-                </div>
-              </section>
-            </div>
-            <div>
-              <input id="fort" name="security" type="radio">
-              <section class="checkbox orange">
-                <div>
-                  <label class="fake-checkbox" for="fort"></label>
-                </div>
-                <div>
-                  <h3 class="sec-title hard">
-                    (╯°□°）╯︵ ┻━┻
-                  </h3>
-                  <p class="section-description">
-                    Doit aussi être un membre de ce serveur depuis plus de 10 minutes.
-                  </p>
-                </div>
-              </section>
-            </div>
-            <div>
-              <input id="extreme" name="security" type="radio">
-              <section class="checkbox red">
-                <div>
-                  <label class="fake-checkbox" for="extreme"></label>
-                </div>
-                <div>
-                  <h3 class="sec-title extreme">
-                    ┻━┻ ﾐヽ(ಠ益ಠ)ノ彡┻━┻
-                  </h3>
-                  <p class="section-description">
-                    Doit aussi être un membre de ce serveur depuis plus de 30 minutes.
-                  </p>
-                </div>
-              </section>
-            </div>
+            <form action="">
+              <div>
+                <input checked id="faible" name="security" type="radio">
+                <section class="checkbox blue">
+                  <div>
+                    <label class="fake-checkbox" for="faible"></label>
+                  </div>
+                  <div>
+                    <h3 class="sec-title weak">
+                      Faible
+                    </h3>
+                    <p class="section-description">
+                      Création d'un compte
+                    </p>
+                  </div>
+                </section>
+              </div>
+              <div>
+                <input id="moyen" name="security" type="radio">
+                <section class="checkbox green">
+                  <div>
+                    <label class="fake-checkbox" for="moyen"></label>
+                  </div>
+                  <div>
+                    <h3 class="sec-title medium">
+                      Moyen
+                    </h3>
+                    <p class="section-description">
+                      Doit aussi être inscrit sur Qwirk depuis plus de 5 minutes.
+                    </p>
+                  </div>
+                </section>
+              </div>
+              <div>
+                <input id="fort" name="security" type="radio">
+                <section class="checkbox orange">
+                  <div>
+                    <label class="fake-checkbox" for="fort"></label>
+                  </div>
+                  <div>
+                    <h3 class="sec-title hard">
+                      (╯°□°）╯︵ ┻━┻
+                    </h3>
+                    <p class="section-description">
+                      Doit aussi être un membre de ce serveur depuis plus de 10 minutes.
+                    </p>
+                  </div>
+                </section>
+              </div>
+              <div>
+                <input id="extreme" name="security" type="radio">
+                <section class="checkbox red">
+                  <div>
+                    <label class="fake-checkbox" for="extreme"></label>
+                  </div>
+                  <div>
+                    <h3 class="sec-title extreme">
+                      ┻━┻ ﾐヽ(ಠ益ಠ)ノ彡┻━┻
+                    </h3>
+                    <p class="section-description">
+                      Doit aussi être un membre de ce serveur depuis plus de 30 minutes.
+                    </p>
+                  </div>
+                </section>
+              </div>
+            </form>
           </section>
           <hr>
           <section id="content-filter">
@@ -156,54 +158,56 @@
             <p class="section-description">Analyse et supprime automatiquement les messages contenant des contenus explicites envoyés sur ce serveur. Merci de choisir le niveau de filtre à appliquer aux membres de votre serveur.
             </p>
 
-            <div>
-              <input checked id="no-analyze" name="security" type="radio">
-              <section class="checkbox blue">
-                <div>
-                  <label class="fake-checkbox" for="no-analyze"></label>
-                </div>
-                <div>
-                  <h3 class="sec-title">
-                    Ne pas analyser de messages.
-                  </h3>
-                  <p class="section-description">
-                    Aucune fête n'égale les goûters de mamie.
-                  </p>
-                </div>
-              </section>
-            </div>
-            <div>
-              <input checked id="analyze" name="security" type="radio">
-              <section class="checkbox blue">
-                <div>
-                  <label class="fake-checkbox" for="analyze"></label>
-                </div>
-                <div>
-                  <h3 class="sec-title">
-                    Analyse les messages des membres sans rôle.
-                  </h3>
-                  <p class="section-description">
-                    Option recommandée pour les serveurs qui utilisent des rôles pour les membres de confiance.
-                  </p>
-                </div>
-              </section>
-            </div>
-            <div>
-              <input checked id="full-analyze" name="security" type="radio">
-              <section class="checkbox blue">
-                <div>
-                  <label class="fake-checkbox" for="full-analyze"></label>
-                </div>
-                <div>
-                  <h3 class="sec-title">
-                    Analyse les messages envoyés par tout les membres.
-                  </h3>
-                  <p class="section-description">
-                    Option recommandée lorsque vous voulez un nettoyage brillant.
-                  </p>
-                </div>
-              </section>
-            </div>
+            <form action="">
+              <div>
+                <input checked id="no-analyze" name="security" type="radio">
+                <section class="checkbox blue">
+                  <div>
+                    <label class="fake-checkbox" for="no-analyze"></label>
+                  </div>
+                  <div>
+                    <h3 class="sec-title">
+                      Ne pas analyser de messages.
+                    </h3>
+                    <p class="section-description">
+                      Aucune fête n'égale les goûters de mamie.
+                    </p>
+                  </div>
+                </section>
+              </div>
+              <div>
+                <input checked id="analyze" name="security" type="radio">
+                <section class="checkbox blue">
+                  <div>
+                    <label class="fake-checkbox" for="analyze"></label>
+                  </div>
+                  <div>
+                    <h3 class="sec-title">
+                      Analyse les messages des membres sans rôle.
+                    </h3>
+                    <p class="section-description">
+                      Option recommandée pour les serveurs qui utilisent des rôles pour les membres de confiance.
+                    </p>
+                  </div>
+                </section>
+              </div>
+              <div>
+                <input checked id="full-analyze" name="security" type="radio">
+                <section class="checkbox blue">
+                  <div>
+                    <label class="fake-checkbox" for="full-analyze"></label>
+                  </div>
+                  <div>
+                    <h3 class="sec-title">
+                      Analyse les messages envoyés par tout les membres.
+                    </h3>
+                    <p class="section-description">
+                      Option recommandée lorsque vous voulez un nettoyage brillant.
+                    </p>
+                  </div>
+                </section>
+              </div>
+            </form>
           </section>
         </section>
 
@@ -225,13 +229,13 @@
 
                 <h3>Permissions Générales</h3>
                 <ul>
-                  <li>
-                    <section class="role">
+                  <li class="param-content">
+                    <section class="param">
                       <p>Administrateur</p>
                       <div class="checkbox-green">
                         <input type="checkbox" value="1" class="checkboxNone" id="admin" name="admin"
-                               v-model="form.perm.admin"><label for="admin"></label>
-                        <div></div>
+                               v-model="form.perm.admin"><label for="admin" class="labelCircle"></label>
+                        <div class="checkboxDiv"></div>
                       </div>
                     </section>
                     <p class="section-description">Les membres ayant cette permission ont toutes les permissions et
@@ -240,26 +244,26 @@
                     </p>
                   </li>
 
-                  <li>
-                    <section class="role">
+                  <li class="param-content">
+                    <section class="param">
                       <p>Gérer le groupe</p>
                       <div class="checkbox-green">
                         <input type="checkbox" value="1" class="checkboxNone" id="manageGroup" name="manageGroup"
-                               v-model="form.perm.manageGroup"><label for="manageGroup"></label>
-                        <div></div>
+                               v-model="form.perm.manageGroup"><label for="manageGroup" class="labelCircle"></label>
+                        <div class="checkboxDiv"></div>
                       </div>
                     </section>
                     <p class="section-description">Les membres ayant cette permission peuvent changer le nom du groupe.
                     </p>
                   </li>
 
-                  <li>
-                    <section class="role">
+                  <li class="param-content">
+                    <section class="param">
                       <p>Gérer les rôles</p>
                       <div class="checkbox-green">
                         <input type="checkbox" value="1" class="checkboxNone" id="manageRole" name="manageRole"
-                               v-model="form.perm.manageRole"><label for="manageRole"></label>
-                        <div></div>
+                               v-model="form.perm.manageRole"><label for="manageRole" class="labelCircle"></label>
+                        <div class="checkboxDiv"></div>
                       </div>
                     </section>
                     <p class="section-description">Les membres ayant cette permission peuvent créer de nouveaux rôles
@@ -267,46 +271,46 @@
                     </p>
                   </li>
 
-                  <li>
-                    <section class="role">
+                  <li class="param-content">
+                    <section class="param">
                       <p>Expulser les membres</p>
                       <div class="checkbox-green">
                         <input type="checkbox" value="1" class="checkboxNone" id="kick" name="kick"
-                               v-model="form.perm.kick"><label for="kick"></label>
-                        <div></div>
+                               v-model="form.perm.kick"><label for="kick" class="labelCircle"></label>
+                        <div class="checkboxDiv"></div>
                       </div>
                     </section>
                   </li>
 
-                  <li>
-                    <section class="role">
+                  <li class="param-content">
+                    <section class="param">
                       <p>Bannir les membres</p>
                       <div class="checkbox-green">
                         <input type="checkbox" value="1" class="checkboxNone" id="banMember" name="banMember"
-                               v-model="form.perm.ban"><label for="banMember"></label>
-                        <div></div>
+                               v-model="form.perm.ban"><label for="banMember" class="labelCircle"></label>
+                        <div class="checkboxDiv"></div>
                       </div>
                     </section>
                   </li>
 
-                  <li>
-                    <section class="role">
+                  <li class="param-content">
+                    <section class="param">
                       <p>Créer une invitation</p>
                       <div class="checkbox-green">
                         <input type="checkbox" value="1" class="checkboxNone" id="createInvite" name="createInvite"
-                               v-model="form.perm.createInvite"><label for="createInvite"></label>
-                        <div></div>
+                               v-model="form.perm.createInvite"><label for="createInvite" class="labelCircle"></label>
+                        <div class="checkboxDiv"></div>
                       </div>
                     </section>
                   </li>
 
-                  <li>
-                    <section class="role">
+                  <li class="param-content">
+                    <section class="param">
                       <p>Changer de pseudo</p>
                       <div class="checkbox-green">
                         <input type="checkbox" value="1" class="checkboxNone" id="changeName" name="changeName"
-                               v-model="form.perm.changeName"><label for="changeName"></label>
-                        <div></div>
+                               v-model="form.perm.changeName"><label for="changeName" class="labelCircle"></label>
+                        <div class="checkboxDiv"></div>
                       </div>
                     </section>
                     <p class="section-description">Les membres ayant cette permission peuvent changer leur propre
@@ -316,81 +320,81 @@
 
                 <h3>Permissions de texte</h3>
                 <ul>
-                  <li>
-                    <section class="role">
+                  <li class="param-content">
+                    <section class="param">
                       <p>Lire les message</p>
                       <div class="checkbox-green">
                         <input type="checkbox" value="1" class="checkboxNone" id="readMsg" name="readMsg"
-                               ><label for="readMsg"></label>
-                        <div></div>
+                               ><label for="readMsg" class="labelCircle"></label>
+                        <div class="checkboxDiv"></div>
                       </div>
                     </section>
                   </li>
 
-                  <li>
-                    <section class="role">
+                  <li class="param-content">
+                    <section class="param">
                       <p>Envoyer des messages</p>
                       <div class="checkbox-green">
                         <input type="checkbox" value="1" class="checkboxNone" id="sendMsg" name="sendMsg"
-                        ><label for="sendMsg"></label>
-                        <div></div>
+                        ><label for="sendMsg" class="labelCircle"></label>
+                        <div class="checkboxDiv"></div>
                       </div>
                     </section>
                   </li>
 
-                  <li>
-                    <section class="role">
+                  <li class="param-content">
+                    <section class="param">
                       <p>Gérer les messages</p>
                       <div class="checkbox-green">
                         <input type="checkbox" value="1" class="checkboxNone" id="manageMsg" name="manageMsg"
-                        ><label for="manageMsg"></label>
-                        <div></div>
+                        ><label for="manageMsg" class="labelCircle"></label>
+                        <div class="checkboxDiv"></div>
                       </div>
                     </section>
                     <p class="section-description">Les membres ayant cette permission peuvent supprimer les messages
                       des autres membres ou épingler n'importe quel message.</p>
                   </li>
 
-                  <li>
-                    <section class="role">
+                  <li class="param-content">
+                    <section class="param">
                       <p>Intégrer des liens</p>
                       <div class="checkbox-green">
                         <input type="checkbox" value="1" class="checkboxNone" id="linksOn" name="linksOn"
-                        ><label for="linksOn"></label>
-                        <div></div>
+                        ><label for="linksOn" class="labelCircle"></label>
+                        <div class="checkboxDiv"></div>
                       </div>
                     </section>
                   </li>
 
-                  <li>
-                    <section class="role">
+                  <li class="param-content">
+                    <section class="param">
                       <p>Attacher des fichiers</p>
                       <div class="checkbox-green">
                         <input type="checkbox" value="1" class="checkboxNone" id="pinFile" name="pinFile"
-                        ><label for="pinFile"></label>
-                        <div></div>
+                        ><label for="pinFile" class="labelCircle"></label>
+                        <div class="checkboxDiv"></div>
                       </div>
                     </section>
                   </li>
 
-                  <li>
-                    <section class="role">
+                  <li class="param-content">
+                    <section class="param">
                       <p>Voir les anciens messages</p>
                       <div class="checkbox-green">
                         <input type="checkbox" value="1" class="checkboxNone" id="seeOldMsg" name="seeOldMsg"
-                        ><label for="seeOldMsg"></label>
-                        <div></div>
+                        ><label for="seeOldMsg" class="labelCircle"></label>
+                        <div class="checkboxDiv"></div>
                       </div>
                     </section>
                   </li>
 
-                  <li>
-                    <section class="role">
+                  <li class="param-content">
+                    <section class="param">
                       <p>Mentionner @Everyone</p>
                       <div class="checkbox-green">
                         <input type="checkbox" value="1" class="checkboxNone" id="mention" name="mention"
-                        ><label for="mention"></label>
-                        <div></div>
+                        ><label for="mention" class="labelCircle"></label>
+                        <div class="checkboxDiv"></div>
                       </div>
                     </section>
                     <p class="section-description">
@@ -401,57 +405,57 @@
 
                 <h3>Permissions Vocales</h3>
                 <ul>
-                  <li>
-                    <section class="role">
+                  <li class="param-content">
+                    <section class="param">
                       <p>Se connecter</p>
                       <div class="checkbox-green">
                         <input type="checkbox" value="1" class="checkboxNone" id="connect" name="connect"
-                        ><label for="connect"></label>
-                        <div></div>
+                        ><label for="connect" class="labelCircle"></label>
+                        <div class="checkboxDiv"></div>
                       </div>
                     </section>
                   </li>
 
-                  <li>
-                    <section class="role">
+                  <li class="param-content">
+                    <section class="param">
                       <p>Parler</p>
                       <div class="checkbox-green">
                         <input type="checkbox" value="1" class="checkboxNone" id="speak" name="speak"
-                        ><label for="speak"></label>
-                        <div></div>
+                        ><label for="speak" class="labelCircle"></label>
+                        <div class="checkboxDiv"></div>
                       </div>
                     </section>
                   </li>
 
-                  <li>
-                    <section class="role">
+                  <li class="param-content">
+                    <section class="param">
                       <p>Rendre muets</p>
                       <div class="checkbox-green">
                         <input type="checkbox" value="1" class="checkboxNone" id="mute" name="mute"
-                        ><label for="mute"></label>
-                        <div></div>
+                        ><label for="mute" class="labelCircle"></label>
+                        <div class="checkboxDiv"></div>
                       </div>
                     </section>
                   </li>
 
-                  <li>
-                    <section class="role">
+                  <li class="param-content">
+                    <section class="param">
                       <p>Rendre sourds</p>
                       <div class="checkbox-green">
                         <input type="checkbox" value="1" class="checkboxNone" id="sourd" name="sourd"
-                        ><label for="sourd"></label>
-                        <div></div>
+                        ><label for="sourd" class="labelCircle"></label>
+                        <div class="checkboxDiv"></div>
                       </div>
                     </section>
                   </li>
 
-                  <li>
-                    <section class="role">
+                  <li class="param-content">
+                    <section class="param">
                       <p>Déplacer les membres</p>
                       <div class="checkbox-green">
                         <input type="checkbox" value="1" class="checkboxNone" id="memberManage" name="memberManage"
-                        ><label for="memberManage"></label>
-                        <div></div>
+                        ><label for="memberManage" class="labelCircle"></label>
+                        <div class="checkboxDiv"></div>
                       </div>
                     </section>
                     <p class="section-description">

@@ -131,6 +131,7 @@ a.specialA:hover {
   display: flex;
   flex-direction: row;
   align-items: center;
+  height: 70px;
 }
 
 .fake-checkbox {
@@ -139,8 +140,8 @@ a.specialA:hover {
   justify-content: center;
   align-items: center;
   margin: 1em;
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
   border: 1px solid #72767d;
   border-radius: 5px;
 }
@@ -317,6 +318,10 @@ section.modal.auth {
 
 /* Account Settings modal */
 
+section.somethinghere {
+  margin-top: 20px;
+}
+
 /* My Account */
 
 section#account > section.account-profil {
@@ -386,10 +391,93 @@ section#account > section.account-profil.noEdit {
       font-size: 14px;
     }
 
-/* Confidential & Security */
+/* ConfCall */
 
+section#confCall > section#inOut {
+  display: flex;
+}
 
+  section#confCall > section#inOut > section.periph {
+    width: 50%;
+  }
 
+  section#confCall > section#vidParams section#vid {
+    display:flex;
+    flex-direction: row;
+  }
+
+    section#confCall > section#vidParams > section#vid > section#cam {
+      margin-right: 20px;
+    }
+
+      section#confCall > section#vidParams > section#vid > section#cam, section#confCall > section#vidParams > section#vid > section#previsualisation {
+        width: 50%;
+      }
+
+      section#confCall > section#vidParams > section#vid > section#previsualisation > div#tryCam {
+        height: 178px;
+        width: 278px;
+        border-radius: 5px;
+        background-color: rgba(32,34,37,.3);
+        border: 1px solid #202225;
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+        div#tryCam > button.connect {
+          height: 40px;
+        }
+
+/* Text & Images */
+
+img#emojiExample {
+  height:24px;
+  width:24px;
+}
+
+/* Appearance */
+
+section#displaylook > section#theme > section#preview {
+  height: 175px;
+  overflow: hidden;
+  border: 1px solid #202225;
+  margin-top: 20px;
+}
+
+    section#displaylook > section#theme > section#preview > section#innerSpec {
+      margin-top: -40px;
+    }
+
+/* Language */
+
+section#languageList > ul > li.param-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+  section#languageList > ul > li.param-content > section.langueAndCheck > label {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    width: 110px;
+    justify-content: space-around;
+  }
+
+    section#languageList > ul > li.param-content > section.langueAndCheck > label > input {
+      margin-right: 10px;
+    }
+
+  section#languageList > ul > li.param-content > section.drapAndLogo {
+    display: flex;
+    align-items: flex-end;
+  }
+
+    section#languageList > ul > li.param-content > section.drapAndLogo > img {
+      margin-left: 10px;
+    }
 /*****/
 
 /* Account */
@@ -903,34 +991,11 @@ section#general > section.principal > form {
       margin-bottom: 20px;
     }
 
-      section#general > section.principal > form > section.afk > section.options > section.opt {
+      section#general > section.principal > form > section.afk > section.options > section.opt.w {
         display: flex;
         flex-direction: column;
         width: 250px;
       }
-
-        section#general > section.principal > form > section.afk > section.options > section.opt > select {
-          background: rgba(0,0,0,.1);
-          border: none;
-          box-shadow: none;
-          outline: none;
-          border-radius: 3px;
-          transition: border .15s ease;
-          color: #fff;
-          height: 35px;
-          font-size: 13px;
-          margin-top: 10px;
-        }
-
-          section#general > section.principal > form > section.afk > section.options > section.opt > select > option {
-            background: black;
-            border: none;
-            box-shadow: none;
-            outline: none;
-            border-radius: 3px;
-            -webkit-transition: border .15s ease;
-            color: #fff;
-          }
 
 /* Moderation */
 
@@ -1091,68 +1156,9 @@ section#role > section.role-content {
         margin-bottom: 15px;
       }
 
-        section#role > section.role-content > section.new-role > section.permission > ul > li {
-          padding: 15px 20px 15px 0;
-          border-bottom: solid hsla(218,5%,47%,.3) 1px;
-          font-size: 14px;
-        }
-
         section#role > section.role-content > section.new-role > section.permission > ul > li:last-child {
           margin-bottom: 20px;
         }
-
-        section#role > section.role-content > section.new-role > section.permission > ul > li > section.role {
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-        }
-
-          section#role > section.role-content > section.new-role > section.permission > ul > li > section.role > div.checkbox-green {
-            display: flex;
-            flex-direction: row-reverse;
-            position: relative;
-            width: 42px;
-            height: 24px;
-          }
-
-            section#role > section.role-content > section.new-role > section.permission > ul > li > section.role > div.checkbox-green > input.checkboxNone {
-              display: none;
-            }
-
-            section#role > section.role-content > section.new-role > section.permission > ul > li > section.role > div.checkbox-green > div {
-              width: 100%;
-              height: 100%;
-              background: #72767d;
-              border-radius: 50px;
-              position: relative;
-            }
-
-section#role > section.role-content > section.new-role > section.permission > ul > li > section.role > div.checkbox-green > label {
-              display: block;
-              width: 15px;
-              height: 15px;
-              border-radius: 50px;
-              -webkit-transition: all .5s ease;
-              -moz-transition: all .5s ease;
-              -o-transition: all .5s ease;
-              -ms-transition: all .5s ease;
-              transition: all .5s ease;
-              cursor: pointer;
-              position: absolute;
-              top: 5px;
-              z-index: 1;
-              left: 8px;
-              background: #FFF;
-            }
-
-            section#role > section.role-content > section.new-role > section.permission > ul > li > section.role > div.checkbox-green > input[type=checkbox]:checked ~ div
-            {
-              background: rgb(67, 181, 129);
-            }
-
-            section#role > section.role-content > section.new-role > section.permission > ul > li > section.role > div.checkbox-green > input[type=checkbox]:checked ~ label {
-              left: 20px;
-            }
 
 /* Member on group / channel */
 
@@ -1250,31 +1256,31 @@ section#ban > section.listing {
 /* Tchat & Components */
 /* Tchat */
 
-section#tchat > section#cpnts > section#convers {
+section#convers {
   height: 100%;
   overflow-y: auto;
 }
 
-  section#tchat > section#cpnts > section#convers > section.onechat {
+  section#convers > section.onechat {
     margin: 20px;
     display: flex;
     border-bottom: 1px solid hsla(0,0%,100%,.06);
     padding-bottom: 15px;
   }
 
-    section#tchat > section#cpnts > section#convers > section.onechat > section.text {
+    section#convers > section.onechat > section.text {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
       width: 96%;
     }
 
-      section#tchat > section#cpnts > section#convers > section.onechat > section.text > span.username {
+      section#convers > section.onechat > section.text > span.username {
         margin-bottom: 15px;
         margin-top: 8px;
       }
 
-        section#tchat > section#cpnts > section#convers > section.onechat > section.text > span.username > span.hours {
+        section#convers > section.onechat > section.text > span.username > span.hours {
           color: hsla(0,0%,100%,.2);
           font-size: 0.75rem;
           letter-spacing: 0;
@@ -1348,6 +1354,8 @@ section#tchat > section#cpnts > form#myVueDropzone.dropzone.dz-clickable {
   border-right: 1px solid black;
   border-bottom: none;
   display: none;
+  position: absolute;
+  bottom: 55px;
 }
 
 /* Component - Emoji */
@@ -1366,11 +1374,10 @@ section#tchat {
   }
 
     section#tchat > section#cpnts > div.emoji-mart {
-      width: 385px;
-      height: 325px;
       overflow: hidden;
       align-self: flex-end;
-      margin: 0 5px 5px 0;
+      position: absolute;
+      bottom: 55px;
       display: none;
     }
 
@@ -1397,7 +1404,15 @@ section#tchat {
       section#tchat > section.members > ul > li {
         display: flex;
         flex-direction: row;
-        margin: 10px 0 10px 30px;
+        padding: 10px 0 10px 10px;
+        margin-left: 5px;
+        margin-right: 5px;
+        border-radius: 4px;
+      }
+
+      section#tchat > section.members > ul > li:hover {
+        background: linear-gradient(90deg,#282b30 85%,#2f3136);
+        cursor: pointer;
       }
 
         section#tchat > section.members > ul > li > section.profil {
@@ -1405,6 +1420,36 @@ section#tchat {
           align-items: center;
         }
 /****/
+
+/* Select */
+
+section.opt {
+  display: flex;
+  flex-direction: column;
+}
+
+section.opt > select {
+  background: rgba(0,0,0,.1);
+  border: none;
+  box-shadow: none;
+  outline: none;
+  border-radius: 3px;
+  transition: border .15s ease;
+  color: #fff;
+  height: 35px;
+  font-size: 13px;
+  margin-top: 10px;
+}
+
+  section.opt > select > option {
+    background: black;
+    border: none;
+    box-shadow: none;
+    outline: none;
+    border-radius: 3px;
+    -webkit-transition: border .15s ease;
+    color: #fff;
+  }
 
 /* Input */
 
@@ -1415,6 +1460,167 @@ input[type="text"], input[type="password"], input[type="email"] {
   background: none;
   border: none;
 }
+
+/* Checkbox */
+
+section.param {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+li.param-content {
+  padding: 15px 20px 15px 0;
+  border-bottom: solid hsla(218,5%,47%,.3) 1px;
+  font-size: 14px;
+}
+
+input.checkboxNone {
+  display: none;
+}
+
+div.checkbox-green, div.checkbox-grey {
+  display: flex;
+  flex-direction: row-reverse;
+  position: relative;
+  width: 42px;
+  height: 24px;
+}
+
+div.checkboxDiv {
+  width: 100%;
+  height: 100%;
+  background: #72767d;
+  border-radius: 50px;
+  position: relative;
+}
+
+label.labelCircle {
+  display: block;
+  width: 15px;
+  height: 15px;
+  border-radius: 50px;
+  -webkit-transition: all .5s ease;
+  -moz-transition: all .5s ease;
+  -o-transition: all .5s ease;
+  -ms-transition: all .5s ease;
+  transition: all .5s ease;
+  cursor: pointer;
+  position: absolute;
+  top: 5px;
+  z-index: 1;
+  left: 8px;
+  background: #FFF;
+}
+
+div.checkbox-green > input[type=checkbox].checkboxNone:checked ~ div.checkboxDiv {
+  background: rgb(67, 181, 129);
+}
+
+div.checkbox-grey > input[type=checkbox].checkboxNone:checked ~ div.checkboxDiv {
+  background: #7289da;
+}
+
+input[type=checkbox].checkboxNone:checked ~ label {
+  left: 20px;
+}
+
+/* Input Slider */
+
+div.slider {
+  width: 100%;
+  height: 40px;
+  position: relative;
+}
+
+  div.slider > input.input-slider {
+    display: none;
+  }
+
+div.grabber, div.track {
+  position: absolute;
+}
+
+  div.slider > div.track {
+    top: 0;
+    right: 5px;
+    bottom: 0;
+    left: 5px;
+  }
+
+  div.slider > div.barr {
+    background: #4f545c;
+    position: relative;
+    top: 16px;
+    height: 8px;
+    border-radius: 4px;
+    display: block;
+    overflow: hidden;
+  }
+
+    div.slider > div.barr > div.barFill {
+      background: #7289da;
+      height: 100%;
+    }
+
+      div.slider > div.track > div.grabber {
+        left: 0;
+        width: 10px;
+        height: 24px;
+        margin-left: -5px;
+        top: 50%;
+        margin-top: -13px;
+        border-radius: 3px;
+        background-color: #fff;
+        border: 1px solid #dcddde;
+        -webkit-box-shadow: 0 3px 1px 0 rgba(0,0,0,.05), 0 2px 2px 0 rgba(0,0,0,.1), 0 3px 3px 0 rgba(0,0,0,.05);
+        box-shadow: 0 3px 1px 0 rgba(0,0,0,.05), 0 2px 2px 0 rgba(0,0,0,.1), 0 3px 3px 0 rgba(0,0,0,.05);
+        cursor: ew-resize;
+        position: absolute;
+      }
+
+      div.slider > div.track > div.grabber > span.elevation {
+        -webkit-box-shadow: 0 2px 10px 0 rgba(0,0,0,.2);
+        box-shadow: 0 2px 10px 0 rgba(0,0,0,.2);
+      }
+
+      div.slider > div.track > div.grabber > span.bubble {
+        background-color: #72767d;
+        position: absolute;
+        pointer-espanvents: none;
+        border-radius: 3px;
+        top: -32px;
+        left: -21px;
+        width: 50px;
+        height: 22px;
+        line-height: 22px;
+        text-align: center;
+        font-weight: 600;
+        font-size: 12px;
+        color: #f6f6f7;
+        opacity: 0;
+        -webkit-transition: opacity .2s ease-out;
+        transition: opacity .2s ease-out;
+      }
+
+      div.slider > div.track > div.grabber > span.bubble:before {
+        left: 50%;
+        border: 5px solid transparent;
+        content: " ";
+        width: 0;
+        height: 0;
+        margin-left: -5px;
+        top: 100%;
+      }
+
+      div.slider > div.track > div.grabber > span.bubble, span.bubble:before {
+        position: absolute;
+        pointer-events: none;
+      }
+
+      div.slider > div.track > div.grabber:hover > span.bubble {
+        opacity: 1;
+      }
 
 /* Active tab & others~ */
 
