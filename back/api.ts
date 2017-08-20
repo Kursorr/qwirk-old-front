@@ -7,7 +7,7 @@ import * as r from 'rethinkdb'
 import * as log4js from 'log4js'
 
 // Our routes
-import { accounts } from "./app/routing/accounts";
+import { accounts } from "./app/routing/account";
 import {auth} from "./app/routing/auth";
 
 // Env setting

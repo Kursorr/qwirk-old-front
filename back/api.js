@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 const r = require("rethinkdb");
 const log4js = require("log4js");
 // Our routes
-const accounts_1 = require("./app/routing/accounts");
+const account_1 = require("./app/routing/account");
 const auth_1 = require("./app/routing/auth");
 // Env setting
 const HTTP_PORT = parseInt(process.env.HTTP_PORT) || 1337;
@@ -62,7 +62,7 @@ p.then((conn) => {
         });
     });
     app.use('/auth', auth_1.auth);
-    app.use('/accounts', accounts_1.accounts);
+    app.use('/accounts', account_1.accounts);
     // On lance l'application
     app.listen(HTTP_PORT, () => {
         log.info(`API running on port ${HTTP_PORT}`);
