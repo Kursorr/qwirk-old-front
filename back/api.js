@@ -62,7 +62,7 @@ p.then((conn) => {
         });
     });
     app.use('/auth', auth_1.auth);
-    app.use('/accounts', account_1.accounts);
+    app.use('/account', account_1.accounts);
     // On lance l'application
     app.listen(HTTP_PORT, () => {
         log.info(`API running on port ${HTTP_PORT}`);

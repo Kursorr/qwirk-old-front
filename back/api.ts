@@ -77,7 +77,7 @@ p.then((conn) => {
   })
 
   app.use('/auth', auth)
-  app.use('/accounts', accounts)
+  app.use('/account', accounts)
 
 
   // On lance l'application
