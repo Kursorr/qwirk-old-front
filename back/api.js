@@ -1,12 +1,15 @@
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
 // External modules
+const http = require("http");
 const express = require("express");
 const bodyParser = require("body-parser");
+const cors = require("cors");
 const r = require("rethinkdb");
 const log4js = require("log4js");
+const Socket_1 = require("./app/scripts/Socket");
+const base_1 = require("./app/sockets/base");
 // Our routes
-const account_1 = require("./app/routing/account");
 const auth_1 = require("./app/routing/auth");
 // Env setting
 const HTTP_PORT = parseInt(process.env.HTTP_PORT) || 1337;
@@ -27,22 +30,21 @@ const log = log4js.getLogger('api');
 // Start app
 log.debug('Loading API ...');
 const app = express();
-// Désactivation d'un header
-app.disable('x-powered-by');
+// CORS
+const options = {
+    "origin": true,
+    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE"
+};
+app.use(cors(options));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 log.debug(`Connecting to database : rethinkdb://127.0.0.1:28015/${DATABASE}`);
-const p = r.connect({
-    db: DATABASE
-});
-p.then((conn) => {
+const connectDatabase = r.connect({ db: DATABASE });
+connectDatabase.then((conn) => {
     log.info(`Connected to : rethinkdb://127.0.0.1:28015/${DATABASE}`);
     app.use((req, res, next) => {
         req.secretJWT = JWT_SECRET;
-        req.db = {
-            r,
-            conn
-        };
+        req.db = { r, conn };
         // Auth token
         req.bearer = null;
         if (req.headers.authorization) {
@@ -54,6 +56,10 @@ p.then((conn) => {
         res.log = log;
         next();
     });
+    const server = http.createServer((req, res) => { });
+    // Our Sockets
+    const socket = new Socket_1.Socket(server, { r, conn }, JWT_SECRET);
+    base_1.base(socket);
     // Our routes
     log.debug('Add paths for the API');
     app.get('/', (req, res) => {
@@ -62,13 +68,16 @@ p.then((conn) => {
         });
     });
     app.use('/auth', auth_1.auth);
-    app.use('/account', account_1.accounts);
+    app.post('/friends', (req, res) => {
+        console.log(req.body);
+        res.status(200).json(req.body);
+    });
     // On lance l'application
     app.listen(HTTP_PORT, () => {
         log.info(`API running on port ${HTTP_PORT}`);
     });
 });
-p.error((error) => {
+connectDatabase.error((error) => {
     log.error(`Connection failed to : rethinkdb://127.0.0.1:28015/${DATABASE}`);
     log.error(`Reason : ${error}`);
 });

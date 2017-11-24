@@ -1,14 +1,18 @@
 'use strict';
 
 // External modules
+import * as http from 'http'
 import * as express from 'express'
 import * as bodyParser from 'body-parser'
+import * as cors from 'cors'
 import * as r from 'rethinkdb'
 import * as log4js from 'log4js'
 
+import { Socket } from './app/scripts/Socket'
+import { base } from './app/sockets/base'
+
 // Our routes
-import { accounts } from "./app/routing/account";
-import {auth} from "./app/routing/auth";
+import { auth } from "./app/routing/auth";
 
 // Env setting
 const HTTP_PORT   : number = parseInt(process.env.HTTP_PORT)  || 1337
@@ -17,13 +21,13 @@ const DATABASE    : string = process.env.DATABASE             || 'qwirk'
 
 // Creating logger
 log4js.configure({
-  appenders: {
-    out: { type: 'stdout' },
-    app: { type: 'file', filename: 'server-api.log' }
-  },
-  categories: {
-    'default': { appenders: [ 'out'/*, 'app'*/ ], level: 'debug' }
-  }
+    appenders: {
+        out: { type: 'stdout' },
+        app: { type: 'file', filename: 'server-api.log' }
+    },
+    categories: {
+        'default': { appenders: [ 'out'/*, 'app'*/ ], level: 'debug' }
+    }
 })
 
 // Get logger
@@ -33,60 +37,66 @@ const log = log4js.getLogger('api')
 log.debug('Loading API ...')
 const app = express()
 
-// Désactivation d'un header
-app.disable('x-powered-by')
+// CORS
+const options = {
+    "origin": true,
+    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE"
+}
+app.use(cors(options))
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
 log.debug(`Connecting to database : rethinkdb://127.0.0.1:28015/${DATABASE}`)
-const p = r.connect({
-  db: DATABASE
-})
+const connectDatabase = r.connect({ db: DATABASE })
 
-p.then((conn) => {
-  log.info(`Connected to : rethinkdb://127.0.0.1:28015/${DATABASE}`)
+connectDatabase.then((conn) => {
+    log.info(`Connected to : rethinkdb://127.0.0.1:28015/${DATABASE}`)
 
-  app.use((req, res, next) => {
-    req.secretJWT = JWT_SECRET
-    req.db = {
-      r,
-      conn
-    }
+    app.use((req, res, next) => {
+        req.secretJWT = JWT_SECRET
+        req.db = { r, conn }
 
-    // Auth token
-    req.bearer = null
-    if (req.headers.authorization) {
-      const auth = req.headers.authorization.split(' ')
-
-      if (auth.length === 2 && auth[0] === 'bearer') {
-        req.bearer = auth[1]
-      }
-    }
-
-    res.log = log
-    next()
-  })
-
-  // Our routes
-  log.debug('Add paths for the API')
-  app.get('/', (req, res) => {
-    res.status(200).json({
-      message: `Welcome to Qwirk API`
+        // Auth token
+        req.bearer = null
+        if (req.headers.authorization) {
+            const auth = req.headers.authorization.split(' ')
+            if (auth.length === 2 && auth[0] === 'bearer') {
+                req.bearer = auth[1]
+            }
+        }
+        res.log = log
+        next()
     })
-  })
 
-  app.use('/auth', auth)
-  app.use('/account', accounts)
+    const server = http.createServer((req, res) => {})
 
+    // Our Sockets
+    const socket = new Socket(server, { r, conn }, JWT_SECRET)
+    base(socket)
 
-  // On lance l'application
-  app.listen(HTTP_PORT, () => {
-    log.info(`API running on port ${HTTP_PORT}`)
-  })
+    // Our routes
+    log.debug('Add paths for the API')
+    app.get('/', (req, res) => {
+        res.status(200).json({
+            message: `Welcome to Qwirk API`
+        })
+    })
+
+    app.use('/auth', auth)
+
+    app.post('/friends', (req, res) => {
+        console.log(req.body)
+        res.status(200).json(req.body)
+    })
+
+    // On lance l'application
+    app.listen(HTTP_PORT, () => {
+        log.info(`API running on port ${HTTP_PORT}`)
+    })
 })
 
-p.error((error) => {
-  log.error(`Connection failed to : rethinkdb://127.0.0.1:28015/${DATABASE}`)
-  log.error(`Reason : ${error}`)
+connectDatabase.error((error) => {
+    log.error(`Connection failed to : rethinkdb://127.0.0.1:28015/${DATABASE}`)
+    log.error(`Reason : ${error}`)
 })
