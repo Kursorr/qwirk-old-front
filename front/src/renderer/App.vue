@@ -7,6 +7,7 @@
     </section>
     <section class="full-content">
       <sidebar></sidebar>
+      <auth></auth>
       <router-view></router-view>
     </section>
   </section>
@@ -21,6 +22,10 @@
     name: 'front',
     components: {
       Sidebar, Auth
+    },
+    mounted () {
+      window.io = this.$socket
+      this.$socket.emit('connection')
     }
   }
 </script>
