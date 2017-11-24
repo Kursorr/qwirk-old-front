@@ -1,6 +1,6 @@
 'use strict';
 
-import { IDB, Model } from '../../src/Model'
+import { IDB, Model } from './Model'
 
 enum REASON
 {

@@ -1,6 +1,6 @@
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
-const Model_1 = require("../../src/Model");
+const Model_1 = require("./Model");
 var REASON;
 (function (REASON) {
     REASON[REASON["NOT_FOUND"] = 0] = "NOT_FOUND";

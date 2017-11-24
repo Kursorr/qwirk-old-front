@@ -1,5 +1,4 @@
 "use strict";
-// Our methods
 Object.defineProperty(exports, "__esModule", { value: true });
 const isEmpty = (field) => {
     return (field === undefined || field === null || field === '' || field === [] || field === false);

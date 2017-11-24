@@ -1,8 +1,5 @@
 'use strict';
 
-/**
- * Stock RethinkDB & Co
- */
 interface IDB
 {
   r     : any,
