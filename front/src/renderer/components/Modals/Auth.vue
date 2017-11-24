@@ -8,7 +8,7 @@
           </div>
 
           <h2>S'inscrire</h2>
-          <form method="POST">
+          <form method="POST" autocomplete="off">
             <div>
               <input type="text" title="registerName" name="registerName" placeholder="Pseudo"
                      v-model="register.pseudo">
@@ -35,19 +35,20 @@
                 <input type="file"/>
               </label>
             </div>
-            <button type="submit" @click.prevent="signUp()" class="connect">S'inscrire</button>
+            <button type="submit" @click.prevent="registration()" class="connect">S'inscrire</button>
           </form>
         </section>
+
         <hr>
+
         <section class="panel">
           <h2>Se connecter</h2>
-          <form action="" method="POST">
+          <form method="POST" autocomplete="off">
             <div>
               <input type="email" title="loginEmail" name="loginEmail" placeholder="Email" v-model="login.email">
             </div>
             <div>
-              <input type="password" title="loginPassword" name="loginPassword" placeholder="Mot de passe"
-                     v-model="login.password">
+              <input type="password" title="loginPassword" name="loginPassword" placeholder="Mot de passe" v-model="login.password">
             </div>
 
             <a href="#">Avez vous oublié votre mot de passe?</a>
@@ -66,10 +67,10 @@
     data () {
       return {
         register: {
-          pseudo: '',
-          email: '',
-          password: '',
-          confirm: '',
+          pseudo: 'quenti77',
+          email: 'quenti77@gmail.com',
+          password: 'jesaispas',
+          confirm: 'jesaispas',
           error: null
         },
         login: {
@@ -79,12 +80,27 @@
         }
       }
     },
+    sockets: {
+      test (val) {
+        console.log(val)
+      }
+    },
     methods: {
       closeModal (e) {
         if (e.target.classList.contains('modal')) {
           this.$emit('close')
         }
+      },
+      registration () {
+        console.log('Registration !')
+        this.$socket.emit('register', this.register)
+      },
+      authenticate () {
+        console.log('Authenticate !')
       }
+    },
+    mounted () {
+      this.$socket.emit('test')
     }
   }
 </script>

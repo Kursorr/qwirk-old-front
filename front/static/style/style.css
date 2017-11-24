@@ -611,6 +611,13 @@ section.chan.set {
   section.chan:hover, section.chan:active {
     background: #545454;
   }
+
+  section.chan > a {
+    height: 100%;
+    width: 100%;
+    text-align: left;
+    padding: 8px 0;
+  }
 /*****/
 
 /* Rooms */
@@ -941,8 +948,8 @@ section#general > section.principal > form {
 
       section#general > section.principal > form > section.logo > section.logo-ce > section.logo-group > input, section#account > section.account-profil > section#entireForm > section.logo-ce > section.logo-group > input {
         position: absolute;
-        top: 0px;
-        left: 0px;
+        top: 0;
+        left: 0;
         width: 100%;
         height: 100%;
         opacity: 0;
@@ -996,6 +1003,7 @@ section#general > section.principal > form {
         flex-direction: column;
         width: 250px;
       }
+
 
 /* Moderation */
 
@@ -1332,30 +1340,18 @@ section#tchat > section#cpnts > form {
     padding: 0;
   }
 
+
 /* Component - DropZone */
 
-.dropzone.dz-clickable {
+#cpnts > .vue-dropzone.dropzone.dz-clickable {
+  min-height: 165px;
+  display: none;
   overflow-x: auto;
-  width: 896px;
 }
 
-i.material-icons {
-  display: none;
-}
-
-div.dz-default.dz-message {
-  display: none;
-}
-
-section#tchat > section#cpnts > form#myVueDropzone.dropzone.dz-clickable {
-  border-top: 1px solid hsla(0,0%,100%,.06);
-  background: none;
-  border-left: none;
-  border-right: 1px solid black;
-  border-bottom: none;
-  display: none;
-  position: absolute;
-  bottom: 55px;
+#cpnts .vue-dropzone .dz-preview .dz-image {
+  height: 100px;
+  width: 100px;
 }
 
 /* Component - Emoji */

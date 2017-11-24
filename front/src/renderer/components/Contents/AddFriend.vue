@@ -2,9 +2,31 @@
   <section id="add_friend">
     <h1>Ajouter un ami</h1>
     <p>Vous pouvez ajouter un ami grâce à leur identifiant Qwirk.</p>
-    <form method="POST">
-      <input type="text" placeholder="Entrez un identifiantqwirk#0000">
-      <button disabled type="submit">Envoyer une requête d'ami</button>
+    <form method="POST" @submit.prevent="sendIt()">
+      <input type="text" placeholder="Entrez un identifiantqwirk#0000" v-model="idQwirk">
+      <button>Envoyer une requête d'ami</button>
     </form>
   </section>
 </template>
+
+<script>
+  export default {
+    name: 'addFriend',
+    data () {
+      return {
+        idQwirk: ''
+      }
+    },
+    methods: {
+      sendIt () {
+        console.log('send /friends')
+        this.$http.post('/friends', {
+          idQwirk: this.idQwirk
+        }).then((result) => {
+          console.log(result)
+          this.idQwirk = result.data.idQwirk + '-'
+        })
+      }
+    }
+  }
+</script>
