@@ -15,7 +15,7 @@ class User extends Model_1.Model {
     }
     find(id) {
         return new Promise((resolve, reject) => {
-            this.db.r.table(this.name).get(id).run(this.db.conn).then((result) => {
+            this.db.r.table(this.table).get(id).run(this.db.conn).then((result) => {
                 resolve(result);
             }).catch((err) => {
                 reject(err);

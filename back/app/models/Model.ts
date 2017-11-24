@@ -11,13 +11,13 @@ class Model
   protected db : IDB
   get DB () : IDB { return this.db }
 
-  protected name : string
-  get Name () : string { return this.name }
+  protected table : string
+  get Name () : string { return this.table }
 
-  constructor (db : IDB, name : string)
+  constructor (db : IDB, table : string)
   {
     this.db = db
-    this.name = name
+    this.table = table
   }
 }
 

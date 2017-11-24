@@ -12,6 +12,7 @@ enum REASON
 interface IUserModel
 {
   id              : string,
+  tag             : number,
   name            : string,
   email           : string,
   password        : string,
@@ -34,7 +35,7 @@ class User extends Model
   find (id : string) : Promise<any>
   {
     return new Promise<any>((resolve, reject) => {
-      this.db.r.table(this.name).get(id).run(this.db.conn).then((result) => {
+      this.db.r.table(this.table).get(id).run(this.db.conn).then((result) => {
         resolve(result)
       }).catch((err) => {
         reject(err)

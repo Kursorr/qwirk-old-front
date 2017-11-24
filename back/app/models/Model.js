@@ -2,10 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 class Model {
     get DB() { return this.db; }
-    get Name() { return this.name; }
-    constructor(db, name) {
+    get Name() { return this.table; }
+    constructor(db, table) {
         this.db = db;
-        this.name = name;
+        this.table = table;
     }
 }
 exports.Model = Model;
