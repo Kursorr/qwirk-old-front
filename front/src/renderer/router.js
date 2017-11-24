@@ -20,9 +20,12 @@ export default new Router({
     },
     {
       path: '/friends',
-      name: 'friends',
       component: Friends,
       children: [
+        {
+          path: '/',
+          component: AddFriend
+        },
         {
           path: '/add_friend',
           name: 'addFriend',
@@ -42,9 +45,12 @@ export default new Router({
     },
     {
       path: '/channels',
-      name: 'channels',
       component: Channels,
       children: [
+        {
+          path: '/',
+          component: ChannelGrid
+        },
         {
           path: '/join',
           name: 'join',
