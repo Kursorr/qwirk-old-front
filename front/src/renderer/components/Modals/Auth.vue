@@ -74,15 +74,10 @@
           error: null
         },
         login: {
-          email: '',
-          password: '',
+          email: 'ravaniss@local.dev',
+          password: 'lol',
           error: null
         }
-      }
-    },
-    sockets: {
-      test (val) {
-        console.log(val)
       }
     },
     methods: {
@@ -97,10 +92,8 @@
       },
       authenticate () {
         console.log('Authenticate !')
+        this.$socket.emit('authenticate', this.login)
       }
-    },
-    mounted () {
-      this.$socket.emit('test')
     }
   }
 </script>

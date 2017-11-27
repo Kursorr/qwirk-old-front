@@ -11,7 +11,7 @@ const auth = express.Router()
 auth.get('/', async (req, res) => {
     const user = new User(req.db)
 
-    user.find('9a5bb3a5-e493-444f-8b6c-9745a55281b5').then((userFind) => {
+    user.find('053881f9-39a0-4095-ac81-f72d37cf9cc6').then((userFind) => {
         console.log(userFind)
         res.status(200).json({ message: userFind })
     }).catch((err) => {

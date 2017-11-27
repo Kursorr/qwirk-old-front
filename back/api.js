@@ -12,7 +12,6 @@ const base_1 = require("./app/sockets/base");
 // Our routes
 const auth_1 = require("./app/routing/auth");
 // Env setting
-const HTTP_PORT = parseInt(process.env.HTTP_PORT) || 1337;
 const JWT_SECRET = process.env.JWT_SECRET || 'Qw1rkS3rv3r';
 const DATABASE = process.env.DATABASE || 'qwirk';
 // Creating logger
@@ -73,8 +72,8 @@ connectDatabase.then((conn) => {
         res.status(200).json(req.body);
     });
     // On lance l'application
-    app.listen(HTTP_PORT, () => {
-        log.info(`API running on port ${HTTP_PORT}`);
+    app.listen(process.argv[2], () => {
+        log.info(`API running on port ${process.argv[2]}`);
     });
 });
 connectDatabase.error((error) => {

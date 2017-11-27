@@ -8,12 +8,12 @@ import router from './router.js'
 
 if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
 
-axios.defaults.baseURL = 'http://localhost:1337'
+axios.defaults.baseURL = 'http://localhost'
 Vue.http = Vue.prototype.$http = axios
 
 Vue.config.productionTip = false
 
-const socketInstance = io('http://localhost:4000', {
+const socketInstance = io('http://localhost:3000', {
   transports: ['websocket']
 })
 

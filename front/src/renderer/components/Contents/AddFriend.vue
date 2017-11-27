@@ -19,7 +19,6 @@
     },
     methods: {
       sendIt () {
-        console.log('send /friends')
         this.$http.post('/friends', {
           idQwirk: this.idQwirk
         }).then((result) => {

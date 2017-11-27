@@ -12,10 +12,9 @@ import { Socket } from './app/scripts/Socket'
 import { base } from './app/sockets/base'
 
 // Our routes
-import { auth } from "./app/routing/auth";
+import { auth } from "./app/routing/auth"
 
 // Env setting
-const HTTP_PORT   : number = parseInt(process.env.HTTP_PORT)  || 1337
 const JWT_SECRET  : string = process.env.JWT_SECRET           || 'Qw1rkS3rv3r'
 const DATABASE    : string = process.env.DATABASE             || 'qwirk'
 
@@ -65,6 +64,7 @@ connectDatabase.then((conn) => {
                 req.bearer = auth[1]
             }
         }
+
         res.log = log
         next()
     })
@@ -91,8 +91,8 @@ connectDatabase.then((conn) => {
     })
 
     // On lance l'application
-    app.listen(HTTP_PORT, () => {
-        log.info(`API running on port ${HTTP_PORT}`)
+    app.listen(process.argv[2], () => {
+        log.info(`API running on port ${process.argv[2]}`)
     })
 })
 

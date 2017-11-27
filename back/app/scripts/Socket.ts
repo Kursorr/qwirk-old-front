@@ -1,6 +1,7 @@
 'use strict';
 
 import * as socketio from 'socket.io'
+import * as redis from 'socket.io-redis'
 import { IDB } from '../models/Model'
 
 class Socket {
@@ -19,9 +20,9 @@ class Socket {
         this.http = http
         this.db = db
         this.secret = secret
-        const io = socketio(4000, {
+        const io = socketio(process.argv[3], {
             transports: ['websocket']
-        })
+        }).adapter(redis({ host: 'localhost', port: 6379 }))
 
         this.io = io
     }
