@@ -4,10 +4,10 @@ const auth_1 = require("./auth");
 const base = (instance) => {
     const { IO } = instance;
     IO.on('connection', (socket) => {
-        console.log('A customer is connected');
+        console.log(`Customer connected id: ${socket.id} on port ${process.argv[2]}`);
         auth_1.auth(instance, socket);
         socket.on('disconnect', () => {
-            console.log('A customer is disconnected');
+            console.log(`Customer disconnected id: ${socket.id} from port ${process.argv[2]}`);
         });
     });
 };
