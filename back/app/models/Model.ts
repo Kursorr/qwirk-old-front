@@ -12,7 +12,7 @@ class Model
   get DB () : IDB { return this.db }
 
   protected table : string
-  get Name () : string { return this.table }
+  get Table () : string { return this.table }
 
   constructor (db : IDB, table : string)
   {
