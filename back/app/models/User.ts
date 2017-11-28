@@ -23,16 +23,16 @@ interface IUserModel
 
 class User extends Model
 {
-  private data : IUserModel
-  get Data () : IUserModel { return this.data }
+  private data: IUserModel
+  get Data (): IUserModel { return this.data }
 
-  constructor (db : IDB, data : IUserModel = null)
+  constructor (db: IDB, data: IUserModel = null)
   {
     super(db, 'users')
     this.data = data
   }
 
-  find (id : string) : Promise<any>
+  find (id: string): Promise<any>
   {
     return new Promise<any>((resolve, reject) => {
       this.db.r.table(this.table).get(id).run(this.db.conn).then((result) => {

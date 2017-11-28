@@ -11,9 +11,6 @@ import * as log4js from 'log4js'
 import { Socket } from './app/scripts/Socket'
 import { base } from './app/sockets/base'
 
-// Our routes
-import { auth } from "./app/routing/auth"
-
 // Env setting
 const JWT_SECRET  : string = process.env.JWT_SECRET           || 'Qw1rkS3rv3r'
 const DATABASE    : string = process.env.DATABASE             || 'qwirk'
@@ -82,8 +79,6 @@ connectDatabase.then((conn) => {
             message: `Welcome to Qwirk API`
         })
     })
-
-    app.use('/auth', auth)
 
     app.post('/friends', (req, res) => {
         console.log(req.body)

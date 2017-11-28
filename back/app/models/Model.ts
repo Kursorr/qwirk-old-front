@@ -8,13 +8,13 @@ interface IDB
 
 class Model
 {
-  protected db : IDB
-  get DB () : IDB { return this.db }
+  protected db: IDB
+  get DB (): IDB { return this.db }
 
-  protected table : string
-  get Table () : string { return this.table }
+  protected table: string
+  get Table (): string { return this.table }
 
-  constructor (db : IDB, table : string)
+  constructor (db: IDB, table: string)
   {
     this.db = db
     this.table = table

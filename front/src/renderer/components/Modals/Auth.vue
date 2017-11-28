@@ -87,11 +87,9 @@
         }
       },
       registration () {
-        console.log('Registration !')
         this.$socket.emit('register', this.register)
       },
       authenticate () {
-        console.log('Authenticate !')
         this.$socket.emit('authenticate', this.login)
       }
     }

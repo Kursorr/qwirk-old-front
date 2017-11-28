@@ -9,8 +9,6 @@ const r = require("rethinkdb");
 const log4js = require("log4js");
 const Socket_1 = require("./app/scripts/Socket");
 const base_1 = require("./app/sockets/base");
-// Our routes
-const auth_1 = require("./app/routing/auth");
 // Env setting
 const JWT_SECRET = process.env.JWT_SECRET || 'Qw1rkS3rv3r';
 const DATABASE = process.env.DATABASE || 'qwirk';
@@ -66,7 +64,6 @@ connectDatabase.then((conn) => {
             message: `Welcome to Qwirk API`
         });
     });
-    app.use('/auth', auth_1.auth);
     app.post('/friends', (req, res) => {
         console.log(req.body);
         res.status(200).json(req.body);
