@@ -3,10 +3,6 @@
     <section class="set auth">
       <section class="content auth">
         <section class="panel">
-          <div class="message" v-if="register.error">
-            {{ register.error }}
-          </div>
-
           <h2>S'inscrire</h2>
           <form method="POST" autocomplete="off">
             <div>
@@ -37,6 +33,9 @@
             </div>
             <button type="submit" @click.prevent="registration()" class="connect">S'inscrire</button>
           </form>
+          <div class="message" v-if="register.error">
+            {{ register.error }}
+          </div>
         </section>
 
         <hr>
@@ -45,16 +44,25 @@
           <h2>Se connecter</h2>
           <form method="POST" autocomplete="off">
             <div>
+              <input type="text" title="loginPseudo" name="loginPseudo" placeholder="Pseudo" v-model="login.pseudo">
+            </div>
+            <div>
               <input type="email" title="loginEmail" name="loginEmail" placeholder="Email" v-model="login.email">
             </div>
             <div>
               <input type="password" title="loginPassword" name="loginPassword" placeholder="Mot de passe" v-model="login.password">
+            </div>
+            <div>
+              <input type="password" title="loginNewPassword" name="newPassword" placeholder="Nouveau mot de passe" v-model="login.newPassword">
             </div>
 
             <a href="#">Avez vous oublié votre mot de passe?</a>
 
             <button type="submit" @click.prevent="authenticate()" class="connect">Se connecter</button>
           </form>
+          <div class="message" v-if="login.error">
+            {{ login.error }}
+          </div>
         </section>
       </section>
     </section>
@@ -74,9 +82,23 @@
           error: null
         },
         login: {
+          pseudo: '',
           email: 'ravaniss@local.dev',
-          password: 'lol',
+          password: '',
+          newPassword: '',
           error: null
+        }
+      }
+    },
+    sockets: {
+      AuthUser (result) {
+        if (result.success) {
+          this.login.error = result.message
+        } else {
+          this.login.error = result.message
+          setTimeout(() => {
+            this.login.error = null
+          }, 5000)
         }
       }
     },
