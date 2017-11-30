@@ -1,10 +1,10 @@
-'use strict';
+'use strict'
 
 import * as socketio from 'socket.io'
 import * as redis from 'socket.io-redis'
 import { IDB } from '../app/models/Model'
 
-const configuration = require('../configuration.json');
+const configuration = require('../configuration.json')
 
 class Socket {
     private http: any

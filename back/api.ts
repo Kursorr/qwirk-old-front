@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 // External modules
 import * as http from 'http'
@@ -11,7 +11,7 @@ import * as log4js from 'log4js'
 import { Socket } from './scripts/Socket'
 import { base } from './app/sockets/base'
 
-const configuration = require('./configuration.json');
+const configuration = require('./configuration.json')
 
 // Env setting
 const JWT_SECRET  : string = process.env.JWT_SECRET           || 'Qw1rkS3rv3r'
