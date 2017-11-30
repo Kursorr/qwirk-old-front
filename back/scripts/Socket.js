@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const socketio = require("socket.io");
 const redis = require("socket.io-redis");
+const configuration = require('../configuration.json');
 class Socket {
     get IO() { return this.io; }
     get DB() { return this.db; }
@@ -12,7 +13,7 @@ class Socket {
         this.secret = secret;
         const io = socketio(process.argv[3], {
             transports: ['websocket']
-        }).adapter(redis({ host: 'localhost', port: 6379 }));
+        }).adapter(redis({ host: configuration.redis.host, port: configuration.redis.port }));
         this.io = io;
     }
 }

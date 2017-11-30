@@ -8,12 +8,14 @@ import * as cors from 'cors'
 import * as r from 'rethinkdb'
 import * as log4js from 'log4js'
 
-import { Socket } from './app/scripts/Socket'
+import { Socket } from './scripts/Socket'
 import { base } from './app/sockets/base'
+
+const configuration = require('./configuration.json');
 
 // Env setting
 const JWT_SECRET  : string = process.env.JWT_SECRET           || 'Qw1rkS3rv3r'
-const DATABASE    : string = process.env.DATABASE             || 'qwirk'
+const DATABASE    : string = process.env.DATABASE             || configuration.database.db
 
 // Creating logger
 log4js.configure({
@@ -43,11 +45,11 @@ app.use(cors(options))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
-log.debug(`Connecting to database : rethinkdb://127.0.0.1:28015/${DATABASE}`)
+log.debug(`Connecting to database : rethinkdb://127.0.0.1:${configuration.database.port}/${DATABASE}`)
 const connectDatabase = r.connect({ db: DATABASE })
 
 connectDatabase.then((conn) => {
-    log.info(`Connected to : rethinkdb://127.0.0.1:28015/${DATABASE}`)
+    log.info(`Connected to : rethinkdb://127.0.0.1:${configuration.database.port}/${DATABASE}`)
 
     app.use((req, res, next) => {
         req.secretJWT = JWT_SECRET
@@ -92,6 +94,6 @@ connectDatabase.then((conn) => {
 })
 
 connectDatabase.error((error) => {
-    log.error(`Connection failed to : rethinkdb://127.0.0.1:28015/${DATABASE}`)
+    log.error(`Connection failed to : rethinkdb://127.0.0.1:${configuration.database.port}/${DATABASE}`)
     log.error(`Reason : ${error}`)
 })

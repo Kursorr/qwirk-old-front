@@ -2,7 +2,9 @@
 
 import * as socketio from 'socket.io'
 import * as redis from 'socket.io-redis'
-import { IDB } from '../models/Model'
+import { IDB } from '../app/models/Model'
+
+const configuration = require('../configuration.json');
 
 class Socket {
     private http: any
@@ -22,7 +24,7 @@ class Socket {
         this.secret = secret
         const io = socketio(process.argv[3], {
             transports: ['websocket']
-        }).adapter(redis({ host: 'localhost', port: 6379 }))
+        }).adapter(redis({ host: configuration.redis.host, port: configuration.redis.port }))
 
         this.io = io
     }

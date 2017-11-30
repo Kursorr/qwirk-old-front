@@ -1,6 +1,6 @@
 'use strict';
 
-import { Socket } from '../scripts/Socket'
+import { Socket } from '../../scripts/Socket'
 import { auth } from './auth'
 
 const base = (instance: Socket) => {
