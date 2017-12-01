@@ -6,19 +6,19 @@
           <h2>S'inscrire</h2>
           <form method="POST" autocomplete="off">
             <div>
-              <input type="text" title="registerName" name="registerName" placeholder="Pseudo"
+              <input type="text" name="registerName" placeholder="Pseudo"
                      v-model="register.pseudo">
             </div>
             <div>
-              <input type="email" title="registerEmail" name="registerEmail" placeholder="Email"
+              <input type="email" name="registerEmail" placeholder="Email"
                      v-model="register.email">
             </div>
             <div>
-              <input type="password" title="registerPassword" name="registerPassword" placeholder="Mot de passe"
+              <input type="password" name="registerPassword" placeholder="Mot de passe"
                      v-model="register.password">
             </div>
             <div>
-              <input type="password" title="registerVerifPassword" name="registerVerifPassword" placeholder="Confirmer le mot de passe"
+              <input type="password" name="registerVerifPassword" placeholder="Confirmer le mot de passe"
                      v-model="register.confirm"
               >
             </div>
@@ -44,16 +44,16 @@
           <h2>Se connecter</h2>
           <form method="POST" autocomplete="off">
             <div>
-              <input type="text" title="loginPseudo" name="loginPseudo" placeholder="Pseudo" v-model="login.pseudo">
+              <input type="text" name="loginPseudo" placeholder="Pseudo" v-model="login.pseudo">
             </div>
             <div>
-              <input type="email" title="loginEmail" name="loginEmail" placeholder="Email" v-model="login.email">
+              <input type="email" name="loginEmail" placeholder="Email" v-model="login.email">
             </div>
             <div>
-              <input type="password" title="loginPassword" name="loginPassword" placeholder="Mot de passe" v-model="login.password">
+              <input type="password" name="loginPassword" placeholder="Mot de passe" v-model="login.password">
             </div>
             <div>
-              <input type="password" title="loginNewPassword" name="newPassword" placeholder="Nouveau mot de passe" v-model="login.newPassword">
+              <input type="password" name="newPassword" placeholder="Nouveau mot de passe" v-model="login.newPassword">
             </div>
 
             <a href="#">Avez vous oublié votre mot de passe?</a>

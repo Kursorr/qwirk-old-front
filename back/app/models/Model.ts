@@ -6,8 +6,7 @@ interface IDB
   conn  : any
 }
 
-class Model
-{
+class Model {
   protected db: IDB
   get DB (): IDB { return this.db }
 

@@ -30,8 +30,8 @@ log.debug('Loading API ...');
 const app = express();
 // CORS
 const options = {
-    "origin": true,
-    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE"
+    'origin': true,
+    'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE'
 };
 app.use(cors(options));
 app.use(bodyParser.urlencoded({ extended: true }));

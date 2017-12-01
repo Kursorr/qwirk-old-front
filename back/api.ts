@@ -14,8 +14,8 @@ import { base } from './app/sockets/base'
 const configuration = require('./configuration.json')
 
 // Env setting
-const JWT_SECRET  : string = process.env.JWT_SECRET           || 'Qw1rkS3rv3r'
-const DATABASE    : string = process.env.DATABASE             || configuration.database.db
+const JWT_SECRET  : string = process.env.JWT_SECRET     || 'Qw1rkS3rv3r'
+const DATABASE    : string = process.env.DATABASE       || configuration.database.db
 
 // Creating logger
 log4js.configure({
@@ -37,8 +37,8 @@ const app = express()
 
 // CORS
 const options = {
-    "origin": true,
-    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE"
+    'origin': true,
+    'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE'
 }
 app.use(cors(options))
 

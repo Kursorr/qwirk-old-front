@@ -2,8 +2,8 @@
 
 import * as socketio from 'socket.io'
 import * as redis from 'socket.io-redis'
-import { IDB } from '../app/models/Model'
 
+import { IDB } from '../app/models/Model'
 const configuration = require('../configuration.json')
 
 class Socket {
