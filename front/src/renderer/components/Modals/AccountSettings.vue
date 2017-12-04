@@ -56,24 +56,28 @@
               </section>
               <form action="" method="POST">
                 <label for="pseudo" class="information">Nom d'Utilisateur
-                  <input type="text" name="pseudo" id="pseudo">
+                  <input type="text" name="pseudo" id="pseudo" v-model="profile.pseudo">
                 </label>
                 <label for="email" class="information">Email
-                  <input type="email" name="email" id="email">
+                  <input type="email" name="email" id="email" v-model="profile.email">
                 </label>
                 <label for="password" class="information">Mot de passe actuel
-                  <input type="password" name="password" id="password">
+                  <input type="password" name="password" id="password" v-model="profile.password">
                 </label>
                 <label for="passwordChange" class="information" v-if="passChange === true">Nouveau mot de passe
-                  <input type="password" name="passwordChange" id="passwordChange">
+                  <input type="password" name="newPassword" id="passwordChange" v-model="profile.newPassword">
                 </label>
                 <a class="specialA" href="#" v-else="passChange === false" @click="passChange = true">Changer le mot de passe ?</a>
+
+                <div class="message" v-if="profile.error">
+                  {{ profile.error }}
+                </div>
               </form>
             </section>
             <hr>
             <section class="buttons">
               <a class="specialA" href="#" @click="edit = false, passChange = false">Annuler</a>
-              <button type="submit" class="success">Sauvegarder</button>
+              <button type="submit" class="success" @click.prevent="editUserProfile()">Sauvegarder</button>
             </section>
           </section>
         </section>
@@ -563,10 +567,34 @@
       return {
         tab: 'account',
         passChange: false,
-        edit: false
+        edit: false,
+        profile: {
+          pseudo: 'egdsfdtf',
+          email: 'ravaniss@local.dev',
+          password: 'dggdrgdrg',
+          newPassword: '',
+          tag: 2507,
+          error: null
+        }
+      }
+    },
+    sockets: {
+      profile (result) {
+        if (result.success === true) {
+          this.edit = false
+          this.passChange = false
+        } else {
+          this.profile.error = result.message
+          setTimeout(() => {
+            this.profile.error = null
+          }, 3000)
+        }
       }
     },
     methods: {
+      editUserProfile () {
+        this.$socket.emit('profile', this.profile)
+      },
       closeModal (e) {
         if (e.target.classList.contains('modal')) {
           this.$emit('close')
@@ -583,17 +611,9 @@
           const inputId = 'file'
           document.getElementById(inputId).click()
         })
-      },
-      update () {
-        this.updateUser(this.userForm)
-        this.userForm.actualPassword = ''
-        this.userForm.newPassword = ''
       }
     },
     mounted () {
-      this.userForm.id = this.user.id
-      this.userForm.username = this.user.name
-      this.userForm.email = this.user.email
     }
   }
 </script>

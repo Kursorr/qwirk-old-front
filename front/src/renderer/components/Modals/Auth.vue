@@ -44,21 +44,15 @@
           <h2>Se connecter</h2>
           <form method="POST" autocomplete="off">
             <div>
-              <input type="text" name="loginPseudo" placeholder="Pseudo" v-model="login.pseudo">
-            </div>
-            <div>
               <input type="email" name="loginEmail" placeholder="Email" v-model="login.email">
             </div>
             <div>
               <input type="password" name="loginPassword" placeholder="Mot de passe" v-model="login.password">
             </div>
-            <div>
-              <input type="password" name="newPassword" placeholder="Nouveau mot de passe" v-model="login.newPassword">
-            </div>
 
             <a href="#">Avez vous oublié votre mot de passe?</a>
 
-            <button type="submit" @click.prevent="authenticate()" class="connect">Se connecter</button>
+            <button type="submit" @click.prevent="connect()" class="connect">Se connecter</button>
           </form>
           <div class="message" v-if="login.error">
             {{ login.error }}
@@ -82,24 +76,21 @@
           error: null
         },
         login: {
-          pseudo: '',
           email: 'ravaniss@local.dev',
           password: '',
-          newPassword: '',
-          tag: 2507,
           error: null
         }
       }
     },
     sockets: {
-      AuthUser (result) {
+      registration (result) {
         if (result.success) {
-          this.login.error = result.message
+          this.register.error = result.message
         } else {
-          this.login.error = result.message
+          this.register.error = result.message
           setTimeout(() => {
-            this.login.error = null
-          }, 5000)
+            this.register.error = null
+          }, 3000)
         }
       }
     },
@@ -112,8 +103,8 @@
       registration () {
         this.$socket.emit('register', this.register)
       },
-      authenticate () {
-        this.$socket.emit('authenticate', this.login)
+      connect () {
+        this.$socket.emit('login', this.login)
       }
     }
   }
