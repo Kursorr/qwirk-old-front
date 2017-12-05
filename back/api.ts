@@ -8,10 +8,10 @@ import * as cors from 'cors'
 import * as r from 'rethinkdb'
 import * as log4js from 'log4js'
 
-import { Socket } from './scripts/Socket'
+import { Socket } from './scripts/class/Socket'
 import { base } from './app/sockets/base'
 
-import { database, JWT } from './config'
+import { database, JWT } from './config/config'
 
 // Env setting
 const JWT_SECRET  : string = process.env.JWT_SECRET     || JWT

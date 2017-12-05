@@ -7,9 +7,9 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const r = require("rethinkdb");
 const log4js = require("log4js");
-const Socket_1 = require("./scripts/Socket");
+const Socket_1 = require("./scripts/class/Socket");
 const base_1 = require("./app/sockets/base");
-const config_1 = require("./config");
+const config_1 = require("./config/config");
 // Env setting
 const JWT_SECRET = process.env.JWT_SECRET || config_1.JWT;
 const DATABASE = process.env.DATABASE || config_1.database.db;
