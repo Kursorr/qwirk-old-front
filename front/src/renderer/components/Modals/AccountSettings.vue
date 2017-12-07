@@ -569,9 +569,9 @@
         passChange: false,
         edit: false,
         profile: {
-          pseudo: 'egdsfdtf',
+          pseudo: 'Ravaniss',
           email: 'ravaniss@local.dev',
-          password: 'dggdrgdrg',
+          password: 'root',
           newPassword: '',
           tag: 2507,
           error: null
