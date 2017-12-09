@@ -7,6 +7,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const r = require("rethinkdb");
 const log4js = require("log4js");
+// Internal modules
 const Socket_1 = require("./scripts/class/Socket");
 const base_1 = require("./app/sockets/base");
 const config_1 = require("./config/config");

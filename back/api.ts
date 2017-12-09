@@ -8,9 +8,9 @@ import * as cors from 'cors'
 import * as r from 'rethinkdb'
 import * as log4js from 'log4js'
 
+// Internal modules
 import { Socket } from './scripts/class/Socket'
 import { base } from './app/sockets/base'
-
 import { database, JWT } from './config/config'
 
 // Env setting
