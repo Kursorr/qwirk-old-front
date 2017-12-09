@@ -29,7 +29,7 @@
         <section id="account" class="settings" v-if="tab === 'account'">
           <h2 class="titleSection">Mon Compte</h2>
 
-          <!-- No Edit Mode -->
+          <!-- User Informations -->
           <section class="account-profil noEdit" v-show="!edit">
             <section class="logo-group">
             </section>
@@ -54,7 +54,7 @@
                   <input type="file" class="file-input" accept=".jpg,.jpeg,.png,.gif">
                 </section>
               </section>
-              <form action="" method="POST">
+              <form method="POST">
                 <label for="pseudo" class="information">Nom d'Utilisateur
                   <input type="text" name="pseudo" id="pseudo" v-model="profile.pseudo">
                 </label>
@@ -464,7 +464,7 @@
                 </section>
               </section>
             </section>
-            <form action="">
+            <form>
               <div>
                 <input id="clear" name="security" type="radio">
                 <section class="checkbox blue">
@@ -605,15 +605,7 @@
       },
       setTab (tabName) {
         this.tab = tabName
-      },
-      avatarChange () {
-        this.$nextTick(() => {
-          const inputId = 'file'
-          document.getElementById(inputId).click()
-        })
       }
-    },
-    mounted () {
     }
   }
 </script>

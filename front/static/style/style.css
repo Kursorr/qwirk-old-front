@@ -279,14 +279,24 @@ section.modal.auth {
             color: #fff;
           }
 
-          section.modal > section.set > section.content.auth > section.panel > form > div {
+          section.modal > section.set > section.content.auth > section.panel > form > div.form {
             background: #F0EEF0;
             -webkit-border-radius:0.3em;
             border-radius:0.3em;
             margin-bottom: 12px;
           }
 
-            section.modal > section.set > section.content.auth > section.panel > form > div > input {
+          div.upload {
+            margin-bottom: 12px;
+          }
+
+            div.upload > div {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+            }
+
+            section.modal > section.set > section.content.auth > section.panel > form > div.form > input {
               border-radius: 0.3em;
               height: 40px;
               width: 100%;
@@ -915,7 +925,7 @@ section#general > section.principal > form {
       margin: 0 15px;
     }
 
-    section#general > section.principal > form > section.logo > section.logo-ce > section.logo-group, section#account > section.account-profil > section#entireForm > section.logo-ce > section.logo-group, section#account > section.account-profil.noEdit > section.logo-group {
+    section.logo-group, #avatarView {
       display: inline-block;
       width: 100px;
       height: 100px;
@@ -930,7 +940,7 @@ section#general > section.principal > form {
       transition: box-shadow .1s;
     }
 
-      section#general > section.principal > form > section.logo > section.logo-ce > section.logo-group > section.upload-file, section#account > section.account-profil > section#entireForm > section.logo-ce > section.logo-group > section.upload-file {
+      section.upload-file {
         display: none;
         position: absolute;
         font-size: 12px;
@@ -938,7 +948,7 @@ section#general > section.principal > form {
         left: 9px;
       }
 
-      section#general > section.principal > form > section.logo > section.logo-ce > section.logo-group > section.bckg, section#account > section.account-profil > section#entireForm > section.logo-ce > section.logo-group > section.bckg {
+      section.bckg {
         height: 100%;
         width: 100%;
         border-radius: 50%;
@@ -946,7 +956,7 @@ section#general > section.principal > form {
         display: none;
       }
 
-      section#general > section.principal > form > section.logo > section.logo-ce > section.logo-group > input, section#account > section.account-profil > section#entireForm > section.logo-ce > section.logo-group > input {
+      section.logo-group > input {
         position: absolute;
         top: 0;
         left: 0;
