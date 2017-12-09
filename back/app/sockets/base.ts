@@ -1,9 +1,9 @@
 'use strict'
 
 import { Socket } from '../../scripts/class/Socket'
-import { register } from "./auth/register"
+import { register } from './auth/register'
 import { profile } from './edit/profile'
-import { login } from "./auth/login";
+import { login } from './auth/login'
 
 const base = (instance: Socket) => {
     const { IO } = instance
