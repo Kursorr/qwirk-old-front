@@ -13,9 +13,9 @@ const redis = {
 exports.redis = redis;
 const JWT = 'Qw1rkS3rv3r';
 exports.JWT = JWT;
-const rules = {
+const userRules = {
     pseudo: 'alpha_numeric|required|min:2|max:40',
     email: 'email|required|max:100',
     password: 'required|max:200'
 };
-exports.rules = rules;
+exports.userRules = userRules;
