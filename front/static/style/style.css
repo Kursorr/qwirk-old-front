@@ -242,7 +242,7 @@ section.modal.auth {
 
   section.modal.auth > section.set.auth {
     width: 800px;
-    height: 490px;
+    height: 500px;
   }
 
     section.modal > section.set > section.content.auth {
@@ -258,8 +258,8 @@ section.modal.auth {
       }
 
         section.modal > section.set > section.content.auth > section.panel > h2 {
-          margin-top: 40px;
-          margin-bottom: 40px;
+          margin-top: 25px;
+          margin-bottom: 25px;
           color: #FFF;
         }
 

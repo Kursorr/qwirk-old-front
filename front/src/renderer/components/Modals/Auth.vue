@@ -58,7 +58,7 @@
 </template>
 
 <script>
-  import Upload from '../Contents/components/upload.vue'
+  import Upload from '../Contents/components/Upload.vue'
 
   export default {
     name: 'auth',
