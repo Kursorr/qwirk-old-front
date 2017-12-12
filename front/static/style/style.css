@@ -1703,6 +1703,13 @@ section.global > section.view > section.table-content > section.table-line > sec
 }
 /*****/
 
+/* Messages */
+
+div.message {
+  color: #fff;
+  margin-top: 5px;
+}
+
 /* Status */
 
 div.status-online {

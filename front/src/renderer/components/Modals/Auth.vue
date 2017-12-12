@@ -26,17 +26,17 @@
             <upload v-model="register.file"></upload>
 
             <button type="submit" @click.prevent="registration()" class="connect">S'inscrire</button>
+            <div class="message" v-if="register.error">
+              {{ register.error }}
+            </div>
           </form>
-          <div class="message" v-if="register.error">
-            {{ register.error }}
-          </div>
         </section>
 
         <hr>
 
         <section class="panel">
           <h2>Se connecter</h2>
-          <form method="POST" autocomplete="off">
+          <form autocomplete="off">
             <div class="form">
               <input type="email" name="loginEmail" placeholder="Email" v-model="login.email">
             </div>
@@ -47,10 +47,10 @@
             <a href="#">Avez vous oublié votre mot de passe?</a>
 
             <button type="submit" @click.prevent="connect()" class="connect">Se connecter</button>
+            <div class="message" v-if="login.error">
+              {{ login.error }}
+            </div>
           </form>
-          <div class="message" v-if="login.error">
-            {{ login.error }}
-          </div>
         </section>
       </section>
     </section>
@@ -66,16 +66,16 @@
     data () {
       return {
         register: {
-          pseudo: 'quenti77',
-          email: 'quenti77@gmail.com',
-          password: 'jesaispas',
-          confirm: 'jesaispas',
+          pseudo: '',
+          email: '',
+          password: '',
+          confirm: '',
           file: '',
           error: null
         },
         login: {
           email: 'ravaniss@local.dev',
-          password: '',
+          password: 'root',
           error: null
         }
       }
@@ -88,6 +88,16 @@
           this.register.error = result.message
           setTimeout(() => {
             this.register.error = null
+          }, 3000)
+        }
+      },
+      connection (result) {
+        if (result.success) {
+          this.login.error = result.message
+        } else {
+          this.login.error = result.message
+          setTimeout(() => {
+            this.login.error = null
           }, 3000)
         }
       }

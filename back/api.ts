@@ -40,8 +40,9 @@ const options = {
     'origin': true,
     'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE'
 }
-app.use(cors(options))
 
+// Middleware
+app.use(cors(options))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 

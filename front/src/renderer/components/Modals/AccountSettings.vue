@@ -47,14 +47,9 @@
           <!-- Edit Mode -->
           <section class="account-profil" v-show="edit">
             <section id="entireForm">
-              <section class="logo-ce">
-                <section class="logo-group">
-                  <section class="bckg"></section>
-                  <section class="upload-file">Changer l'icône</section>
-                  <input type="file" class="file-input" accept=".jpg,.jpeg,.png,.gif">
-                </section>
-              </section>
-              <form method="POST">
+              <form autocomplete="off">
+                <upload v-model="profile.file"></upload>
+
                 <label for="pseudo" class="information">Nom d'Utilisateur
                   <input type="text" name="pseudo" id="pseudo" v-model="profile.pseudo">
                 </label>
@@ -562,18 +557,22 @@
 </template>
 
 <script>
+  import Upload from '../Contents/components/Upload.vue'
+
   export default {
+    components: { Upload },
     data () {
       return {
         tab: 'account',
         passChange: false,
         edit: false,
         profile: {
-          pseudo: 'Ravaniss',
-          email: 'ravaniss@local.dev',
-          password: 'root',
+          pseudo: '',
+          email: '',
+          password: '',
           newPassword: '',
-          tag: 2507,
+          file: '',
+          tag: 2283,
           error: null
         }
       }
@@ -593,6 +592,8 @@
     },
     methods: {
       editUserProfile () {
+        const result = this.$emit('upload-file')
+        this.profile.file = result.$children[0].image
         this.$socket.emit('profile', this.profile)
       },
       closeModal (e) {
