@@ -88,8 +88,6 @@ const register = (instance: Socket, socket: any) => {
 
 			let link = 'http://localhost/confirm-account?token=' + verifAcc + '&id=' + newUser.generated_keys[0]
 
-			console.log(newUser.generated_keys[0])
-
 			const mailOptions = {
 				from: email,
 				to: personalData.email,
