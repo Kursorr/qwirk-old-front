@@ -19,3 +19,8 @@ const userRules = {
     password: 'required|max:200'
 };
 exports.userRules = userRules;
+const personalData = {
+    email: 'websitesm06@gmail.com',
+    pwd: 'ragnarOK06'
+};
+exports.personalData = personalData;

@@ -19,4 +19,9 @@ const userRules: indicative.Rules = {
 	password: 'required|max:200'
 }
 
-export { database, redis, JWT, userRules }
+const personalData = {
+	email: 'websitesm06@gmail.com',
+	pwd: 'ragnarOK06'
+}
+
+export { database, redis, JWT, userRules, personalData }
