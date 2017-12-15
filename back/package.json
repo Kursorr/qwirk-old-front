@@ -20,6 +20,7 @@
     "jsonwebtoken": "^8.1.0",
     "limiter": "^1.1.2",
     "log4js": "^2.3.7",
+    "nodemailer": "^4.4.1",
     "rethinkdb": "^2.3.3",
     "socket.io": "^2.0.3",
     "socket.io-redis": "^5.2.0",
