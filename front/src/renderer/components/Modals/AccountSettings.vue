@@ -35,7 +35,7 @@
             </section>
             <section id="user-informations">
               <h3 class="information label">Nom d'utilisateur</h3>
-              <span class="information">Ravaniss<span class="tag">#2187</span></span>
+              <span class="information">Ravaniss<span class="tag">#{{ tag }}</span></span>
               <h3 class="information label marg">Email</h3>
               <span class="information">uneAdresseEmail@gmail.com</span>
             </section>
@@ -549,7 +549,7 @@
         </section>
         <section class="buttons">
           <button class="success" @click="finish()">Terminer</button>
-          <button class="danger" @click="authenticateUser(null)">Se déconnecter</button>
+          <button class="danger" @click="authenticateUser()">Se déconnecter</button>
         </section>
       </section>
     </section>
@@ -557,6 +557,8 @@
 </template>
 
 <script>
+  import Vuex from 'vuex'
+
   import Upload from '../Contents/components/Upload.vue'
 
   export default {
@@ -567,12 +569,12 @@
         passChange: false,
         edit: false,
         profile: {
-          pseudo: '',
-          email: '',
-          password: '',
+          pseudo: 'Ravaniss',
+          email: 'ravaniss@local.dev',
+          password: 'root',
           newPassword: '',
           file: '',
-          tag: 2283,
+          tag: 0,
           error: null
         }
       }
@@ -594,6 +596,7 @@
       editUserProfile () {
         const result = this.$emit('upload-file')
         this.profile.file = result.$children[0].image
+        this.profile.tag = this.tag
         this.$socket.emit('profile', this.profile)
       },
       closeModal (e) {
@@ -606,6 +609,14 @@
       },
       setTab (tabName) {
         this.tab = tabName
+      }
+    },
+    computed: {
+      ...Vuex.mapGetters([
+        'user'
+      ]),
+      tag: function () {
+        return this.user.tag
       }
     }
   }
