@@ -58,9 +58,12 @@
 </template>
 
 <script>
+  import Vuex from 'vuex'
   import Upload from '../Contents/components/Upload.vue'
+  import store from '../../vuex/store'
 
   export default {
+    store,
     name: 'auth',
     components: { Upload },
     data () {
@@ -93,7 +96,7 @@
       },
       connection (result) {
         if (result.success) {
-          this.login.error = result.message
+          this.authenticateUser(result.user)
         } else {
           this.login.error = result.message
           setTimeout(() => {
@@ -103,6 +106,9 @@
       }
     },
     methods: {
+      ...Vuex.mapActions([
+        'authenticateUser'
+      ]),
       closeModal (e) {
         if (e.target.classList.contains('modal')) {
           this.$emit('close')
@@ -116,6 +122,11 @@
       connect () {
         this.$socket.emit('login', this.login)
       }
+    },
+    computed: {
+      ...Vuex.mapGetters([
+        'user'
+      ])
     }
   }
 </script>
