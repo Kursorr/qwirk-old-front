@@ -13,6 +13,9 @@ import { Socket } from './scripts/class/Socket'
 import { base } from './app/sockets/base'
 import { database, JWT } from './config/config'
 
+// Routes
+import confirmAccount from './app/routes/confirm'
+
 // Env setting
 const JWT_SECRET  : string = process.env.JWT_SECRET     || JWT
 const DATABASE    : string = process.env.DATABASE       || database.db
@@ -77,6 +80,7 @@ connectDatabase.then((conn) => {
 
     // Our routes
     log.debug('Add paths for the API')
+
     app.get('/', (req, res) => {
         res.status(200).json({
             message: `Welcome to Qwirk API`
@@ -88,7 +92,9 @@ connectDatabase.then((conn) => {
         res.status(200).json(req.body)
     })
 
-    // On lance l'application
+	app.use('/confirm-account', confirmAccount)
+
+    // Launch application
     app.listen(process.argv[2], () => {
         log.info(`API running on port ${process.argv[2]}`)
     })

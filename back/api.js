@@ -11,6 +11,8 @@ const log4js = require("log4js");
 const Socket_1 = require("./scripts/class/Socket");
 const base_1 = require("./app/sockets/base");
 const config_1 = require("./config/config");
+// Routes
+const confirm_1 = require("./app/routes/confirm");
 // Env setting
 const JWT_SECRET = process.env.JWT_SECRET || config_1.JWT;
 const DATABASE = process.env.DATABASE || config_1.database.db;
@@ -71,7 +73,8 @@ connectDatabase.then((conn) => {
         console.log(req.body);
         res.status(200).json(req.body);
     });
-    // On lance l'application
+    app.use('/confirm-account', confirm_1.default);
+    // Launch application
     app.listen(process.argv[2], () => {
         log.info(`API running on port ${process.argv[2]}`);
     });
