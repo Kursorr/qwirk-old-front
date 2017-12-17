@@ -35,7 +35,7 @@
             </section>
             <section id="user-informations">
               <h3 class="information label">Nom d'utilisateur</h3>
-              <span class="information">Ravaniss<span class="tag">#{{ tag }}</span></span>
+              <span class="information">{{ user.pseudo }}<span class="tag">#{{ tag }}</span></span>
               <h3 class="information label marg">Email</h3>
               <span class="information">uneAdresseEmail@gmail.com</span>
             </section>
@@ -549,7 +549,7 @@
         </section>
         <section class="buttons">
           <button class="success" @click="finish()">Terminer</button>
-          <button class="danger" @click="authenticateUser()">Se déconnecter</button>
+          <button class="danger" @click="disconnect()">Se déconnecter</button>
         </section>
       </section>
     </section>
@@ -593,6 +593,13 @@
       }
     },
     methods: {
+      ...Vuex.mapActions([
+        'authenticateUser'
+      ]),
+      disconnect () {
+        this.authenticateUser(null)
+        this.finish()
+      },
       editUserProfile () {
         const result = this.$emit('upload-file')
         this.profile.file = result.$children[0].image
@@ -616,7 +623,9 @@
         'user'
       ]),
       tag: function () {
-        return this.user.tag
+        if (this.user) {
+          return this.user.tag
+        }
       }
     }
   }
