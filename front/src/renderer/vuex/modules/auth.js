@@ -5,7 +5,7 @@ const state = {
 }
 
 const mutations = {
-  [types.AUTH_USER] (state, user) {
+  [types.UPDATE_USER] (state, user) {
     state.user = user
   }
 }
