@@ -55,7 +55,7 @@ const register = (instance, socket) => {
         const verifAcc = Helper_1.randomText(16);
         const hPassword = yield Hash_1.Password.hash(password);
         const imgBuffer = file ? Helper_1.decodeBase64Image(file) : '';
-        const uploadImgPath = Helper_1.imgPath(imgBuffer);
+        const imgName = Helper_1.imgPath(imgBuffer);
         const newUser = yield user.insert({
             pseudo,
             email,
@@ -64,10 +64,10 @@ const register = (instance, socket) => {
             createdAt: new Date(),
             modifiedAt: new Date(),
             emailVerified: false,
-            file: uploadImgPath,
+            avatar: imgName,
             verifAcc
         });
-        fs.writeFile(uploadImgPath, imgBuffer.data, () => { });
+        fs.writeFile('/home/ravaniss/Development/Qwirk/back/avatars/' + imgName, imgBuffer.data, () => { });
         if (newUser) {
             socket.emit('registration', {
                 success: true,

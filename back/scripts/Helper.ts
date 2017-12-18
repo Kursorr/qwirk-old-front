@@ -19,13 +19,12 @@ const decodeBase64Image = (data: string) => {
 }
 
 const imgPath = (result: any) => {
-	if (!result) return '/home/ravaniss/Development/Qwirk/back/avatars/anonym.jpg'
+	if (!result) return 'anonym.png'
 
-	const imgPath = '/home/ravaniss/Development/Qwirk/back/avatars/'
 	const imgTypeRegularExpression = /\/(.*?)$/
 	const imgType = result.type.match(imgTypeRegularExpression)
 	const imgName = randomText(14)
-	const uploadedImgPath = imgPath + imgName + '.' + imgType[1]
+	const uploadedImgPath = imgName + '.' + imgType[1]
 
 	return uploadedImgPath
 }

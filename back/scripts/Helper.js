@@ -20,12 +20,11 @@ const decodeBase64Image = (data) => {
 exports.decodeBase64Image = decodeBase64Image;
 const imgPath = (result) => {
     if (!result)
-        return '/home/ravaniss/Development/Qwirk/back/avatars/anonym.jpg';
-    const imgPath = '/home/ravaniss/Development/Qwirk/back/avatars/';
+        return 'anonym.png';
     const imgTypeRegularExpression = /\/(.*?)$/;
     const imgType = result.type.match(imgTypeRegularExpression);
     const imgName = randomText(14);
-    const uploadedImgPath = imgPath + imgName + '.' + imgType[1];
+    const uploadedImgPath = imgName + '.' + imgType[1];
     return uploadedImgPath;
 };
 exports.imgPath = imgPath;
