@@ -32,12 +32,13 @@
           <!-- User Informations -->
           <section class="account-profil noEdit" v-show="!edit">
             <section class="logo-group">
+              <img :src="'http://localhost/' + user.avatar" alt="avatar" class="avatarUser" height="100" width="100" style="border-radius:50%">
             </section>
             <section id="user-informations">
               <h3 class="information label">Nom d'utilisateur</h3>
               <span class="information">{{ user.pseudo }}<span class="tag">#{{ tag }}</span></span>
               <h3 class="information label marg">Email</h3>
-              <span class="information">uneAdresseEmail@gmail.com</span>
+              <span class="information">{{ user.email }}</span>
             </section>
             <section class="buttons">
               <button class="connect" @click="edit = true">Éditer</button>
@@ -48,7 +49,7 @@
           <section class="account-profil" v-show="edit">
             <section id="entireForm">
               <form autocomplete="off">
-                <upload v-model="profile.file"></upload>
+                <upload v-model="profile.avatar"></upload>
 
                 <label for="pseudo" class="information">Nom d'Utilisateur
                   <input type="text" name="pseudo" id="pseudo" v-model="profile.pseudo">
@@ -569,11 +570,11 @@
         passChange: false,
         edit: false,
         profile: {
-          pseudo: 'Ravaniss',
-          email: 'ravaniss@local.dev',
-          password: 'root',
+          pseudo: '',
+          email: '',
+          password: '',
           newPassword: '',
-          file: '',
+          avatar: '',
           tag: 0,
           error: null
         }
@@ -594,7 +595,8 @@
     },
     methods: {
       ...Vuex.mapActions([
-        'authenticateUser'
+        'authenticateUser',
+        'updateUser'
       ]),
       disconnect () {
         this.authenticateUser(null)
@@ -605,6 +607,9 @@
         this.profile.file = result.$children[0].image
         this.profile.tag = this.tag
         this.$socket.emit('profile', this.profile)
+        this.updateUser(this.profile)
+        this.profile.password = ''
+        this.profile.newPassword = ''
       },
       closeModal (e) {
         if (e.target.classList.contains('modal')) {
@@ -627,6 +632,11 @@
           return this.user.tag
         }
       }
+    },
+    mounted () {
+      this.profile.id = this.user.id
+      this.profile.pseudo = this.user.pseudo
+      this.profile.email = this.user.email
     }
   }
 </script>
