@@ -2,7 +2,7 @@
   <section id="convers">
     <section class="onechat">
       <section class="avatar">
-        <img src="http://i0.wp.com/marioasselin.com/wp-content/plugins/buddypress/bp-core/images/mystery-man.jpg" alt="avatar-account">
+        <avatar :url="null" size="small"></avatar>
       </section>
       <section class="text">
         <span class="username">Ravaniss <span class="hours">l'heure sera indiquée ici !</span></span>
@@ -13,7 +13,11 @@
 </template>
 
 <script>
-  export default {
+  import Avatar from '../../Contents/components/Avatar.vue'
 
+  export default {
+    components: {
+      Avatar
+    }
   }
 </script>

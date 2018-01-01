@@ -32,7 +32,7 @@
           <!-- User Informations -->
           <section class="account-profil noEdit" v-show="!edit">
             <section class="logo-group">
-              <img :src="'http://localhost/' + user.avatar" alt="avatar" class="avatarUser" height="100" width="100" style="border-radius:50%">
+              <avatar :url="user.avatar" size="normal"></avatar>
             </section>
             <section id="user-informations">
               <h3 class="information label">Nom d'utilisateur</h3>
@@ -48,9 +48,8 @@
           <!-- Edit Mode -->
           <section class="account-profil" v-show="edit">
             <section id="entireForm">
+              <upload @change="uploadChange"></upload>
               <form autocomplete="off">
-                <upload v-model="profile.avatar"></upload>
-
                 <label for="pseudo" class="information">Nom d'Utilisateur
                   <input type="text" name="pseudo" id="pseudo" v-model="profile.pseudo">
                 </label>
@@ -414,7 +413,7 @@
                 <section id="convers">
                   <section class="onechat">
                     <section class="avatar">
-                      <img src="http://i0.wp.com/marioasselin.com/wp-content/plugins/buddypress/bp-core/images/mystery-man.jpg" alt="avatar-account">
+                      <avatar :url="user.avatar" size="small"></avatar>
                     </section>
                     <section class="text">
                       <span class="username">Ravaniss <span class="hours">Aujourd'hui à 19:07</span></span>
@@ -423,7 +422,7 @@
                   </section>
                   <section class="onechat">
                     <section class="avatar">
-                      <img src="http://i0.wp.com/marioasselin.com/wp-content/plugins/buddypress/bp-core/images/mystery-man.jpg" alt="avatar-account">
+                      <avatar :url="user.avatar" size="small"></avatar>
                     </section>
                     <section class="text">
                       <span class="username">Ravaniss <span class="hours">Aujourd'hui à 19:07</span></span>
@@ -432,7 +431,7 @@
                   </section>
                   <section class="onechat">
                     <section class="avatar">
-                      <img src="http://i0.wp.com/marioasselin.com/wp-content/plugins/buddypress/bp-core/images/mystery-man.jpg" alt="avatar-account">
+                      <avatar :url="user.avatar" size="small"></avatar>
                     </section>
                     <section class="text">
                       <span class="username">Ravaniss <span class="hours">Aujourd'hui à 19:07</span></span>
@@ -441,7 +440,7 @@
                   </section>
                   <section class="onechat">
                     <section class="avatar">
-                      <img src="http://i0.wp.com/marioasselin.com/wp-content/plugins/buddypress/bp-core/images/mystery-man.jpg" alt="avatar-account">
+                      <avatar :url="user.avatar" size="small"></avatar>
                     </section>
                     <section class="text">
                       <span class="username">Ravaniss <span class="hours">Aujourd'hui à 19:08</span></span>
@@ -450,7 +449,7 @@
                   </section>
                   <section class="onechat">
                     <section class="avatar">
-                      <img src="http://i0.wp.com/marioasselin.com/wp-content/plugins/buddypress/bp-core/images/mystery-man.jpg" alt="avatar-account">
+                      <avatar :url="user.avatar" size="small"></avatar>
                     </section>
                     <section class="text">
                       <span class="username">Ravaniss <span class="hours">Aujourd'hui à 19:08</span></span>
@@ -559,22 +558,28 @@
 
 <script>
   import Vuex from 'vuex'
+  import store from '../../vuex/store'
 
+  import Avatar from '../Contents/components/Avatar.vue'
   import Upload from '../Contents/components/Upload.vue'
 
   export default {
-    components: { Upload },
+    store,
+    components: {
+      Avatar,
+      Upload
+    },
     data () {
       return {
         tab: 'account',
         passChange: false,
         edit: false,
         profile: {
-          pseudo: '',
-          email: '',
-          password: '',
+          pseudo: 'kiki',
+          email: 'kiki@kiki.dur',
+          password: 'root',
           newPassword: '',
-          avatar: '',
+          avatar: null,
           tag: 0,
           error: null
         }
@@ -585,6 +590,8 @@
         if (result.success === true) {
           this.edit = false
           this.passChange = false
+          this.profile.avatar = result.avatar
+          this.updateUser(this.profile)
         } else {
           this.profile.error = result.message
           setTimeout(() => {
@@ -603,12 +610,10 @@
         this.finish()
       },
       editUserProfile () {
-        const result = this.$emit('upload-file')
-        this.profile.file = result.$children[0].image
         this.profile.tag = this.tag
         this.$socket.emit('profile', this.profile)
         this.updateUser(this.profile)
-        this.profile.password = ''
+        // this.profile.password = ''
         this.profile.newPassword = ''
       },
       closeModal (e) {
@@ -621,6 +626,9 @@
       },
       setTab (tabName) {
         this.tab = tabName
+      },
+      uploadChange (newImage) {
+        this.profile.avatar = newImage
       }
     },
     computed: {
@@ -631,12 +639,12 @@
         if (this.user) {
           return this.user.tag
         }
+      },
+      mounted () {
+        this.profile.id = this.user.id
+        this.profile.pseudo = this.user.pseudo
+        this.profile.email = this.user.email
       }
-    },
-    mounted () {
-      this.profile.id = this.user.id
-      this.profile.pseudo = this.user.pseudo
-      this.profile.email = this.user.email
     }
   }
 </script>

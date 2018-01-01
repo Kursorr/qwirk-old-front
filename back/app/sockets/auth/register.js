@@ -18,7 +18,7 @@ const Helper_1 = require("../../../scripts/Helper");
 const config_2 = require("../../../config/config");
 const register = (instance, socket) => {
     socket.on('register', (data) => __awaiter(this, void 0, void 0, function* () {
-        const { pseudo, email, password, confirm, file } = data;
+        const { pseudo, email, password, confirm, avatar } = data;
         const { DB } = instance;
         const user = new User_1.User(DB);
         const isValid = yield indicative.validate(data, config_1.userRules)
@@ -54,7 +54,7 @@ const register = (instance, socket) => {
         const tag = Helper_1.randomTag();
         const verifAcc = Helper_1.randomText(16);
         const hPassword = yield Hash_1.Password.hash(password);
-        const imgBuffer = file ? Helper_1.decodeBase64Image(file) : '';
+        const imgBuffer = avatar ? Helper_1.decodeBase64Image(avatar) : '';
         const imgName = Helper_1.imgPath(imgBuffer);
         const newUser = yield user.insert({
             pseudo,

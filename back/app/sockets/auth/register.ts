@@ -13,7 +13,7 @@ import { personalData } from '../../../config/config'
 
 const register = (instance: Socket, socket: any) => {
 	socket.on('register', async (data) => {
-		const { pseudo, email, password, confirm, file } = data
+		const { pseudo, email, password, confirm, avatar } = data
 
 		const { DB } = instance
 		const user = new User(DB)
@@ -56,7 +56,7 @@ const register = (instance: Socket, socket: any) => {
 		const tag = randomTag()
 		const verifAcc = randomText(16)
 		const hPassword = await Password.hash(password)
-		const imgBuffer = file ? decodeBase64Image(file) : ''
+		const imgBuffer = avatar ? decodeBase64Image(avatar) : ''
 		const imgName = imgPath(imgBuffer)
 		const newUser = await user.insert({
 			pseudo,

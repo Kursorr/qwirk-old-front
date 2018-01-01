@@ -3,7 +3,7 @@
     <ul>
       <li>
         <section class="avatar">
-          <img src="http://i0.wp.com/marioasselin.com/wp-content/plugins/buddypress/bp-core/images/mystery-man.jpg" alt="avatar-account">
+          <avatar :url="null" size="normal"></avatar>
           <div class="status"></div>
         </section>
         <section class="profil">
@@ -13,3 +13,13 @@
     </ul>
   </section>
 </template>
+
+<script>
+  import Avatar from '../../Contents/components/Avatar.vue'
+
+  export default {
+    components: {
+      Avatar
+    }
+  }
+</script>

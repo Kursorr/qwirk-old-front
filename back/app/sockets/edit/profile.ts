@@ -2,6 +2,7 @@
 
 import * as indicative from 'indicative'
 import { RateLimiter } from 'limiter'
+import * as fs from 'fs'
 
 import { User } from '../../models/User'
 import { Socket } from '../../../scripts/class/Socket'
@@ -28,7 +29,7 @@ const profile = (instance: Socket, socket: any) => {
 
 		if (!isValid) return
 
-		const { pseudo, tag, email, password, newPassword, file } = data
+		const { pseudo, tag, email, password, newPassword } = data
 
 		const emailCursor = await user.filter({ tag })
 		const result = await emailCursor.toArray()
@@ -58,12 +59,19 @@ const profile = (instance: Socket, socket: any) => {
 			email && (preparedUser.email = email)
 			password && newPassword && (preparedUser.password = await Password.hash(newPassword))
 
-			const imgBuffer = file ? decodeBase64Image(file) : ''
-			preparedUser.file = imgPath(imgBuffer)
+			let imgBuffer;
+			if (data && data.avatar) {
+				imgBuffer = data.avatar ? decodeBase64Image(data.avatar) : ''
+				preparedUser.avatar = imgPath(imgBuffer)
+
+				fs.writeFile('/home/ravaniss/Development/Qwirk/back/avatars/' + preparedUser.avatar, imgBuffer.data, () => {})
+			} else {
+				preparedUser.avatar = null
+			}
 
 			const result = await user.update(userID, preparedUser, password)
 
-			result && socket.emit('profile', { success: true })
+			result && socket.emit('profile', { success: true, avatar: preparedUser.avatar})
 		})
 	})
 }

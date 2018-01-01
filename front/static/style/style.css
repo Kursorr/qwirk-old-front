@@ -287,7 +287,6 @@ section.modal.auth {
           }
 
           div.upload {
-            margin-bottom: 12px;
           }
 
             div.upload > div {
@@ -1689,6 +1688,16 @@ section.buttons {
     section.buttons > button.success:hover {
       background-color: #3ca374;
     }
+
+  button#deleteImg {
+    background: none;
+    color: #b9bbbe;
+    font-size: 14px;
+  }
+
+  button#deleteImg:hover {
+    color: #72767d;
+  }
 
 section.global > section.view > section.table-content > section.table-line > section.table-line-actions > button.action.voice-call:hover {
   background-color: #4F545C;

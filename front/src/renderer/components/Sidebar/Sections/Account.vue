@@ -6,7 +6,7 @@
     </transition>
 
     <section class="avatar">
-      <img src="http://i0.wp.com/marioasselin.com/wp-content/plugins/buddypress/bp-core/images/mystery-man.jpg" alt="avatar-account">
+      <avatar :url="user.avatar" size="small"></avatar>
       <div class="status"></div>
     </section>
 
@@ -24,11 +24,17 @@
 </template>
 
 <script>
+  import Vuex from 'vuex'
+  import store from '../../../vuex/store'
+
   import AccountSettings from '../../Modals/AccountSettings'
+  import Avatar from '../../Contents/components/Avatar.vue'
 
   export default {
+    store,
     components: {
-      AccountSettings
+      AccountSettings,
+      Avatar
     },
     data () {
       return {
@@ -41,6 +47,11 @@
       setModal (modalName, value) {
         this.modal[modalName] = value
       }
+    },
+    computed: {
+      ...Vuex.mapGetters([
+        'user'
+      ])
     }
   }
 </script>

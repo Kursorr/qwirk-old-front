@@ -23,7 +23,7 @@
               >
             </div>
 
-            <upload v-model="register.file"></upload>
+            <upload @change="uploadChange"></upload>
 
             <button type="submit" @click.prevent="registration()" class="connect">S'inscrire</button>
             <div class="message" v-if="register.error">
@@ -59,13 +59,15 @@
 
 <script>
   import Vuex from 'vuex'
-  import Upload from '../Contents/components/Upload.vue'
   import store from '../../vuex/store'
+  import Upload from '../Contents/components/Upload.vue'
 
   export default {
     store,
     name: 'auth',
-    components: { Upload },
+    components: {
+      Upload
+    },
     data () {
       return {
         register: {
@@ -73,11 +75,11 @@
           email: '',
           password: '',
           confirm: '',
-          file: '',
+          avatar: '',
           error: null
         },
         login: {
-          email: 'ravaniss@local.dev',
+          email: 'kiki@kiki.dur',
           password: 'root',
           error: null
         }
@@ -114,9 +116,11 @@
           this.$emit('close')
         }
       },
+      uploadChange (newImage) {
+        this.register.avatar = newImage
+      },
       registration () {
-        const result = this.$emit('upload-file')
-        this.register.file = result.$children[0].image
+        console.log(this.register)
         this.$socket.emit('register', this.register)
       },
       connect () {

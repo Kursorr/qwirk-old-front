@@ -10,6 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const indicative = require("indicative");
 const limiter_1 = require("limiter");
+const fs = require("fs");
 const User_1 = require("../../models/User");
 const Hash_1 = require("../../../scripts/class/Hash");
 const config_1 = require("../../../config/config");
@@ -30,7 +31,7 @@ const profile = (instance, socket) => {
         });
         if (!isValid)
             return;
-        const { pseudo, tag, email, password, newPassword, file } = data;
+        const { pseudo, tag, email, password, newPassword } = data;
         const emailCursor = yield user.filter({ tag });
         const result = yield emailCursor.toArray();
         const userID = result[0].id;
@@ -54,10 +55,17 @@ const profile = (instance, socket) => {
             pseudo && (preparedUser.pseudo = pseudo);
             email && (preparedUser.email = email);
             password && newPassword && (preparedUser.password = yield Hash_1.Password.hash(newPassword));
-            const imgBuffer = file ? Helper_1.decodeBase64Image(file) : '';
-            preparedUser.file = Helper_1.imgPath(imgBuffer);
+            let imgBuffer;
+            if (data && data.avatar) {
+                imgBuffer = data.avatar ? Helper_1.decodeBase64Image(data.avatar) : '';
+                preparedUser.avatar = Helper_1.imgPath(imgBuffer);
+                fs.writeFile('/home/ravaniss/Development/Qwirk/back/avatars/' + preparedUser.avatar, imgBuffer.data, () => { });
+            }
+            else {
+                preparedUser.avatar = null;
+            }
             const result = yield user.update(userID, preparedUser, password);
-            result && socket.emit('profile', { success: true });
+            result && socket.emit('profile', { success: true, avatar: preparedUser.avatar });
         }));
     }));
 };

@@ -1,26 +1,30 @@
 <template>
   <div class="upload">
-    <div v-if="!image">
-      <section class="logo-ce">
-        <section class="logo-group">
-          <section class="bckg"></section>
-          <input type="file" class="file-input" accept=".jpg,.jpeg,.png,.gif" @change="onFileChange">
-        </section>
+    <section class="logo-ce">
+      <section class="logo-group">
+        <avatar :url="userOrImage" size="normal"></avatar>
+        <input type="file" class="file-input" accept=".jpg,.jpeg,.png,.gif" @change="onFileChange">
       </section>
-    </div>
-    <div v-else>
-      <img :src="image" id="avatarView"/>
-      <button @click="removeImage">Modifier</button>
-    </div>
+    </section>
+    <button id="deleteImg" @click.prevent="changeImage(null)">Supprimer</button>
   </div>
 </template>
 
 <script>
+  import Vuex from 'vuex'
+  import store from '../../../../renderer/vuex/store'
+
+  import Avatar from './Avatar.vue'
+
   export default {
+    store,
     name: 'upload',
+    components: {
+      Avatar
+    },
     data () {
       return {
-        image: ''
+        image: null
       }
     },
     methods: {
@@ -31,19 +35,32 @@
       },
       createImage (file) {
         let reader = new FileReader()
-        const vm = this
 
         reader.onload = (e) => {
-          vm.image = e.target.result
+          this.changeImage(e.target.result)
         }
-
         reader.readAsDataURL(file)
       },
-      removeImage: function (e) {
-        this.image = ''
+      changeImage: function (image) {
+        this.image = image
+        this.$emit('change', this.image)
+      }
+    },
+    computed: {
+      ...Vuex.mapGetters([
+        'user'
+      ]),
+      userOrImage () {
+        if (this.image !== null) {
+          return this.image
+        }
+        return null
       }
     },
     mounted () {
+      if (this.user) {
+        this.image = this.user.avatar
+      }
       this.$on('upload-file', () => {
         this.onFileChange()
       })
