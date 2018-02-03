@@ -8,7 +8,7 @@
     computed: {
       imagePath () {
         if (this.url === null || this.url === undefined) {
-          return 'http://localhost/anonym.png'
+          return 'http://i0.wp.com/marioasselin.com/wp-content/plugins/buddypress/bp-core/images/mystery-man.jpg'
         } else if (this.url.indexOf('data:') !== -1) {
           return this.url
         } else {
@@ -29,7 +29,6 @@
   .avatar {
     width: 16px;
     height: 16px;
-
     border-radius: 50%;
   }
 
