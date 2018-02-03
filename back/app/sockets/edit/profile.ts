@@ -8,7 +8,7 @@ import { User } from '../../models/User'
 import { Socket } from '../../../scripts/class/Socket'
 import { Password } from '../../../scripts/class/Hash'
 import { userRules } from '../../../config/config'
-import { decodeBase64Image, imgPath } from '../../../scripts/Helper';
+import { decodeBase64Image, imgPath } from '../../../scripts/Helper'
 
 const limiter = new RateLimiter(5, 'hour', true)
 
