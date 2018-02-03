@@ -16,7 +16,6 @@ const Hash_1 = require("../../../scripts/class/Hash");
 const config_1 = require("../../../config/config");
 const Helper_1 = require("../../../scripts/Helper");
 const limiter = new limiter_1.RateLimiter(5, 'hour', true);
-console.log("j'ajoute du texte dans aliaspath qui ne devrait apparaitre qu'ici...");
 const profile = (instance, socket) => {
     socket.on('profile', (data) => __awaiter(this, void 0, void 0, function* () {
         const { DB } = instance;

@@ -12,8 +12,6 @@ import { decodeBase64Image, imgPath } from '../../../scripts/Helper'
 
 const limiter = new RateLimiter(5, 'hour', true)
 
-console.log("j'ajoute du texte dans aliaspath qui ne devrait apparaitre qu'ici...");
-
 const profile = (instance: Socket, socket: any) => {
 	socket.on('profile', async data => {
 		const { DB } = instance
