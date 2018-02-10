@@ -24,3 +24,7 @@ const personalData = {
     pwd: 'ragnarOK06'
 };
 exports.personalData = personalData;
+const path = {
+    img: '/home/ravaniss/Devs/qwirk/back/avatars/'
+};
+exports.path = path;

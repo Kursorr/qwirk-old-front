@@ -7,7 +7,7 @@ import * as nodemailer from 'nodemailer'
 import { User } from '../../models/User'
 import { Socket } from '../../../scripts/class/Socket'
 import { Password } from '../../../scripts/class/Hash'
-import { userRules } from '../../../config/config'
+import { userRules, path } from '../../../config/config'
 import { randomText, randomTag, decodeBase64Image, imgPath } from '../../../scripts/Helper'
 import { personalData } from '../../../config/config'
 
@@ -70,7 +70,7 @@ const register = (instance: Socket, socket: any) => {
 			verifAcc
 		})
 
-		fs.writeFile('/home/ravaniss/Development/Qwirk/back/avatars/' + imgName, imgBuffer.data, () => {})
+		fs.writeFile(path.img + imgName, imgBuffer.data, () => {})
 
 		if (newUser) {
 			socket.emit('registration', {

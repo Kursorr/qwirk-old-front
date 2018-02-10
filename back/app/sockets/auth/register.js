@@ -67,7 +67,7 @@ const register = (instance, socket) => {
             avatar: imgName,
             verifAcc
         });
-        fs.writeFile('/home/ravaniss/Development/Qwirk/back/avatars/' + imgName, imgBuffer.data, () => { });
+        fs.writeFile(config_1.path.img + imgName, imgBuffer.data, () => { });
         if (newUser) {
             socket.emit('registration', {
                 success: true,

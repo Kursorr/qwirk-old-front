@@ -44,12 +44,12 @@ const profile = (instance, socket) => {
             return false;
         }
         return limiter.removeTokens(1, (err, remainingRequests) => __awaiter(this, void 0, void 0, function* () {
-            if (remainingRequests < 1) {
+            /*if (remainingRequests < 1) {
                 return socket.emit('profile', {
                     success: false,
                     message: 'Vous changez vos informations trop rapidement, veuillez réessayer plus tard.'
-                });
-            }
+                })
+            }*/
             // Short-circuit Operators
             const preparedUser = {};
             pseudo && (preparedUser.pseudo = pseudo);
@@ -59,7 +59,7 @@ const profile = (instance, socket) => {
             if (data && data.avatar) {
                 imgBuffer = data.avatar ? Helper_1.decodeBase64Image(data.avatar) : '';
                 preparedUser.avatar = Helper_1.imgPath(imgBuffer);
-                fs.writeFile('/home/ravaniss/Development/Qwirk/back/avatars/' + preparedUser.avatar, imgBuffer.data, () => { });
+                fs.writeFile(config_1.path.img + preparedUser.avatar, imgBuffer.data, () => { });
             }
             else {
                 preparedUser.avatar = null;

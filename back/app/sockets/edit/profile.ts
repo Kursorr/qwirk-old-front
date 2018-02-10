@@ -7,7 +7,7 @@ import * as fs from 'fs'
 import { User } from '../../models/User'
 import { Socket } from '../../../scripts/class/Socket'
 import { Password } from '../../../scripts/class/Hash'
-import { userRules } from '../../../config/config'
+import { userRules, path } from '../../../config/config'
 import { decodeBase64Image, imgPath } from '../../../scripts/Helper'
 
 const limiter = new RateLimiter(5, 'hour', true)
@@ -46,12 +46,12 @@ const profile = (instance: Socket, socket: any) => {
 		}
 
 		return limiter.removeTokens(1, async (err, remainingRequests) => {
-			if (remainingRequests < 1) {
+			/*if (remainingRequests < 1) {
 				return socket.emit('profile', {
 					success: false,
 					message: 'Vous changez vos informations trop rapidement, veuillez réessayer plus tard.'
 				})
-			}
+			}*/
 
 			// Short-circuit Operators
 			const preparedUser: any = {}
@@ -60,11 +60,12 @@ const profile = (instance: Socket, socket: any) => {
 			password && newPassword && (preparedUser.password = await Password.hash(newPassword))
 
 			let imgBuffer;
+
 			if (data && data.avatar) {
 				imgBuffer = data.avatar ? decodeBase64Image(data.avatar) : ''
 				preparedUser.avatar = imgPath(imgBuffer)
 
-				fs.writeFile('/home/ravaniss/Development/Qwirk/back/avatars/' + preparedUser.avatar, imgBuffer.data, () => {})
+				fs.writeFile(path.img + preparedUser.avatar, imgBuffer.data, () => {})
 			} else {
 				preparedUser.avatar = null
 			}
