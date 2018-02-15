@@ -6,19 +6,18 @@ import { profile } from './edit/profile'
 import { login } from './auth/login'
 
 const base = (instance: Socket) => {
-    const { IO } = instance
+  const { IO } = instance
 
-    IO.on('connection', (socket) => {
-        console.log(`Customer connected id: ${socket.id} on port ${process.argv[2]}`)
+  IO.on('connection', (socket) => {
+    console.log(`Customer connected id: ${socket.id} on port ${process.argv[2]}`)
+    register(instance, socket)
+    login(instance, socket)
+    profile(instance, socket)
 
-	    register(instance, socket)
-	    login(instance, socket)
-	    profile(instance, socket)
-
-        socket.on('disconnect', () => {
-            console.log(`Customer disconnected id: ${socket.id} from port ${process.argv[2]}`)
-        })
+    socket.on('disconnect', () => {
+        console.log(`Customer disconnected id: ${socket.id} from port ${process.argv[2]}`)
     })
+  })
 }
 
 export { base }

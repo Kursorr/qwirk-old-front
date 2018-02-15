@@ -3,7 +3,7 @@ const isEmpty = (field) => {
 }
 
 const randomTag = (min: number = 1000, max: number = 9999) => {
-    return (Math.random() * (max - min + 1) | 0) + min
+  return (Math.random() * (max - min + 1) | 0) + min
 }
 
 const decodeBase64Image = (data: string) => {
@@ -29,7 +29,7 @@ const imgPath = (result: any) => {
 	return uploadedImgPath
 }
 
-function randomText(value) {
+function randomText (value) {
 	let text = '';
 	const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234567'
 

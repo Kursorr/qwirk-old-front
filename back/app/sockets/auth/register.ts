@@ -16,13 +16,13 @@ const register = (instance: Socket, socket: any) => {
 		const { pseudo, email, password, confirm, avatar } = data
 
 		const { DB } = instance
-		const user = new User(DB)
+    const user = new User(DB)
 
 		const isValid = await indicative.validate(data, userRules)
 			.then(() => true)
 			.catch(err => {
 				socket.emit('registration', {
-					success: false,
+				  success: false,
 					message: `${err[0].field} obligatoire`
 				})
 				return false
