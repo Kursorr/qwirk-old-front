@@ -11,8 +11,8 @@
     </section>
 
     <section class="profil">
-      <span class="username">Ravaniss</span>
-      <span class="tag">#2495</span>
+      <span class="username">{{ user.pseudo }}</span>
+      <span class="tag">#{{ user.tag }}</span>
     </section>
 
     <section class="options">
