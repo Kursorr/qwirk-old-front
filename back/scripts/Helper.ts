@@ -19,7 +19,7 @@ const decodeBase64Image = (data: string) => {
 }
 
 const imgPath = (result: any) => {
-	if (!result) return 'anonym.png'
+	if (!result) return 'anonym.jpg'
 
 	const imgTypeRegularExpression = /\/(.*?)$/
 	const imgType = result.type.match(imgTypeRegularExpression)

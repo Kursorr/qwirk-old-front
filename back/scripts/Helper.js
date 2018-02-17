@@ -20,7 +20,7 @@ const decodeBase64Image = (data) => {
 exports.decodeBase64Image = decodeBase64Image;
 const imgPath = (result) => {
     if (!result)
-        return 'anonym.png';
+        return 'anonym.jpg';
     const imgTypeRegularExpression = /\/(.*?)$/;
     const imgType = result.type.match(imgTypeRegularExpression);
     const imgName = randomText(14);
