@@ -66,13 +66,11 @@ const profile = (instance: Socket, socket: any) => {
 				preparedUser.avatar = imgPath(imgBuffer)
 
 				fs.writeFile(path.img + preparedUser.avatar, imgBuffer.data, () => {})
-			} else {
-				preparedUser.avatar = null
 			}
 
 			const result = await user.update(userID, preparedUser, password)
 
-			result && socket.emit('profile', { success: true, avatar: preparedUser.avatar})
+			result && socket.emit('profile', { success: true, preparedUser})
 		})
 	})
 }

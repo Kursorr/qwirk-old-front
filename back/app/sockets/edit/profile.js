@@ -61,11 +61,8 @@ const profile = (instance, socket) => {
                 preparedUser.avatar = Helper_1.imgPath(imgBuffer);
                 fs.writeFile(config_1.path.img + preparedUser.avatar, imgBuffer.data, () => { });
             }
-            else {
-                preparedUser.avatar = null;
-            }
             const result = yield user.update(userID, preparedUser, password);
-            result && socket.emit('profile', { success: true, avatar: preparedUser.avatar });
+            result && socket.emit('profile', { success: true, preparedUser });
         }));
     }));
 };

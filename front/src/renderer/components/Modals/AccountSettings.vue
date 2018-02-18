@@ -575,9 +575,9 @@
         passChange: false,
         edit: false,
         profile: {
-          pseudo: 'kiki',
-          email: 'kiki@kiki.dur',
-          password: 'root',
+          pseudo: '',
+          email: '',
+          password: '',
           newPassword: '',
           avatar: null,
           tag: 0,
@@ -612,8 +612,6 @@
       editUserProfile () {
         this.profile.tag = this.tag
         this.$socket.emit('profile', this.profile)
-        this.updateUser(this.profile)
-        // this.profile.password = ''
         this.profile.newPassword = ''
       },
       closeModal (e) {
