@@ -29,7 +29,7 @@ const profile = (instance: Socket, socket: any) => {
 
 		if (!isValid) return
 
-		const { pseudo, tag, email, password, newPassword } = data
+		const { pseudo, tag, email, avatar, password, newPassword } = data
 
 		const emailCursor = await user.filter({ tag })
 		const result = await emailCursor.toArray()
@@ -61,16 +61,20 @@ const profile = (instance: Socket, socket: any) => {
 
 			let imgBuffer;
 
-			if (data && data.avatar) {
-				imgBuffer = data.avatar ? decodeBase64Image(data.avatar) : ''
-				preparedUser.avatar = imgPath(imgBuffer)
+      if (avatar === null) {
+        preparedUser.avatar = result[0].avatar
+      } else if (avatar.length > 100) {
+        imgBuffer = decodeBase64Image(avatar)
+        preparedUser.avatar = imgPath(imgBuffer)
 
-				fs.writeFile(path.img + preparedUser.avatar, imgBuffer.data, () => {})
-			}
+        fs.writeFile(path.img + preparedUser.avatar, imgBuffer.data, () => {})
+			} else {
+        preparedUser.avatar = result[0].avatar
+      }
 
-			const result = await user.update(userID, preparedUser, password)
+			const updateUser = await user.update(userID, preparedUser, password)
 
-			result && socket.emit('profile', { success: true, preparedUser})
+      updateUser && socket.emit('profile', { success: true, preparedUser})
 		})
 	})
 }

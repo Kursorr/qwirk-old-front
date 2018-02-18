@@ -590,7 +590,11 @@
         if (result.success === true) {
           this.edit = false
           this.passChange = false
-          this.profile.avatar = result.avatar
+          if (result.preparedUser.avatar === undefined) {
+            this.profile.avatar = this.user.avatar
+          } else {
+            this.profile.avatar = result.preparedUser.avatar
+          }
           this.updateUser(this.profile)
         } else {
           this.profile.error = result.message
@@ -637,12 +641,14 @@
         if (this.user) {
           return this.user.tag
         }
-      },
-      mounted () {
-        this.profile.id = this.user.id
-        this.profile.pseudo = this.user.pseudo
-        this.profile.email = this.user.email
       }
+    },
+    mounted () {
+      this.profile.id = this.user.id
+      this.profile.pseudo = this.user.pseudo
+      this.profile.email = this.user.email
+      this.profile.avatar = this.user.avatar
+      this.profile.password = 'root'
     }
   }
 </script>
