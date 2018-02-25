@@ -19,6 +19,7 @@
   import Sidebar from './components/Sidebar/Sidebar.vue'
   import Auth from './components/Modals/Auth.vue'
   import store from './vuex/store'
+
   require('../../static/style/style.css')
 
   export default {

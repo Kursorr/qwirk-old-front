@@ -79,370 +79,28 @@
           </section>
         </section>
 
-        <!-- Security View -->
         <section class="settings" id="security" v-if="tab === 'confidSecurity'">
           <security v-model="security"></security>
         </section>
 
-        <!-- ConfCall View -->
         <section class="settings" id="confCall" v-if="tab === 'voiceVideo'">
-          <h2 class="titleSection">Paramètres vocaux</h2>
-          <section class="somethinghere" id="inOut">
-            <section class="periph" style="margin-right: 40px;">
-              <section class="opt">
-                <label for="entryPeriph" class="information">Périphérique d'entrée</label>
-                <select name="entryPeriph" id="entryPeriph">
-                  <option value="default">Par défaut</option>
-                </select>
-              </section>
-              <h2 class="information" style="margin-top:20px;">Volume d'entrée</h2>
-              <div class="slider">
-                <input type="number" class="input-slider" value="50" readonly="">
-                <div class="track"></div>
-                <div class="barr">
-                  <div class="barFill" style="width: 50%;"></div>
-                </div>
-                <div class="track">
-                  <div class="grabber" style="left: 50%;">
-                    <span class="bubble elevation">50%</span>
-                  </div>
-                </div>
-              </div>
-            </section>
-            <section class="periph">
-              <section class="opt">
-                <label for="entryPeriph" class="information">Périphérique de sortie</label>
-                <select name="outPeriph" id="outPeriph">
-                  <option value="default">Par défaut</option>
-                </select>
-              </section>
-              <h2 class="information" style="margin-top: 20px;">Volume de sortie</h2>
-              <div class="slider">
-                <input type="number" class="input-slider" value="50" readonly="">
-                <div class="track"></div>
-                <div class="barr">
-                  <div class="barFill" style="width: 50%;"></div>
-                </div>
-                <div class="track">
-                  <div class="grabber" style="left: 50%;">
-                    <span class="bubble elevation">50%</span>
-                  </div>
-                </div>
-              </div>
-            </section>
-          </section>
-
-          <hr>
-
-          <section class="somethinghere" id="activMicro">
-            <h2 class="information">Activation du micro</h2>
-            <div>
-              <input checked id="no-analyze" name="security" type="radio">
-              <section class="checkbox blue">
-                <div>
-                  <label class="fake-checkbox" for="no-analyze"></label>
-                </div>
-                <div>
-                  <h3 class="sec-title">
-                    Détection de la voix
-                  </h3>
-                </div>
-              </section>
-            </div>
-            <div>
-              <input checked id="analyze" name="security" type="radio">
-              <section class="checkbox blue">
-                <div>
-                  <label class="fake-checkbox" for="analyze"></label>
-                </div>
-                <div>
-                  <h3 class="sec-title">
-                    Appuyer-pour-parler
-                  </h3>
-                </div>
-              </section>
-            </div>
-          </section>
-          <section class="somethinghere" id="vocSensibility">
-            <h2 class="information">Sensibilité de la détection vocale</h2>
-            <div class="slider">
-              <input type="number" class="input-slider" value="50" readonly="">
-              <div class="track"></div>
-              <div class="barr">
-                <div class="barFill" style="width: 50%;"></div>
-              </div>
-              <div class="track">
-                <div class="grabber" style="left: 50%;">
-                  <span class="bubble elevation">50%</span>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <hr>
-
-          <section class="somethinghere" id="vidParams">
-            <h2 class="titleSection">Paramètres vidéo</h2>
-            <section class="somethinghere" id="vid">
-              <section id="cam">
-                <section class="opt">
-                  <label for="entryCam" class="information">Caméra</label>
-                  <select name="entryCam" id="entryCam">
-                    <option value="default">Par défaut</option>
-                  </select>
-                </section>
-              </section>
-              <section id="previsualisation">
-                <h2 class="information">Aperçu</h2>
-                <div id="tryCam">
-                  <button class="connect">Test vidéo</button>
-                </div>
-              </section>
-            </section>
-          </section>
+          <conf-call></conf-call>
         </section>
 
-        <!-- Notifications View -->
         <section class="settings" id="notifications" v-if="tab === 'notifications'">
-          <h2 class="titleSection">Notifications</h2>
-          <section class="somethinghere" id="notif">
-            <ul>
-              <li class="param-content">
-                <section class="param">
-                  <p>Activer les notifications sur le bureau</p>
-                  <div class="checkbox-grey">
-                    <input type="checkbox" value="1" class="checkboxNone" id="desktopNotif"
-                           name="desktopNotif"><label for="desktopNotif" class="labelCircle"></label>
-                    <div class="checkboxDiv"></div>
-                  </div>
-                </section>
-              </li>
-            </ul>
-          </section>
+          <notifications></notifications>
         </section>
 
-        <!-- Text & Images View -->
         <section class="settings" id="textImage" v-if="tab === 'textImage'">
-          <h2 class="titleSection">Texte & images</h2>
-
-          <section class="somethinghere" id="showStuffs">
-            <h2 class="information">Affiche les images, vidéos et lolcats</h2>
-            <ul>
-              <li class="param-content">
-                <section class="param">
-                  <p>Lorsqu'ils sont envoyés comme liens dans le salon</p>
-                  <div class="checkbox-grey">
-                    <input type="checkbox" value="1" class="checkboxNone" id="room"
-                           name="room"><label for="room" class="labelCircle"></label>
-                    <div class="checkboxDiv"></div>
-                  </div>
-                </section>
-              </li>
-              <li class="param-content">
-                <section class="param">
-                  <p>Lorsqu'ils sont envoyés directement dans Qwirk</p>
-                  <div class="checkbox-grey">
-                    <input type="checkbox" value="1" class="checkboxNone" id="qwirkSend"
-                           name="qwirkSend"><label for="qwirkSend" class="labelCircle"></label>
-                    <div class="checkboxDiv"></div>
-                  </div>
-                </section>
-                <p class="section-description">
-                  Les images plus lourdes que 10MB ne seront pas prévisualisées.
-                </p>
-              </li>
-            </ul>
-          </section>
-
-          <section class="somethinghere" id="linkPreview">
-            <h2 class="information">Prévisualisation de lien</h2>
-            <ul>
-              <li class="param-content">
-                <section class="param">
-                  <p>Afficher des informations sur le site web envoyé dans le salon</p>
-                  <div class="checkbox-grey">
-                    <input type="checkbox" value="1" class="checkboxNone" id="showInfoWebsite"
-                           name="showInfoWebsite"><label for="showInfoWebsite" class="labelCircle"></label>
-                    <div class="checkboxDiv"></div>
-                  </div>
-                </section>
-              </li>
-            </ul>
-          </section>
-
-          <section class="somethinghere" id="emojiscvrt">
-            <h2 class="information">émojis</h2>
-            <ul>
-              <li class="param-content">
-                <section class="param">
-                  <p>Montrer les réactions émoji sur les messages</p>
-                  <div class="checkbox-grey">
-                    <input type="checkbox" value="1" class="checkboxNone" id="displayEmo"
-                           name="displayEmo"><label for="displayEmo" class="labelCircle"></label>
-                    <div class="checkboxDiv"></div>
-                  </div>
-                </section>
-              </li>
-              <li class="param-content">
-                <section class="param">
-                  <p>Convertir automatiquement les émoticônes dans vos messages emoji</p>
-                  <div class="checkbox-grey">
-                    <input type="checkbox" value="1" class="checkboxNone" id="convertEmoOnTchat"
-                           name="convertEmoOnTchat"><label for="convertEmoOnTchat" class="labelCircle"></label>
-                    <div class="checkboxDiv"></div>
-                  </div>
-                </section>
-                <p class="section-description">
-                  Par exemple, quand vous tapez :-) Qwirk le convertira en <img src="../../../renderer/assets/emoji.png" alt="emoji" id="emojiExample">
-                </p>
-              </li>
-            </ul>
-          </section>
+          <options-text-image></options-text-image>
         </section>
 
-        <!-- Appearance View -->
         <section class="settings" id="displaylook" v-if="tab === 'displaylook'">
-          <h2 class="titleSection">Apparence</h2>
-          <section class="somethinghere" id="theme">
-            <h2 class="information">Thème</h2>
-            <section id="preview">
-              <section id="innerSpec">
-                <section id="convers">
-                  <section class="onechat">
-                    <section class="avatar">
-                      <avatar :url="user.avatar" size="small"></avatar>
-                    </section>
-                    <section class="text">
-                      <span class="username">Ravaniss <span class="hours">Aujourd'hui à 19:07</span></span>
-                      <p>Regardez-moi je suis un beau papillon</p>
-                    </section>
-                  </section>
-                  <section class="onechat">
-                    <section class="avatar">
-                      <avatar :url="user.avatar" size="small"></avatar>
-                    </section>
-                    <section class="text">
-                      <span class="username">Ravaniss <span class="hours">Aujourd'hui à 19:07</span></span>
-                      <p>Battant des ailes au clair de lune</p>
-                    </section>
-                  </section>
-                  <section class="onechat">
-                    <section class="avatar">
-                      <avatar :url="user.avatar" size="small"></avatar>
-                    </section>
-                    <section class="text">
-                      <span class="username">Ravaniss <span class="hours">Aujourd'hui à 19:07</span></span>
-                      <p>En attendant le jour ou</p>
-                    </section>
-                  </section>
-                  <section class="onechat">
-                    <section class="avatar">
-                      <avatar :url="user.avatar" size="small"></avatar>
-                    </section>
-                    <section class="text">
-                      <span class="username">Ravaniss <span class="hours">Aujourd'hui à 19:08</span></span>
-                      <p>Le mode compact serait activé</p>
-                    </section>
-                  </section>
-                  <section class="onechat">
-                    <section class="avatar">
-                      <avatar :url="user.avatar" size="small"></avatar>
-                    </section>
-                    <section class="text">
-                      <span class="username">Ravaniss <span class="hours">Aujourd'hui à 19:08</span></span>
-                      <p>Oh voilà !</p>
-                    </section>
-                  </section>
-                </section>
-              </section>
-            </section>
-            <form>
-              <div>
-                <input id="clear" name="security" type="radio">
-                <section class="checkbox blue">
-                  <div>
-                    <label class="fake-checkbox" for="clear"></label>
-                  </div>
-                  <div>
-                    <h3 class="sec-title">
-                      Clair
-                    </h3>
-                  </div>
-                </section>
-              </div>
-              <div>
-                <input checked id="dark" name="security" type="radio">
-                <section class="checkbox blue">
-                  <div>
-                    <label class="fake-checkbox" for="dark"></label>
-                  </div>
-                  <div>
-                    <h3 class="sec-title">
-                      Sombre
-                    </h3>
-                  </div>
-                </section>
-              </div>
-            </form>
-          </section>
-          <section class="somethinghere" id="Msgtheme">
-            <h2 class="information">Affichage des messages</h2>
-            <form action="">
-              <div>
-                <input checked id="confortable" name="security" type="radio">
-                <section class="checkbox blue">
-                  <div>
-                    <label class="fake-checkbox" for="confortable"></label>
-                  </div>
-                  <div>
-                    <h3 class="sec-title">
-                      Confortable : Moderne, beau et agréable à voir
-                    </h3>
-                  </div>
-                </section>
-              </div>
-              <div>
-                <input id="irc" name="security" type="radio">
-                <section class="checkbox blue">
-                  <div>
-                    <label class="fake-checkbox" for="irc"></label>
-                  </div>
-                  <div>
-                    <h3 class="sec-title">
-                      Compact : Affiche plus de messages en même temps à l'écran. #IRC
-                    </h3>
-                  </div>
-                </section>
-              </div>
-            </form>
-          </section>
+          <appearance></appearance>
         </section>
 
-        <!-- Languages View -->
         <section class="settings" id="language" v-if="tab === 'language'">
-          <h2 class="titleSection">Langue</h2>
-          <section class="somethinghere">
-            <h2 class="information">Sélectionnez une langue</h2>
-            <section id="languageList">
-              <ul>
-                <li class="param-content">
-                  <section class="langueAndCheck">
-                    <label for="french">Français
-                      <div class="checkbox-green">
-                        <input type="checkbox" value="1" class="checkboxNone" id="french"
-                               name="french"><label for="french" class="labelCircle"></label>
-                        <div class="checkboxDiv"></div>
-                      </div>
-                    </label>
-                  </section>
-                  <section class="drapAndLogo">
-                    <span class="section-description">Français</span>
-                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEYAAAAvCAYAAABe1bwWAAAA0klEQVR42u3bPQrCQBRFYUuzsSSNdoIbyMrSJEJ+dpWAWoogmPGOEBh5Y6U25gycBbyvvrMKX7avc9WpQU3KfdLlevtZ513xjSY1qE7ls0MIslaVOe7fYWyVSkKYUjlgnpUzSqocMC+lHqYBxtR6mCMwpsHDOGBMd2DeBAwwwAADDDDAAAMMMMAAAwwwwAADDDDAAAMMMMAAAwwwwAADDDDAAAMMMMAsEIYNXryTh2mBMbXsfONlLMNtZTiZT1QNTHFQSeyzxUb1alwQzKh6tQ0tHq2SfJj8Q3YaAAAAAElFTkSuQmCC" alt="french-drap" style="width:27px; height:18px;">
-                  </section>
-                </li>
-              </ul>
-            </section>
-          </section>
+          <languages></languages>
         </section>
 
         <section class="buttons">
@@ -461,13 +119,23 @@
   import Avatar from '../Contents/components/Avatar.vue'
   import Upload from '../Contents/components/Upload.vue'
   import Security from './components/User/Security.vue'
+  import ConfCall from './components/User/ConfCall.vue'
+  import Notifications from './components/User/Notifications'
+  import OptionsTextImage from './components/User/OptionsTextImage'
+  import Appearance from './components/User/Appearance'
+  import Languages from './components/User/Languages'
 
   export default {
     store,
     components: {
       Avatar,
       Upload,
-      Security
+      Security,
+      ConfCall,
+      Notifications,
+      OptionsTextImage,
+      Appearance,
+      Languages
     },
     data () {
       return {
@@ -535,9 +203,6 @@
       },
       uploadChange (newImage) {
         this.profile.avatar = newImage
-      },
-      checkboxToggle (res) {
-        console.log(res)
       }
     },
     computed: {
