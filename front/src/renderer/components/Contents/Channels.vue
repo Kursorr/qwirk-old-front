@@ -1,13 +1,13 @@
 <template>
   <section class="global">
     <transition name="fade">
-      <create-and-edit v-if="modal.createAndEdit"
-                       @close="setModal('createAndEdit', false)"></create-and-edit>
+      <group-params v-if="modal.groupParams"
+                       @close="setModal('groupParams', false)"></group-params>
     </transition>
 
     <section class="bar">
       <section class="filters">
-        <button class="filt add" @click="setModal('createAndEdit', true)">Créer un channel</button>
+        <button class="filt add" @click="setModal('groupParams', true)">Créer un channel</button>
         <div class="separator"></div>
         <router-link to="/all_channel" class="filt">Tous</router-link>
         <a href="#" class="filt">En ligne</a>
@@ -23,16 +23,16 @@
 </template>
 
 <script>
-  import CreateAndEdit from '../Modals/CreateAndEdit.vue'
+  import GroupParams from '../Modals/GroupParams.vue'
 
   export default {
     components: {
-      CreateAndEdit
+      GroupParams
     },
     data () {
       return {
         modal: {
-          createAndEdit: false
+          groupParams: false
         }
       }
     },

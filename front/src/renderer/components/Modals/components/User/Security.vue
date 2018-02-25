@@ -5,10 +5,10 @@
       <h2 class="information">Message privé sans danger</h2>
       <p class="section-description">Analyser et supprimer automatiquement les messages privés reçus renfermant un contenu explicite.</p>
       <div>
-        <input id="moyen" name="security" type="radio" value="medium" v-model="msgAnalyze">
+        <input id="moyen" name="security" type="radio" value="medium" v-model="res.analyse">
         <section class="checkbox green">
           <div>
-            <label class="fake-checkbox" for="moyen"></label>
+            <label class="fake-checkbox" for="moyen" @click="changeSecurity"></label>
           </div>
           <div>
             <h3 class="sec-title medium">
@@ -21,10 +21,10 @@
         </section>
       </div>
       <div>
-        <input id="fort" name="security" type="radio" value="hard" v-model="msgAnalyze">
+        <input id="fort" name="security" type="radio" value="hard" v-model="res.analyse">
         <section class="checkbox orange">
           <div>
-            <label class="fake-checkbox" for="fort"></label>
+            <label class="fake-checkbox" for="fort" @click="changeSecurity"></label>
           </div>
           <div>
             <h3 class="sec-title hard">
@@ -37,10 +37,10 @@
         </section>
       </div>
       <div>
-        <input id="extreme" name="security" type="radio" value="extreme" v-model="msgAnalyze">
+        <input id="extreme" name="security" type="radio" value="extreme" v-model="res.analyse">
         <section class="checkbox red">
           <div>
-            <label class="fake-checkbox" for="extreme"></label>
+            <label class="fake-checkbox" for="extreme" @click="changeSecurity"></label>
           </div>
           <div>
             <h3 class="sec-title extreme">
@@ -61,7 +61,8 @@
             <p>Autoriser les messages privés provenant de membres de groupes/channels</p>
             <div class="checkbox-grey">
               <input type="checkbox" value="1" class="checkboxNone" id="allowPrivateMsg"
-                     name="allowPrivateMsg"><label for="allowPrivateMsg" class="labelCircle"></label>
+                     name="allowPrivateMsg" v-model="res.allowPrivateMsg">
+              <label for="allowPrivateMsg" class="labelCircle" @click="changeSecurity"></label>
               <div class="checkboxDiv"></div>
             </div>
           </section>
@@ -112,9 +113,17 @@
 <script>
   export default {
     name: 'Security',
+    props: ['value'],
     data () {
       return {
-        msgAnalyze: 'extreme'
+        res: JSON.parse(JSON.stringify(this.value))
+      }
+    },
+    methods: {
+      changeSecurity () {
+        setTimeout(() => {
+          this.$emit('input', this.res)
+        }, 50)
       }
     }
   }

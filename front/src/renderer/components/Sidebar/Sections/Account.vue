@@ -27,7 +27,7 @@
   import Vuex from 'vuex'
   import store from '../../../vuex/store'
 
-  import AccountSettings from '../../Modals/AccountSettings'
+  import AccountSettings from '../../Modals/UserParams'
   import Avatar from '../../Contents/components/Avatar.vue'
 
   export default {

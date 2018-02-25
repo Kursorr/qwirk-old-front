@@ -22,6 +22,8 @@
 
         <button class="tab" :class="{'is-active': tab === 'disconnect'}"
                 @click="setTab('disconnect')">Déconnexion</button>
+        <!--<button class="tab" :class="{'is-active': tab === 'disconnect'}"
+                @click="setTab('disconnect')">{{ security }}</button>-->
       </section>
 
       <section class="content">
@@ -79,7 +81,7 @@
 
         <!-- Security View -->
         <section class="settings" id="security" v-if="tab === 'confidSecurity'">
-          <security></security>
+          <security v-model="security"></security>
         </section>
 
         <!-- ConfCall View -->
@@ -458,7 +460,7 @@
 
   import Avatar from '../Contents/components/Avatar.vue'
   import Upload from '../Contents/components/Upload.vue'
-  import Security from './Params/Security.vue'
+  import Security from './components/User/Security.vue'
 
   export default {
     store,
@@ -472,6 +474,10 @@
         tab: 'account',
         passChange: false,
         edit: false,
+        security: {
+          analyse: 'extreme',
+          allowPrivateMsg: true
+        },
         profile: {
           pseudo: '',
           email: '',
@@ -529,6 +535,9 @@
       },
       uploadChange (newImage) {
         this.profile.avatar = newImage
+      },
+      checkboxToggle (res) {
+        console.log(res)
       }
     },
     computed: {
