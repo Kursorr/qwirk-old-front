@@ -145,6 +145,7 @@ a.specialA:hover {
   height: 25px;
   border: 1px solid #72767d;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .fake-checkbox:after {
