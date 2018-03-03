@@ -75,7 +75,7 @@ const register = (instance: Socket, socket: any) => {
 		if (newUser) {
 			socket.emit('registration', {
 				success: true,
-				message: 'Un email vous a été envoyé afin de valider votre compte'
+				message: 'Welcome to the team !'
 			})
 
 			const transporter = nodemailer.createTransport({
