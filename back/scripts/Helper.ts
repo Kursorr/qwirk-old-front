@@ -30,7 +30,7 @@ const imgPath = (result: any) => {
 }
 
 function randomText (value) {
-	let text = '';
+	let text = ''
 	const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234567'
 
 	for (let i = 0; i < value; i++)

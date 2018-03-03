@@ -84,7 +84,7 @@ const register = (instance: Socket, socket: any) => {
 					user: personalData.email,
 					pass: personalData.pwd
 				}
-			});
+			})
 
 			let link = 'http://localhost/confirm-account?token=' + verifAcc + '&id=' + newUser.generated_keys[0]
 
@@ -93,7 +93,7 @@ const register = (instance: Socket, socket: any) => {
 				to: personalData.email,
 				subject: 'Inscription Qwirk',
 				html: "Bienvenue !<br> Cliquez sur le lien pour confirmer votre email.<br><a href="+link+">Valider mon compte</a>"
-			};
+			}
 
 			transporter.sendMail(mailOptions, {})
 		}

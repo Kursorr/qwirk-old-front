@@ -21,7 +21,7 @@ confirmAccount.get('/', async (req, res) => {
 
 	await user.update(currentUser.id, { emailVerified: true, verifAcc: null })
 
-	res.send('Votre email a bien été validé !');
+	res.send('Votre email a bien été validé !')
 })
 
 export default confirmAccount

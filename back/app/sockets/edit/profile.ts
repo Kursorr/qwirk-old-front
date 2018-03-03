@@ -59,7 +59,7 @@ const profile = (instance: Socket, socket: any) => {
 			email && (preparedUser.email = email)
 			password && newPassword && (preparedUser.password = await Password.hash(newPassword))
 
-			let imgBuffer;
+			let imgBuffer
 
       if (avatar === null) {
         preparedUser.avatar = result[0].avatar
