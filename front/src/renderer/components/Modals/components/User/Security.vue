@@ -121,9 +121,9 @@
     },
     methods: {
       changeSecurity () {
-        setTimeout(() => {
+        this.$nextTick(function () {
           this.$emit('input', this.res)
-        }, 50)
+        })
       }
     }
   }
