@@ -13,7 +13,7 @@ const login = (instance: Socket, socket: any ) => {
 
 		const { email, password } = data
 
-		const cursor = await findUser.filter({ email: email })
+		const cursor = await findUser.filter({ email })
 		const result = await cursor.toArray()
 		const user = result[0]
 
