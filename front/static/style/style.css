@@ -238,7 +238,7 @@ section.modal {
 
 
 /* Auth modal */
-/* Je fais une super grosse modif de la mort qui tue */
+
 section.modal.auth {
   background-image: url('../../src/renderer/assets/backgrounds/app/d3.jpg');
 }
