@@ -236,10 +236,11 @@ section.modal {
           overflow: auto;
         }
 
+
 /* Auth modal */
 
 section.modal.auth {
-  background-image: url('../../src/renderer/assets/back.jpg');
+  background-image: url('../../src/renderer/assets/backgrounds/app/d3.jpg');
 }
 
   section.modal.auth > section.set.auth {
