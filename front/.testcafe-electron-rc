@@ -1,0 +1,6 @@
+{
+    "mainWindowUrl": "./dist/electron/index.html",
+    "appArgs": [
+        "./dist/electron/index.html"
+    ]
+}
