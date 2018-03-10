@@ -24,4 +24,8 @@ const personalData = {
 	pwd: 'ragnarOK06'
 }
 
-export { database, redis, JWT, userRules, personalData }
+const path = {
+  img: '/home/ravaniss/Devs/qwirk/back/avatars/'
+}
+
+export { database, redis, JWT, userRules, personalData, path }

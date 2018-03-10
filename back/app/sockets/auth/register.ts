@@ -7,7 +7,7 @@ import * as nodemailer from 'nodemailer'
 import { User } from '../../models/User'
 import { Socket } from '../../../scripts/class/Socket'
 import { Password } from '../../../scripts/class/Hash'
-import { userRules } from '../../../config/config'
+import { userRules, path } from '../../../config/config'
 import { randomText, randomTag, decodeBase64Image, imgPath } from '../../../scripts/Helper'
 import { personalData } from '../../../config/config'
 
@@ -16,13 +16,13 @@ const register = (instance: Socket, socket: any) => {
 		const { pseudo, email, password, confirm, avatar } = data
 
 		const { DB } = instance
-		const user = new User(DB)
+    const user = new User(DB)
 
 		const isValid = await indicative.validate(data, userRules)
 			.then(() => true)
 			.catch(err => {
 				socket.emit('registration', {
-					success: false,
+				  success: false,
 					message: `${err[0].field} obligatoire`
 				})
 				return false
@@ -70,12 +70,12 @@ const register = (instance: Socket, socket: any) => {
 			verifAcc
 		})
 
-		fs.writeFile('/home/ravaniss/Development/Qwirk/back/avatars/' + imgName, imgBuffer.data, () => {})
+		fs.writeFile(path.img + imgName, imgBuffer.data, () => {})
 
 		if (newUser) {
 			socket.emit('registration', {
 				success: true,
-				message: 'Un email vous a été envoyé afin de valider votre compte'
+				message: 'Welcome to the team !'
 			})
 
 			const transporter = nodemailer.createTransport({
@@ -84,7 +84,7 @@ const register = (instance: Socket, socket: any) => {
 					user: personalData.email,
 					pass: personalData.pwd
 				}
-			});
+			})
 
 			let link = 'http://localhost/confirm-account?token=' + verifAcc + '&id=' + newUser.generated_keys[0]
 
@@ -93,7 +93,7 @@ const register = (instance: Socket, socket: any) => {
 				to: personalData.email,
 				subject: 'Inscription Qwirk',
 				html: "Bienvenue !<br> Cliquez sur le lien pour confirmer votre email.<br><a href="+link+">Valider mon compte</a>"
-			};
+			}
 
 			transporter.sendMail(mailOptions, {})
 		}

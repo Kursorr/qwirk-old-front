@@ -7,7 +7,7 @@ import * as fs from 'fs'
 import { User } from '../../models/User'
 import { Socket } from '../../../scripts/class/Socket'
 import { Password } from '../../../scripts/class/Hash'
-import { userRules } from '../../../config/config'
+import { userRules, path } from '../../../config/config'
 import { decodeBase64Image, imgPath } from '../../../scripts/Helper'
 
 const limiter = new RateLimiter(5, 'hour', true)
@@ -29,7 +29,7 @@ const profile = (instance: Socket, socket: any) => {
 
 		if (!isValid) return
 
-		const { pseudo, tag, email, password, newPassword } = data
+		const { pseudo, tag, email, avatar, password, newPassword } = data
 
 		const emailCursor = await user.filter({ tag })
 		const result = await emailCursor.toArray()
@@ -59,19 +59,22 @@ const profile = (instance: Socket, socket: any) => {
 			email && (preparedUser.email = email)
 			password && newPassword && (preparedUser.password = await Password.hash(newPassword))
 
-			let imgBuffer;
-			if (data && data.avatar) {
-				imgBuffer = data.avatar ? decodeBase64Image(data.avatar) : ''
-				preparedUser.avatar = imgPath(imgBuffer)
+			let imgBuffer
 
-				fs.writeFile('/home/ravaniss/Development/Qwirk/back/avatars/' + preparedUser.avatar, imgBuffer.data, () => {})
+      if (avatar === null) {
+        preparedUser.avatar = result[0].avatar
+      } else if (avatar.length > 100) {
+        imgBuffer = decodeBase64Image(avatar)
+        preparedUser.avatar = imgPath(imgBuffer)
+
+        fs.writeFile(path.img + preparedUser.avatar, imgBuffer.data, () => {})
 			} else {
-				preparedUser.avatar = null
-			}
+        preparedUser.avatar = result[0].avatar
+      }
 
-			const result = await user.update(userID, preparedUser, password)
+			const updateUser = await user.update(userID, preparedUser, password)
 
-			result && socket.emit('profile', { success: true, avatar: preparedUser.avatar})
+      updateUser && socket.emit('profile', { success: true, preparedUser})
 		})
 	})
 }

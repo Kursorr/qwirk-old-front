@@ -22,13 +22,13 @@ const DATABASE    : string = process.env.DATABASE       || database.db
 
 // Creating logger
 log4js.configure({
-    appenders: {
-        out: { type: 'stdout' },
-        app: { type: 'file', filename: 'server-api.log' }
-    },
-    categories: {
-        'default': { appenders: [ 'out'/*, 'app'*/ ], level: 'debug' }
-    }
+  appenders: {
+    out: { type: 'stdout' },
+    app: { type: 'file', filename: 'server-api.log' }
+  },
+  categories: {
+    'default': { appenders: [ 'out'/*, 'app'*/ ], level: 'debug' }
+  }
 })
 
 // Get logger
@@ -40,8 +40,8 @@ const app = express()
 
 // CORS
 const options = {
-    'origin': true,
-    'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE'
+  'origin': true,
+  'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE'
 }
 
 // Middleware
@@ -53,54 +53,55 @@ log.debug(`Connecting to database : rethinkdb://127.0.0.1:${database.port}/${DAT
 const connectDatabase = r.connect({ db: DATABASE })
 
 connectDatabase.then((conn) => {
-    log.info(`Connected to : rethinkdb://127.0.0.1:${database.port}/${DATABASE}`)
+  log.info(`Connected to : rethinkdb://127.0.0.1:${database.port}/${DATABASE}`)
 
-    app.use((req, res, next) => {
-        req.secretJWT = JWT_SECRET
-        req.db = { r, conn }
+  app.use((req, res, next) => {
+    req.secretJWT = JWT_SECRET
+    req.db = { r, conn }
 
-        // Auth token
-        req.bearer = null
-        if (req.headers.authorization) {
-            const auth = req.headers.authorization.split(' ')
-            if (auth.length === 2 && auth[0] === 'bearer') {
-                req.bearer = auth[1]
-            }
-        }
+    // Auth token
+    req.bearer = null
 
-        res.log = log
-        next()
+    if (req.headers.authorization) {
+      const auth = req.headers.authorization.split(' ')
+      if (auth.length === 2 && auth[0] === 'bearer') {
+        req.bearer = auth[1]
+      }
+    }
+
+    res.log = log
+    next()
+  })
+
+  const server = http.createServer((req, res) => {})
+
+  // Our Sockets
+  const socket = new Socket(server, { r, conn }, JWT_SECRET)
+  base(socket)
+
+  // Our routes
+  log.debug('Add paths for the API')
+
+  app.get('/', (req, res) => {
+    res.status(200).json({
+      message: `Welcome to Qwirk API`
     })
+  })
 
-    const server = http.createServer((req, res) => {})
-
-    // Our Sockets
-    const socket = new Socket(server, { r, conn }, JWT_SECRET)
-    base(socket)
-
-    // Our routes
-    log.debug('Add paths for the API')
-
-    app.get('/', (req, res) => {
-        res.status(200).json({
-            message: `Welcome to Qwirk API`
-        })
-    })
-
-    app.post('/friends', (req, res) => {
-        console.log(req.body)
-        res.status(200).json(req.body)
-    })
+  app.post('/friends', (req, res) => {
+    console.log(req.body)
+    res.status(200).json(req.body)
+  })
 
 	app.use('/confirm-account', confirmAccount)
 
-    // Launch application
-    app.listen(process.argv[2], () => {
-        log.info(`API running on port ${process.argv[2]}`)
-    })
+  // Launch application
+  app.listen(process.argv[2], () => {
+    log.info(`API running on port ${process.argv[2]}`)
+  })
 })
 
 connectDatabase.error((error) => {
-    log.error(`Connection failed to : rethinkdb://127.0.0.1:${database.port}/${DATABASE}`)
-    log.error(`Reason : ${error}`)
+  log.error(`Connection failed to : rethinkdb://127.0.0.1:${database.port}/${DATABASE}`)
+  log.error(`Reason : ${error}`)
 })

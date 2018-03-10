@@ -3,7 +3,7 @@ const isEmpty = (field) => {
 }
 
 const randomTag = (min: number = 1000, max: number = 9999) => {
-    return (Math.random() * (max - min + 1) | 0) + min
+  return (Math.random() * (max - min + 1) | 0) + min
 }
 
 const decodeBase64Image = (data: string) => {
@@ -19,7 +19,7 @@ const decodeBase64Image = (data: string) => {
 }
 
 const imgPath = (result: any) => {
-	if (!result) return 'anonym.png'
+	if (!result) return 'anonym.jpg'
 
 	const imgTypeRegularExpression = /\/(.*?)$/
 	const imgType = result.type.match(imgTypeRegularExpression)
@@ -29,8 +29,8 @@ const imgPath = (result: any) => {
 	return uploadedImgPath
 }
 
-function randomText(value) {
-	let text = '';
+function randomText (value) {
+	let text = ''
 	const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234567'
 
 	for (let i = 0; i < value; i++)

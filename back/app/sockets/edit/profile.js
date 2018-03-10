@@ -31,7 +31,7 @@ const profile = (instance, socket) => {
         });
         if (!isValid)
             return;
-        const { pseudo, tag, email, password, newPassword } = data;
+        const { pseudo, tag, email, avatar, password, newPassword } = data;
         const emailCursor = yield user.filter({ tag });
         const result = yield emailCursor.toArray();
         const userID = result[0].id;
@@ -56,16 +56,19 @@ const profile = (instance, socket) => {
             email && (preparedUser.email = email);
             password && newPassword && (preparedUser.password = yield Hash_1.Password.hash(newPassword));
             let imgBuffer;
-            if (data && data.avatar) {
-                imgBuffer = data.avatar ? Helper_1.decodeBase64Image(data.avatar) : '';
+            if (avatar === null) {
+                preparedUser.avatar = result[0].avatar;
+            }
+            else if (avatar.length > 100) {
+                imgBuffer = Helper_1.decodeBase64Image(avatar);
                 preparedUser.avatar = Helper_1.imgPath(imgBuffer);
-                fs.writeFile('/home/ravaniss/Development/Qwirk/back/avatars/' + preparedUser.avatar, imgBuffer.data, () => { });
+                fs.writeFile(config_1.path.img + preparedUser.avatar, imgBuffer.data, () => { });
             }
             else {
-                preparedUser.avatar = null;
+                preparedUser.avatar = result[0].avatar;
             }
-            const result = yield user.update(userID, preparedUser, password);
-            result && socket.emit('profile', { success: true, avatar: preparedUser.avatar });
+            const updateUser = yield user.update(userID, preparedUser, password);
+            updateUser && socket.emit('profile', { success: true, preparedUser });
         }));
     }));
 };

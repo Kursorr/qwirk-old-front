@@ -99,6 +99,7 @@ h2.titleSection {
 
 h3.sec-title {
   font-weight: normal;
+  font-size: 16px;
 }
 
 a.specialA:hover {
@@ -144,6 +145,7 @@ a.specialA:hover {
   height: 25px;
   border: 1px solid #72767d;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .fake-checkbox:after {
@@ -234,10 +236,11 @@ section.modal {
           overflow: auto;
         }
 
+
 /* Auth modal */
 
 section.modal.auth {
-  background-image: url('../../src/renderer/assets/back.jpg');
+  background-image: url('../../src/renderer/assets/backgrounds/app/d3.jpg');
 }
 
   section.modal.auth > section.set.auth {
@@ -402,28 +405,28 @@ section#account > section.account-profil.noEdit {
 
 /* ConfCall */
 
-section#confCall > section#inOut {
+section#inOut {
   display: flex;
 }
 
-  section#confCall > section#inOut > section.periph {
+  section#inOut > section.periph {
     width: 50%;
   }
 
-  section#confCall > section#vidParams section#vid {
+  section#vidParams section#vid {
     display:flex;
     flex-direction: row;
   }
 
-    section#confCall > section#vidParams > section#vid > section#cam {
+    section#vidParams > section#vid > section#cam {
       margin-right: 20px;
     }
 
-      section#confCall > section#vidParams > section#vid > section#cam, section#confCall > section#vidParams > section#vid > section#previsualisation {
+      section#vidParams > section#vid > section#cam, section#vidParams > section#vid > section#previsualisation {
         width: 50%;
       }
 
-      section#confCall > section#vidParams > section#vid > section#previsualisation > div#tryCam {
+      section#vidParams > section#vid > section#previsualisation > div#tryCam {
         height: 178px;
         width: 278px;
         border-radius: 5px;
@@ -448,14 +451,14 @@ img#emojiExample {
 
 /* Appearance */
 
-section#displaylook > section#theme > section#preview {
+section#theme > section#preview {
   height: 175px;
   overflow: hidden;
   border: 1px solid #202225;
   margin-top: 20px;
 }
 
-    section#displaylook > section#theme > section#preview > section#innerSpec {
+    section#theme > section#preview > section#innerSpec {
       margin-top: -40px;
     }
 
@@ -907,20 +910,20 @@ section#add_friend {
     }
 /*****/
 
-/* Create & Edit modal of Group and Channel */
+/* Group Params */
 
 /* Global view */
 
-section#general > section.principal > form {
+section.principal > form {
   margin-top: 20px;
 }
 
-  section#general > section.principal > form > section.logo {
+  section.principal > form > section.logo {
     display: flex;
     align-items: center;
   }
 
-    section#general > section.principal > form > section.logo > section.upload > p.section-description {
+    section.principal > form > section.logo > section.upload > p.section-description {
       margin: 0 15px;
     }
 
@@ -965,14 +968,14 @@ section#general > section.principal > form {
         cursor: pointer;
       }
 
-        section#general > section.principal > form > section.logo > section.upload > button > div > input {
+        section.principal > form > section.logo > section.upload > button > div > input {
           opacity: 0;
           top: 0;
           left: 0;
           position: absolute;
         }
 
-        section#general > section.principal > form > section.logo > section.upload > button {
+        section.principal > form > section.logo > section.upload > button {
           color: #fff;
           border: solid hsla(0,0%,100%,.3) 1px;
           -webkit-transition: color .17s ease,background-color .17s ease,border-color .17s ease;
@@ -981,15 +984,15 @@ section#general > section.principal > form {
           margin: 10px 0 0 20px;
         }
 
-        section#general > section.principal > form > section.logo > section.upload > button:hover {
+        section.principal > form > section.logo > section.upload > button:hover {
           border-color: hsla(0,0%,100%,.6);
         }
 
-        section#general > section.principal > form > section.logo > section.logo-ce > section.logo-group:hover > section.upload-file, section#general > section.principal > form > section.logo > section.logo-ce > section.logo-group:hover > section.bckg, section#account > section.account-profil > section#entireForm > section.logo-ce > section.logo-group:hover > section.bckg, section#account > section.account-profil > section#entireForm > section.logo-ce > section.logo-group:hover > section.upload-file {
+        section.principal > form > section.logo > section.logo-ce > section.logo-group:hover > section.upload-file, section.principal > form > section.logo > section.logo-ce > section.logo-group:hover > section.bckg, section#account > section.account-profil > section#entireForm > section.logo-ce > section.logo-group:hover > section.bckg, section#account > section.account-profil > section#entireForm > section.logo-ce > section.logo-group:hover > section.upload-file {
           display: block;
         }
 
-    section#general > section.principal > form > section.logo > section.name > input {
+    section.principal > form > section.logo > section.name > input {
       color: #f6f6f7;
       background-color: rgba(0,0,0,.1);
       border: solid rgba(0,0,0,.3) 1px;
@@ -997,17 +1000,17 @@ section#general > section.principal > form {
       margin-top: 10px;
     }
 
-    section#general > section.principal > form > section.logo > section.name > input:focus {
+    section.principal > form > section.logo > section.name > input:focus {
       border-color: #7289da;
     }
 
-    section#general > section.principal > form > section.afk > section.options {
+    section.principal > form > section.afk > section.options {
       display: flex;
       justify-content: space-around;
       margin-bottom: 20px;
     }
 
-      section#general > section.principal > form > section.afk > section.options > section.opt.w {
+      section.principal > form > section.afk > section.options > section.opt.w {
         display: flex;
         flex-direction: column;
         width: 250px;
@@ -1016,11 +1019,11 @@ section#general > section.principal > form {
 
 /* Moderation */
 
-section#moderation > section#verification-members {
+section#verification-members {
   margin-top: 15px;
 }
 
-  section#moderation > section#verification-members > section.text {
+  section#verification-members > section.text {
     margin-bottom: 10px;
   }
 
@@ -1099,53 +1102,53 @@ h3.extreme {
 
 /* Rôles */
 
-section#role > section.role-content {
+section.role-content {
   display: flex;
 }
 
-  section#role > section.role-content > section.role-list {
+  section.role-content > section.role-list {
     width: 30%;
   }
 
-    section#role > section.role-content > section.role-list > ul {
+    section.role-content > section.role-list > ul {
       margin-top: 20px;
     }
 
-      section#role > section.role-content > section.role-list > ul > li {
+      section.role-content > section.role-list > ul > li {
         padding: 6px 10px;
         background-color: #7289da;
         border-radius: 3px;
       }
 
-    section#role > section.role-content > section.role-list > section.add {
+    section.role-content > section.role-list > section.add {
       display: flex;
     }
 
-      section#role > section.role-content > section.role-list > section.add > h1 {
+      section.role-content > section.role-list > section.add > h1 {
         font-size: 16px;
         text-transform: uppercase;
         margin-top: 7px;
       }
 
-      section#role > section.role-content > section.role-list > section.add > button.adds {
+      section.role-content > section.role-list > section.add > button.adds {
         background: none;
         border: solid #4f545c 1px;
         padding: 5px 10px;
         margin-left: 15px;
       }
 
-  section#role > section.role-content > section.new-role {
+  section.role-content > section.new-role {
     margin-left: 20px;
   }
 
-    section#role > section.role-content > section.new-role > h2 {
+    section.role-content > section.new-role > h2 {
       font-size: 14px;
       text-transform: uppercase;
       margin-top: 7px;
       color: #b9bbbe;
     }
 
-    section#role > section.role-content > section.new-role > input {
+    section.role-content > section.new-role > input {
       color: #f6f6f7;
       background-color: rgba(0,0,0,.1);
       border: solid rgba(0,0,0,.3) 1px;
@@ -1155,54 +1158,54 @@ section#role > section.role-content {
       padding: 0 0 0 7px;
     }
 
-    section#role > section.role-content > section.new-role > button.delete-role {
+    section.role-content > section.new-role > button.delete-role {
       color: #f04747;
       background: 0;
       border: solid rgba(240,71,71,.3) 1px;
       transition: color .17s ease,background-color .17s ease,border-color .17s ease;
     }
 
-    section#role > section.role-content > section.new-role > button.delete-role:hover {
+    section.role-content > section.new-role > button.delete-role:hover {
       border-color: rgba(240,71,71,.6);
     }
 
-      section#role > section.role-content > section.new-role > section.permission > h3 {
+      section.role-content > section.new-role > section.permission > h3 {
         font-size: 14px;
         text-transform: uppercase;
         color: #b9bbbe;
         margin-bottom: 15px;
       }
 
-        section#role > section.role-content > section.new-role > section.permission > ul > li:last-child {
+        section.role-content > section.new-role > section.permission > ul > li:last-child {
           margin-bottom: 20px;
         }
 
 /* Member on group / channel */
 
-section#member > h2 > a {
+section#member > section > h2 > a {
   color: #f04747;
   font-size: 12px;
   text-transform: none;
 }
 
-section#member > section.listing {
+section#member > section > section.listing {
   margin-top: 25px;
 }
 
-  section#member > section.listing > section.member {
+  section.listing > section.member {
     display: flex;
     align-items: center;
     padding: 15px;
     border-top: solid hsla(218, 5%, 47%, .3) 1px;
   }
 
-  section#member > section.listing > section.member:hover {
+  section.listing > section.member:hover {
     background-color: #33363c;
     border-color: #2b2e32;
     cursor: pointer;
   }
 
-    section#member > section.listing > section.member > button.add-role {
+    section.listing > section.member > button.add-role {
       background: none;
       border: solid #4f545c 1px;
       padding: 5px 10px;
@@ -1211,51 +1214,51 @@ section#member > section.listing {
 
 /* Invitation Member */
 
-section#invit > section.listing{
+section#invit > section > section.listing {
   margin-top: 25px;
   display: flex;
   justify-content: center;
 }
 
-  section#invit > section.listing > table {
+  section.listing > table {
     width: 95%;
     border-collapse: collapse;
   }
 
-    section#invit > section.listing > table > tr.remove-invitation > td {
+    section.listing > table > tr.remove-invitation > td {
       padding: 20px 0;
       border: 1px solid transparent;
     }
 
-    section#invit > section.listing > table > tr.remove-invitation:hover {
+    section.listing > table > tr.remove-invitation:hover {
       cursor: pointer;
       background-color: #33363c;
       border-color: #2b2e32;
     }
 
-    section#invit > section.listing > table > tr > th {
+    section.listing > table > tr > th {
       padding-bottom: 20px;
     }
 
-    section#invit > section.listing > table > tr > th, section#invit > section.listing > table > tr > td {
+    section.listing > table > tr > th, section.listing > table > tr > td {
       width: 25%;
       text-align: left;
     }
 
-    section#invit > section.listing > table > tr > th.text-right, section#invit > section.listing > table > tr > td.text-right {
+    section.listing > table > tr > th.text-right, section.listing > table > tr > td.text-right {
       width: 25%;
       text-align: right;
     }
 
 /* Ban Member */
 
-section#ban > section.listing {
+section#ban > section > section.listing {
   display: flex;
   flex-direction: column;
   margin-top: 25px;
 }
 
-  section#ban > section.listing > section.ban-member {
+  section.listing > section.ban-member {
     display: flex;
     border-top: solid hsla(218, 5%, 47%, .3) 1px;
     padding: 10px;
@@ -1263,7 +1266,7 @@ section#ban > section.listing {
     width: 100%;
   }
 
-  section#ban > section.listing > section.ban-member:hover {
+  section.listing > section.ban-member:hover {
     background-color: #33363c;
     border-color: #2b2e32;
     cursor: pointer;

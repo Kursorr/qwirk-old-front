@@ -16,7 +16,7 @@ const login = (instance, socket) => {
         const { DB, Secret } = instance;
         const findUser = new User_1.User(DB);
         const { email, password } = data;
-        const cursor = yield findUser.filter({ email: email });
+        const cursor = yield findUser.filter({ email });
         const result = yield cursor.toArray();
         const user = result[0];
         if (!result.length)
