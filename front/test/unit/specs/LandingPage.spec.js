@@ -13,5 +13,4 @@ describe('view', () => {
   it('contient les données par défaut', () => {
     expect(view.data).to.be.a('function')
   })
-
 })
