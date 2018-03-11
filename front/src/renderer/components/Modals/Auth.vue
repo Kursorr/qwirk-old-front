@@ -4,6 +4,7 @@
       <section class="content auth">
         <section class="panel">
           <h2>S'inscrire</h2>
+          <!-- {{ $t("message.hello") }} -->
           <form autocomplete="off">
             <div class="form">
               <input type="text" name="registerName" placeholder="Pseudo"
