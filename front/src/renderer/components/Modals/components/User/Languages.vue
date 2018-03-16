@@ -28,6 +28,5 @@
 
 <script>
   export default {
-    name: 'Languages'
   }
 </script>

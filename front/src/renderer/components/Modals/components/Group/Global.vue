@@ -44,7 +44,7 @@
                 <option value="5mins">5 minutes</option>
                 <option value="15mins">15 minutes</option>
                 <option value="30mins">30 minutes</option>
-                <option value="1h">1 hour</option>
+                <option value="1h">1 heure</option>
               </select>
             </section>
           </section>

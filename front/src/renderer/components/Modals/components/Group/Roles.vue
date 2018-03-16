@@ -27,8 +27,7 @@
               </section>
               <p class="section-description">Les membres ayant cette permission ont toutes les permissions et
                 peuvent aussi passer outre les permissions associées à des salons spécifiques. Pensez-y à deux
-                fois avant d'octroyer cette permission, c'est dangereux.
-              </p>
+                fois avant d'octroyer cette permission, c'est dangereux.</p>
             </li>
 
             <li class="param-content">
@@ -39,8 +38,7 @@
                   <div class="checkboxDiv"></div>
                 </div>
               </section>
-              <p class="section-description">Les membres ayant cette permission peuvent changer le nom du groupe.
-              </p>
+              <p class="section-description">Les membres ayant cette permission peuvent changer le nom du groupe.</p>
             </li>
 
             <li class="param-content">

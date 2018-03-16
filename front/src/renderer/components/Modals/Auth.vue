@@ -3,7 +3,7 @@
     <section class="set auth">
       <section class="content auth">
         <section class="panel">
-          <h2>S'inscrire</h2>
+          <h2 @click="test()">{{ $t("message.hello") }}</h2>
           <!-- {{ $t("message.hello") }} -->
           <form autocomplete="off">
             <div class="form">
@@ -126,6 +126,9 @@
       },
       connect () {
         this.$socket.emit('login', this.login)
+      },
+      test () {
+        this.$i18n.locale = 'en'
       }
     },
     computed: {

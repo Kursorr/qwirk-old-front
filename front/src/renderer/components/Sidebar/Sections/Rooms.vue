@@ -17,7 +17,7 @@
 
     <!-- Tous les groupes -->
     <section class="room">
-      <h2>Messages groupes</h2>
+      <h2>Messages Groupes</h2>
       <section class="chan set">
         <section>
           <section class="avatar">
@@ -32,7 +32,7 @@
 
     <!-- Tous les salons -->
     <section class="room">
-      <h2>Messages channels</h2>
+      <h2>Messages Channels</h2>
       <section class="chan set">
         <section>
           <section class="avatar">
