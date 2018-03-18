@@ -4,7 +4,6 @@
       <section class="content auth">
         <section class="panel">
           <h2>S'inscrire</h2>
-          <!-- {{ $t("message.hello") }} -->
           <form autocomplete="off">
             <div class="form">
               <input type="text" name="registerName" placeholder="Pseudo"
@@ -20,8 +19,7 @@
             </div>
             <div class="form">
               <input type="password" name="registerVerifPassword" placeholder="Confirmer le mot de passe"
-                     v-model="register.confirm"
-              >
+                     v-model="register.confirm">
             </div>
 
             <upload @change="uploadChange"></upload>
