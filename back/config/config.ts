@@ -1,9 +1,9 @@
 import * as indicative from 'indicative'
 
 const database: any = {
+  db: 'qwirk',
 	host: 'localhost',
-	port: 28015,
-	db: 'qwirk'
+	port: 28015
 }
 
 const redis: any = {
