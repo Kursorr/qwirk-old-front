@@ -21,7 +21,6 @@
         "pack": "npm run pack:main && npm run pack:renderer",
         "pack:main": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.main.config.js",
         "pack:renderer": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.renderer.config.js",
-        "migrate": "rethinkdb-migrate",
         "unit": "karma start test/unit/karma.conf.js",
         "test": "npm run unit",
         "e2e": "npm run build && testcafe electron \"test/e2e/*.test.js\""
