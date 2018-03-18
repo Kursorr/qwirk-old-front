@@ -20,7 +20,7 @@ describe('Auth', _ => {
     done()
   })
 
-  it('should be an empty array (data.login)', done => {
+  it('should be the test array (data.login)', done => {
     datas.login.email.should.equal('kiki@kiki.dur')
     datas.login.password.should.equal('root')
     expect(datas.login.error).to.be.a('null')
