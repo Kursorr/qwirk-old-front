@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const database = {
+    db: 'qwirk',
     host: 'localhost',
-    port: 28015,
-    db: 'qwirk'
+    port: 28015
 };
 exports.database = database;
 const redis = {
