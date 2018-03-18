@@ -19,8 +19,7 @@
             </div>
             <div class="form">
               <input type="password" name="registerVerifPassword" placeholder="Confirmer le mot de passe"
-                     v-model="register.confirm"
-              >
+                     v-model="register.confirm">
             </div>
 
             <upload @change="uploadChange"></upload>
