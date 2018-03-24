@@ -8,6 +8,8 @@ import AddFriend from './components/Contents/AddFriend.vue'
 import Grid from './components/Contents/Grids/Grid.vue'
 import Join from './components/Contents/Grids/Join.vue'
 import ChannelGrid from './components/Contents/Grids/ChannelGrid.vue'
+import Auth from './components/Modals/Auth.vue'
+import Register from './components/Modals/Register.vue'
 
 Vue.use(Router)
 
@@ -16,52 +18,64 @@ export default new Router({
     {
       path: '/',
       name: 'landing-page',
-      component: LandingPage
-    },
-    {
-      path: '/friends',
-      component: Friends,
+      component: LandingPage,
       children: [
         {
-          path: '/',
-          component: AddFriend
+          path: '/friends',
+          component: Friends,
+          children: [
+            {
+              path: '/',
+              component: AddFriend
+            },
+            {
+              path: '/add_friend',
+              name: 'addFriend',
+              component: AddFriend
+            },
+            {
+              path: '/all',
+              name: 'all',
+              component: Grid
+            }
+          ]
         },
         {
-          path: '/add_friend',
-          name: 'addFriend',
-          component: AddFriend
+          path: '/groups',
+          name: 'groups',
+          component: Groups
         },
         {
-          path: '/all',
-          name: 'all',
-          component: Grid
+          path: '/channels',
+          component: Channels,
+          children: [
+            {
+              path: '/',
+              component: ChannelGrid
+            },
+            {
+              path: '/join',
+              name: 'join',
+              component: Join
+            },
+            {
+              path: '/all_channel',
+              name: 'all_channel',
+              component: ChannelGrid
+            }
+          ]
         }
       ]
     },
     {
-      path: '/groups',
-      name: 'groups',
-      component: Groups
+      path: '/auth',
+      name: 'Auth',
+      component: Auth
     },
     {
-      path: '/channels',
-      component: Channels,
-      children: [
-        {
-          path: '/',
-          component: ChannelGrid
-        },
-        {
-          path: '/join',
-          name: 'join',
-          component: Join
-        },
-        {
-          path: '/all_channel',
-          name: 'all_channel',
-          component: ChannelGrid
-        }
-      ]
+      path: '/register',
+      name: 'Register',
+      component: Register
     },
     {
       path: '*',
