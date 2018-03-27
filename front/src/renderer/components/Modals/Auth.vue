@@ -17,7 +17,7 @@
 
             <button type="submit" @click.prevent="connect()"
                     class="connect"><router-link to="/">Se connecter</router-link></button>
-            <p class="authSwitch">Vous avez déjà un compte ? <router-link to="/register">S'inscrire</router-link></p>
+            <p class="authSwitch">Besoin d'un compte ? <router-link to="/register">S'inscrire</router-link></p>
             <div class="message" v-if="login.error">
               {{ login.error }}
             </div>

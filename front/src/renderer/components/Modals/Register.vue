@@ -26,7 +26,7 @@
 
             <upload @change="uploadChange"></upload>
 
-            <button type="submit" @click.prevent="registration()" class="connect">S'inscrire</button>
+            <button type="submit" @click.prevent="registration()" class="connect">Continuer</button>
             <p class="authSwitch">Vous avez déjà un compte ? <router-link to="/auth">Se connecter</router-link></p>
             <div class="message" v-if="register.error">
               {{ register.error }}
