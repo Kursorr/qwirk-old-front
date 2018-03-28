@@ -21,6 +21,7 @@
     "limiter": "^1.1.2",
     "log4js": "^2.5.2",
     "node": "^9.4.0",
+    "node-notifier": "^5.2.1",
     "nodemailer": "^4.4.2",
     "rethinkdb": "^2.3.3",
     "socket.io": "^2.0.4",
