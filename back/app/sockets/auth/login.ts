@@ -17,7 +17,13 @@ const login = (instance: Socket, socket: any ) => {
 		const result = await cursor.toArray()
 		const user = result[0]
 
-		if (!result.length) return
+		if (!result.length) {
+      socket.emit('connection', {
+        success: false,
+        message: 'Votre email ou votre mot de passe est incorrect.'
+      })
+      return false
+    }
 
 		const userID = result[0].id
 

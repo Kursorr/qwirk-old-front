@@ -19,8 +19,13 @@ const login = (instance, socket) => {
         const cursor = yield findUser.filter({ email });
         const result = yield cursor.toArray();
         const user = result[0];
-        if (!result.length)
-            return;
+        if (!result.length) {
+            socket.emit('connection', {
+                success: false,
+                message: 'Votre email ou votre mot de passe est incorrect.'
+            });
+            return false;
+        }
         const userID = result[0].id;
         const verifPassword = yield Hash_1.Password.compare(password, result[0].password);
         if (!verifPassword) {

@@ -22,7 +22,7 @@ html, body {
   flex-direction: column;
   width: 100vw;
   height: 100vh;
-  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-family: Whitney,Helvetica Neue,Helvetica,Arial,sans-serif;
   background-color: #36393e;
   -webkit-user-select: none;
 }
@@ -239,13 +239,29 @@ section.modal {
 
 /* Auth modal */
 
+.authSwitch {
+  color: #888;
+  margin-top: 12px;
+  font-size: 12px;
+}
+
+.auth-logo {
+  width: 230px;
+  background-color: #FFF;
+}
+
 section.modal.auth {
   background-image: url('../../src/renderer/assets/backgrounds/app/d3.jpg');
 }
 
   section.modal.auth > section.set.auth {
-    width: 800px;
-    height: 500px;
+    height: 400px;
+    width: 630px;
+  }
+
+  section.modal.auth > section.set.auth.register {
+    width: 630px;
+    height: 530px;
   }
 
     section.modal > section.set > section.content.auth {
@@ -257,13 +273,15 @@ section.modal.auth {
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 100%;
+        width: 400px;
       }
 
         section.modal > section.set > section.content.auth > section.panel > h2 {
           margin-top: 25px;
           margin-bottom: 25px;
           color: #FFF;
+          text-transform: uppercase;
+          font-size: 18px;
         }
 
         section.modal > section.set > section.content.auth > section.panel > form {
