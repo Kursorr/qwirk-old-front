@@ -1,6 +1,8 @@
 'use strict'
 
 import * as jwt from 'jsonwebtoken'
+import * as notifier from 'node-notifier'
+import * as path from 'path'
 
 import { User } from '../../models/User'
 import { Socket } from '../../../scripts/class/Socket'
@@ -16,6 +18,7 @@ const login = (instance: Socket, socket: any ) => {
 		const cursor = await findUser.filter({ email })
 		const result = await cursor.toArray()
 		const user = result[0]
+    console.log(user.avatar)
 
 		if (!result.length) {
       socket.emit('connection', {
@@ -24,6 +27,21 @@ const login = (instance: Socket, socket: any ) => {
       })
       return false
     }
+
+    notifier.notify({
+      title: 'My awesome title',
+      message: 'Hello from node, Mr. User!',
+      icon: path.join(`${__dirname}/pig.jpg`),
+      sound: false,
+      wait: true
+    }, (err, response) => { });
+
+    notifier.on('click', (notifierObject, options) => {
+    });
+
+    notifier.on('timeout', (notifierObject, options) => {
+      console.log('closed!')
+    });
 
 		const userID = result[0].id
 

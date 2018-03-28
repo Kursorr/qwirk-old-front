@@ -9,6 +9,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const jwt = require("jsonwebtoken");
+const notifier = require("node-notifier");
+const path = require("path");
 const User_1 = require("../../models/User");
 const Hash_1 = require("../../../scripts/class/Hash");
 const login = (instance, socket) => {
@@ -19,6 +21,7 @@ const login = (instance, socket) => {
         const cursor = yield findUser.filter({ email });
         const result = yield cursor.toArray();
         const user = result[0];
+        console.log(user.avatar);
         if (!result.length) {
             socket.emit('connection', {
                 success: false,
@@ -26,6 +29,18 @@ const login = (instance, socket) => {
             });
             return false;
         }
+        notifier.notify({
+            title: 'My awesome title',
+            message: 'Hello from node, Mr. User!',
+            icon: path.join(`${__dirname}/pig.jpg`),
+            sound: false,
+            wait: true
+        }, (err, response) => { });
+        notifier.on('click', (notifierObject, options) => {
+        });
+        notifier.on('timeout', (notifierObject, options) => {
+            console.log('closed!');
+        });
         const userID = result[0].id;
         const verifPassword = yield Hash_1.Password.compare(password, result[0].password);
         if (!verifPassword) {
