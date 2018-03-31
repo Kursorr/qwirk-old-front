@@ -16,8 +16,18 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
+
       path: '/',
-      name: 'landing-page',
+      name: 'auth',
+      component: Auth
+    },
+    {
+      path: '/register',
+      name: 'Register',
+      component: Register
+    },
+    {
+      path: '/landing-page',
       component: LandingPage,
       children: [
         {
@@ -66,16 +76,6 @@ export default new Router({
           ]
         }
       ]
-    },
-    {
-      path: '/auth',
-      name: 'Auth',
-      component: Auth
-    },
-    {
-      path: '/register',
-      name: 'Register',
-      component: Register
     },
     {
       path: '*',

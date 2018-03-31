@@ -23,7 +23,7 @@
         "pack:renderer": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.renderer.config.js",
         "unit": "karma start test/unit/karma.conf.js",
         "test": "npm run unit",
-        "e2e": "npm run build && testcafe electron \"test/e2e/*.test.js\""
+        "e2e": "npm run build && testcafe electron \"test/e2e/**/*.test.js\""
     },
     "build": {
         "productName": "front",

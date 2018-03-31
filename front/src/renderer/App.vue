@@ -6,8 +6,6 @@
       <button class="win-close"></button>
     </section>
     <section class="full-content">
-      <sidebar v-if="user"></sidebar>
-      <auth v-if="!user"></auth>
       <router-view></router-view>
     </section>
   </section>
