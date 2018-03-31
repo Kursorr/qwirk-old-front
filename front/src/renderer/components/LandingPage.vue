@@ -2,7 +2,7 @@
   <section id="wrapper">
     <sidebar v-if="user"></sidebar>
     <auth v-if="!user"></auth>
-    <tchat></tchat>
+    <router-view></router-view>
   </section>
 </template>
 
