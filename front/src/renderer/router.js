@@ -18,54 +18,7 @@ export default new Router({
     {
       path: '/',
       name: 'landing-page',
-      component: LandingPage,
-      children: [
-        {
-          path: '/friends',
-          component: Friends,
-          children: [
-            {
-              path: '/',
-              component: AddFriend
-            },
-            {
-              path: '/add_friend',
-              name: 'addFriend',
-              component: AddFriend
-            },
-            {
-              path: '/all',
-              name: 'all',
-              component: Grid
-            }
-          ]
-        },
-        {
-          path: '/groups',
-          name: 'groups',
-          component: Groups
-        },
-        {
-          path: '/channels',
-          component: Channels,
-          children: [
-            {
-              path: '/',
-              component: ChannelGrid
-            },
-            {
-              path: '/join',
-              name: 'join',
-              component: Join
-            },
-            {
-              path: '/all_channel',
-              name: 'all_channel',
-              component: ChannelGrid
-            }
-          ]
-        }
-      ]
+      component: LandingPage
     },
     {
       path: '/auth',
@@ -76,6 +29,51 @@ export default new Router({
       path: '/register',
       name: 'Register',
       component: Register
+    },
+    {
+      path: '/friends',
+      component: Friends,
+      children: [
+        {
+          path: '/',
+          component: AddFriend
+        },
+        {
+          path: '/add_friend',
+          name: 'addFriend',
+          component: AddFriend
+        },
+        {
+          path: '/all',
+          name: 'all',
+          component: Grid
+        }
+      ]
+    },
+    {
+      path: '/groups',
+      name: 'groups',
+      component: Groups
+    },
+    {
+      path: '/channels',
+      component: Channels,
+      children: [
+        {
+          path: '/',
+          component: ChannelGrid
+        },
+        {
+          path: '/join',
+          name: 'join',
+          component: Join
+        },
+        {
+          path: '/all_channel',
+          name: 'all_channel',
+          component: ChannelGrid
+        }
+      ]
     },
     {
       path: '*',
