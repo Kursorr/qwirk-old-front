@@ -21,7 +21,6 @@ const login = (instance, socket) => {
         const cursor = yield findUser.filter({ email });
         const result = yield cursor.toArray();
         const user = result[0];
-        console.log(user.avatar);
         if (!result.length) {
             socket.emit('connection', {
                 success: false,
@@ -30,16 +29,11 @@ const login = (instance, socket) => {
             return false;
         }
         notifier.notify({
-            title: 'My awesome title',
-            message: 'Hello from node, Mr. User!',
-            icon: path.join(`${__dirname}/pig.jpg`),
+            title: 'Welcome !',
+            message: `Hello ${user.pseudo}`,
+            icon: path.join(`${__dirname}/../../../avatars/${user.avatar}`),
             sound: false,
             wait: true
-        }, (err, response) => { });
-        notifier.on('click', (notifierObject, options) => {
-        });
-        notifier.on('timeout', (notifierObject, options) => {
-            console.log('closed!');
         });
         const userID = result[0].id;
         const verifPassword = yield Hash_1.Password.compare(password, result[0].password);
