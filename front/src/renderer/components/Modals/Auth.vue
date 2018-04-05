@@ -38,8 +38,8 @@
     data () {
       return {
         login: {
-          email: 'kiki@kiki.dur',
-          password: 'root',
+          email: '',
+          password: '',
           error: null
         }
       }
