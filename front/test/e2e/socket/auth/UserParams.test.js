@@ -1,15 +1,16 @@
 import VueSelector from "testcafe-vue-selectors"
 
-const userParams = VueSelector('userParams')
+const landingPage = VueSelector('landing-page')
+const auth = VueSelector('auth')
 
-fixture("Register")
+fixture("userParams")
   .page("../../../../dist/electron/index.html")
 
-test("Should auth the user", async t => {
+test('should...', async t => {
   await t.typeText(auth.find('input[name=loginEmail]'), 'PseudoTest@test.com')
-  await t.typeText(auth.find('input[name=loginPassword]'), 'PseudoPassword')
-  await t.click(auth.find('.connect'))
-  await t.wait(2000)
-  await t.click(userParams.find('.settings'))
-  await t.wait(5000)
-})
+    .typeText(auth.find('input[name=loginPassword]'), 'PseudoPassword')
+    .click(auth.find('.connect'))
+    .navigateTo('#/landing-page')
+    .click(landingPage.find('.settings'))
+    .wait(2000)
+});

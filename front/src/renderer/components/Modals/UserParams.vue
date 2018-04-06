@@ -126,6 +126,7 @@
   import Languages from './components/User/Languages'
 
   export default {
+    name: 'userparams',
     store,
     components: {
       Avatar,
