@@ -82,7 +82,7 @@
         <section class="settings" id="security" v-if="tab === 'confidSecurity'">
           <security v-model="security"></security>
         </section>
-
+z
         <section class="settings" id="confCall" v-if="tab === 'voiceVideo'">
           <conf-call></conf-call>
         </section>
@@ -217,11 +217,13 @@
       }
     },
     mounted () {
+      /*
       this.profile.id = this.user.id
       this.profile.pseudo = this.user.pseudo
       this.profile.email = this.user.email
       this.profile.avatar = this.user.avatar
       this.profile.password = 'root'
+      */
     }
   }
 </script>
