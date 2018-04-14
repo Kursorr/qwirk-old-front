@@ -9,7 +9,7 @@
       <section class="filters">
         <button class="filt add" @click="setModal('groupParams', true)">Créer un channel</button>
         <div class="separator"></div>
-        <router-link to="/all_channel" class="filt">Tous</router-link>
+        <router-link :to="{name: 'allChannel'}" class="filt">Tous</router-link>
         <a href="#" class="filt">En ligne</a>
         <a href="#" class="filt">En attente</a>
         <div class="separator"></div>

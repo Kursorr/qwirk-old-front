@@ -638,7 +638,7 @@ section.chan.set {
     background: transparent url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICA8ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgogICAgPHBhdGggZmlsbD0iI0I5QkJCRSIgZmlsbC1ydWxlPSJub256ZXJvIiBkPSJNMC41LDAgTDAuNSwxLjUgQzAuNSw1LjY1IDIuNzEsOS4yOCA2LDExLjMgTDYsMTYgTDIxLDE2IEwyMSwxNCBDMjEsMTEuMzQgMTUuNjcsMTAgMTMsMTAgQzEzLDEwIDEyLjgzLDEwIDEyLjc1LDEwIEM4LDEwIDQsNiA0LDEuNSBMNCwwIEwwLjUsMCBaIE0xMywwIEMxMC43OTA4NjEsMCA5LDEuNzkwODYxIDksNCBDOSw2LjIwOTEzOSAxMC43OTA4NjEsOCAxMyw4IEMxNS4yMDkxMzksOCAxNyw2LjIwOTEzOSAxNyw0IEMxNywxLjc5MDg2MSAxNS4yMDkxMzksMCAxMywwIFoiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDIgNCkiLz4KICAgIDxwYXRoIGQ9Ik0wLDAgTDI0LDAgTDI0LDI0IEwwLDI0IEwwLDAgWiBNMCwwIEwyNCwwIEwyNCwyNCBMMCwyNCBMMCwwIFogTTAsMCBMMjQsMCBMMjQsMjQgTDAsMjQgTDAsMCBaIi8+CiAgPC9nPgo8L3N2Zz4K) 50% no-repeat;
   }
 
-  section.chan:hover, section.chan:active {
+  section.chan:hover, section.chan:active, section.chan.router-link-active, section.room.router-link-active {
     background: #545454;
   }
 
@@ -753,7 +753,7 @@ section.global {
         flex-shrink: 0;
       }
 
-      section.global > section.bar > section.filters > button.filt.add, a.filt.add{
+      section.global > section.bar > section.filters > button.filt.add, a.filt.add, a.filt.router-link-exact-active.router-link-active{
         border-radius: 4px;
         background-color: #7289da;
         margin-left: 20px;
@@ -762,6 +762,11 @@ section.global {
         font-size: 14px;
         font-style: normal;
         font-weight: 100;
+      }
+
+      a.filt.router-link-exact-active.router-link-active {
+        background-color: #fff;
+        color: #36393E;
       }
 
       section.global > section.bar > section.filters > button.filt.add:hover, a.filt.add:hover {
@@ -822,7 +827,9 @@ section.global > section.view > section.table-content > section.table-line {
   }
 
     section.global > section.view > section.table-content > section.table-line > section.table-line-name > section.avatar {
-      background-image: url(https://cdn.discordapp.com/avatars/187614835574439937/ffbf9cca6af3b6c1f3697acf1f438323.webp?size=256);
+      background: url(https://cdn.discordapp.com/icons/85154866468487168/3c688e03576b5d129a527efc237ba24e.webp) no-repeat;
+      background-size: 30px;
+      /* Need to be removed */
     }
 
     section.global > section.view > section.table-content > section.table-line > section.table-line-name > section.tag-name {
@@ -903,10 +910,12 @@ section#add_friend {
 
   section#add_friend > h1 {
     text-transform: uppercase;
+    font-size: 16px;
   }
 
   section#add_friend > p {
-    margin-bottom: 10px;
+    margin: 10px 0;
+    font-size: 14px;
   }
 
   section#add_friend > form {
@@ -1356,7 +1365,7 @@ section#tchat > section#cpnts > form {
     font-size: 0.9375rem;
     letter-spacing: -0.025rem;
     max-height: 144px;
-    width: 100%;
+    width: 93%;
     min-height: 20px;
     margin: 2px 2px 2px 0;
   }
@@ -1364,8 +1373,8 @@ section#tchat > section#cpnts > form {
   section#tchat > section#cpnts > form > button#emoji {
     opacity: .6;
     position: absolute;
-    top: 15px;
-    right: 0px;
+    top: 18px;
+    right: 0;
     background: none;
     padding: 0;
   }
@@ -1743,19 +1752,19 @@ div.message {
 /* Status */
 
 div.status-online {
-  background-color: #27ae60;
+  background-color: #43b581;
 }
 
 div.status-busy {
-  background-color: #e74c3c;
+  background-color: #faa61a;
 }
 
 div.status-absent {
-  background-color: #f39c12;
+  background-color: #f04747;
 }
 
 div.status-offline {
-  background-color: #7f8c8d;
+  background-color: #747f8d;
 }
 /*****/
 

@@ -2,7 +2,6 @@
   <section id="tchat">
     <section id="cpnts">
       <drop-zone></drop-zone>
-      <emoji-picker></emoji-picker>
       <conversation></conversation>
       <bar></bar>
     </section>
@@ -23,7 +22,11 @@
       Bar,
       DropZone,
       Conversation,
-      EmojiPicker
+      EmojiPicker // Causes a slowdown
+    },
+    data () {
+      console.log(this.$route.params)
+      return {}
     }
   }
 </script>

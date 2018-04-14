@@ -82,7 +82,7 @@
         <section class="settings" id="security" v-if="tab === 'confidSecurity'">
           <security v-model="security"></security>
         </section>
-z
+
         <section class="settings" id="confCall" v-if="tab === 'voiceVideo'">
           <conf-call></conf-call>
         </section>
