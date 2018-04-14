@@ -1,18 +1,18 @@
 <template>
   <section class="chans">
-    <section class="chan">
+    <router-link :to="{path:'/landing-page/friends'}" class="chan" tag="section">
       <div class="logo-friend"></div>
-      <router-link to="/friends">Amis</router-link>
-    </section>
+      <span>Amis</span>
+    </router-link>
 
-    <section class="chan">
+    <router-link :to="{path:'/landing-page/groups'}" class="chan" tag="section">
       <div class="logo-groups"></div>
-      <router-link to="/groups">Groupes</router-link>
-    </section>
+      <span>Groupes</span>
+    </router-link>
 
-    <section class="chan">
+    <router-link :to="{path:'/landing-page/channels'}" class="chan" tag="section">
       <div class="logo-channels"></div>
-      <router-link to="/channels">Channels</router-link>
-    </section>
+      <span>Channels</span>
+    </router-link>
   </section>
 </template>

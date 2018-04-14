@@ -3,7 +3,7 @@
     <h1>Ajouter un ami</h1>
     <p>Vous pouvez ajouter un ami grâce à leur identifiant Qwirk.</p>
     <form method="POST" @submit.prevent="sendIt()">
-      <input type="text" placeholder="Entrez un identifiantqwirk#0000" v-model="idQwirk">
+      <input type="text" placeholder="Entrez un identifiant qwirk #0000" v-model="idQwirk">
       <button>Envoyer une requête d'ami</button>
     </form>
   </section>

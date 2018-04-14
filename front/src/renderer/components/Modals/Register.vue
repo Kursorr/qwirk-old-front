@@ -45,7 +45,7 @@
 
   export default {
     store,
-    name: 'Register',
+    name: 'register',
     components: {
       Upload
     },

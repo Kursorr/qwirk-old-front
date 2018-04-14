@@ -46,12 +46,13 @@ const profile = (instance: Socket, socket: any) => {
 		}
 
 		return limiter.removeTokens(1, async (err, remainingRequests) => {
+		  /*
 			if (remainingRequests < 1) {
 				return socket.emit('profile', {
 					success: false,
 					message: 'Vous changez vos informations trop rapidement, veuillez réessayer plus tard.'
 				})
-			}
+			}*/
 
 			// Short-circuit Operators
 			const preparedUser: any = {}
