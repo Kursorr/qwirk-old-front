@@ -72,7 +72,7 @@
       return {
         changeStatus: false,
         status: {
-          online: false,
+          online: true,
           idle: false,
           busy: false,
           invisible: false
