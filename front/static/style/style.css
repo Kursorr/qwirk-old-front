@@ -1383,9 +1383,13 @@ section#tchat > section#cpnts > form {
 /* Component - DropZone */
 
 #cpnts > .vue-dropzone.dropzone.dz-clickable {
-  min-height: 165px;
-  display: none;
+  min-height: 175px;
   overflow-x: auto;
+  background-color: #36393e;
+  border-bottom: solid black 1px;
+  border-left: none;
+  border-right: none;
+  border-top: none;
 }
 
 #cpnts .vue-dropzone .dz-preview .dz-image {
@@ -1413,11 +1417,9 @@ section#tchat {
       align-self: flex-end;
       position: absolute;
       bottom: 55px;
-      display: none;
     }
 
       section#tchat > section#cpnts > div.emoji-mart > div.emoji-mart-bar {
-        display: none;
       }
 /*****/
 

@@ -1,9 +1,10 @@
 <template>
   <section id="tchat">
     <section id="cpnts">
-      <drop-zone></drop-zone>
+      <drop-zone v-if="toggleDropZone"></drop-zone>
       <conversation></conversation>
-      <bar></bar>
+      <emoji-picker v-if="toggleEmoji"></emoji-picker>
+      <bar @toggledz="toggleDropZone = !toggleDropZone" @togglemoji="toggleEmoji = !toggleEmoji"></bar>
     </section>
     <members></members>
   </section>
@@ -26,7 +27,10 @@
     },
     data () {
       console.log(this.$route.params)
-      return {}
+      return {
+        toggleDropZone: false,
+        toggleEmoji: false
+      }
     }
   }
 </script>
