@@ -1,10 +1,13 @@
 <template>
   <section id="tchat">
     <section id="cpnts">
-      <drop-zone v-if="toggleDropZone"></drop-zone>
-      <conversation></conversation>
-      <emoji-picker v-if="toggleEmoji"></emoji-picker>
-      <bar @toggledz="toggleDropZone = !toggleDropZone" @togglemoji="toggleEmoji = !toggleEmoji"></bar>
+      <drop-zone v-if="toggleDropZone" />
+      <conversation />
+      <emoji-picker v-if="toggleEmoji" @emoji="append" />
+      <bar
+        @toggledz="toggleDropZone = !toggleDropZone"
+        @togglemoji="toggleEmoji = !toggleEmoji"
+      />
     </section>
     <members></members>
   </section>
@@ -30,6 +33,12 @@
       return {
         toggleDropZone: false,
         toggleEmoji: false
+      }
+    },
+    methods: {
+      append (emoji) {
+        console.log('Tchat Vue !')
+        console.log(emoji)
       }
     }
   }
