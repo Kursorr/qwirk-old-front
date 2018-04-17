@@ -7,6 +7,7 @@
       <bar
         @toggledz="toggleDropZone = !toggleDropZone"
         @togglemoji="toggleEmoji = !toggleEmoji"
+        :emote="input"
       />
     </section>
     <members></members>
@@ -32,13 +33,13 @@
       console.log(this.$route.params)
       return {
         toggleDropZone: false,
-        toggleEmoji: false
+        toggleEmoji: false,
+        input: ''
       }
     },
     methods: {
       append (emoji) {
-        console.log('Tchat Vue !')
-        console.log(emoji)
+        this.input += emoji
       }
     }
   }

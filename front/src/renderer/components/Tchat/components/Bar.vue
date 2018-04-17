@@ -1,7 +1,7 @@
 <template>
   <form>
     <button id="file" type="button" @click="dropzoneToggle"></button>
-    <textarea id="tchat" rows="1" placeholder="Envoyer un message"></textarea>
+    <textarea id="tchat" rows="1" placeholder="Envoyer un message" v-model="emote"></textarea>
     <button id="emoji" type="button" @click="emojiToggle">😁</button>
   </form>
 </template>
@@ -9,6 +9,7 @@
 <script>
   export default {
     name: 'Bar',
+    props: ['emote'],
     data () {
       return {
       }
