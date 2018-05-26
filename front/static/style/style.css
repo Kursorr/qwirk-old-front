@@ -1362,12 +1362,12 @@ section#tchat > section#cpnts > form {
     -moz-appearance: none;
     appearance: none;
     font-weight: 400;
-    font-size: 0.9375rem;
-    letter-spacing: -0.025rem;
+    font-size: 12px;
+    letter-spacing: 0;
     max-height: 144px;
     width: 93%;
     min-height: 20px;
-    margin: 2px 2px 2px 0;
+    margin: 9px 2px 2px 0;
   }
 
   section#tchat > section#cpnts > form > button#emoji {

@@ -17,6 +17,7 @@
     methods: {
       pickEmoji (emoji) {
         console.log('EmojiPicker Vue !')
+        console.log(emoji)
         this.$emit('emoji', emoji.native)
       }
     }
