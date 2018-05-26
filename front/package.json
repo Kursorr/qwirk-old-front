@@ -67,6 +67,8 @@
     "dependencies": {
         "axios": "^0.17.1",
         "emoji-mart-vue": "^1.0.4",
+        "moment": "^2.22.1",
+        "showdown": "^1.8.6",
         "socket.io-client": "^2.0.4",
         "vue": "^2.5.13",
         "vue-electron": "^1.0.6",
