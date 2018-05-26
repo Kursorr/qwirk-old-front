@@ -7,7 +7,8 @@
       <bar
         @toggledz="toggleDropZone = !toggleDropZone"
         @togglemoji="toggleEmoji = !toggleEmoji"
-        :emote="input"
+        :emote="text"
+        @keyup.enter.native="onSubmit"
       />
     </section>
     <members></members>
@@ -34,12 +35,18 @@
       return {
         toggleDropZone: false,
         toggleEmoji: false,
-        input: ''
+        text: ''
       }
     },
     methods: {
       append (emoji) {
-        this.input += emoji
+        this.text += emoji
+      },
+      onSubmit () {
+        this.text = event.target.value
+        this.$emit('text', this.text)
+        this.text = ''
+        event.target.value = ''
       }
     }
   }

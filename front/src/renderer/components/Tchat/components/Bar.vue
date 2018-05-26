@@ -2,7 +2,8 @@
   <form>
     <button id="file" type="button" @click="dropzoneToggle"></button>
     <textarea id="tchat" rows="1" placeholder="Envoyer un message" :value="emote"
-              @input="$emit('input', $event.target.value)"></textarea>
+              @input="$emit('input', $event.target.value)"
+    ></textarea>
     <button id="emoji" type="button" @click="emojiToggle">😁</button>
   </form>
 </template>
