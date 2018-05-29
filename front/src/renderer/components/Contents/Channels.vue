@@ -15,7 +15,7 @@
         <div class="separator"></div>
         <a href="#" class="filt">Bloqué</a>
         <div class="separator"></div>
-        <router-link to="/join" class="filt">Rejoindre</router-link>
+        <router-link :to="{name: 'join'}" class="filt">Rejoindre</router-link>
       </section>
     </section>
     <router-view></router-view>
