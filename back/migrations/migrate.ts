@@ -3,7 +3,7 @@ const process = require('process')
 
 import { database } from '../config/config'
 
-const tables = ['users']
+const tables = ['users', 'tchat']
 
 r.connect({db: database.db, host: database.host, port: database.port}, (err, conn) => {
   r.dbList().contains(database.db)
