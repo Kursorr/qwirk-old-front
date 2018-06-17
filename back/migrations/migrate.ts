@@ -1,4 +1,5 @@
 import * as r from 'rethinkdb'
+const process = require('process')
 
 import { database } from '../config/config'
 
@@ -17,4 +18,6 @@ r.connect({db: database.db, host: database.host, port: database.port}, (err, con
     .difference(r.db(database.db).tableList())
     .forEach(table => r.db(database.db).tableCreate(table))
     .run(conn)
+
+  process.exit(0)
 })
