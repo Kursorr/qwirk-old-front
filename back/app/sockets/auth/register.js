@@ -10,12 +10,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs = require("fs");
 const indicative = require("indicative");
-const nodemailer = require("nodemailer");
 const User_1 = require("../../models/User");
 const Hash_1 = require("../../../scripts/class/Hash");
 const config_1 = require("../../../config/config");
 const Helper_1 = require("../../../scripts/Helper");
-const config_2 = require("../../../config/config");
 const register = (instance, socket) => {
     socket.on('register', (data) => __awaiter(this, void 0, void 0, function* () {
         const { pseudo, email, password, confirm, avatar } = data;
@@ -73,21 +71,24 @@ const register = (instance, socket) => {
                 success: true,
                 message: 'Welcome to the team !'
             });
-            const transporter = nodemailer.createTransport({
+            /*const transporter = nodemailer.createTransport({
                 service: 'gmail',
                 auth: {
-                    user: config_2.personalData.email,
-                    pass: config_2.personalData.pwd
+                    user: personalData.email,
+                    pass: personalData.pwd
                 }
-            });
-            let link = 'http://localhost/confirm-account?token=' + verifAcc + '&id=' + newUser.generated_keys[0];
+            })
+
+            let link = 'http://localhost/confirm-account?token=' + verifAcc + '&id=' + newUser.generated_keys[0]
+
             const mailOptions = {
                 from: email,
-                to: config_2.personalData.email,
+                to: personalData.email,
                 subject: 'Inscription Qwirk',
-                html: "Bienvenue !<br> Cliquez sur le lien pour confirmer votre email.<br><a href=" + link + ">Valider mon compte</a>"
-            };
-            transporter.sendMail(mailOptions, {});
+                html: "Bienvenue !<br> Cliquez sur le lien pour confirmer votre email.<br><a href="+link+">Valider mon compte</a>"
+            }
+
+            transporter.sendMail(mailOptions, {})*/
         }
     }));
 };

@@ -78,7 +78,7 @@ const register = (instance: Socket, socket: any) => {
 				message: 'Welcome to the team !'
 			})
 
-			const transporter = nodemailer.createTransport({
+			/*const transporter = nodemailer.createTransport({
 				service: 'gmail',
 				auth: {
 					user: personalData.email,
@@ -95,7 +95,7 @@ const register = (instance: Socket, socket: any) => {
 				html: "Bienvenue !<br> Cliquez sur le lien pour confirmer votre email.<br><a href="+link+">Valider mon compte</a>"
 			}
 
-			transporter.sendMail(mailOptions, {})
+			transporter.sendMail(mailOptions, {})*/
 		}
 	})
 }
