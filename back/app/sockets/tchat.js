@@ -8,9 +8,26 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const Message_1 = require("../models/Message");
 const tchat = (instance, socket) => {
     socket.on('SEND::MESSAGE', (data) => __awaiter(this, void 0, void 0, function* () {
-        console.log(data);
+        const convId = data.route.convId;
+        const content = data.content;
+        const userId = data.author.id;
+        const { DB } = instance;
+        const message = new Message_1.Message(DB);
+        const cursorMessage = yield message.insert({
+            convId,
+            userId,
+            content,
+            postedAt: new Date()
+        });
+        if (cursorMessage) {
+            socket.emit('updateMessage', {
+                success: true,
+                content
+            });
+        }
     }));
 };
 exports.tchat = tchat;
