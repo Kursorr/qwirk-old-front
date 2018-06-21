@@ -70,7 +70,7 @@ const register = (instance: Socket, socket: any) => {
 			verifAcc
 		})
 
-		fs.writeFile(path.img + imgName, imgBuffer.data, () => {})
+		fs.writeFile(path.img + imgName, imgBuffer.data, _ => {})
 
 		if (newUser) {
 			socket.emit('registration', {

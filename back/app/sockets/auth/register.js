@@ -65,7 +65,7 @@ const register = (instance, socket) => {
             avatar: imgName,
             verifAcc
         });
-        fs.writeFile(config_1.path.img + imgName, imgBuffer.data, () => { });
+        fs.writeFile(config_1.path.img + imgName, imgBuffer.data, _ => { });
         if (newUser) {
             socket.emit('registration', {
                 success: true,
