@@ -31,13 +31,13 @@ export default new Router({
       component: LandingPage,
       redirect: (to) => {
         if (to.path === '/landing-page') {
-          return '/landing-page/tchat/123-test'
+          return '/landing-page/tchat/123-private'
         }
         return to.path
       },
       children: [
         {
-          path: 'tchat/:userId-:type',
+          path: 'tchat/:convId-:type',
           name: 'tchat',
           component: Tchat
         },
