@@ -3,7 +3,7 @@
     <!-- Tous les MP -->
     <section class="room">
       <h2>Messages Privés</h2>
-      <router-link :to="{name:'tchat', params: { userId: 123, type: 'private' }}" class="chan set" tag="section">
+      <router-link :to="{name:'tchat', params: { convId: 123, type: 'private' }}" class="chan set" tag="section">
         <section>
           <section class="avatar">
             <img src="http://i0.wp.com/marioasselin.com/wp-content/plugins/buddypress/bp-core/images/mystery-man.jpg" alt="avatar">
@@ -18,7 +18,7 @@
     <!-- Tous les groupes -->
     <section class="room">
       <h2>Messages Groupes</h2>
-      <router-link :to="{name:'tchat', params: { userId: 456, type: 'group' }}" class="chan set" tag="section">
+      <router-link :to="{name:'tchat', params: { convId: 456, type: 'group' }}" class="chan set" tag="section">
         <section>
           <section class="avatar">
             <img src="http://i0.wp.com/marioasselin.com/wp-content/plugins/buddypress/bp-core/images/mystery-man.jpg" alt="avatar">
@@ -33,7 +33,7 @@
     <!-- Tous les salons -->
     <section class="room">
       <h2>Messages Channels</h2>
-      <router-link :to="{name:'tchat', params: { userId: 789, type: 'channel' }}" class="chan set" tag="section">
+      <router-link :to="{name:'tchat', params: { convId: 789, type: 'channel' }}" class="chan set" tag="section">
         <section>
           <section class="avatar">
             <img src="http://i0.wp.com/marioasselin.com/wp-content/plugins/buddypress/bp-core/images/mystery-man.jpg" alt="avatar">
