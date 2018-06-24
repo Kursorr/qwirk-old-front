@@ -16,6 +16,7 @@
 </template>
 
 <script>
+  import Vuex from 'vuex'
   import Members from './components/Members.vue'
   import Bar from './components/Bar.vue'
   import DropZone from './components/DropZone.vue'
@@ -31,7 +32,6 @@
       EmojiPicker // Causes a slowdown
     },
     data () {
-      console.log(this.$route.params)
       return {
         toggleDropZone: false,
         toggleEmoji: false,
@@ -43,11 +43,18 @@
         this.text += emoji
       },
       onSubmit () {
-        this.text = event.target.value
-        this.$emit('text', this.text)
-        this.text = ''
+        this.$socket.emit('SEND::MESSAGE', {
+          route: this.$route.params,
+          author: this.user,
+          content: event.target.value
+        })
         event.target.value = ''
       }
+    },
+    computed: {
+      ...Vuex.mapGetters([
+        'user'
+      ])
     }
   }
 </script>
