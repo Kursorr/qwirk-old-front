@@ -13,6 +13,7 @@
 
 <script>
   require('../../static/style/style.css')
+  require('../../static/style/monokai-sublime.min.css')
 
   export default {
     name: 'front',
