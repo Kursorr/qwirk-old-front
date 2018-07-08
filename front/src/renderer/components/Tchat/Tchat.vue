@@ -32,6 +32,7 @@
       EmojiPicker // Causes a slowdown
     },
     data () {
+      console.log(this.$route.params)
       return {
         toggleDropZone: false,
         toggleEmoji: false,
