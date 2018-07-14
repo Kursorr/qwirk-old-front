@@ -23,8 +23,14 @@ const tchat = (instance: Socket, socket: any ) => {
         content
       })
     }
+  })
 
+  socket.on('GET::MESSAGES', async channelId => {
+    // Récupérer les messages uniquement d'un seul channel avec le channelId
+  })
 
+  socket.on('GET::CHANNELS', async user => {
+    // Récupérer tout les channels de l'utilisateur.
   })
 }
 

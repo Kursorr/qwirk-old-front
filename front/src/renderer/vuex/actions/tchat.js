@@ -45,6 +45,3 @@ export const addMessage = (state, message) => {
     postedAt: moment().calendar()
   })
 }
-
-export const getChannel = (state) => {
-}

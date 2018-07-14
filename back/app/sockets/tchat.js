@@ -29,5 +29,11 @@ const tchat = (instance, socket) => {
             });
         }
     }));
+    socket.on('GET::MESSAGES', (channelId) => __awaiter(this, void 0, void 0, function* () {
+        // Récupérer les messages uniquement d'un seul channel avec le channelId
+    }));
+    socket.on('GET::CHANNELS', (user) => __awaiter(this, void 0, void 0, function* () {
+        // Récupérer tout les channels de l'utilisateur.
+    }));
 };
 exports.tchat = tchat;
