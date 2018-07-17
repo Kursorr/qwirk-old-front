@@ -8,7 +8,7 @@
         @toggledz="toggleDropZone = !toggleDropZone"
         @togglemoji="toggleEmoji = !toggleEmoji"
         :emote="text"
-        @keyup.enter.native="onSubmit"
+        @keypress.enter.native="onSubmit"
       />
     </section>
     <members></members>
@@ -32,7 +32,6 @@
       EmojiPicker // Causes a slowdown
     },
     data () {
-      console.log(this.$route.params)
       return {
         toggleDropZone: false,
         toggleEmoji: false,

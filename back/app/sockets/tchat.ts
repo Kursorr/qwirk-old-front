@@ -1,14 +1,16 @@
 import { Socket } from '../../scripts/class/Socket'
 import { Message } from '../models/Message'
+import {User} from "../models/User";
 
 const tchat = (instance: Socket, socket: any ) => {
+  const { DB } = instance
+  const message = new Message(DB)
+  const user = new User(DB)
+
   socket.on('SEND::MESSAGE', async data => {
     const convId = data.route.convId
     const content = data.content
     const userId = data.author.id
-
-    const { DB } = instance
-    const message = new Message(DB)
 
     const cursorMessage = await message.insert({
       convId,
@@ -25,12 +27,18 @@ const tchat = (instance: Socket, socket: any ) => {
     }
   })
 
-  socket.on('GET::MESSAGES', async channelId => {
-    // Récupérer les messages uniquement d'un seul channel avec le channelId
+  socket.on('GET::MESSAGES', async convId => {
+    const channelId = convId
+    console.log(channelId)
+    const cursor = await message.filter({convId: channelId})
+    const messages = await cursor.toArray()
+
+    console.log(messages)
+    socket.emit('updateMessage', messages)
   })
 
-  socket.on('GET::CHANNELS', async user => {
-    // Récupérer tout les channels de l'utilisateur.
+  socket.on('GET::CHANNELS', async userId => {
+    console.log(userId)
   })
 }
 
