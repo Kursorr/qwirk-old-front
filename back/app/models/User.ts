@@ -24,7 +24,7 @@ interface IUserModel
 }
 
 class User extends Model {
-  private data: IUserModel
+  private readonly data: IUserModel
 
   get Data (): IUserModel {
     return this.data
@@ -67,6 +67,11 @@ class User extends Model {
     } else {
       return await this.opt(id, data)
     }
+  }
+
+  async get (data: object): Promise<any>
+  {
+    return this.db.r.table(this.table).get(data).run(this.db.conn)
   }
 }
 

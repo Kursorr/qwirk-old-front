@@ -7,7 +7,8 @@
       <bar
         @toggledz="toggleDropZone = !toggleDropZone"
         @togglemoji="toggleEmoji = !toggleEmoji"
-        :emote="text"
+        :value="message"
+        @update="getCurrentTap"
         @keypress.enter.native="onSubmit"
       />
     </section>
@@ -35,20 +36,26 @@
       return {
         toggleDropZone: false,
         toggleEmoji: false,
-        text: ''
+        message: ''
       }
     },
     methods: {
       append (emoji) {
-        this.text += emoji
+        this.message += emoji
       },
-      onSubmit () {
+      getCurrentTap (msg) {
+        this.message = msg
+      },
+      onSubmit (e) {
+        e.preventDefault()
+
         this.$socket.emit('SEND::MESSAGE', {
           route: this.$route.params,
           author: this.user,
-          content: event.target.value
+          content: this.message
         })
-        event.target.value = ''
+        this.message = ''
+        e.target.value = ''
       }
     },
     computed: {

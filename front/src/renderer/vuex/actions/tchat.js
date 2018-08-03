@@ -6,42 +6,47 @@ import twitter from 'showdown-twitter'
 
 import * as types from '../mutation-types'
 
-moment.locale('fr')
+export const addMessage = (state, messages) => {
+  console.log(messages)
+  messages.forEach(message => {
+    console.log(message)
+    const converter = new showdown.Converter({
+      extensions: ['twitter'],
+      strikethrough: true,
+      tasklists: true,
+      literalMidWordUnderscores: true,
+      literalMidWordAsterisks: true,
+      simpleLineBreaks: true,
+      simplifiedAutoLink: true,
+      ghMentions: true,
+      parseImgDimensions: true,
+      excludeTrailingPunctuationFromURLs: true,
+      openLinksInNewWindow: true,
+      ghMentionsLink: 'https://twitter.com/{u}',
+      ghCodeBlocks: true,
+      emoji: true,
+      backslashEscapesHTMLTags: true
+    })
 
-export const addMessage = (state, message) => {
-  const converter = new showdown.Converter({
-    extensions: ['twitter'],
-    strikethrough: true,
-    tasklists: true,
-    literalMidWordUnderscores: true,
-    literalMidWordAsterisks: true,
-    simpleLineBreaks: true,
-    simplifiedAutoLink: true,
-    ghMentions: true,
-    parseImgDimensions: true,
-    excludeTrailingPunctuationFromURLs: true,
-    openLinksInNewWindow: true,
-    ghMentionsLink: 'https://twitter.com/{u}',
-    ghCodeBlocks: true,
-    emoji: true,
-    backslashEscapesHTMLTags: true
-  })
+    let messageContent = converter.makeHtml(message.content)
 
-  let messageContent = converter.makeHtml(message.content)
+    const parser = new DOMParser()
+    const doc = parser.parseFromString(messageContent, 'text/html')
+    const preCode = doc.querySelectorAll('pre code')
 
-  const parser = new DOMParser()
-  const doc = parser.parseFromString(messageContent, 'text/html')
-  const preCode = doc.querySelectorAll('pre code')
+    preCode.forEach(item => {
+      hljs.highlightBlock(item)
+    })
 
-  preCode.forEach(item => {
-    hljs.highlightBlock(item)
-  })
+    messageContent = doc.querySelector('body').innerHTML
 
-  messageContent = doc.querySelector('body').innerHTML
+    const regex = /^([0-9]{4})-([0-9]{2})-([0-9]{2})/gi
+    const date = message.postedAt.match(regex)
 
-  state.commit(types.ADD_MESSAGE, {
-    content: messageContent,
-    author: state.state.auth.user.pseudo,
-    postedAt: moment().calendar()
+    state.commit(types.ADD_MESSAGE, {
+      content: messageContent,
+      user: message.user,
+      postedAt: moment(date[0]).fromNow()
+    })
   })
 }

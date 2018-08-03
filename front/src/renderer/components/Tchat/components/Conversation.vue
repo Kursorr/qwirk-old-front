@@ -11,10 +11,10 @@
     </section>
     <section class="onechat" v-for="message in messages" v-if="messages.length">
       <section class="avatar">
-        <avatar :url="null" size="small"></avatar>
+        <avatar :url="message.user.avatar" size="small"></avatar>
       </section>
       <section class="text">
-        <span class="username">{{ message.author }} <span class="hours">{{ message.postedAt }}</span></span>
+        <span class="username">{{ message.user.pseudo }} <span class="hours">{{ message.postedAt }}</span></span>
         <p v-html="message.content"></p>
       </section>
     </section>
@@ -34,6 +34,7 @@
     },
     sockets: {
       updateMessage (message) {
+        console.log(message)
         this.addMessage(message)
       }
     },

@@ -15,16 +15,16 @@ const tchat = (instance, socket) => {
     const message = new Message_1.Message(DB);
     const user = new User_1.User(DB);
     socket.on('SEND::MESSAGE', (data) => __awaiter(this, void 0, void 0, function* () {
-        const convId = data.route.convId;
+        const convId = parseInt(data.route.convId, 10);
         const content = data.content;
         const userId = data.author.id;
-        const cursorMessage = yield message.insert({
+        const cursor = yield message.insert({
             convId,
             userId,
             content,
             postedAt: new Date()
         });
-        if (cursorMessage) {
+        if (cursor) {
             socket.emit('updateMessage', {
                 success: true,
                 content
@@ -32,15 +32,15 @@ const tchat = (instance, socket) => {
         }
     }));
     socket.on('GET::MESSAGES', (convId) => __awaiter(this, void 0, void 0, function* () {
-        const channelId = convId;
-        console.log(channelId);
-        const cursor = yield message.filter({ convId: channelId });
+        const cursor = yield message.ascOrder('postedAt', { convId: parseInt(convId) });
         const messages = yield cursor.toArray();
-        console.log(messages);
+        for (let message of messages) {
+            message.user = yield user.get(message.userId);
+        }
         socket.emit('updateMessage', messages);
     }));
     socket.on('GET::CHANNELS', (userId) => __awaiter(this, void 0, void 0, function* () {
-        console.log(userId);
+        // console.log(userId)
     }));
 };
 exports.tchat = tchat;

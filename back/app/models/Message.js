@@ -17,6 +17,11 @@ class Message extends Model_1.Model {
         super(db, 'messages');
         this.data = data;
     }
+    ascOrder(order, data) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.db.r.table(this.table).orderBy(this.db.r.asc(order)).filter(data).run(this.db.conn);
+        });
+    }
     insert(data) {
         return __awaiter(this, void 0, void 0, function* () {
             return this.db.r.table(this.table).insert(data).run(this.db.conn);
@@ -30,6 +35,11 @@ class Message extends Model_1.Model {
     update(id, data) {
         return __awaiter(this, void 0, void 0, function* () {
             return this.db.r.table(this.table).get(id).update(data).run(this.db.conn);
+        });
+    }
+    get(data) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.db.r.table(this.table).get(data).run(this.db.conn);
         });
     }
 }

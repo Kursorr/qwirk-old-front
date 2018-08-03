@@ -1,6 +1,6 @@
 import { Socket } from '../../scripts/class/Socket'
 import { Message } from '../models/Message'
-import {User} from "../models/User";
+import { User } from "../models/User"
 
 const tchat = (instance: Socket, socket: any ) => {
   const { DB } = instance
@@ -8,18 +8,18 @@ const tchat = (instance: Socket, socket: any ) => {
   const user = new User(DB)
 
   socket.on('SEND::MESSAGE', async data => {
-    const convId = data.route.convId
+    const convId = parseInt(data.route.convId, 10)
     const content = data.content
     const userId = data.author.id
 
-    const cursorMessage = await message.insert({
+    const cursor = await message.insert({
       convId,
       userId,
       content,
       postedAt: new Date()
     })
 
-    if (cursorMessage) {
+    if (cursor) {
       socket.emit('updateMessage', {
         success: true,
         content
@@ -28,17 +28,18 @@ const tchat = (instance: Socket, socket: any ) => {
   })
 
   socket.on('GET::MESSAGES', async convId => {
-    const channelId = convId
-    console.log(channelId)
-    const cursor = await message.filter({convId: channelId})
+    const cursor = await message.ascOrder('postedAt', {convId: parseInt(convId)})
     const messages = await cursor.toArray()
 
-    console.log(messages)
+    for (let message of messages) {
+      message.user = await user.get(message.userId)
+    }
+
     socket.emit('updateMessage', messages)
   })
 
   socket.on('GET::CHANNELS', async userId => {
-    console.log(userId)
+    // console.log(userId)
   })
 }
 
