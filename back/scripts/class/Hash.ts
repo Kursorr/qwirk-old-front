@@ -1,15 +1,13 @@
 'use strict'
 
-import * as bcrypt from 'bcrypt'
+import * as argon2 from 'argon2'
 
 export class Password {
-  static hash (password: string, salt: number = 12): Promise<string>
-  {
-    return bcrypt.hash(password, salt)
+  static hash (password: string) {
+    return argon2.hash(password)
   }
 
-  static compare (password: string, hash: string): Promise<string>
-  {
-    return bcrypt.compare(password, hash)
+  static compare (hash: any, password: string) {
+    return argon2.verify(hash, password)
   }
 }

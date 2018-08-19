@@ -27,7 +27,7 @@ const login = (instance: Socket, socket: any ) => {
 
 		const userID = result[0].id
 
-		const verifPassword = await Password.compare(password, result[0].password)
+		const verifPassword = await Password.compare(result[0].password, password)
 
 		if (!verifPassword) {
 			socket.emit('connection', {
@@ -46,7 +46,7 @@ const login = (instance: Socket, socket: any ) => {
 
 		socket.emit('connection', {
 			success: true,
-			message: 'Vous êtes connecté !',
+			message: 'Vous êtes connecté ! Super !',
 			token,
 			user
 		})

@@ -1,0 +1,29 @@
+version: "3.4"
+services:
+  back:
+    container_name: qwirk_api
+    build:
+      context: ./back/
+    ports:
+      - "4100"
+      - "6100"
+    volumes:
+      - ./back:/app
+    depends_on:
+      - rethinkdb
+      - redis
+  rethinkdb:
+    image: "rethinkdb:2.3"
+    container_name: rethinkdb
+    ports:
+      - "28015"
+    volumes:
+      - /data:/data
+  redis:
+    image: "redis:5.0-rc"
+    container_name: redis
+    command: ["redis-server", "--appendonly", "yes"]
+    hostname: redis
+    restart: always
+    expose:
+      - 6379

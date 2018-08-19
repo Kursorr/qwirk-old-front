@@ -2,12 +2,12 @@ import * as indicative from 'indicative'
 
 const database: any = {
   db: 'qwirk',
-	host: 'localhost',
+	host: 'rethinkdb',
 	port: 28015
 }
 
 const redis: any = {
-	host: 'localhost',
+	host: 'redis',
 	port: '6379'
 }
 
@@ -25,7 +25,7 @@ const personalData = {
 }
 
 const path = {
-  img: '/home/ravaniss/Devs/qwirk/back/avatars/'
+  img: '/app/avatars/'
 }
 
 export { database, redis, JWT, userRules, personalData, path }

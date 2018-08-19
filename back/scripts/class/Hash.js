@@ -1,12 +1,12 @@
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
-const bcrypt = require("bcrypt");
+const argon2 = require("argon2");
 class Password {
-    static hash(password, salt = 12) {
-        return bcrypt.hash(password, salt);
+    static hash(password) {
+        return argon2.hash(password);
     }
-    static compare(password, hash) {
-        return bcrypt.compare(password, hash);
+    static compare(hash, password) {
+        return argon2.verify(hash, password);
     }
 }
 exports.Password = Password;

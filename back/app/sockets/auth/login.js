@@ -27,7 +27,7 @@ const login = (instance, socket) => {
             return false;
         }
         const userID = result[0].id;
-        const verifPassword = yield Hash_1.Password.compare(password, result[0].password);
+        const verifPassword = yield Hash_1.Password.compare(result[0].password, password);
         if (!verifPassword) {
             socket.emit('connection', {
                 success: false,
@@ -43,7 +43,7 @@ const login = (instance, socket) => {
         }, Secret, { expiresIn: 60 });
         socket.emit('connection', {
             success: true,
-            message: 'Vous êtes connecté !',
+            message: 'Vous êtes connecté ! Super !',
             token,
             user
         });

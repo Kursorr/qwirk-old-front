@@ -19,6 +19,7 @@
         this.$emit('togglemoji')
       },
       onChange (e) {
+        console.log(e.target)
         this.$emit('update', e.target.value)
       }
     }

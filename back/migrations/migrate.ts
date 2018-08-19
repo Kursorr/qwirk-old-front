@@ -5,7 +5,7 @@ import { database } from '../config/config'
 
 const tables = ['users', 'messages']
 
-r.connect({db: database.db, host: database.host, port: database.port}, (err, conn) => {
+r.connect(database, (err, conn) => {
   r.dbList().contains(database.db)
     .do(databaseExist => {
       return r.branch(databaseExist, {
