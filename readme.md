@@ -2,6 +2,8 @@
 
 ![Qwirk](https://image.ibb.co/cdo4TK/logo.png)
 
+Qwirk is an application like [Discord](https://discordapp.com/) - An all-in-one voice and text chat.
+
 ## Getting Started
 
 ### Prerequisites
