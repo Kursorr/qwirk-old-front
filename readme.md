@@ -2,7 +2,13 @@
 
 ![Qwirk](https://image.ibb.co/cdo4TK/logo.png)
 
-Qwirk is an application like [Discord](https://discordapp.com/) - An all-in-one voice and text chat.
+Qwirk is an application like [Discord](https://discordapp.com/) - An all-in-one voice and text chat. 
+
+## Why ?
+
+It was an old end of year project at Supinfo. I started again a year ago because i love this project.
+
+I have a multitude of ideas to make it more plaisant, like the utilisation of TensorFlowJS for some things.
 
 ## Getting Started
 
@@ -68,6 +74,10 @@ I use [SemVer](http://semver.org/) for versioning.
 - Big refactoring CSS to SASS would be greatful
 - A website to present the project and have the possibility to download it
 - A new logo
+- Using TensorFlowJS
+  - Face Recognition Login
+  - Gesture Recognition Login
+  - Maybe other ideas...
 
 ## License
 
