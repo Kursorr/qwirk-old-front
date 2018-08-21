@@ -13,13 +13,13 @@ You need Docker and Docker-Compose to be able to run this project.
 
 ### Installing
 
-1) clone the project
-2) npm i in each folder (back & front)
-3) sudo docker-compose up --build
-4) go on http://rethink.test:8080, you should see rethinkdb admin interface.
-5) create database '**qwirk**'
-6) create table '**users**' and '**messages**'
-4) demo can start !
+- clone the project
+- npm i in each folder (back & front)
+- sudo docker-compose up --build
+- go on http://rethink.test:8080, you should see rethinkdb admin interface.
+- create database '**qwirk**'
+- create table '**users**' and '**messages**'
+- demo can start !
 
 `r.db("qwirk").tableCreate('users')`
 
@@ -62,10 +62,10 @@ I use [SemVer](http://semver.org/) for versioning.
 
 ## What to come ?
 
-1) I would like to remove step 4 to 6 from the installation step...
-2) Big refactoring CSS to SASS would be greatful
-3) A website to present the project and have the possibility to download it
-4) A new logo
+- I would like to remove step 4 to 6 from the installation step...
+- Big refactoring CSS to SASS would be greatful
+- A website to present the project and have the possibility to download it
+- A new logo
 
 ## License
 
