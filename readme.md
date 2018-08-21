@@ -75,9 +75,6 @@ I use [SemVer](http://semver.org/) for versioning.
 - A website to present the project and have the possibility to download it
 - A new logo
 - Using TensorFlowJS
-  - Face Recognition Login
-  - Gesture Recognition Login
-  - Maybe other ideas...
 
 ## License
 
