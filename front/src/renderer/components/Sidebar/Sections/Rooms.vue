@@ -11,7 +11,7 @@
             <img src="http://i0.wp.com/marioasselin.com/wp-content/plugins/buddypress/bp-core/images/mystery-man.jpg" alt="avatar">
             <div class="status"></div>
           </section>
-          <span>Purexo</span>
+          <span class="color">Purexo</span>
         </section>
         <button class="close-chan"></button>
       </router-link>
@@ -28,7 +28,7 @@
             <img src="http://i0.wp.com/marioasselin.com/wp-content/plugins/buddypress/bp-core/images/mystery-man.jpg" alt="avatar">
             <div class="status"></div>
           </section>
-          <span>ES Community</span>
+          <span class="color">ES Community</span>
         </section>
         <button class="close-chan"></button>
       </router-link>
@@ -45,7 +45,7 @@
             <img src="http://i0.wp.com/marioasselin.com/wp-content/plugins/buddypress/bp-core/images/mystery-man.jpg" alt="avatar">
             <div class="status"></div>
           </section>
-          <span>Le Monde</span>
+          <span class="color">Le Monde</span>
         </section>
         <button class="close-chan"></button>
       </router-link>

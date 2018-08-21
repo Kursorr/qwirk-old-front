@@ -269,6 +269,14 @@ section.modal.auth {
       background-color: rgba(46, 49, 54, 0.7);
     }
 
+      section.modal > section.set > section.content.auth > section.auth-logo {
+	      background-image: url('../../src/renderer/assets/logo.png');
+	      background-repeat: no-repeat;
+	      background-size: 144px;
+	      background-position-x: 42px;
+	      background-position-y: 130px;
+      }
+
       section.modal > section.set > section.content.auth > section.panel {
         display: flex;
         flex-direction: column;
@@ -642,6 +650,10 @@ section.chan.set {
     background: #545454;
   }
 
+	.router-link-active span.color {
+		color: #fff;
+	}
+
   section.chan > a {
     height: 100%;
     width: 100%;
@@ -890,6 +902,7 @@ section.global > section.view > section.table-content > section.table-line {
 
     section.global > section.view > section.table-content > section.table-line > section.table-line-actions > button.action.join {
       background-image: url('../../src/renderer/assets/join.png');
+	    background-size: 20px;
     }
 
   section.global > section.view > section.table-content > section.table-line:hover {
@@ -1754,6 +1767,11 @@ section.global > section.view > section.table-content > section.table-line > sec
 div.message {
   color: #fff;
   margin-top: 5px;
+}
+
+span.color {
+	font-size: 14px;
+	color: grey;
 }
 
 /* Status */
