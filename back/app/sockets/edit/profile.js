@@ -35,7 +35,7 @@ const profile = (instance, socket) => {
         const emailCursor = yield user.filter({ tag });
         const result = yield emailCursor.toArray();
         const userID = result[0].id;
-        const verifPassword = yield Hash_1.Password.compare(password, result[0].password);
+        const verifPassword = yield Hash_1.Password.compare(result[0].password, password);
         if (!verifPassword) {
             socket.emit('profile', {
                 success: false,

@@ -57,7 +57,7 @@ class User extends Model {
     const { password: result } = await cursor.next()
 
     if (password) {
-      const verifPassword = await Password.compare(password, result)
+      const verifPassword = await Password.compare(result, password)
 
       if (verifPassword) {
         return await this.opt(id, data)

@@ -44,7 +44,7 @@ class User extends Model_1.Model {
             const cursor = yield this.filter({ id });
             const { password: result } = yield cursor.next();
             if (password) {
-                const verifPassword = yield Hash_1.Password.compare(password, result);
+                const verifPassword = yield Hash_1.Password.compare(result, password);
                 if (verifPassword) {
                     return yield this.opt(id, data);
                 }
