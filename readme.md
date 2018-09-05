@@ -24,14 +24,16 @@ You need Docker and Docker-Compose to be able to run this project.
 - clone the project
 - npm i in each folder (back & front)
 - sudo docker-compose up --build
-- go on http://rethink.test:8080, you should see rethinkdb admin interface.
-- create database '**qwirk**'
-- create table '**users**' and '**messages**'
-- demo can start !
+- Everything is okay !
 
-`r.db("qwirk").tableCreate('users')`
+If you have problem with `npm i` on the back folder, here are some dependencies your need:
 
-`r.db("qwirk").tableCreate('messages')`
+`sudo apt-get install python-minimal`
+`sudo apt-get install build-essential`
+
+And here, if you have problem with `npm i` from the front folder:
+
+`sudo apt-get install libgconf-2-4`
 
 ## Running the tests
 
