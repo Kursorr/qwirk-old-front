@@ -14,4 +14,4 @@ COPY . .
 COPY --from=builder /app/node_modules ./node_modules
 EXPOSE 4100
 EXPOSE 6100
-CMD npm run dev
+CMD npm run migrate && npm run dev

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon api.js 4100 6100",
-    "migrate": "node migrations/migrate.js"
+    "migrate": "node ./migrations/migrate.js"
   },
   "author": "SENECHAL Maxime aka Ravaniss",
   "license": "ISC",
