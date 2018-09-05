@@ -13,7 +13,7 @@
   import Auth from './Modals/Auth.vue'
   import Tchat from './Tchat/Tchat.vue'
 
-  import store from '../vuex/store'
+  import store from '@store'
 
   export default {
     store,

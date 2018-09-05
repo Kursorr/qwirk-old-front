@@ -55,7 +55,7 @@
 
 <script>
   import Vuex from 'vuex'
-  import store from '../../../vuex/store'
+  import store from '@store'
 
   export default {
     store,

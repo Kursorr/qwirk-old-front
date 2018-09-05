@@ -12,7 +12,7 @@
 
 <script>
   import Vuex from 'vuex'
-  import store from '../../../../renderer/vuex/store'
+  import store from '@store'
 
   import Avatar from './Avatar.vue'
 

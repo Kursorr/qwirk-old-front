@@ -40,7 +40,7 @@
 
 <script>
   import Vuex from 'vuex'
-  import store from '../../vuex/store'
+  import store from '@store'
   import Upload from '../Contents/components/Upload.vue'
 
   export default {
