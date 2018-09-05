@@ -28,8 +28,8 @@ You need Docker and Docker-Compose to be able to run this project.
 
 If you have problem with `npm i` on the back folder, here are some dependencies your need:
 
-`sudo apt-get install python-minimal`
-`sudo apt-get install build-essential`
+- `sudo apt-get install python-minimal`
+- `sudo apt-get install build-essential`
 
 And here, if you have problem with `npm i` from the front folder:
 
