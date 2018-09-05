@@ -26,12 +26,12 @@ You need Docker and Docker-Compose to be able to run this project.
 - sudo docker-compose up --build
 - Everything is okay !
 
-If you have problem with `npm i` on the back folder, here are some dependencies your need:
+If you have problem with `npm i` on the back folder, you need to:
 
 - `sudo apt-get install python-minimal`
 - `sudo apt-get install build-essential`
 
-And here, if you have problem with `npm i` from the front folder:
+And here, if you have problem with `npm i` on the front folder:
 
 `sudo apt-get install libgconf-2-4`
 
@@ -72,11 +72,11 @@ I use [SemVer](http://semver.org/) for versioning.
 
 ## What to come ?
 
-- I would like to remove step 4 to 6 from the installation step...
-- Big refactoring CSS to SASS would be greatful
-- A website to present the project and have the possibility to download it
-- A new logo
-- Using TensorFlowJS
+- \[x] Remove step 4 to 6 included on the install' steps...
+- \[ ] Big refactoring CSS to SASS would be greatful
+- \[ ] A website to present the project and have the possibility to download it
+- \[ ] A new logo
+- \[ ] Using TensorFlowJS
 
 ## License
 
