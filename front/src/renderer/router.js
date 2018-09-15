@@ -11,11 +11,17 @@ import ChannelGrid from './components/Contents/Grids/ChannelGrid.vue'
 import Auth from './components/Modals/Auth.vue'
 import Register from './components/Modals/Register.vue'
 import Tchat from './components/Tchat/Tchat.vue'
+import SpashScreen from './components/SpashScreen.vue'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
+    {
+      path: '/spash-screen',
+      name: 'spash-screen',
+      component: SpashScreen
+    },
     {
       path: '/',
       name: 'auth',
