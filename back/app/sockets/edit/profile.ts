@@ -35,7 +35,7 @@ const profile = (instance: Socket, socket: any) => {
 		const result = await emailCursor.toArray()
 		const userID = result[0].id
 
-		const verifPassword = await Password.compare(password, result[0].password)
+		const verifPassword = await Password.compare(result[0].password, password)
 
 		if (!verifPassword) {
 			socket.emit('profile', {
@@ -46,12 +46,13 @@ const profile = (instance: Socket, socket: any) => {
 		}
 
 		return limiter.removeTokens(1, async (err, remainingRequests) => {
+		  /*
 			if (remainingRequests < 1) {
 				return socket.emit('profile', {
 					success: false,
 					message: 'Vous changez vos informations trop rapidement, veuillez réessayer plus tard.'
 				})
-			}
+			}*/
 
 			// Short-circuit Operators
 			const preparedUser: any = {}

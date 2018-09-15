@@ -2,12 +2,12 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const database = {
     db: 'qwirk',
-    host: 'localhost',
+    host: 'rethinkdb',
     port: 28015
 };
 exports.database = database;
 const redis = {
-    host: 'localhost',
+    host: 'redis',
     port: '6379'
 };
 exports.redis = redis;
@@ -25,6 +25,6 @@ const personalData = {
 };
 exports.personalData = personalData;
 const path = {
-    img: '/home/ravaniss/Devs/qwirk/back/avatars/'
+    img: '/app/avatars/'
 };
 exports.path = path;

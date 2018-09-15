@@ -9,7 +9,7 @@
       <section class="filters">
         <button class="filt add" @click="setModal('groupParams', true)">Créer un groupe</button>
         <div class="separator"></div>
-        <a href="#" class="filt">Tous</a>
+        <router-link :to="{name: 'allGroup'}" class="filt">Tous</router-link>
         <a href="#" class="filt">En ligne</a>
         <a href="#" class="filt">En attente</a>
         <div class="separator"></div>

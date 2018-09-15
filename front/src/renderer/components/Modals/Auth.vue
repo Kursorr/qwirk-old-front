@@ -16,7 +16,7 @@
             <a href="#">Avez vous oublié votre mot de passe?</a>
 
             <button type="submit" @click.prevent="connect()"
-                    class="connect"><router-link to="/">Se connecter</router-link></button>
+                    class="connect"><router-link to="/landing-page">Se connecter</router-link></button>
             <p class="authSwitch">Besoin d'un compte ? <router-link to="/register">S'inscrire</router-link></p>
             <div class="message" v-if="login.error">
               {{ login.error }}
@@ -30,11 +30,11 @@
 
 <script>
   import Vuex from 'vuex'
-  import store from '../../vuex/store'
+  import store from '@store'
 
   export default {
     store,
-    name: 'Auth',
+    name: 'auth',
     data () {
       return {
         login: {

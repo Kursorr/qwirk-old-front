@@ -40,10 +40,11 @@ const options = {
 app.use(cors(options));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-log.debug(`Connecting to database : rethinkdb://127.0.0.1:${config_1.database.port}/${DATABASE}`);
-const connectDatabase = r.connect({ db: DATABASE });
+app.use('/avatars', express.static('avatars'));
+log.debug(`Connecting to database : rethinkdb://${config_1.database.host}:${config_1.database.port}/${DATABASE}`);
+const connectDatabase = r.connect(config_1.database);
 connectDatabase.then((conn) => {
-    log.info(`Connected to : rethinkdb://127.0.0.1:${config_1.database.port}/${DATABASE}`);
+    log.info(`Connected to : rethinkdb://${config_1.database.host}:${config_1.database.port}/${DATABASE}`);
     app.use((req, res, next) => {
         req.secretJWT = JWT_SECRET;
         req.db = { r, conn };
@@ -80,6 +81,6 @@ connectDatabase.then((conn) => {
     });
 });
 connectDatabase.error((error) => {
-    log.error(`Connection failed to : rethinkdb://127.0.0.1:${config_1.database.port}/${DATABASE}`);
+    log.error(`Connection failed to : rethinkdb://${config_1.database.host}:${config_1.database.port}/${DATABASE}`);
     log.error(`Reason : ${error}`);
 });

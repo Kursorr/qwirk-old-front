@@ -114,7 +114,7 @@
 
 <script>
   import Vuex from 'vuex'
-  import store from '../../vuex/store'
+  import store from '@store'
 
   import Avatar from '../Contents/components/Avatar.vue'
   import Upload from '../Contents/components/Upload.vue'
@@ -126,6 +126,7 @@
   import Languages from './components/User/Languages'
 
   export default {
+    name: 'userparams',
     store,
     components: {
       Avatar,
@@ -216,11 +217,13 @@
       }
     },
     mounted () {
+      /*
       this.profile.id = this.user.id
       this.profile.pseudo = this.user.pseudo
       this.profile.email = this.user.email
       this.profile.avatar = this.user.avatar
       this.profile.password = 'root'
+      */
     }
   }
 </script>

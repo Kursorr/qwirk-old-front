@@ -1,5 +1,5 @@
 <template>
-  <Picker></Picker>
+  <Picker @click="pickEmoji" />
 </template>
 
 <script>
@@ -7,8 +7,17 @@
 
   export default {
     name: 'picker',
+    data () {
+      return {
+      }
+    },
     components: {
       Picker
+    },
+    methods: {
+      pickEmoji (emoji) {
+        this.$emit('emoji', emoji.native)
+      }
     }
   }
 </script>

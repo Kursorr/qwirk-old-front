@@ -12,7 +12,7 @@
         } else if (this.url.indexOf('data:') !== -1) {
           return this.url
         } else {
-          return 'http://localhost/' + this.url
+          return 'http://qwirk.test:4100/avatars/' + this.url
         }
       },
       avatarSize () {

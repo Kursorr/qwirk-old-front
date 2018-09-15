@@ -25,7 +25,6 @@ class Socket {
     const io = socketio(process.argv[3], {
       transports: ['websocket']
     }).adapter(redis({ host: config.redis.host, port: config.redis.port }))
-
     this.io = io
   }
 }

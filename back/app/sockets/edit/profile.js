@@ -35,7 +35,7 @@ const profile = (instance, socket) => {
         const emailCursor = yield user.filter({ tag });
         const result = yield emailCursor.toArray();
         const userID = result[0].id;
-        const verifPassword = yield Hash_1.Password.compare(password, result[0].password);
+        const verifPassword = yield Hash_1.Password.compare(result[0].password, password);
         if (!verifPassword) {
             socket.emit('profile', {
                 success: false,
@@ -44,12 +44,13 @@ const profile = (instance, socket) => {
             return false;
         }
         return limiter.removeTokens(1, (err, remainingRequests) => __awaiter(this, void 0, void 0, function* () {
-            if (remainingRequests < 1) {
-                return socket.emit('profile', {
-                    success: false,
-                    message: 'Vous changez vos informations trop rapidement, veuillez réessayer plus tard.'
-                });
-            }
+            /*
+              if (remainingRequests < 1) {
+                  return socket.emit('profile', {
+                      success: false,
+                      message: 'Vous changez vos informations trop rapidement, veuillez réessayer plus tard.'
+                  })
+              }*/
             // Short-circuit Operators
             const preparedUser = {};
             pseudo && (preparedUser.pseudo = pseudo);

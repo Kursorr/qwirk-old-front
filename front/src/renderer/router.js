@@ -10,6 +10,7 @@ import Join from './components/Contents/Grids/Join.vue'
 import ChannelGrid from './components/Contents/Grids/ChannelGrid.vue'
 import Auth from './components/Modals/Auth.vue'
 import Register from './components/Modals/Register.vue'
+import Tchat from './components/Tchat/Tchat.vue'
 
 Vue.use(Router)
 
@@ -17,61 +18,71 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'landing-page',
-      component: LandingPage
-    },
-    {
-      path: '/auth',
-      name: 'Auth',
+      name: 'auth',
       component: Auth
     },
     {
       path: '/register',
-      name: 'Register',
+      name: 'register',
       component: Register
     },
     {
-      path: '/friends',
-      component: Friends,
-      children: [
-        {
-          path: '/',
-          component: AddFriend
-        },
-        {
-          path: '/add_friend',
-          name: 'addFriend',
-          component: AddFriend
-        },
-        {
-          path: '/all',
-          name: 'all',
-          component: Grid
+      path: '/landing-page',
+      component: LandingPage,
+      redirect: (to) => {
+        if (to.path === '/landing-page') {
+          return '/landing-page/tchat/123-private'
         }
-      ]
-    },
-    {
-      path: '/groups',
-      name: 'groups',
-      component: Groups
-    },
-    {
-      path: '/channels',
-      component: Channels,
+        return to.path
+      },
       children: [
         {
-          path: '/',
-          component: ChannelGrid
+          path: 'tchat/:convId-:type',
+          name: 'tchat',
+          component: Tchat
         },
         {
-          path: '/join',
-          name: 'join',
-          component: Join
+          path: 'friends',
+          component: Friends,
+          children: [
+            {
+              path: '',
+              name: 'allFriend',
+              component: Grid
+            },
+            {
+              path: 'add',
+              name: 'addFriend',
+              component: AddFriend
+            }
+          ]
         },
         {
-          path: '/all_channel',
-          name: 'all_channel',
-          component: ChannelGrid
+          path: 'groups',
+          component: Groups,
+          children: [
+            {
+              path: '',
+              name: 'allGroup',
+              component: Grid
+            }
+          ]
+        },
+        {
+          path: 'channels',
+          component: Channels,
+          children: [
+            {
+              path: '',
+              name: 'allChannel',
+              component: ChannelGrid
+            },
+            {
+              path: 'join',
+              name: 'join',
+              component: Join
+            }
+          ]
         }
       ]
     },

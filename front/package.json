@@ -23,7 +23,10 @@
         "pack:renderer": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.renderer.config.js",
         "unit": "karma start test/unit/karma.conf.js",
         "test": "npm run unit",
-        "e2e": "npm run build && testcafe electron \"test/e2e/*.test.js\""
+        "e2e": "npm run build && testcafe electron \"test/e2e/**/*.test.js\"",
+        "editUser": "npm run build && testcafe electron \"test/e2e/**/UserParams.test.js\"",
+        "createUser": "npm run build && testcafe electron \"test/e2e/**/Register.test.js\"",
+        "loginUser": "npm run build && testcafe electron \"test/e2e/**/Auth.test.js\""
     },
     "build": {
         "productName": "front",
@@ -64,6 +67,10 @@
     "dependencies": {
         "axios": "^0.17.1",
         "emoji-mart-vue": "^1.0.4",
+        "highlight.js": "^9.12.0",
+        "moment": "^2.22.1",
+        "showdown": "^1.8.6",
+        "showdown-twitter": "^1.1.0",
         "socket.io-client": "^2.0.4",
         "vue": "^2.5.13",
         "vue-electron": "^1.0.6",

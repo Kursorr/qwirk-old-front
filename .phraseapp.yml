@@ -1,0 +1,9 @@
+phraseapp:
+  project_id: f017a4c3b903f1924fd4399e4bcf209c
+  file_format: json
+  push:
+    sources:
+    - file: "./config/locales/*.json"
+  pull:
+    targets:
+    - file: "./config/locales/<locale_name>.json"

@@ -2,10 +2,10 @@ import * as r from 'rethinkdb'
 
 import { database } from '../config/config'
 
-const tables = ['users']
+const tables = ['users', 'messages']
 
-r.connect({db: database.db, host: database.host, port: database.port}, (err, conn) => {
-  r.dbList().contains(database.db)
+r.connect(database, async (err, conn) => {
+  await r.dbList().contains(database.db)
     .do(databaseExist => {
       return r.branch(databaseExist, {
         dbs_created: 0 },
@@ -13,8 +13,10 @@ r.connect({db: database.db, host: database.host, port: database.port}, (err, con
       )
     }).run(conn);
 
-  r(tables)
+  await r(tables)
     .difference(r.db(database.db).tableList())
     .forEach(table => r.db(database.db).tableCreate(table))
     .run(conn)
+
+  await conn.close()
 })
