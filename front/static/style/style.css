@@ -411,12 +411,9 @@ section#account > section.account-profil.noEdit {
   display: flex;
 }
 
-  section#account > section.account-profil.noEdit > section.logo-group {
-    margin: 5px 20px 5px 10px;
-  }
-
   section#account > section.account-profil.noEdit > section#user-informations {
     margin-top: 5px;
+    margin-left: 15px;
     margin-right: 120px;
   }
 
@@ -427,6 +424,17 @@ section#account > section.account-profil.noEdit {
     section#account > section.account-profil.noEdit > section#user-informations > span.information {
       text-transform: inherit;
       font-size: 14px;
+    }
+
+    #changeStatus {
+      position: absolute;
+      top: -235px;
+      border: solid #000 1px;
+      background: #fff;
+      color: #000;
+      left: 5px;
+      width: 268px;
+      border-radius: 5px;
     }
 
 /* ConfCall */
@@ -539,20 +547,19 @@ section.account {
     border-radius: 50%;
   }
 
+    section.avatar:hover {
+      cursor: pointer;
+    }
+
     section.avatar img {
       width: 100%;
       height: 100%;
       border-radius: 50%;
     }
 
-    section.avatar div.status {
+    section.avatar > div.status {
       position: absolute;
-      width: 11px;
-      height: 11px;
-      top: 20px;
-      left: 20px;
       background-color: #FFF;
-      border-radius: 50%;
     }
 
   section.account > section.profil {
@@ -1776,19 +1783,69 @@ span.color {
 
 /* Status */
 
-div.status-online {
+div.status {
+  border-radius: 50%;
+  width: 11px;
+  height: 11px;
+  top: 20px;
+  left: 20px;
+}
+
+section.actualStatus {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+}
+
+section.actualStatus.principal {
+  border-bottom: 1px solid #f5f5f5;
+}
+
+  section.actualStatus:hover {
+    background-color: #f9f9f9;
+    color: #737f8d;
+    opacity: 1;
+    cursor: pointer;
+  }
+
+    section.actualStatus:hover > h4, section.actualStatus:hover > div.info > h4 {
+      color: #737f8d;
+    }
+
+  section.actualStatus > h4 {
+    margin-left: 15px;
+    font-size: 12px;
+    color: #99AAB5;
+  }
+
+  section.actualStatus > div.info {
+    width: 185px;
+    margin-left: 15px;
+  }
+
+  section.actualStatus > div.info > h4 {
+    color: #99AAB5;
+    font-size: 12px;
+  }
+
+  section.actualStatus > div.info > p {
+    font-size: 11px;
+    color: rgba(153,170,181,.8);
+  }
+
+section.avatar > div.status.online, .actualStatus > div.status.online {
   background-color: #43b581;
 }
 
-div.status-busy {
+section.avatar > div.status.idle, .actualStatus > div.status.idle {
   background-color: #faa61a;
 }
 
-div.status-absent {
+section.avatar > div.status.busy, .actualStatus > div.status.busy {
   background-color: #f04747;
 }
 
-div.status-offline {
+section.avatar > div.status.invisible, .actualStatus > div.status.invisible {
   background-color: #747f8d;
 }
 /*****/
