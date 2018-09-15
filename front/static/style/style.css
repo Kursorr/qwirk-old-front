@@ -269,13 +269,13 @@ section.modal.auth {
       background-color: rgba(46, 49, 54, 0.7);
     }
 
-      section.modal > section.set > section.content.auth > section.auth-logo {
+      /*section.modal > section.set > section.content.auth > section.auth-logo {
 	      background-image: url('../../src/renderer/assets/logo.png');
 	      background-repeat: no-repeat;
 	      background-size: 144px;
 	      background-position-x: 42px;
 	      background-position-y: 130px;
-      }
+      }*/
 
       section.modal > section.set > section.content.auth > section.panel {
         display: flex;
