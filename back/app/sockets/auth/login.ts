@@ -1,6 +1,8 @@
 'use strict'
 
 import * as jwt from 'jsonwebtoken'
+import * as notifier from 'node-notifier'
+import * as path from 'path'
 
 import { User } from '../../models/User'
 import { Socket } from '../../../scripts/class/Socket'
@@ -24,6 +26,14 @@ const login = (instance: Socket, socket: any ) => {
       })
       return false
     }
+
+    notifier.notify({
+      title: 'Welcome !',
+      message: `Hello ${user.pseudo}`,
+      icon: path.join(`${__dirname}/../../../avatars/${user.avatar}`),
+      sound: false,
+      wait: true
+    });
 
 		const userID = result[0].id
 

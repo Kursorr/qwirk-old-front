@@ -9,6 +9,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const jwt = require("jsonwebtoken");
+const notifier = require("node-notifier");
+const path = require("path");
 const User_1 = require("../../models/User");
 const Hash_1 = require("../../../scripts/class/Hash");
 const login = (instance, socket) => {
@@ -26,6 +28,13 @@ const login = (instance, socket) => {
             });
             return false;
         }
+        notifier.notify({
+            title: 'Welcome !',
+            message: `Hello ${user.pseudo}`,
+            icon: path.join(`${__dirname}/../../../avatars/${user.avatar}`),
+            sound: false,
+            wait: true
+        });
         const userID = result[0].id;
         const verifPassword = yield Hash_1.Password.compare(result[0].password, password);
         if (!verifPassword) {
