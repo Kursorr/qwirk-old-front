@@ -24,14 +24,16 @@ You need Docker and Docker-Compose to be able to run this project.
 - clone the project
 - npm i in each folder (back & front)
 - sudo docker-compose up --build
-- go on http://rethink.test:8080, you should see rethinkdb admin interface.
-- create database '**qwirk**'
-- create table '**users**' and '**messages**'
-- demo can start !
+- Everything is okay !
 
-`r.db("qwirk").tableCreate('users')`
+If you have problem with `npm i` on the back folder, you need to:
 
-`r.db("qwirk").tableCreate('messages')`
+- `sudo apt-get install python-minimal`
+- `sudo apt-get install build-essential`
+
+And here, if you have problem with `npm i` on the front folder:
+
+`sudo apt-get install libgconf-2-4`
 
 ## Running the tests
 
@@ -70,11 +72,11 @@ I use [SemVer](http://semver.org/) for versioning.
 
 ## What to come ?
 
-- I would like to remove step 4 to 6 from the installation step...
-- Big refactoring CSS to SASS would be greatful
-- A website to present the project and have the possibility to download it
-- A new logo
-- Using TensorFlowJS
+- \[x] Remove step 4 to 6 included on the install' steps...
+- \[ ] Big refactoring CSS to SASS would be greatful
+- \[ ] A website to present the project and have the possibility to download it
+- \[ ] A new logo
+- \[ ] Using TensorFlowJS
 
 ## License
 
