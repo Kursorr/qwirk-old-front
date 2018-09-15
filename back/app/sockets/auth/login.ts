@@ -1,8 +1,8 @@
 'use strict'
 
 import * as jwt from 'jsonwebtoken'
-import * as notifier from 'node-notifier'
-import * as path from 'path'
+// import * as notifier from 'node-notifier'
+// import * as path from 'path'
 
 import { User } from '../../models/User'
 import { Socket } from '../../../scripts/class/Socket'
@@ -27,14 +27,6 @@ const login = (instance: Socket, socket: any ) => {
       return false
     }
 
-    notifier.notify({
-      title: 'Welcome !',
-      message: `Hello ${user.pseudo}`,
-      icon: path.join(`${__dirname}/../../../avatars/${user.avatar}`),
-      sound: false,
-      wait: true
-    });
-
 		const userID = result[0].id
 
 		const verifPassword = await Password.compare(result[0].password, password)
@@ -53,6 +45,17 @@ const login = (instance: Socket, socket: any ) => {
 			id: userID,
 			tag: result[0].tag
 		}, Secret, { expiresIn: 60 })
+
+    /* notifier.notify({
+      title: 'Welcome !',
+      message: `Hello ${user.pseudo}`,
+      // icon: path.join(`${__dirname}/../../../avatars/${user.avatar}`),
+      sound: true,
+      wait: true
+    }, (err, data) => {
+      console.log('waited')
+      console.log(err, data)
+    }); */
 
 		socket.emit('connection', {
 			success: true,
