@@ -1806,6 +1806,7 @@ section.actualStatus.principal {
     color: #737f8d;
     opacity: 1;
     cursor: pointer;
+	  border-radius: 4px;
   }
 
     section.actualStatus:hover > h4, section.actualStatus:hover > div.info > h4 {
