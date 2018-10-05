@@ -24,12 +24,12 @@ const tchat = (instance, socket) => {
             content,
             postedAt: new Date()
         });
-        if (cursor) {
-            socket.emit('updateMessage', {
-                success: true,
-                content
-            });
+        if (!cursor) {
+            return;
         }
+        const msg = yield message.get(cursor.generated_keys[0]);
+        msg.user = yield user.get(msg.userId);
+        socket.emit('addMessage', msg);
     }));
     socket.on('GET::MESSAGES', (convId) => __awaiter(this, void 0, void 0, function* () {
         const cursor = yield message.ascOrder('postedAt', { convId: parseInt(convId) });

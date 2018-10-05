@@ -54,6 +54,7 @@
           author: this.user,
           content: this.message
         })
+
         this.message = ''
         e.target.value = ''
       }

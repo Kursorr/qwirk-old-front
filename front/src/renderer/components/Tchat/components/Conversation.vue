@@ -33,9 +33,11 @@
       Avatar
     },
     sockets: {
-      updateMessage (message) {
-        console.log(message)
-        this.addMessage(message)
+      updateMessage (messages) {
+        this.addMessage(messages)
+      },
+      addMessage (message) {
+        this.addMessage([message])
       }
     },
     methods: {

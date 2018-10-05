@@ -41,7 +41,7 @@ class Message extends Model {
     return this.db.r.table(this.table).get(id).update(data).run(this.db.conn)
   }
 
-  async get (data: object): Promise<any>
+  async get (data: object | string): Promise<any>
   {
     return this.db.r.table(this.table).get(data).run(this.db.conn)
   }

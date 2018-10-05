@@ -7,9 +7,7 @@ import twitter from 'showdown-twitter'
 import * as types from '../mutation-types'
 
 export const addMessage = (state, messages) => {
-  console.log(messages)
   messages.forEach(message => {
-    console.log(message)
     const converter = new showdown.Converter({
       extensions: ['twitter'],
       strikethrough: true,

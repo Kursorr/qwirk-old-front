@@ -19,12 +19,12 @@ const tchat = (instance: Socket, socket: any ) => {
       postedAt: new Date()
     })
 
-    if (cursor) {
-      socket.emit('updateMessage', {
-        success: true,
-        content
-      })
-    }
+    if (!cursor) { return }
+
+    const msg = await message.get(cursor.generated_keys[0])
+    msg.user = await user.get(msg.userId)
+
+    socket.emit('addMessage', msg)
   })
 
   socket.on('GET::MESSAGES', async convId => {
