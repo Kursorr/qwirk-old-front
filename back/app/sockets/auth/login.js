@@ -26,6 +26,7 @@ const login = (instance, socket) => {
                 success: false,
                 message: 'Votre email ou votre mot de passe est incorrect.'
             });
+            // logger.log('')
             return false;
         }
         const userID = result[0].id;

@@ -1,12 +1,15 @@
 'use strict'
 
 import * as jwt from 'jsonwebtoken'
+
 // import * as notifier from 'node-notifier'
 // import * as path from 'path'
 
 import { User } from '../../models/User'
 import { Socket } from '../../../scripts/class/Socket'
 import { Password } from '../../../scripts/class/Hash'
+import { levels } from '../../../config/config'
+import { logger } from '../../../config/logger'
 
 const login = (instance: Socket, socket: any ) => {
 	socket.on('login', async (data) => {
@@ -23,7 +26,9 @@ const login = (instance: Socket, socket: any ) => {
       socket.emit('connection', {
         success: false,
         message: 'Votre email ou votre mot de passe est incorrect.'
-      })
+			})
+			// logger.log('')
+
       return false
     }
 

@@ -1,5 +1,7 @@
 import * as indicative from 'indicative'
 
+// elasticsearch / Kibana (logstash maybe)
+
 const database: any = {
   db: 'qwirk',
 	host: 'rethinkdb',
@@ -28,4 +30,13 @@ const path = {
   img: '/app/avatars/'
 }
 
-export { database, redis, JWT, userRules, personalData, path }
+const levels = {
+	error: 0,
+  warn: 1,
+  info: 2,
+  verbose: 3,
+  debug: 4,
+  silly: 5
+}
+
+export { database, redis, JWT, userRules, personalData, path, levels }
