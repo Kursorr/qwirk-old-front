@@ -12,8 +12,8 @@
 </template>
 
 <script>
-  require('../../static/style/style.css')
-  require('../../static/style/monokai-sublime.min.css')
+  require('../../static/style/style.scss')
+  require('../../static/style/monokai-sublime.min.scss')
 
   export default {
     name: 'front',
