@@ -4,3 +4,4 @@ node_modules/
 server-api.log
 .idea
 avatars/*
+!.gitkeep
