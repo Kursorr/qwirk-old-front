@@ -49,6 +49,10 @@
       onSubmit (e) {
         e.preventDefault()
 
+        if (this.message === '') {
+          return false
+        }
+
         this.$socket.emit('SEND::MESSAGE', {
           route: this.$route.params,
           author: this.user,
@@ -57,6 +61,15 @@
 
         this.message = ''
         e.target.value = ''
+
+        this.$nextTick(function () {
+          this.$emit('input', this.res)
+        })
+
+        setTimeout(() => {
+          const tchatRoom = document.getElementById('convers')
+          tchatRoom.scrollTop = tchatRoom.scrollHeight
+        }, 100)
       }
     },
     computed: {
