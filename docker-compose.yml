@@ -9,6 +9,7 @@ services:
       - "6100"
     volumes:
       - ./back:/app
+      - ./data:/usr/app/data
     depends_on:
       - rethinkdb
       - redis
@@ -27,3 +28,18 @@ services:
     restart: always
     expose:
       - 6379
+  elasticsearch:
+    container_name: search
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.1.1
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+    environment:
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - discovery.type=single-node
+    ports:
+      - "9300:9300"
+      - "9200:9200"
+
+volumes:
+  esdata:
