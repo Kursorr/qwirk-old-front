@@ -11,7 +11,7 @@ import * as log4js from 'log4js'
 // Internal modules
 import { Socket } from './scripts/class/Socket'
 import { base } from './app/sockets/base'
-import { database, JWT } from './config/config'
+import { database, elasticSearch, JWT } from './config/config'
 
 // Routes
 import confirmAccount from './app/routes/confirm'
@@ -53,8 +53,11 @@ app.use('/avatars', express.static('avatars'))
 log.debug(`Connecting to database : rethinkdb://${database.host}:${database.port}/${DATABASE}`)
 const connectDatabase = r.connect(database)
 
-connectDatabase.then((conn) => {
+connectDatabase.then(async conn => {
   log.info(`Connected to : rethinkdb://${database.host}:${database.port}/${DATABASE}`)
+
+  const health = await elasticSearch.client.cluster.health({})
+  log.info(health)
 
   app.use((req, res, next) => {
     req.secretJWT = JWT_SECRET

@@ -1,11 +1,18 @@
 import * as indicative from 'indicative'
-
-// elasticsearch / Kibana (logstash maybe)
+import * as elasticsearch from 'elasticsearch'
 
 const database: any = {
   db: 'qwirk',
 	host: 'rethinkdb',
 	port: 28015
+}
+
+const port: number = 9200
+const host: string = '172.18.0.4' // Need to be changed
+const elasticSearch: any = {
+  index: 'library',
+  type: 'novel',
+  client: new elasticsearch.Client({ host: { host, port} })
 }
 
 const redis: any = {
@@ -21,16 +28,16 @@ const userRules: indicative.Rules = {
 	password: 'required|max:200'
 }
 
-const personalData = {
+const personalData: any = {
 	email: 'websitesm06@gmail.com',
 	pwd: 'ragnarOK06'
 }
 
-const path = {
+const path: any = {
   img: '/app/avatars/'
 }
 
-const levels = {
+const levels: any = {
 	error: 0,
   warn: 1,
   info: 2,
@@ -39,4 +46,4 @@ const levels = {
   silly: 5
 }
 
-export { database, redis, JWT, userRules, personalData, path, levels }
+export { database, elasticSearch, redis, JWT, userRules, personalData, path, levels }

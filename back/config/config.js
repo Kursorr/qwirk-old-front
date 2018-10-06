@@ -1,12 +1,20 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-// elasticsearch / Kibana (logstash maybe)
+const elasticsearch = require("elasticsearch");
 const database = {
     db: 'qwirk',
     host: 'rethinkdb',
     port: 28015
 };
 exports.database = database;
+const port = 9200;
+const host = '172.18.0.4'; // Need to be changed
+const elasticSearch = {
+    index: 'library',
+    type: 'novel',
+    client: new elasticsearch.Client({ host: { host, port } })
+};
+exports.elasticSearch = elasticSearch;
 const redis = {
     host: 'redis',
     port: '6379'
