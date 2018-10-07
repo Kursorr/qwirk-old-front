@@ -9,12 +9,12 @@ import router from './router.js'
 
 if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
 
-axios.defaults.baseURL = 'http://172.18.0.5:4100'
+axios.defaults.baseURL = 'qwirk.test:4100'
 Vue.http = Vue.prototype.$http = axios
 
 Vue.config.productionTip = false
 
-const socketInstance = io('http://172.18.0.5:6100', {
+const socketInstance = io('qwirk.test:6100', {
   transports: ['websocket']
 })
 
