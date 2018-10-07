@@ -8,7 +8,7 @@ const database = {
 };
 exports.database = database;
 const port = 9200;
-const host = '172.18.0.4'; // Need to be changed
+const host = '172.18.0.3'; // Needs to be changed depending on the ip address given by docker...
 const elasticSearch = {
     index: 'library',
     type: 'novel',

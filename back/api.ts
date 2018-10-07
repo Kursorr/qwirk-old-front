@@ -56,8 +56,10 @@ const connectDatabase = r.connect(database)
 connectDatabase.then(async conn => {
   log.info(`Connected to : rethinkdb://${database.host}:${database.port}/${DATABASE}`)
 
-  const health = await elasticSearch.client.cluster.health({})
-  log.info(health)
+  try {
+    const health = await elasticSearch.client.cluster.health({})
+    log.info(health)
+  } catch (err) { console.log('Connection Failed, Retrying...', err) }
 
   app.use((req, res, next) => {
     req.secretJWT = JWT_SECRET

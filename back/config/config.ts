@@ -8,7 +8,7 @@ const database: any = {
 }
 
 const port: number = 9200
-const host: string = '172.18.0.4' // Need to be changed
+const host: string = '172.18.0.3' // Needs to be changed depending on the ip address given by docker...
 const elasticSearch: any = {
   index: 'library',
   type: 'novel',

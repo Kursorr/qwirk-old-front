@@ -53,8 +53,13 @@ log.debug(`Connecting to database : rethinkdb://${config_1.database.host}:${conf
 const connectDatabase = r.connect(config_1.database);
 connectDatabase.then((conn) => __awaiter(this, void 0, void 0, function* () {
     log.info(`Connected to : rethinkdb://${config_1.database.host}:${config_1.database.port}/${DATABASE}`);
-    const health = yield config_1.elasticSearch.client.cluster.health({});
-    log.info(health);
+    try {
+        const health = yield config_1.elasticSearch.client.cluster.health({});
+        log.info(health);
+    }
+    catch (err) {
+        console.log('Connection Failed, Retrying...', err);
+    }
     app.use((req, res, next) => {
         req.secretJWT = JWT_SECRET;
         req.db = { r, conn };
