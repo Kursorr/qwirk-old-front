@@ -11,7 +11,8 @@ import * as log4js from 'log4js'
 // Internal modules
 import { Socket } from './scripts/class/Socket'
 import { base } from './app/sockets/base'
-import { database, elasticSearch, JWT } from './config/config'
+import { database, JWT } from './config/config'
+import { elasticSearchHelper } from "./elasticsearch/Helper";
 
 // Routes
 import confirmAccount from './app/routes/confirm'
@@ -56,10 +57,7 @@ const connectDatabase = r.connect(database)
 connectDatabase.then(async conn => {
   log.info(`Connected to : rethinkdb://${database.host}:${database.port}/${DATABASE}`)
 
-  try {
-    const health = await elasticSearch.client.cluster.health({})
-    log.info(health)
-  } catch (err) { console.log('Connection Failed, Retrying...', err) }
+  await new elasticSearchHelper()
 
   app.use((req, res, next) => {
     req.secretJWT = JWT_SECRET
