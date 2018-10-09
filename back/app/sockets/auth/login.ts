@@ -60,7 +60,7 @@ const login = (instance: Socket, socket: any ) => {
     }, (err, data) => {
       console.log('waited')
       console.log(err, data)
-    }); */
+    }) */
 
 		socket.emit('connection', {
 			success: true,

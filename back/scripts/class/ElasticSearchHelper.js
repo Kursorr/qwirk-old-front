@@ -26,20 +26,16 @@ class elasticSearchHelper {
             const health = this.config.client.cluster.health({});
             log.info(health);
         }
-        catch (err) {
-            console.log('Connection Failed, Retrying...', err);
-        }
+        catch (err) { }
     }
     putBookMapping() {
-        return __awaiter(this, void 0, void 0, function* () {
-            const schema = {
-                title: { type: 'keyword' },
-                author: { type: 'keyword' },
-                location: { type: 'integer' },
-                text: { type: 'text' }
-            };
-            return this.config.client.indices.putMapping({ index: this.index, type: this.type, body: { properties: schema } });
-        });
+        const schema = {
+            title: { type: 'keyword' },
+            author: { type: 'keyword' },
+            location: { type: 'integer' },
+            text: { type: 'text' }
+        };
+        return this.config.client.indices.putMapping({ index: this.index, type: this.type, body: { properties: schema } });
     }
     resetIndex() {
         return __awaiter(this, void 0, void 0, function* () {

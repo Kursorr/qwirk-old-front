@@ -11,7 +11,7 @@ r.connect(database, async (err, conn) => {
         dbs_created: 0 },
         r.dbCreate(database.db)
       )
-    }).run(conn);
+    }).run(conn)
 
   await r(tables)
     .difference(r.db(database.db).tableList())

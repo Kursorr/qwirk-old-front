@@ -53,7 +53,7 @@ const login = (instance, socket) => {
         }, (err, data) => {
           console.log('waited')
           console.log(err, data)
-        }); */
+        }) */
         socket.emit('connection', {
             success: true,
             message: 'Vous êtes connecté ! Super !',

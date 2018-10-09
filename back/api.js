@@ -19,7 +19,7 @@ const log4js = require("log4js");
 const Socket_1 = require("./scripts/class/Socket");
 const base_1 = require("./app/sockets/base");
 const config_1 = require("./config/config");
-const Helper_1 = require("./elasticsearch/Helper");
+const ElasticSearchHelper_1 = require("./scripts/class/ElasticSearchHelper");
 // Routes
 const confirm_1 = require("./app/routes/confirm");
 // Env setting
@@ -54,7 +54,7 @@ log.debug(`Connecting to database : rethinkdb://${config_1.database.host}:${conf
 const connectDatabase = r.connect(config_1.database);
 connectDatabase.then((conn) => __awaiter(this, void 0, void 0, function* () {
     log.info(`Connected to : rethinkdb://${config_1.database.host}:${config_1.database.port}/${DATABASE}`);
-    yield new Helper_1.elasticSearchHelper();
+    yield new ElasticSearchHelper_1.elasticSearchHelper();
     app.use((req, res, next) => {
         req.secretJWT = JWT_SECRET;
         req.db = { r, conn };

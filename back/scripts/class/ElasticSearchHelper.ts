@@ -6,11 +6,11 @@ import * as log4js from "log4js"
 const log = log4js.getLogger('api')
 
 class elasticSearchHelper {
-  private port: number
-  private host: string  // Needs to be changed depending on the ip address given by docker...
+  private readonly port: number
+  private readonly host: string  // Needs to be changed depending on the ip address given by docker...
   private readonly config: any
-  private index: string = 'library'
-  private type: string = 'novel'
+  private readonly index: string = 'library'
+  private readonly type: string = 'novel'
 
   constructor (port = 9200, host = '172.18.0.3') {
     this.port = port
@@ -24,10 +24,10 @@ class elasticSearchHelper {
     try {
       const health = this.config.client.cluster.health({})
       log.info(health)
-    } catch (err) { console.log('Connection Failed, Retrying...', err) }
+    } catch (err) {}
   }
 
-  async putBookMapping () {
+  putBookMapping () {
     const schema = {
       title: { type: 'keyword' },
       author: { type: 'keyword' },
