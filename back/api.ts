@@ -57,8 +57,7 @@ const connectDatabase = r.connect(database)
 connectDatabase.then(async conn => {
   log.info(`Connected to : rethinkdb://${database.host}:${database.port}/${DATABASE}`)
 
-  const el = new elasticSearchHelper()
-  const health = await el.connect()
+  const health = await new elasticSearchHelper().connect()
   console.info(health)
 
   app.use((req, res, next) => {
