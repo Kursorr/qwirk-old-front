@@ -57,7 +57,9 @@ const connectDatabase = r.connect(database)
 connectDatabase.then(async conn => {
   log.info(`Connected to : rethinkdb://${database.host}:${database.port}/${DATABASE}`)
 
-  await new elasticSearchHelper()
+  const el = new elasticSearchHelper()
+  const health = await el.connect()
+  console.info(health)
 
   app.use((req, res, next) => {
     req.secretJWT = JWT_SECRET

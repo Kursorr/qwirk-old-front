@@ -9,11 +9,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const elasticsearch = require("elasticsearch");
-const log4js = require("log4js");
-const log = log4js.getLogger('api');
 class elasticSearchHelper {
     constructor(port = 9200, host = '172.18.0.3') {
-        this.index = 'library';
+        this.index = 'data';
         this.type = 'novel';
         this.port = port;
         this.host = host;
@@ -22,17 +20,20 @@ class elasticSearchHelper {
             type: this.type,
             client: new elasticsearch.Client({ host: { host, port } })
         };
-        try {
-            const health = this.config.client.cluster.health({});
-            log.info(health);
-        }
-        catch (err) { }
+    }
+    connect() {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                return yield this.config.client.cluster.health({});
+            }
+            catch (err) {
+                console.error(err);
+            }
+        });
     }
     putBookMapping() {
         const schema = {
-            title: { type: 'keyword' },
             author: { type: 'keyword' },
-            location: { type: 'integer' },
             text: { type: 'text' }
         };
         return this.config.client.indices.putMapping({ index: this.index, type: this.type, body: { properties: schema } });
