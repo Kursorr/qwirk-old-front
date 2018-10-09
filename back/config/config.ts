@@ -1,18 +1,9 @@
 import * as indicative from 'indicative'
-import * as elasticsearch from 'elasticsearch'
 
 const database: any = {
   db: 'qwirk',
 	host: 'rethinkdb',
 	port: 28015
-}
-
-const port: number = 9200
-const host: string = '172.18.0.3' // Needs to be changed depending on the ip address given by docker...
-const elasticSearch: any = {
-  index: 'library',
-  type: 'novel',
-  client: new elasticsearch.Client({ host: { host, port} })
 }
 
 const redis: any = {
@@ -46,4 +37,4 @@ const levels: any = {
   silly: 5
 }
 
-export { database, elasticSearch, redis, JWT, userRules, personalData, path, levels }
+export { database, redis, JWT, userRules, personalData, path, levels }
