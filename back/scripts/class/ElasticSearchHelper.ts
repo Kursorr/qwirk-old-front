@@ -2,22 +2,20 @@
 
 import * as elasticsearch from 'elasticsearch'
 
-class elasticSearchHelper {
-  private readonly port: number
-  private readonly host: string  // Needs to be changed depending on the ip address given by docker...
-  private readonly config: any
-  private readonly index: string = 'data'
-  private readonly type: string = 'novel'
+interface Data {
+  index: string,
+  type: string,
+  client: elasticsearch.Client
+}
 
-  constructor (port = 9200, host = '172.18.0.3') {
-    this.port = port
-    this.host = host
-    this.config = {
-      index: this.index,
-      type: this.type,
-      client: new elasticsearch.Client({ host: { host, port} })
-    }
+class elasticSearchHelper {
+  private readonly config: Data = {
+    index: 'data',
+    type: 'novel',
+    client: new elasticsearch.Client({ host: { host: '172.18.0.3', port: 9200} })
   }
+
+  constructor () {}
 
   async connect () {
     try { return await this.config.client.cluster.health({}) }
@@ -30,15 +28,15 @@ class elasticSearchHelper {
       text: { type: 'text' }
     }
 
-    return this.config.client.indices.putMapping({ index: this.index, type: this.type, body: { properties: schema } })
+    return this.config.client.indices.putMapping({ index: this.config.index, type: this.config.type, body: { properties: schema } })
   }
 
   async resetIndex () {
-    if (await this.config.client.indices.exists({ index: this.index })) {
-      await this.config.client.indices.delete({ index: this.index })
+    if (await this.config.client.indices.exists({ index: this.config.index })) {
+      await this.config.client.indices.delete({ index: this.config.index })
     }
 
-    await this.config.client.indices.create({ index: this.index })
+    await this.config.client.indices.create({ index: this.config.index })
     await this.putBookMapping()
   }
 }

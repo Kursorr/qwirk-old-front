@@ -10,15 +10,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const elasticsearch = require("elasticsearch");
 class elasticSearchHelper {
-    constructor(port = 9200, host = '172.18.0.3') {
-        this.index = 'data';
-        this.type = 'novel';
-        this.port = port;
-        this.host = host;
+    constructor() {
         this.config = {
-            index: this.index,
-            type: this.type,
-            client: new elasticsearch.Client({ host: { host, port } })
+            index: 'data',
+            type: 'novel',
+            client: new elasticsearch.Client({ host: { host: '172.18.0.3', port: 9200 } })
         };
     }
     connect() {
@@ -36,14 +32,14 @@ class elasticSearchHelper {
             author: { type: 'keyword' },
             text: { type: 'text' }
         };
-        return this.config.client.indices.putMapping({ index: this.index, type: this.type, body: { properties: schema } });
+        return this.config.client.indices.putMapping({ index: this.config.index, type: this.config.type, body: { properties: schema } });
     }
     resetIndex() {
         return __awaiter(this, void 0, void 0, function* () {
-            if (yield this.config.client.indices.exists({ index: this.index })) {
-                yield this.config.client.indices.delete({ index: this.index });
+            if (yield this.config.client.indices.exists({ index: this.config.index })) {
+                yield this.config.client.indices.delete({ index: this.config.index });
             }
-            yield this.config.client.indices.create({ index: this.index });
+            yield this.config.client.indices.create({ index: this.config.index });
             yield this.putBookMapping();
         });
     }
