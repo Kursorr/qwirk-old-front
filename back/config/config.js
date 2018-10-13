@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-// elasticsearch / Kibana (logstash maybe)
 const database = {
     db: 'qwirk',
     host: 'rethinkdb',

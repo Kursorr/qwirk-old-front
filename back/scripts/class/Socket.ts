@@ -9,13 +9,13 @@ const config = require('../../config/config')
 class Socket {
   private http: any
 
-  private io: any
+  private readonly io: any
   get IO (): any { return this.io }
 
-  private db: IDB
+  private readonly db: IDB
   get DB (): IDB { return this.db }
 
-  private secret: string
+  private readonly secret: string
   get Secret (): string { return this.secret }
 
   constructor (http: any, db: IDB, secret: string) {

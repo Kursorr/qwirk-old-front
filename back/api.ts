@@ -12,6 +12,7 @@ import * as log4js from 'log4js'
 import { Socket } from './scripts/class/Socket'
 import { base } from './app/sockets/base'
 import { database, JWT } from './config/config'
+import { elasticSearchHelper } from "./scripts/class/ElasticSearchHelper"
 
 // Routes
 import confirmAccount from './app/routes/confirm'
@@ -53,8 +54,11 @@ app.use('/avatars', express.static('avatars'))
 log.debug(`Connecting to database : rethinkdb://${database.host}:${database.port}/${DATABASE}`)
 const connectDatabase = r.connect(database)
 
-connectDatabase.then((conn) => {
+connectDatabase.then(async conn => {
   log.info(`Connected to : rethinkdb://${database.host}:${database.port}/${DATABASE}`)
+
+  const health = await new elasticSearchHelper().connect()
+  console.info(health)
 
   app.use((req, res, next) => {
     req.secretJWT = JWT_SECRET

@@ -1,7 +1,5 @@
 import * as indicative from 'indicative'
 
-// elasticsearch / Kibana (logstash maybe)
-
 const database: any = {
   db: 'qwirk',
 	host: 'rethinkdb',
@@ -21,16 +19,16 @@ const userRules: indicative.Rules = {
 	password: 'required|max:200'
 }
 
-const personalData = {
+const personalData: any = {
 	email: 'websitesm06@gmail.com',
 	pwd: 'ragnarOK06'
 }
 
-const path = {
+const path: any = {
   img: '/app/avatars/'
 }
 
-const levels = {
+const levels: any = {
 	error: 0,
   warn: 1,
   info: 2,

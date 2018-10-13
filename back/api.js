@@ -1,4 +1,12 @@
 'use strict';
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 // External modules
 const http = require("http");
@@ -11,6 +19,7 @@ const log4js = require("log4js");
 const Socket_1 = require("./scripts/class/Socket");
 const base_1 = require("./app/sockets/base");
 const config_1 = require("./config/config");
+const ElasticSearchHelper_1 = require("./scripts/class/ElasticSearchHelper");
 // Routes
 const confirm_1 = require("./app/routes/confirm");
 // Env setting
@@ -43,8 +52,10 @@ app.use(bodyParser.json());
 app.use('/avatars', express.static('avatars'));
 log.debug(`Connecting to database : rethinkdb://${config_1.database.host}:${config_1.database.port}/${DATABASE}`);
 const connectDatabase = r.connect(config_1.database);
-connectDatabase.then((conn) => {
+connectDatabase.then((conn) => __awaiter(this, void 0, void 0, function* () {
     log.info(`Connected to : rethinkdb://${config_1.database.host}:${config_1.database.port}/${DATABASE}`);
+    const health = yield new ElasticSearchHelper_1.elasticSearchHelper().connect();
+    console.info(health);
     app.use((req, res, next) => {
         req.secretJWT = JWT_SECRET;
         req.db = { r, conn };
@@ -79,7 +90,7 @@ connectDatabase.then((conn) => {
     app.listen(process.argv[2], () => {
         log.info(`API running on port ${process.argv[2]}`);
     });
-});
+}));
 connectDatabase.error((error) => {
     log.error(`Connection failed to : rethinkdb://${config_1.database.host}:${config_1.database.port}/${DATABASE}`);
     log.error(`Reason : ${error}`);
