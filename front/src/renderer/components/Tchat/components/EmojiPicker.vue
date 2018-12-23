@@ -1,23 +1,21 @@
 <template>
-  <Picker @click="pickEmoji" />
+  <Picker @click="pickEmoji"/>
 </template>
 
-<script>
-  import { Picker } from 'emoji-mart-vue'
+<script lang="ts">
+  const { Picker } = require('emoji-mart-vue')
+  import { Component, Vue } from 'vue-property-decorator'
 
-  export default {
-    name: 'picker',
-    data () {
-      return {
-      }
-    },
+  @Component({
     components: {
       Picker
-    },
-    methods: {
-      pickEmoji (emoji) {
-        this.$emit('emoji', emoji.native)
-      }
+    }
+  })
+  export default class EmojiPicker extends Vue {
+    emoji: any
+
+    pickEmoji (emoji) {
+      this.$emit('emoji', emoji.native)
     }
   }
 </script>

@@ -21,13 +21,15 @@
   </section>
 </template>
 
-<script>
-  import Vuex from 'vuex'
-  import store from '@store'
+<script lang="ts">
+  import { Component, Vue } from 'vue-property-decorator'
+  import * as Vuex from 'vuex'
+  import store from '../../../vuex/store'
 
   import Avatar from '../../Contents/components/Avatar.vue'
+  import { ComponentOptions } from 'vue'
 
-  export default {
+  @Component({
     store,
     components: {
       Avatar
@@ -50,5 +52,7 @@
         'messages'
       ])
     }
+  } as ComponentOptions<Conversation> )
+  export default class Conversation extends Vue {
   }
 </script>

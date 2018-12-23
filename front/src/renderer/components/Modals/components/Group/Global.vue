@@ -12,16 +12,16 @@
             </section>
           </section>
           <section class="upload">
-            <p class="section-description">We recommend an image of at least 512x512 for your server.</p>
+            <p class="section-description">Nous recommandons une image d'au moins 512x512 pour votre serveur</p>
             <button>
               <div>
-                Upload Image
+                Envoyer une image
                 <input type="file" class="file-input" accept=".jpg,.jpeg,.png,.gif">
               </div>
             </button>
           </section>
           <section class="name">
-            <label for="group_name" class="information">Nom du groupe</label>
+            <label for="group_name" class="information">Nom du Serveur</label>
             <input type="text" name="group_name" id="group_name">
           </section>
         </section>
@@ -54,9 +54,3 @@
     </section>
   </section>
 </template>
-
-<script>
-  export default {
-    name: 'Global'
-  }
-</script>

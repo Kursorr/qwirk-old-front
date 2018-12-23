@@ -10,60 +10,61 @@
   </div>
 </template>
 
-<script>
-  import Vuex from 'vuex'
-  import store from '@store'
+<script lang="ts">
+  import { Component, Vue } from 'vue-property-decorator'
+  import * as Vuex from 'vuex'
 
   import Avatar from './Avatar.vue'
+  import { ComponentOptions } from 'vue'
 
-  export default {
-    store,
-    name: 'upload',
+  @Component({
     components: {
       Avatar
-    },
-    data () {
-      return {
-        image: null
-      }
-    },
-    methods: {
-      onFileChange (e) {
-        const files = e.target.files || e.dataTransfer.files
-        if (!files.length) return
-        return this.createImage(files[0])
-      },
-      createImage (file) {
-        let reader = new FileReader()
-
-        reader.onload = (e) => {
-          this.changeImage(e.target.result)
-        }
-        reader.readAsDataURL(file)
-      },
-      changeImage: function (image) {
-        this.image = image
-        this.$emit('change', this.image)
-      }
     },
     computed: {
       ...Vuex.mapGetters([
         'user'
-      ]),
-      userOrImage () {
-        if (this.image !== null) {
-          return this.image
-        }
-        return null
+      ])
+    }
+  } as ComponentOptions<Upload>)
+  export default class Upload extends Vue {
+    image?: string = null
+    user: any
+
+    get userOrImage () {
+      if (this.image !== null) {
+        return this.image
       }
-    },
+      return null
+    }
+
+    onFileChange (e: any) {
+      const files = e.target.files || e.dataTransfer.files
+      if (!files.length) return
+      return this.createImage(files[0])
+    }
+
+    createImage (file: Blob) {
+      let reader = new FileReader()
+
+      reader.onload = (e: any) => {
+        this.changeImage(e.target.result)
+      }
+      reader.readAsDataURL(file)
+    }
+
+    changeImage (image: string) {
+      this.image = image
+      this.$emit('change', this.image)
+    }
+
     mounted () {
       if (this.user) {
         this.image = this.user.avatar
       }
-      this.$on('upload-file', () => {
+      /*this.$on('upload-file', () => {
         this.onFileChange()
-      })
+      })*/
     }
   }
 </script>

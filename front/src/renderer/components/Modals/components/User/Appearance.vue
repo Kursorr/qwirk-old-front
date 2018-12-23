@@ -117,13 +117,13 @@
   </section>
 </template>
 
-<script>
-  import Vuex from 'vuex'
+<script lang="ts">
+  import { Component, Vue } from 'vue-property-decorator'
+  import * as Vuex from 'vuex'
 
   import Avatar from '../../../Contents/components/Avatar.vue'
 
-  export default {
-    name: 'Appearance',
+  @Component({
     components: {
       Avatar
     },
@@ -137,5 +137,8 @@
         }
       }
     }
+  })
+  export default class Appearance extends Vue {
+    user: any
   }
 </script>

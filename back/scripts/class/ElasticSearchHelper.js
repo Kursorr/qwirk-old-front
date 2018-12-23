@@ -66,5 +66,22 @@ class elasticSearchHelper {
             yield this.config.client.bulk({ body: bulkOps });
         });
     }
+    getData(term, offset) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const body = {
+                from: offset,
+                query: {
+                    match: {
+                        text: {
+                            query: term,
+                            operator: 'and',
+                            fuzziness: 'auto'
+                        }
+                    }
+                },
+                highlight: { fields: { text: {} } }
+            };
+        });
+    }
 }
 exports.elasticSearchHelper = elasticSearchHelper;

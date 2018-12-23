@@ -28,21 +28,16 @@
   </section>
 </template>
 
-<script>
-  import Vuex from 'vuex'
-  import store from '@store'
+<script lang="ts">
+  import { Component, Vue } from 'vue-property-decorator'
+  import * as Vuex from 'vuex'
+  import { ComponentOptions } from 'vue'
 
-  export default {
-    store,
-    name: 'auth',
-    data () {
-      return {
-        login: {
-          email: 'kiki@kiki.dur',
-          password: 'root',
-          error: null
-        }
-      }
+  @Component({
+    methods: {
+      ...Vuex.mapActions([
+        'authenticateUser'
+      ])
     },
     sockets: {
       connection (result) {
@@ -56,23 +51,26 @@
         }
       }
     },
-    methods: {
-      ...Vuex.mapActions([
-        'authenticateUser'
-      ]),
-      closeModal (e) {
-        if (e.target.classList.contains('modal')) {
-          this.$emit('close')
-        }
-      },
-      connect () {
-        this.$socket.emit('login', this.login)
-      }
-    },
     computed: {
       ...Vuex.mapGetters([
         'user'
       ])
+    }
+  } as ComponentOptions<Auth> )
+  export default class Auth extends Vue {
+    login: any = {
+      email: 'kiki@kiki.dur',
+      password: 'root',
+      error: null
+    }
+
+    closeModal (e) {
+      if (e.target.classList.contains('modal')) {
+        this.$emit('close')
+      }
+    }
+    connect () {
+      this.$socket.emit('login', this.login)
     }
   }
 </script>

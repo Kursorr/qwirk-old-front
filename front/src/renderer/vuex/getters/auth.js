@@ -1,3 +1,4 @@
 export const user = (state) => {
-  return state.auth.user
-}
+    return state.auth.user;
+};
+//# sourceMappingURL=auth.js.map
