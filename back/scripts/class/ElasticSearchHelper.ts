@@ -22,9 +22,8 @@ class elasticSearchHelper {
     catch (err) { console.error(err) }
   }
 
-  putBookMapping () {
+  mapping () {
     const schema = {
-      author: { type: 'keyword' },
       text: { type: 'text' }
     }
 
@@ -37,7 +36,28 @@ class elasticSearchHelper {
     }
 
     await this.config.client.indices.create({ index: this.config.index })
-    await this.putBookMapping()
+    await this.mapping()
+  }
+
+  async readAndInsertData (messages) {
+    try {
+      await this.resetIndex()
+      await this.insertData(messages)
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
+  async insertData (messages) {
+    const bulkOps = []
+    for (let i = 0; i < messages.length; i++) {
+      bulkOps.push({ index: { _index: this.config.index, _type: this.config.type } })
+       bulkOps.push({
+         location: i,
+         text: messages[i]
+       })
+    }
+    await this.config.client.bulk({ body: bulkOps })
   }
 }
 

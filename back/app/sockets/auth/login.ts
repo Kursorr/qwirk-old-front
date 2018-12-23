@@ -1,20 +1,19 @@
 'use strict'
 
 import * as jwt from 'jsonwebtoken'
-
-// import * as notifier from 'node-notifier'
-// import * as path from 'path'
+import * as r from 'rethinkdb'
 
 import { User } from '../../models/User'
 import { Socket } from '../../../scripts/class/Socket'
 import { Password } from '../../../scripts/class/Hash'
-import { levels } from '../../../config/config'
-import { logger } from '../../../config/logger'
+import { elasticSearchHelper } from '../../../scripts/class/ElasticSearchHelper'
+import { Message } from '../../models/Message'
 
 const login = (instance: Socket, socket: any ) => {
 	socket.on('login', async (data) => {
 		const { DB, Secret } = instance
 		const findUser = new User(DB)
+    const findMessages = new Message(DB)
 
 		const { email, password } = data
 
@@ -27,8 +26,6 @@ const login = (instance: Socket, socket: any ) => {
         success: false,
         message: 'Votre email ou votre mot de passe est incorrect.'
 			})
-			// logger.log('')
-
       return false
     }
 
@@ -68,6 +65,18 @@ const login = (instance: Socket, socket: any ) => {
 			token,
 			user
 		})
+
+    const messages = await findMessages.filter(r.row('content'))
+    const resultMsgs = await messages.toArray()
+    const messagesToInsert = []
+
+    for (let i = 0; i < resultMsgs.length; i++) {
+      messagesToInsert.push(resultMsgs[i].content)
+    }
+
+    const health = await new elasticSearchHelper()
+    await health.connect()
+    await health.readAndInsertData(messagesToInsert)
 
 		await findUser.update(userID, { token, tokenDeath: new Date(60 * 1000) })
 	})
