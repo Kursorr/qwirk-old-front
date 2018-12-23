@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const register_1 = require("./auth/register");
 const profile_1 = require("./edit/profile");
 const login_1 = require("./auth/login");
-const tchat_1 = require("./tchat");
+const tchat_1 = require("./tchat/tchat");
 const base = (instance) => {
     const { IO } = instance;
     IO.on('connection', (socket) => {

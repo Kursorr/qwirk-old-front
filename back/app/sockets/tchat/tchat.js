@@ -8,8 +8,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const Message_1 = require("../models/Message");
-const User_1 = require("../models/User");
+const Message_1 = require("../../models/Message");
+const User_1 = require("../../models/User");
 const tchat = (instance, socket) => {
     const { DB } = instance;
     const message = new Message_1.Message(DB);
