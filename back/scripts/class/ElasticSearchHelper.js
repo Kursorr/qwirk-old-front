@@ -27,9 +27,8 @@ class elasticSearchHelper {
             }
         });
     }
-    putBookMapping() {
+    mapping() {
         const schema = {
-            author: { type: 'keyword' },
             text: { type: 'text' }
         };
         return this.config.client.indices.putMapping({ index: this.config.index, type: this.config.type, body: { properties: schema } });
@@ -40,7 +39,31 @@ class elasticSearchHelper {
                 yield this.config.client.indices.delete({ index: this.config.index });
             }
             yield this.config.client.indices.create({ index: this.config.index });
-            yield this.putBookMapping();
+            yield this.mapping();
+        });
+    }
+    readAndInsertData(messages) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                yield this.resetIndex();
+                yield this.insertData(messages);
+            }
+            catch (e) {
+                console.error(e);
+            }
+        });
+    }
+    insertData(messages) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const bulkOps = [];
+            for (let i = 0; i < messages.length; i++) {
+                bulkOps.push({ index: { _index: this.config.index, _type: this.config.type } });
+                bulkOps.push({
+                    location: i,
+                    text: messages[i]
+                });
+            }
+            yield this.config.client.bulk({ body: bulkOps });
         });
     }
 }
