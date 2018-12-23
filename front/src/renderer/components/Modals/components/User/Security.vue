@@ -58,7 +58,7 @@
       <ul>
         <li class="param-content">
           <section class="param">
-            <p>Autoriser les messages privés provenant de membres de groupes/channels</p>
+            <p>Autoriser les messages privés provenant de membres du serveur</p>
             <div class="checkbox-grey">
               <input type="checkbox" value="1" class="checkboxNone" id="allowPrivateMsg"
                      name="allowPrivateMsg" v-model="res.allowPrivateMsg">
@@ -110,21 +110,18 @@
   </section>
 </template>
 
-<script>
-  export default {
-    name: 'Security',
-    props: ['value'],
-    data () {
-      return {
-        res: JSON.parse(JSON.stringify(this.value))
-      }
-    },
-    methods: {
-      changeSecurity () {
-        this.$nextTick(function () {
-          this.$emit('input', this.res)
-        })
-      }
+<script lang="ts">
+  import { Component, Prop, Vue } from 'vue-property-decorator'
+
+  @Component
+  export default class Security extends Vue {
+    @Prop() value
+    private res: any = JSON.parse(JSON.stringify(this.value))
+
+    changeSecurity () {
+      this.$nextTick(function () {
+        this.$emit('input', this.res)
+      })
     }
   }
 </script>

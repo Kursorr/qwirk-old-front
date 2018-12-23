@@ -59,6 +59,22 @@ class elasticSearchHelper {
     }
     await this.config.client.bulk({ body: bulkOps })
   }
+
+  async getData (term, offset) {
+    const body = {
+      from: offset,
+      query: {
+        match: {
+          text: {
+            query: term,
+            operator: 'and',
+            fuzziness: 'auto'
+          }
+        }
+      },
+      highlight: { fields: { text: {}}}
+    }
+  }
 }
 
 export { elasticSearchHelper }

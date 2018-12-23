@@ -15,11 +15,14 @@
 </template>
 
 <script>
+  import { Component, Vue } from 'vue-property-decorator'
   import Avatar from '../../Contents/components/Avatar.vue'
 
-  export default {
+  @Component({
     components: {
       Avatar
     }
+  })
+  export default class DropZone extends Vue {
   }
 </script>

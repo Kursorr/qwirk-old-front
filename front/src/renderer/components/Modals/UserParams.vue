@@ -6,9 +6,14 @@
         <button class="tab" :class="{'is-active': tab === 'account'}"
                 @click="setTab('account')">Mon Compte</button>
         <button class="tab" :class="{'is-active': tab === 'confidSecurity'}"
-                @click="setTab('confidSecurity')">Vie Privée & Sécurité</button>
-
-        <h1 class="title">Paramètres de l'appli...</h1>
+                @click="setTab('confidSecurity')">Confidentialité & Sécu..</button>
+        <div class="separator"></div>
+        <button class="tab" id="nitro" :class="{'is-active': tab === 'nitro'}"
+                @click="setTab('nitro')">Discord Nitro</button>
+        <button class="tab" :class="{'is-active': tab === 'hypeSquad'}"
+                @click="setTab('hypeSquad')">HypeSquad</button>
+        <div class="separator"></div>
+        <h1 class="title sep">Paramètres de l'app</h1>
         <button class="tab" :class="{'is-active': tab === 'voiceVideo'}"
                 @click="setTab('voiceVideo')">Voix & Vidéo</button>
         <button class="tab" :class="{'is-active': tab === 'notifications'}"
@@ -112,21 +117,23 @@
   </section>
 </template>
 
-<script>
-  import Vuex from 'vuex'
-  import store from '@store'
+<script lang="ts">
+  import { Component, Vue } from 'vue-property-decorator'
+  import * as Vuex from 'vuex'
+  import store from '../../vuex/store'
+  import { IUser } from '@/types/user.types'
 
   import Avatar from '../Contents/components/Avatar.vue'
   import Upload from '../Contents/components/Upload.vue'
   import Security from './components/User/Security.vue'
   import ConfCall from './components/User/ConfCall.vue'
-  import Notifications from './components/User/Notifications'
-  import OptionsTextImage from './components/User/OptionsTextImage'
-  import Appearance from './components/User/Appearance'
-  import Languages from './components/User/Languages'
+  import Notifications from './components/User/Notifications.vue'
+  import OptionsTextImage from './components/User/OptionsTextImage.vue'
+  import Appearance from './components/User/Appearance.vue'
+  import Languages from './components/User/Languages.vue'
+  import { ComponentOptions } from 'vue'
 
-  export default {
-    name: 'userparams',
+  @Component({
     store,
     components: {
       Avatar,
@@ -138,25 +145,15 @@
       Appearance,
       Languages
     },
-    data () {
-      return {
-        tab: 'account',
-        passChange: false,
-        edit: false,
-        security: {
-          analyse: 'extreme',
-          allowPrivateMsg: true
-        },
-        profile: {
-          pseudo: '',
-          email: '',
-          password: '',
-          newPassword: '',
-          avatar: null,
-          tag: 0,
-          error: null
-        }
-      }
+    methods: {
+      ...Vuex.mapActions([
+        'updateUser'
+      ])
+    },
+    computed: {
+      ...Vuex.mapGetters([
+        'user'
+      ]),
     },
     sockets: {
       profile (result) {
@@ -176,54 +173,72 @@
           }, 3000)
         }
       }
-    },
-    methods: {
-      ...Vuex.mapActions([
-        'authenticateUser',
-        'updateUser'
-      ]),
-      disconnect () {
-        this.authenticateUser(null)
-        this.finish()
-      },
-      editUserProfile () {
-        this.profile.tag = this.tag
-        this.$socket.emit('profile', this.profile)
-        this.profile.newPassword = ''
-      },
-      closeModal (e) {
-        if (e.target.classList.contains('modal')) {
-          this.$emit('close')
-        }
-      },
-      finish () {
+    }
+  } as ComponentOptions<UserParams>)
+  export default class UserParams extends Vue {
+    tab: string = 'account'
+    passChange: boolean = false
+    edit: boolean = false
+    security: any = {
+      analyse: 'extreme',
+      allowPrivateMsg: true
+    }
+    profile: any = {
+      pseudo: '',
+      email: '',
+      password: '',
+      newPassword: '',
+      avatar: null,
+      tag: 0,
+      error: null
+    }
+    user: IUser
+
+    authenticateUser (user) {
+      this.$store.dispatch('authenticateUser', user)
+    }
+
+    disconnect () {
+      this.authenticateUser(null)
+      this.finish()
+    }
+
+    get tag () {
+      if (this.user) {
+        return this.user.tag
+      }
+    }
+
+    editUserProfile () {
+      this.profile.tag = this.tag
+      this.$socket.emit('profile', this.profile)
+      this.profile.newPassword = ''
+    }
+
+    closeModal (e) {
+      if (e.target.classList.contains('modal')) {
         this.$emit('close')
-      },
-      setTab (tabName) {
-        this.tab = tabName
-      },
-      uploadChange (newImage) {
-        this.profile.avatar = newImage
       }
-    },
-    computed: {
-      ...Vuex.mapGetters([
-        'user'
-      ]),
-      tag: function () {
-        if (this.user) {
-          return this.user.tag
-        }
-      }
-    },
+    }
+
+    finish () {
+      this.$emit('close')
+    }
+
+    setTab (tabName) {
+      this.tab = tabName
+    }
+
+    uploadChange (newImage) {
+      this.profile.avatar = newImage
+    }
+
     mounted () {
-      /*
       this.profile.id = this.user.id
       this.profile.pseudo = this.user.pseudo
       this.profile.email = this.user.email
       this.profile.avatar = this.user.avatar
       this.profile.password = 'root'
-      */
     }
   }
 </script>

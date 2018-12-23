@@ -1,100 +1,67 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import LandingPage from './components/LandingPage.vue'
-import Channels from './components/Contents/Channels.vue'
-import Friends from './components/Contents/Friends.vue'
-import Groups from './components/Contents/Groups.vue'
-import AddFriend from './components/Contents/AddFriend.vue'
-import Grid from './components/Contents/Grids/Grid.vue'
-import Join from './components/Contents/Grids/Join.vue'
-import ChannelGrid from './components/Contents/Grids/ChannelGrid.vue'
-import Auth from './components/Modals/Auth.vue'
-import Register from './components/Modals/Register.vue'
-import Tchat from './components/Tchat/Tchat.vue'
-import SpashScreen from './components/SpashScreen.vue'
-
-Vue.use(Router)
-
+import Vue from 'vue';
+import Router from 'vue-router';
+Vue.use(Router);
 export default new Router({
-  routes: [
-    {
-      path: '/spash-screen',
-      name: 'spash-screen',
-      component: SpashScreen
-    },
-    {
-      path: '/',
-      name: 'auth',
-      component: Auth
-    },
-    {
-      path: '/register',
-      name: 'register',
-      component: Register
-    },
-    {
-      path: '/landing-page',
-      component: LandingPage,
-      redirect: (to) => {
-        if (to.path === '/landing-page') {
-          return '/landing-page/tchat/123-private'
-        }
-        return to.path
-      },
-      children: [
+    mode: 'history',
+    base: process.env.BASE_URL,
+    routes: [
         {
-          path: 'tchat/:convId-:type',
-          name: 'tchat',
-          component: Tchat
+            path: '/splash-screen',
+            name: 'splash-screen',
+            component: () => import('./components/SplashScreen.vue')
         },
         {
-          path: 'friends',
-          component: Friends,
-          children: [
-            {
-              path: '',
-              name: 'allFriend',
-              component: Grid
+            path: '/',
+            name: 'auth',
+            component: () => import('./components/Modals/Auth.vue')
+        },
+        {
+            path: '/register',
+            name: 'register',
+            component: () => import('./components/Modals/Register.vue')
+        },
+        {
+            path: '/landing-page',
+            component: () => import('./components/LandingPage.vue'),
+            redirect: (to) => {
+                if (to.path === '/landing-page') {
+                    return '/landing-page/tchat/123-private';
+                }
+                return to.path;
             },
-            {
-              path: 'add',
-              name: 'addFriend',
-              component: AddFriend
-            }
-          ]
+            children: [
+                {
+                    path: 'library',
+                    name: 'library',
+                    component: () => import('./components/Contents/Grids/Library.vue'),
+                },
+                {
+                    path: 'tchat/:convId-:type',
+                    name: 'tchat',
+                    component: () => import('./components/Tchat/Tchat.vue'),
+                },
+                {
+                    path: 'friends',
+                    component: () => import('./components/Contents/Friends.vue'),
+                    children: [
+                        {
+                            path: '',
+                            name: 'allFriend',
+                            component: () => import('./components/Contents/Grids/Grid.vue'),
+                        },
+                        {
+                            path: 'add',
+                            name: 'addFriend',
+                            component: () => import('./components/Contents/AddFriend.vue'),
+                        }
+                    ]
+                }
+            ]
         },
         {
-          path: 'groups',
-          component: Groups,
-          children: [
-            {
-              path: '',
-              name: 'allGroup',
-              component: Grid
-            }
-          ]
-        },
-        {
-          path: 'channels',
-          component: Channels,
-          children: [
-            {
-              path: '',
-              name: 'allChannel',
-              component: ChannelGrid
-            },
-            {
-              path: 'join',
-              name: 'join',
-              component: Join
-            }
-          ]
+            path: '*',
+            redirect: '/'
         }
-      ]
-    },
-    {
-      path: '*',
-      redirect: '/'
-    }
-  ]
-})
+    ],
+});
+//# sourceMappingURL=router.js.map

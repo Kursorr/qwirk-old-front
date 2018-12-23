@@ -5,7 +5,7 @@
         <section class="auth-logo"></section>
         <section class="panel register">
           <h2>Créer un compte</h2>
-          <!-- @click="test()">{{ $t("message.hello") }}-->
+          <!-- <button @click="test()">{{ $t("message.hello") }}</button> -->
           <form autocomplete="off">
             <div class="form">
               <input type="text" name="registerName" placeholder="Pseudo"
@@ -38,28 +38,22 @@
   </section>
 </template>
 
-<script>
-  import Vuex from 'vuex'
-  import store from '@store'
+<script lang="ts">
+  import { Component, Vue } from 'vue-property-decorator'
+  import * as Vuex from 'vuex'
+  import store from '../../vuex/store'
   import Upload from '../Contents/components/Upload.vue'
+  import { ComponentOptions } from 'vue'
 
-  export default {
+  @Component({
     store,
-    name: 'register',
     components: {
       Upload
     },
-    data () {
-      return {
-        register: {
-          pseudo: '',
-          email: '',
-          password: '',
-          confirm: '',
-          avatar: '',
-          error: null
-        }
-      }
+    computed: {
+      ...Vuex.mapGetters([
+        'user'
+      ])
     },
     sockets: {
       registration (result) {
@@ -72,27 +66,34 @@
           }, 2000)
         }
       }
-    },
-    methods: {
-      closeModal (e) {
-        if (e.target.classList.contains('modal')) {
-          this.$emit('close')
-        }
-      },
-      uploadChange (newImage) {
-        this.register.avatar = newImage
-      },
-      registration () {
-        this.$socket.emit('register', this.register)
-      },
-      test () {
-        this.$i18n.locale = 'en'
+    }
+  } as ComponentOptions<Register> )
+  export default class Register extends Vue {
+    register: any = {
+      pseudo: '',
+      email: '',
+      password: '',
+      confirm: '',
+      avatar: '',
+      error: null
+    }
+
+    closeModal(e) {
+      if (e.target.classList.contains('modal')) {
+        this.$emit('close')
       }
-    },
-    computed: {
-      ...Vuex.mapGetters([
-        'user'
-      ])
+    }
+
+    uploadChange(newImage) {
+      this.register.avatar = newImage
+    }
+
+    registration() {
+      this.$socket.emit('register', this.register)
+    }
+
+    test() {
+      this.$i18n.locale = 'en'
     }
   }
 </script>

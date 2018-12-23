@@ -1,32 +1,29 @@
 <template>
   <section id="wrapper">
-    <sidebar v-if="user"></sidebar>
+    <navigation-bar v-if="user"></navigation-bar>
     <auth v-if="!user"></auth>
     <router-view></router-view>
   </section>
 </template>
 
-<script>
-  import Vuex from 'vuex'
+<script lang="ts">
+  import { Component, Vue } from 'vue-property-decorator'
+  import * as Vuex from 'vuex'
 
-  import Sidebar from './Sidebar/Sidebar.vue'
   import Auth from './Modals/Auth.vue'
-  import Tchat from './Tchat/Tchat.vue'
+  import NavigationBar from './Navigation/NavigationBar.vue'
 
-  import store from '@store'
-
-  export default {
-    store,
-    name: 'landing-page',
+  @Component({
     components: {
-      Tchat,
-      Sidebar,
+      NavigationBar,
       Auth
     },
     computed: {
-      ...Vuex.mapGetters([
-        'user'
-      ])
+      ...Vuex.mapGetters({
+        user: 'user'
+      })
     }
+  })
+  export default class LandingPage extends Vue {
   }
 </script>

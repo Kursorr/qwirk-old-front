@@ -16,9 +16,3 @@
     </section>
   </section>
 </template>
-
-<script>
-  export default {
-    name: 'Bans'
-  }
-</script>

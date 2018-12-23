@@ -16,15 +16,16 @@
   </section>
 </template>
 
-<script>
-  import Vuex from 'vuex'
+<script lang="ts">
+  import { Component, Vue } from 'vue-property-decorator'
+  import * as Vuex from 'vuex'
   import Members from './components/Members.vue'
   import Bar from './components/Bar.vue'
   import DropZone from './components/DropZone.vue'
   import Conversation from './components/Conversation.vue'
   import EmojiPicker from './components/EmojiPicker.vue'
 
-  export default {
+  @Component({
     components: {
       Members,
       Bar,
@@ -32,50 +33,50 @@
       Conversation,
       EmojiPicker // Causes a slowdown
     },
-    data () {
-      return {
-        toggleDropZone: false,
-        toggleEmoji: false,
-        message: ''
-      }
-    },
-    methods: {
-      append (emoji) {
-        this.message += emoji
-      },
-      getCurrentTap (msg) {
-        this.message = msg
-      },
-      onSubmit (e) {
-        e.preventDefault()
-
-        if (this.message === '') {
-          return false
-        }
-
-        this.$socket.emit('SEND::MESSAGE', {
-          route: this.$route.params,
-          author: this.user,
-          content: this.message
-        })
-
-        this.message = ''
-        e.target.value = ''
-
-        this.$nextTick(function () {
-          this.$emit('input', this.res)
-        })
-
-        setTimeout(() => {
-          const tchatRoom = document.getElementById('convers')
-          tchatRoom.scrollTop = tchatRoom.scrollHeight
-        }, 100)
-      }
-    },
     computed: {
       ...Vuex.mapGetters([
         'user'
       ])
+    }
+  })
+  export default class Tchat extends Vue {
+    toggleDropZone: boolean =  false
+    toggleEmoji: boolean =  false
+    message: string =  ''
+    user: any
+
+    append (emoji) {
+      this.message += emoji
+    }
+
+    getCurrentTap (msg) {
+      this.message = msg
+    }
+
+    onSubmit (e) {
+      e.preventDefault()
+
+      if (this.message === '') {
+        return false
+      }
+
+      this.$socket.emit('SEND::MESSAGE', {
+        route: this.$route.params,
+        author: this.user,
+        content: this.message
+      })
+
+      this.message = ''
+      e.target.value = ''
+
+      /*this.$nextTick(function () {
+        this.$emit('input', this.res)
+      })*/
+
+      setTimeout(() => {
+        const tchatRoom = document.getElementById('convers')
+        tchatRoom.scrollTop = tchatRoom.scrollHeight
+      }, 100)
     }
   }
 </script>
