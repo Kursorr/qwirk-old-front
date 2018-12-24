@@ -66,9 +66,9 @@ class elasticSearchHelper {
             yield this.config.client.bulk({ body: bulkOps });
         });
     }
-    getData(term, offset) {
+    getData(term, offset = 0) {
         return __awaiter(this, void 0, void 0, function* () {
-            const body = {
+            const data = {
                 from: offset,
                 query: {
                     match: {
@@ -81,6 +81,23 @@ class elasticSearchHelper {
                 },
                 highlight: { fields: { text: {} } }
             };
+            return data;
+        });
+    }
+    test() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const result = yield this.config.client.search({
+                index: this.config.index,
+                type: this.config.type,
+                body: {
+                    query: {
+                        match: {
+                            'text': 'hello'
+                        }
+                    }
+                }
+            });
+            return result;
         });
     }
 }

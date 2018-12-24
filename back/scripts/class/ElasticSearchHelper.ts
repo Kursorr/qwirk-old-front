@@ -60,8 +60,8 @@ class elasticSearchHelper {
     await this.config.client.bulk({ body: bulkOps })
   }
 
-  async getData (term, offset) {
-    const body = {
+  async getData (term: string, offset: number = 0) {
+    const data = {
       from: offset,
       query: {
         match: {
@@ -74,6 +74,22 @@ class elasticSearchHelper {
       },
       highlight: { fields: { text: {}}}
     }
+    return data
+  }
+
+  async test () {
+    const result = await this.config.client.search({
+      index: this.config.index,
+      type: this.config.type,
+      body: {
+        query: {
+          match: {
+            'text': 'hello'
+          }
+        }
+      }
+    })
+    return result
   }
 }
 

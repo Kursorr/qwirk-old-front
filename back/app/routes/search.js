@@ -8,8 +8,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const search = (instance, socket) => {
-    socket.on('GET::SEARCH_MESSAGE', (data) => __awaiter(this, void 0, void 0, function* () {
-        console.log(data);
-    }));
-};
+const express = require("express");
+const ElasticSearchHelper_1 = require("../../scripts/class/ElasticSearchHelper");
+const search = express.Router();
+search.get('/', (req, res) => __awaiter(this, void 0, void 0, function* () {
+    const search = new ElasticSearchHelper_1.elasticSearchHelper();
+    const result = yield search.test();
+    res.status(200).json({
+        result
+    });
+}));
+exports.default = search;
