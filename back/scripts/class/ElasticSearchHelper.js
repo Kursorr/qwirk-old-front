@@ -14,7 +14,7 @@ class elasticSearchHelper {
         this.config = {
             index: 'data',
             type: 'novel',
-            client: new elasticsearch.Client({ host: { host: '172.18.0.3', port: 9200 } })
+            client: new elasticsearch.Client({ host: { host: '172.18.0.4', port: 9200 } })
         };
     }
     connect() {
@@ -68,7 +68,7 @@ class elasticSearchHelper {
     }
     getData(term, offset = 0) {
         return __awaiter(this, void 0, void 0, function* () {
-            const data = {
+            const body = {
                 from: offset,
                 query: {
                     match: {
@@ -81,23 +81,7 @@ class elasticSearchHelper {
                 },
                 highlight: { fields: { text: {} } }
             };
-            return data;
-        });
-    }
-    test() {
-        return __awaiter(this, void 0, void 0, function* () {
-            const result = yield this.config.client.search({
-                index: this.config.index,
-                type: this.config.type,
-                body: {
-                    query: {
-                        match: {
-                            'text': 'hello'
-                        }
-                    }
-                }
-            });
-            return result;
+            return this.config.client.search({ index: this.config.index, type: this.config.type, body });
         });
     }
 }

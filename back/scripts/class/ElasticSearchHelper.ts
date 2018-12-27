@@ -12,7 +12,7 @@ class elasticSearchHelper {
   private readonly config: Data = {
     index: 'data',
     type: 'novel',
-    client: new elasticsearch.Client({ host: { host: '172.18.0.3', port: 9200} })
+    client: new elasticsearch.Client({ host: { host: '172.18.0.4', port: 9200} })
   }
 
   constructor () {}
@@ -61,7 +61,7 @@ class elasticSearchHelper {
   }
 
   async getData (term: string, offset: number = 0) {
-    const data = {
+    const body = {
       from: offset,
       query: {
         match: {
@@ -74,22 +74,7 @@ class elasticSearchHelper {
       },
       highlight: { fields: { text: {}}}
     }
-    return data
-  }
-
-  async test () {
-    const result = await this.config.client.search({
-      index: this.config.index,
-      type: this.config.type,
-      body: {
-        query: {
-          match: {
-            'text': 'hello'
-          }
-        }
-      }
-    })
-    return result
+    return this.config.client.search({index: this.config.index, type: this.config.type, body})
   }
 }
 

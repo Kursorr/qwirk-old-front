@@ -1,7 +1,6 @@
 <template>
   <section>
-    <!-- :model="searchTerm" -->
-    <input type="text" placeholder="Search" @keyup="onSearchInput()">
+    <input v-model="searchTerm" type="text" placeholder="Search" @keyup="onSearchInput()">
 
     <div>
       <div v-for="hit in searchResults">
@@ -17,7 +16,7 @@
   @Component
   export default class Search extends Vue {
     baseUrl: string = 'http://172.18.0.5:4100'
-    searchTerm: string = 'hello'
+    searchTerm: string = ''
     searchDebounce = null
     searchResults = []
     numHits: null
@@ -33,7 +32,9 @@
     }
 
     async search () {
-      const response = await this.$http.get(`${this.baseUrl}/search?term=hello`)
+      console.log(this.searchTerm)
+      const response = await this.$http.get(`${this.baseUrl}/search?`, { params: { term: this.searchTerm, offset: this.searchOffset } })
+      console.log(response)
       this.numHits = response.data.result.hits.hits.length
       return response.data.result.hits.hits
     }

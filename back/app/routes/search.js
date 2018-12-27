@@ -13,7 +13,7 @@ const ElasticSearchHelper_1 = require("../../scripts/class/ElasticSearchHelper")
 const search = express.Router();
 search.get('/', (req, res) => __awaiter(this, void 0, void 0, function* () {
     const search = new ElasticSearchHelper_1.elasticSearchHelper();
-    const result = yield search.test();
+    const result = yield search.getData(req.query.term);
     res.status(200).json({
         result
     });
