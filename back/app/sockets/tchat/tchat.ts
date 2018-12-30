@@ -1,6 +1,6 @@
-import { Socket } from '../../scripts/class/Socket'
-import { Message } from '../models/Message'
-import { User } from "../models/User"
+import { Socket } from '../../../scripts/class/Socket'
+import { Message } from '../../models/Message'
+import { User } from "../../models/User"
 
 const tchat = (instance: Socket, socket: any ) => {
   const { DB } = instance

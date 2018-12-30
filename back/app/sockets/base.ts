@@ -4,7 +4,7 @@ import { Socket } from '../../scripts/class/Socket'
 import { register } from './auth/register'
 import { profile } from './edit/profile'
 import { login } from './auth/login'
-import { tchat } from "./tchat"
+import { tchat } from './tchat/tchat'
 
 const base = (instance: Socket) => {
   const { IO } = instance
