@@ -15,15 +15,6 @@
   @Component({
     components: {
       Search
-    },
-    sockets: {
-      getResult (data) {
-        if (data) {
-          console.log(data)
-        } else {
-          console.error('error')
-        }
-      }
     }
   })
   export default class Bar extends Vue {

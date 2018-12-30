@@ -7,6 +7,7 @@ const search = express.Router()
 search.get('/', async (req, res) => {
   const search = new elasticSearchHelper()
   const result = await search.getData(req.query.term)
+  // console.log(req.query)
   res.status(200).json({
     result
   })

@@ -3,9 +3,13 @@
     <input v-model="searchTerm" type="text" placeholder="Search" @keyup="onSearchInput()">
 
     <div>
-      <div v-for="hit in searchResults">
-        <li>{{ hit._source.text }}</li>
-      </div>
+      <transition-group name="fade" mode="out-in" tag="ul">
+        <li v-for="(hit, index) in searchResults"
+            :key="index"
+            :style="{'transition-delay': `${index * 0.1}s`}">
+          {{ hit._source.text }}
+        </li>
+      </transition-group>
     </div>
   </section>
 </template>
@@ -27,14 +31,11 @@
       this.searchDebounce = setTimeout(async () => {
         this.searchOffset = 0
         this.searchResults = await this.search()
-        console.log(this.searchResults)
       }, 100)
     }
 
     async search () {
-      console.log(this.searchTerm)
       const response = await this.$http.get(`${this.baseUrl}/search?`, { params: { term: this.searchTerm, offset: this.searchOffset } })
-      console.log(response)
       this.numHits = response.data.result.hits.hits.length
       return response.data.result.hits.hits
     }
