@@ -12,7 +12,7 @@ class elasticSearchHelper {
   private readonly config: Data = {
     index: 'data',
     type: 'novel',
-    client: new elasticsearch.Client({ host: { host: '172.18.0.2', port: 9200} })
+    client: new elasticsearch.Client({ host: { host: '172.18.0.4', port: 9200} })
   }
 
   constructor () {}
@@ -60,7 +60,7 @@ class elasticSearchHelper {
     await this.config.client.bulk({ body: bulkOps })
   }
 
-  async getData (term: string, offset: number = 0) {
+  getData (term: string, offset: number = 0) {
     const body = {
       from: offset,
       query: {
