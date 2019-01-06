@@ -13,7 +13,7 @@ class elasticSearchHelper {
     constructor() {
         this.config = {
             index: 'data',
-            type: 'novel',
+            type: 'message',
             client: new elasticsearch.Client({ host: { host: '172.18.0.4', port: 9200 } })
         };
     }
@@ -29,6 +29,7 @@ class elasticSearchHelper {
     }
     mapping() {
         const schema = {
+            pseudo: { type: 'keyword' },
             text: { type: 'text' }
         };
         return this.config.client.indices.putMapping({ index: this.config.index, type: this.config.type, body: { properties: schema } });
@@ -59,9 +60,12 @@ class elasticSearchHelper {
             for (let i = 0; i < messages.length; i++) {
                 bulkOps.push({ index: { _index: this.config.index, _type: this.config.type } });
                 bulkOps.push({
-                    location: i,
-                    text: messages[i]
+                    avatar: messages[i].avatar,
+                    pseudo: messages[i].pseudo,
+                    text: messages[i].content,
+                    location: i
                 });
+                console.log(bulkOps);
             }
             yield this.config.client.bulk({ body: bulkOps });
         });

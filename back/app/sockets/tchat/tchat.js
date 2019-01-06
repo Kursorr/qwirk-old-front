@@ -18,9 +18,13 @@ const tchat = (instance, socket) => {
         const convId = parseInt(data.route.convId, 10);
         const content = data.content;
         const userId = data.author.id;
+        const pseudo = data.author.pseudo;
+        const avatar = data.author.avatar;
         const cursor = yield message.insert({
             convId,
             userId,
+            avatar,
+            pseudo,
             content,
             postedAt: new Date()
         });

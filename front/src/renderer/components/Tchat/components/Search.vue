@@ -2,27 +2,44 @@
   <section>
     <input v-model="searchTerm" type="text" placeholder="Search" @keyup="onSearchInput()">
 
-    <div>{{ numHits }} Hits</div>
-    <div>Displaying Results {{ searchOffset }} - {{ searchOffset + 9 }}</div>
-    <div>
-      <transition-group name="fade" mode="out-in" tag="ul">
-        <li v-for="(hit, index) in searchResults"
-            :key="index"
-            :style="{'transition-delay': `${index * 0.1}s`}">
-          <p v-html="hit.highlight.text[0]"></p>
-        </li>
-      </transition-group>
+    <div v-if="searchTerm !== ''">
+      <div>{{ numHits }} Hits</div>
+      <div>Displaying Results {{ searchOffset }} - {{ searchOffset + 9 }}</div>
+      <div>
+        <transition-group name="fade" mode="out-in" tag="ul">
+          <li v-for="(hit, index) in searchResults"
+              :key="index"
+              :style="{'transition-delay': `${index * 0.1}s`}">
+            <section class="onechat">
+              <section class="avatar">
+                <avatar :url="hit._source.avatar" size="small"></avatar>
+              </section>
+              <section class="text">
+                <span class="username">{{hit._source.pseudo}}<!--<span class="hours">{{ message.postedAt }}</span>--></span>
+                <p v-html="hit.highlight.text[0]"></p>
+              </section>
+            </section>
 
-      <button @click.prevent="prevResultsPage()">Prev Page</button>
-      <button @click.prevent="nextResultsPage()">Next Page</button>
+          </li>
+        </transition-group>
+
+        <button v-if="numHits > 9" @click.prevent="prevResultsPage()">Prev Page</button>
+        <button v-if="numHits > 9" @click.prevent="nextResultsPage()">Next Page</button>
+      </div>
     </div>
+
   </section>
 </template>
 
 <script lang="ts">
   import { Component, Vue } from 'vue-property-decorator'
+  import Avatar from '../../Contents/components/Avatar'
 
-  @Component
+  @Component({
+    components: {
+      Avatar
+    }
+  })
   export default class Search extends Vue {
     baseUrl: string = 'http://172.18.0.5:4100'
     searchTerm: string = ''
@@ -50,11 +67,8 @@
         this.searchOffset += 10
         if (this.searchOffset + 10 > this.numHits) {
           this.searchOffset = this.numHits - 10
-          console.log(this.searchOffset)
         }
-        console.log(this.searchOffset)
         this.searchResults = await this.search()
-        console.log(this.searchResults)
       }
     }
 
@@ -62,9 +76,7 @@
       this.searchOffset -= 10
       if (this.searchOffset < 0) {
         this.searchOffset = 0
-        console.log(this.searchOffset)
       }
-      console.log(this.searchOffset)
       this.searchResults = await this.search()
     }
   }
