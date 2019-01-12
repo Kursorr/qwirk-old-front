@@ -1,7 +1,6 @@
 <template>
   <section>
     <input v-model="searchTerm" type="text" placeholder="Search" @keyup="onSearchInput()">
-
     <div v-if="searchTerm !== ''">
       <div>{{ numHits }} Hits</div>
       <div>Displaying Results {{ searchOffset }} - {{ searchOffset + 9 }}</div>
@@ -19,15 +18,12 @@
                 <p v-html="hit.highlight.text[0]"></p>
               </section>
             </section>
-
           </li>
         </transition-group>
-
         <button v-if="numHits > 9" @click.prevent="prevResultsPage()">Prev Page</button>
         <button v-if="numHits > 9" @click.prevent="nextResultsPage()">Next Page</button>
       </div>
     </div>
-
   </section>
 </template>
 

@@ -65,12 +65,11 @@ class elasticSearchHelper {
                     text: messages[i].content,
                     location: i
                 });
-                console.log(bulkOps);
             }
             yield this.config.client.bulk({ body: bulkOps });
         });
     }
-    getData(term, offset = 0) {
+    getText(term, offset = 0) {
         const body = {
             from: offset,
             query: {
@@ -83,6 +82,19 @@ class elasticSearchHelper {
                 }
             },
             highlight: { fields: { text: {} } }
+        };
+        return this.config.client.search({ index: this.config.index, type: this.config.type, body });
+    }
+    getTextFromUser(author, term) {
+        const body = {
+            query: {
+                bool: {
+                    must: [
+                        { match: { pseudo: author } },
+                        { match: { text: term } }
+                    ]
+                }
+            }
         };
         return this.config.client.search({ index: this.config.index, type: this.config.type, body });
     }
