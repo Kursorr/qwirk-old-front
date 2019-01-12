@@ -1413,36 +1413,36 @@ section#ban > section > section.listing {
 section#convers {
   height: 100%;
   overflow-y: auto;
+}
 
-  section.onechat {
-    margin: 20px;
+section.onechat {
+  margin: 20px;
+  display: flex;
+  border-bottom: 1px solid hsla(0, 0%, 100%, .06);
+  padding-bottom: 15px;
+
+  section.text {
     display: flex;
-    border-bottom: 1px solid hsla(0, 0%, 100%, .06);
-    padding-bottom: 15px;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 95%;
 
-    section.text {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      width: 95%;
+    span.username {
+      margin-bottom: 15px;
+      margin-top: 8px;
 
-      span.username {
-        margin-bottom: 15px;
-        margin-top: 8px;
-
-        span.hours {
-          color: hsla(0, 0%, 100%, .2);
-          font-size: 0.75rem;
-          letter-spacing: 0;
-          font-weight: 400;
-          text-transform: none;
-          margin-left: 6px;
-        }
+      span.hours {
+        color: hsla(0, 0%, 100%, .2);
+        font-size: 0.75rem;
+        letter-spacing: 0;
+        font-weight: 400;
+        text-transform: none;
+        margin-left: 6px;
       }
+    }
 
-      p {
-        width: 100%;
-      }
+    p {
+      width: 100%;
     }
   }
 }

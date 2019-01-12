@@ -1,6 +1,6 @@
 import { Socket } from '../../../scripts/class/Socket'
 import { Message } from '../../models/Message'
-import { User } from "../../models/User"
+import { User } from '../../models/User'
 
 const tchat = (instance: Socket, socket: any ) => {
   const { DB } = instance
@@ -11,10 +11,14 @@ const tchat = (instance: Socket, socket: any ) => {
     const convId = parseInt(data.route.convId, 10)
     const content = data.content
     const userId = data.author.id
+    const pseudo = data.author.pseudo
+    const avatar = data.author.avatar
 
     const cursor = await message.insert({
       convId,
       userId,
+      avatar,
+      pseudo,
       content,
       postedAt: new Date()
     })
