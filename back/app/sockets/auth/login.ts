@@ -71,7 +71,11 @@ const login = (instance: Socket, socket: any ) => {
     const messagesToInsert = []
 
     for (let i = 0; i < resultMsgs.length; i++) {
-      messagesToInsert.push(resultMsgs[i].content)
+      messagesToInsert.push({
+        avatar: resultMsgs[i].avatar,
+        pseudo: resultMsgs[i].pseudo,
+        content: resultMsgs[i].content
+      })
     }
 
     const health = await new elasticSearchHelper()

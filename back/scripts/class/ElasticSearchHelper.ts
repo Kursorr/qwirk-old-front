@@ -11,8 +11,8 @@ interface Data {
 class elasticSearchHelper {
   private readonly config: Data = {
     index: 'data',
-    type: 'novel',
-    client: new elasticsearch.Client({ host: { host: '172.18.0.2', port: 9200} })
+    type: 'message',
+    client: new elasticsearch.Client({ host: { host: '172.18.0.4', port: 9200} })
   }
 
   constructor () {}
@@ -24,6 +24,7 @@ class elasticSearchHelper {
 
   mapping () {
     const schema = {
+      pseudo: { type: 'keyword' },
       text: { type: 'text' }
     }
 
@@ -53,14 +54,16 @@ class elasticSearchHelper {
     for (let i = 0; i < messages.length; i++) {
       bulkOps.push({ index: { _index: this.config.index, _type: this.config.type } })
        bulkOps.push({
-         location: i,
-         text: messages[i]
+         avatar: messages[i].avatar,
+         pseudo: messages[i].pseudo,
+         text: messages[i].content,
+         location: i
        })
     }
     await this.config.client.bulk({ body: bulkOps })
   }
 
-  async getData (term: string, offset: number = 0) {
+  getText (term: string, offset: number = 0) {
     const body = {
       from: offset,
       query: {
@@ -73,6 +76,20 @@ class elasticSearchHelper {
         }
       },
       highlight: { fields: { text: {}}}
+    }
+    return this.config.client.search({index: this.config.index, type: this.config.type, body})
+  }
+
+  getTextFromUser (author: string, term: string) {
+    const body = {
+      query: {
+        bool: {
+          must: [
+            { match: { pseudo: author }},
+            { match: { text: term }}
+          ]
+        }
+      }
     }
     return this.config.client.search({index: this.config.index, type: this.config.type, body})
   }

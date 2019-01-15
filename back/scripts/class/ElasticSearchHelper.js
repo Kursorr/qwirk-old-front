@@ -13,8 +13,8 @@ class elasticSearchHelper {
     constructor() {
         this.config = {
             index: 'data',
-            type: 'novel',
-            client: new elasticsearch.Client({ host: { host: '172.18.0.2', port: 9200 } })
+            type: 'message',
+            client: new elasticsearch.Client({ host: { host: '172.18.0.4', port: 9200 } })
         };
     }
     connect() {
@@ -29,6 +29,7 @@ class elasticSearchHelper {
     }
     mapping() {
         const schema = {
+            pseudo: { type: 'keyword' },
             text: { type: 'text' }
         };
         return this.config.client.indices.putMapping({ index: this.config.index, type: this.config.type, body: { properties: schema } });
@@ -59,30 +60,43 @@ class elasticSearchHelper {
             for (let i = 0; i < messages.length; i++) {
                 bulkOps.push({ index: { _index: this.config.index, _type: this.config.type } });
                 bulkOps.push({
-                    location: i,
-                    text: messages[i]
+                    avatar: messages[i].avatar,
+                    pseudo: messages[i].pseudo,
+                    text: messages[i].content,
+                    location: i
                 });
             }
             yield this.config.client.bulk({ body: bulkOps });
         });
     }
-    getData(term, offset = 0) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const body = {
-                from: offset,
-                query: {
-                    match: {
-                        text: {
-                            query: term,
-                            operator: 'and',
-                            fuzziness: 'auto'
-                        }
+    getText(term, offset = 0) {
+        const body = {
+            from: offset,
+            query: {
+                match: {
+                    text: {
+                        query: term,
+                        operator: 'and',
+                        fuzziness: 'auto'
                     }
-                },
-                highlight: { fields: { text: {} } }
-            };
-            return this.config.client.search({ index: this.config.index, type: this.config.type, body });
-        });
+                }
+            },
+            highlight: { fields: { text: {} } }
+        };
+        return this.config.client.search({ index: this.config.index, type: this.config.type, body });
+    }
+    getTextFromUser(author, term) {
+        const body = {
+            query: {
+                bool: {
+                    must: [
+                        { match: { pseudo: author } },
+                        { match: { text: term } }
+                    ]
+                }
+            }
+        };
+        return this.config.client.search({ index: this.config.index, type: this.config.type, body });
     }
 }
 exports.elasticSearchHelper = elasticSearchHelper;
