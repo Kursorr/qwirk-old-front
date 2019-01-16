@@ -34,8 +34,18 @@
       </section>
 
       <section id="linkToJoinServer" v-bind:class="{joinServerActive}">
-        <h1>Hello world !</h1>
-        <button @click="back()"></button>
+        <header class="joinServer">Rejoindre un serveur !</header>
+        <p>
+          Entrez une invitation ci-dessous pour rejoindre un serveur existant. L'invitation ressemble à celles-ci :
+        </p>
+        <p class="invitationLinkToJoinServer">https://qwirk.gg/qJq5C</p>
+        <p class="invitationLinkToJoinServer">https://qwirk.gg/discord-developersqJq5C</p>
+        <input type="text" class="invitationInput">
+        <p class="enterAnInvitation">Entrez une invitation</p>
+        <section class="buttons">
+          <button class="cancel" @click="back()">Retour</button>
+          <button class="success">Rejoindre</button>
+        </section>
       </section>
     </section>
   </section>
@@ -108,29 +118,30 @@
       }
 
       #choice.disactive {
-        transition: 1s;
+        transition: 500ms;
         left: -520px;
       }
 
       #choice.createServerActive {
         left: 20px;
-        transition: 1s;
+        transition: 500ms;
       }
 
       #linkToJoinServer {
         position: absolute;
         right: -520px;
         width: 495px;
-        transition: 1s;
+        transition: 500ms;
       }
 
       #linkToJoinServer.joinServerActive {
-        transition: 1s;
+        transition: 500ms;
         right: 0;
+        padding-right: 34px;
       }
 
       #createServer.createServerActive {
-        transition: 1s;
+        transition: 500ms;
         left: -520px;
       }
 
@@ -210,6 +221,93 @@
           text-align: center;
           top: 0;
           width: 100%;
+        }
+
+        #linkToJoinServer {
+          header {
+            color: #43b581;
+            margin-bottom: 20px;
+          }
+
+          p {
+            color: #99aab5;
+            font-size: 18px;
+            padding: 10px 0;
+            text-align: center;
+            font-weight: 500;
+            line-height: 1.2;
+          }
+
+          p.invitationLinkToJoinServer {
+            color: #7289da;
+            font-size: 14px;
+            padding: 0;
+            margin-bottom: 4px;
+          }
+
+          .invitationInput {
+            background: transparent;
+            border-radius: 0;
+            border-bottom: 2px solid;
+            font-size: 16px;
+            font-weight: 400;
+            width: 100%;
+            height: 40px;
+            padding: 10px;
+            box-sizing: border-box;
+            transition: background-color .15s ease,border .15s ease;
+            margin-top: 40px;
+            border-bottom-color: #f0f0f0;
+          }
+
+          .invitationInput:hover {
+            border-color: #b9bbbe;
+          }
+
+          .invitationInput:focus {
+            border-color: #7289da;
+          }
+
+          .enterAnInvitation {
+            color: #99aab5;
+            font-size: 11px;
+            font-weight: 400;
+            margin-top: 4px;
+            text-transform: none;
+            text-align: left;
+            padding: 0;
+          }
+
+          .buttons {
+            justify-content: space-between;
+            background-color: #f6f6f7;
+            margin-top: 70px;
+            width: 521px;
+            margin-left: -26px;
+            padding: 0 40px;
+            height: 74px;
+
+            .cancel {
+              background: transparent;
+              color: #99aab5;
+              border-bottom: 2px solid transparent;
+              font-size: 12px;
+              padding: 0;
+              text-transform: uppercase;
+            }
+
+            .cancel:before {
+              background: url("../../assets/arrow.svg") no-repeat 0;
+              background-size: 18px,12px;
+              content: " ";
+              margin-right: 10px;
+              padding-right: 18px;
+            }
+
+            .success {
+              font-size: 12px;
+            }
+          }
         }
       }
     }
