@@ -6,7 +6,7 @@
                     @finish="$emit('close')"></server-params>
     </transition>
     <section class="set" id="actions">
-      <section id="choice">
+      <section id="choice" v-bind:class="{createServerActive, disactive}">
         <header>oh, un autre serveur hein ?</header>
         <section>
           <section class="action" id="createServer">
@@ -33,8 +33,9 @@
         </section>
       </section>
 
-      <section id="linkToJoinServer">
+      <section id="linkToJoinServer" v-bind:class="{joinServerActive}">
         <h1>Hello world !</h1>
+        <button @click="back()"></button>
       </section>
     </section>
   </section>
@@ -51,6 +52,10 @@
     }
   })
   export default class NewOrJoinServer extends Vue {
+    createServerActive: boolean = true
+    joinServerActive: boolean = false
+    disactive: boolean = false
+
     modal: any = {
       serverParams: false
     }
@@ -66,7 +71,15 @@
     }
 
     joinServerView () {
-      console.log('test')
+      this.createServerActive = false
+      this.joinServerActive = true
+      this.disactive = true
+    }
+
+    back () {
+      this.createServerActive = true
+      this.joinServerActive = false
+      this.disactive = false
     }
   }
 </script>
@@ -94,21 +107,31 @@
         position: absolute;
       }
 
-      /*
-      #choice {
-        left: -472px;
-        transition: 100s;
+      #choice.disactive {
+        transition: 1s;
+        left: -520px;
       }
 
-      #linkToJoinServer {
+      #choice.createServerActive {
+        left: 20px;
         transition: 1s;
-        right: 0;
-      }*/
+      }
 
       #linkToJoinServer {
         position: absolute;
         right: -520px;
-        width: 472px;
+        width: 495px;
+        transition: 1s;
+      }
+
+      #linkToJoinServer.joinServerActive {
+        transition: 1s;
+        right: 0;
+      }
+
+      #createServer.createServerActive {
+        transition: 1s;
+        left: -520px;
       }
 
         header {
