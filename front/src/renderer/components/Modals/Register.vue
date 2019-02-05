@@ -5,7 +5,7 @@
         <section class="auth-logo"></section>
         <section class="panel register">
           <h2>Créer un compte</h2>
-          <!-- <button @click="test()">{{ $t("message.hello") }}</button> -->
+          <button @click="test()">{{ $t("message.hello") }}</button>
           <form autocomplete="off">
             <div class="form">
               <input type="text" name="registerName" placeholder="Pseudo"
