@@ -14,7 +14,7 @@ class elasticSearchHelper {
         this.config = {
             index: 'data',
             type: 'message',
-            client: new elasticsearch.Client({ host: { host: '172.18.0.4', port: 9200 } })
+            client: new elasticsearch.Client({ host: { host: '172.18.0.3', port: 9200 } }) // IP Elastic
         };
     }
     connect() {

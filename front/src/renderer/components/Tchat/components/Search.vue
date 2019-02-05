@@ -29,7 +29,7 @@
 
 <script lang="ts">
   import { Component, Vue } from 'vue-property-decorator'
-  import Avatar from '../../Contents/components/Avatar'
+  import Avatar from '../../Contents/components/Avatar.vue'
 
   @Component({
     components: {
@@ -37,7 +37,7 @@
     }
   })
   export default class Search extends Vue {
-    baseUrl: string = 'http://172.18.0.5:4100'
+    baseUrl: string = 'http://172.18.0.6:4100' // IP Back-end
     searchTerm: string = ''
     searchDebounce = null
     searchResults = []

@@ -1,3 +1,5 @@
+import { AmqpHelper } from '../../../scripts/class/AmqpHelper'
+
 import { Socket } from '../../../scripts/class/Socket'
 import { Message } from '../../models/Message'
 import { User } from '../../models/User'

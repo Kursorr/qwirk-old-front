@@ -8,12 +8,15 @@ import { Socket } from '../../../scripts/class/Socket'
 import { Password } from '../../../scripts/class/Hash'
 import { elasticSearchHelper } from '../../../scripts/class/ElasticSearchHelper'
 import { Message } from '../../models/Message'
+import { AmqpHelper } from '../../../scripts/class/AmqpHelper'
 
 const login = (instance: Socket, socket: any ) => {
 	socket.on('login', async (data) => {
 		const { DB, Secret } = instance
 		const findUser = new User(DB)
     const findMessages = new Message(DB)
+
+    AmqpHelper.getFromAmqp('hello')
 
 		const { email, password } = data
 

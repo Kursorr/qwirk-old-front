@@ -14,11 +14,13 @@ const User_1 = require("../../models/User");
 const Hash_1 = require("../../../scripts/class/Hash");
 const ElasticSearchHelper_1 = require("../../../scripts/class/ElasticSearchHelper");
 const Message_1 = require("../../models/Message");
+const AmqpHelper_1 = require("../../../scripts/class/AmqpHelper");
 const login = (instance, socket) => {
     socket.on('login', (data) => __awaiter(this, void 0, void 0, function* () {
         const { DB, Secret } = instance;
         const findUser = new User_1.User(DB);
         const findMessages = new Message_1.Message(DB);
+        AmqpHelper_1.AmqpHelper.getFromAmqp('hello');
         const { email, password } = data;
         const cursor = yield findUser.filter({ email });
         const result = yield cursor.toArray();

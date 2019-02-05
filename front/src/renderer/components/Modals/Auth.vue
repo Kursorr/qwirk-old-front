@@ -32,6 +32,8 @@
   import { Component, Vue } from 'vue-property-decorator'
   import * as Vuex from 'vuex'
   import { ComponentOptions } from 'vue'
+  import * as amqp from 'amqplib'
+  declare const Buffer
 
   @Component({
     methods: {
@@ -69,7 +71,20 @@
         this.$emit('close')
       }
     }
+
+    sendToAmqp (content) {
+      const open = amqp.connect('amqp://guest:guest@172.18.0.5:5672') // IP RabbitMQ
+      open.then((conn) => {
+        return conn.createChannel()
+      }).then(async (ch) => {
+        const q = 'hello'
+        await ch.assertQueue(q, {durable: true})
+        await ch.sendToQueue(q, Buffer.from(JSON.stringify(content)), {persistent: true})
+      })
+    }
+
     connect () {
+      this.sendToAmqp('Hello World !')
       this.$socket.emit('login', this.login)
     }
   }
