@@ -16,7 +16,7 @@
             <a href="#">Avez vous oublié votre mot de passe?</a>
 
             <button type="submit" @click.prevent="connect()"
-                    class="connect"><router-link to="/landing-page">Se connecter</router-link></button>
+                    class="connect"><router-link to="/landing-page">Se connecter</router-link></button> <!-- tag -->
             <p class="authSwitch">Besoin d'un compte ? <router-link to="/register">S'inscrire</router-link></p>
             <div class="message" v-if="login.error">
               {{ login.error }}
@@ -72,19 +72,7 @@
       }
     }
 
-    sendToAmqp (content) {
-      const open = amqp.connect('amqp://guest:guest@172.18.0.5:5672') // IP RabbitMQ
-      open.then((conn) => {
-        return conn.createChannel()
-      }).then(async (ch) => {
-        const q = 'hello'
-        await ch.assertQueue(q, {durable: true})
-        await ch.sendToQueue(q, Buffer.from(JSON.stringify(content)), {persistent: true})
-      })
-    }
-
     connect () {
-      this.sendToAmqp('Hello World !')
       this.$socket.emit('login', this.login)
     }
   }

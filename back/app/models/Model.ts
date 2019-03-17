@@ -18,6 +18,11 @@ class Model {
     this.db = db
     this.table = table
   }
+
+  async insert (data: object): Promise<any>
+  {
+    return this.db.r.table(this.table).insert(data).run(this.db.conn)
+  }
 }
 
 export { IDB, Model }

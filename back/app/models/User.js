@@ -24,11 +24,6 @@ class User extends Model_1.Model {
         super(db, 'users');
         this.data = data;
     }
-    insert(data) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return this.db.r.table(this.table).insert(data).run(this.db.conn);
-        });
-    }
     filter(data) {
         return __awaiter(this, void 0, void 0, function* () {
             return this.db.r.table(this.table).filter(data).run(this.db.conn);
@@ -60,6 +55,13 @@ class User extends Model_1.Model {
     get(data) {
         return __awaiter(this, void 0, void 0, function* () {
             return this.db.r.table(this.table).get(data).run(this.db.conn);
+        });
+    }
+    getAllChannels(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.db.r.table('conversation_user').eqJoin('convId', this.db.r.table('conversations'))
+                .filter({ left: { userId: id } })
+                .run(this.db.conn);
         });
     }
 }

@@ -23,12 +23,6 @@ export default new Router({
         {
             path: '/landing-page',
             component: () => import('./components/LandingPage.vue'),
-            redirect: (to) => {
-                if (to.path === '/landing-page') {
-                    return '/landing-page/tchat/123-private';
-                }
-                return to.path;
-            },
             children: [
                 {
                     path: 'library',
@@ -36,7 +30,7 @@ export default new Router({
                     component: () => import('./components/Contents/Grids/Library.vue'),
                 },
                 {
-                    path: 'tchat/:convId-:type',
+                    path: 'tchat/:convId',
                     name: 'tchat',
                     component: () => import('./components/Tchat/Tchat.vue'),
                 },

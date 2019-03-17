@@ -1,5 +1,4 @@
-import { AmqpHelper } from '../../../scripts/class/AmqpHelper'
-
+import { Amqp } from '../../../scripts/class/Amqp'
 import { Socket } from '../../../scripts/class/Socket'
 import { Message } from '../../models/Message'
 import { User } from '../../models/User'
@@ -10,7 +9,7 @@ const tchat = (instance: Socket, socket: any ) => {
   const user = new User(DB)
 
   socket.on('SEND::MESSAGE', async data => {
-    const convId = parseInt(data.route.convId, 10)
+    const convId = data.route.convId
     const content = data.content
     const userId = data.author.id
     const pseudo = data.author.pseudo
@@ -30,11 +29,14 @@ const tchat = (instance: Socket, socket: any ) => {
     const msg = await message.get(cursor.generated_keys[0])
     msg.user = await user.get(msg.userId)
 
-    socket.emit('addMessage', msg)
+    const instanceAmqp = new Amqp('guest', 'guest', '172.18.0.4', '5672', '')
+    const exchange = Amqp.initExchange('group', 'topic', { durable: false })
+
+    await instanceAmqp.send(exchange, convId, msg)
   })
 
   socket.on('GET::MESSAGES', async convId => {
-    const cursor = await message.ascOrder('postedAt', {convId: parseInt(convId)})
+    const cursor = await message.ascOrder('postedAt', { convId: parseInt(convId) })
     const messages = await cursor.toArray()
 
     for (let message of messages) {
@@ -45,7 +47,10 @@ const tchat = (instance: Socket, socket: any ) => {
   })
 
   socket.on('GET::CHANNELS', async userId => {
-    // console.log(userId)
+    const cursor = await user.getAllChannels(userId)
+    const channels = await cursor.toArray()
+
+    socket.emit('updateChannel', channels)
   })
 }
 

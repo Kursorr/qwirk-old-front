@@ -1,6 +1,6 @@
 import * as express from 'express'
 
-import { elasticSearchHelper } from '../../scripts/class/ElasticSearchHelper'
+import { elasticSearchHelper } from '../../scripts/class/ElasticSearch'
 
 const search = express.Router()
 

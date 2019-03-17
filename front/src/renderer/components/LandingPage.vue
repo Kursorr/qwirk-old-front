@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts">
-  import { Component, Vue } from 'vue-property-decorator'
+  import { Component, Vue, Watch } from 'vue-property-decorator'
   import * as Vuex from 'vuex'
 
   import Auth from './Modals/Auth.vue'
@@ -19,11 +19,25 @@
       Auth
     },
     computed: {
-      ...Vuex.mapGetters({
-        user: 'user'
-      })
+      ...Vuex.mapGetters([
+        'user',
+        'current'
+      ])
+    },
+    methods: {
+      ...Vuex.mapActions([
+        'setMessage'
+      ])
     }
   })
   export default class LandingPage extends Vue {
+    @Watch('current')
+    onCurrentChanged(val: any, oldVal: any) {
+      console.log(val)
+      if (val !== null) {
+        this.setMessage([])
+        this.$socket.emit('GET::MESSAGES', val.id)
+      }
+    }
   }
 </script>

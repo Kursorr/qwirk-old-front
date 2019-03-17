@@ -6,17 +6,14 @@ import * as r from 'rethinkdb'
 import { User } from '../../models/User'
 import { Socket } from '../../../scripts/class/Socket'
 import { Password } from '../../../scripts/class/Hash'
-import { elasticSearchHelper } from '../../../scripts/class/ElasticSearchHelper'
+import { ElasticSearch } from '../../../scripts/class/ElasticSearch'
 import { Message } from '../../models/Message'
-import { AmqpHelper } from '../../../scripts/class/AmqpHelper'
 
 const login = (instance: Socket, socket: any ) => {
 	socket.on('login', async (data) => {
 		const { DB, Secret } = instance
 		const findUser = new User(DB)
     const findMessages = new Message(DB)
-
-    AmqpHelper.getFromAmqp('hello')
 
 		const { email, password } = data
 
@@ -81,7 +78,7 @@ const login = (instance: Socket, socket: any ) => {
       })
     }
 
-    const health = await new elasticSearchHelper()
+    const health = await new ElasticSearch()
     await health.connect()
     await health.readAndInsertData(messagesToInsert)
 

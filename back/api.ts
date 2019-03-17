@@ -12,6 +12,7 @@ import * as log4js from 'log4js'
 import { Socket } from './scripts/class/Socket'
 import { base } from './app/sockets/base'
 import { database, JWT } from './config/config'
+import { Amqp } from './scripts/class/Amqp';
 
 // Routes
 import confirmAccount from './app/routes/confirm'

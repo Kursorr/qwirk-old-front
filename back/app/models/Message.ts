@@ -26,11 +26,6 @@ class Message extends Model {
     return this.db.r.table(this.table).orderBy(this.db.r.asc(order)).filter(data).run(this.db.conn)
   }
 
-  async insert (data: object): Promise<any>
-  {
-    return this.db.r.table(this.table).insert(data).run(this.db.conn)
-  }
-
   async filter (data: object): Promise<any>
   {
     return this.db.r.table(this.table).filter(data).run(this.db.conn)

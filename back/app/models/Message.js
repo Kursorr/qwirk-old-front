@@ -22,11 +22,6 @@ class Message extends Model_1.Model {
             return this.db.r.table(this.table).orderBy(this.db.r.asc(order)).filter(data).run(this.db.conn);
         });
     }
-    insert(data) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return this.db.r.table(this.table).insert(data).run(this.db.conn);
-        });
-    }
     filter(data) {
         return __awaiter(this, void 0, void 0, function* () {
             return this.db.r.table(this.table).filter(data).run(this.db.conn);

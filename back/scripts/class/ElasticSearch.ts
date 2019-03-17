@@ -8,11 +8,11 @@ interface Data {
   client: elasticsearch.Client
 }
 
-class elasticSearchHelper {
+class ElasticSearch {
   private readonly config: Data = {
     index: 'data',
     type: 'message',
-    client: new elasticsearch.Client({ host: { host: '172.18.0.3', port: 9200} }) // IP Elastic
+    client: new elasticsearch.Client({ host: { host: '172.18.0.5', port: 9200} }) // IP Elastic
   }
 
   constructor () {}
@@ -95,4 +95,4 @@ class elasticSearchHelper {
   }
 }
 
-export { elasticSearchHelper }
+export { ElasticSearch }

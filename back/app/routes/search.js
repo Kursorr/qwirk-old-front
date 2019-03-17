@@ -9,10 +9,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
-const ElasticSearchHelper_1 = require("../../scripts/class/ElasticSearchHelper");
+const ElasticSearch_1 = require("../../scripts/class/ElasticSearch");
 const search = express.Router();
 search.get('/', (req, res) => __awaiter(this, void 0, void 0, function* () {
-    const search = new ElasticSearchHelper_1.elasticSearchHelper();
+    const search = new ElasticSearch_1.elasticSearchHelper();
     const result = yield search.getText(req.query.term, req.query.offset);
     // console.log(req.query)
     res.status(200).json({

@@ -5,14 +5,16 @@
                     @close="setModal('newServeur', false)"></new-or-join-server>
     </transition>
 
-    <div class="friendsOnline">7 en ligne</div>
+    <div class="friendsOnline">7 en ligne {{current}}</div>
     <div class="separator"></div>
     <div class="servers">
       <draggable v-model="servers">
         <div class="server" v-for="server in servers">
-          <router-link @click.native="idChan()" :to="{name:server.name, params: { convId: server.convId, type: server.type
-         }}" class="chan set" tag="div">
-            <avatar :url="null" size="medium"></avatar>
+
+          <router-link @click.native="setChannel(server)"
+                       :to="{name: 'tchat', params: { convId: server.id }}"
+                       class="chan set" tag="div">
+            <avatar :url="server.icon" size="medium"></avatar>
           </router-link>
         </div>
       </draggable>
@@ -24,7 +26,7 @@
 </template>
 
 <script lang="ts">
-  import { Component, Vue } from 'vue-property-decorator'
+  import { Component, Vue, Watch } from 'vue-property-decorator'
   const draggable = require('vuedraggable')
   import * as Vuex from 'vuex'
   import store from '../vuex/store'
@@ -41,37 +43,40 @@
     store,
     computed: {
       ...Vuex.mapGetters([
-        'user'
+        'user',
+        'current'
       ])
+    },
+    methods: {
+      ...Vuex.mapActions([
+        'setChannel'
+      ])
+    },
+    sockets: {
+      updateChannel (channels) {
+        this.servers = channels.map((channel) => {
+          return channel.right
+        })
+      }
     }
   })
   export default class ServersBar extends Vue {
-    servers: any = [
-      {name: 'tchat', convId: 456, type: 'server', url: null},
-      {name: 'tchat', convId: 789, type: 'server', url: null}
-    ]
-
-    channel: any = {
-      convId: 0,
-      type: ''
+    @Watch('user')
+    onUserChanged(val: any, oldVal: any) {
+      if (val !== null) {
+        this.$socket.emit('GET::CHANNELS', val.id)
+      }
     }
-    user!: any
 
+    servers: any = []
+    user!: any
     modal: any = {
       newServeur: false
-    }
-
-    idChan () {
-      this.$socket.emit('GET::MESSAGES', this.$route.params.convId)
     }
 
     setModal(modalName: string, value: boolean) {
       this.modal[modalName] = value
       this.$emit('test', this.modal)
-    }
-
-    mounted () {
-      // this.$socket.emit('GET::CHANNELS', this.user.id)
     }
   }
 </script>

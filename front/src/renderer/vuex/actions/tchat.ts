@@ -6,7 +6,6 @@ const twitter = require('showdown-twitter')
 import * as types from '../mutation-types'
 import { IMessage } from '@/types/message.types'
 
-
 export const addMessage = (state: any, messages: Array<[IMessage]>) => {
   messages.forEach((message: any) => {
     const converter = new showdown.Converter({
@@ -48,4 +47,9 @@ export const addMessage = (state: any, messages: Array<[IMessage]>) => {
       postedAt: moment(date[0]).fromNow()
     })
   })
+}
+
+export const setMessage = (state: any, messages: Array<[IMessage]>) => {
+  state.commit(types.CLEAR_MESSAGES)
+  addMessage(state, messages)
 }

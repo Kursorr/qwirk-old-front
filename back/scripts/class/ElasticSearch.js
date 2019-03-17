@@ -9,12 +9,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const elasticsearch = require("elasticsearch");
-class elasticSearchHelper {
+class ElasticSearch {
     constructor() {
         this.config = {
             index: 'data',
             type: 'message',
-            client: new elasticsearch.Client({ host: { host: '172.18.0.3', port: 9200 } }) // IP Elastic
+            client: new elasticsearch.Client({ host: { host: '172.18.0.5', port: 9200 } }) // IP Elastic
         };
     }
     connect() {
@@ -99,4 +99,4 @@ class elasticSearchHelper {
         return this.config.client.search({ index: this.config.index, type: this.config.type, body });
     }
 }
-exports.elasticSearchHelper = elasticSearchHelper;
+exports.ElasticSearch = ElasticSearch;
