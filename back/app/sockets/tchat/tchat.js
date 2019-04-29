@@ -34,7 +34,7 @@ const tchat = (instance, socket) => {
         }
         const msg = yield message.get(cursor.generated_keys[0]);
         msg.user = yield user.get(msg.userId);
-        const instanceAmqp = new Amqp_1.Amqp('guest', 'guest', '172.18.0.4', '5672', '');
+        const instanceAmqp = new Amqp_1.Amqp('guest', 'guest', '172.18.0.5', '5672', '');
         const exchange = Amqp_1.Amqp.initExchange('group', 'topic', { durable: false });
         yield instanceAmqp.send(exchange, convId, msg);
     }));
@@ -42,6 +42,7 @@ const tchat = (instance, socket) => {
         const cursor = yield message.ascOrder('postedAt', { convId: parseInt(convId) });
         const messages = yield cursor.toArray();
         for (let message of messages) {
+            console.log(message);
             message.user = yield user.get(message.userId);
         }
         socket.emit('updateMessage', messages);

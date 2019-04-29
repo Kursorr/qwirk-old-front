@@ -13,9 +13,10 @@ const base = (instance) => {
         login_1.login(instance, socket);
         profile_1.profile(instance, socket);
         tchat_1.tchat(instance, socket);
-        const instanceAmqp = new Amqp_1.Amqp('guest', 'guest', '172.18.0.4', '5672', '');
+        const instanceAmqp = new Amqp_1.Amqp('guest', 'guest', '172.18.0.5', '5672', '');
         const exchange = Amqp_1.Amqp.initExchange('group', 'topic', { durable: false });
         instanceAmqp.get(exchange, '2a81ba12-002a-488b-953d-cce15ebf25a1', (content, msg) => {
+            console.log(msg);
             console.log('1', msg.fields.routingKey);
             socket.emit('addMessage', content);
         });

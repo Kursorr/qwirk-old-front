@@ -29,7 +29,7 @@ const tchat = (instance: Socket, socket: any ) => {
     const msg = await message.get(cursor.generated_keys[0])
     msg.user = await user.get(msg.userId)
 
-    const instanceAmqp = new Amqp('guest', 'guest', '172.18.0.4', '5672', '')
+    const instanceAmqp = new Amqp('guest', 'guest', '172.18.0.5', '5672', '')
     const exchange = Amqp.initExchange('group', 'topic', { durable: false })
 
     await instanceAmqp.send(exchange, convId, msg)
@@ -40,6 +40,7 @@ const tchat = (instance: Socket, socket: any ) => {
     const messages = await cursor.toArray()
 
     for (let message of messages) {
+      console.log(message)
       message.user = await user.get(message.userId)
     }
 
