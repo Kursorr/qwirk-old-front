@@ -1,9 +1,8 @@
-import { Amqp } from '../../../scripts/class/Amqp'
 import { Socket } from '../../../scripts/class/Socket'
 import { Message } from '../../models/Message'
 import { User } from '../../models/User'
 
-const tchat = (instance: Socket, socket: any ) => {
+const tchat = (instance: Socket, socket: any) => {
   const { DB } = instance
   const message = new Message(DB)
   const user = new User(DB)
@@ -28,11 +27,6 @@ const tchat = (instance: Socket, socket: any ) => {
 
     const msg = await message.get(cursor.generated_keys[0])
     msg.user = await user.get(msg.userId)
-
-    const instanceAmqp = new Amqp('guest', 'guest', '172.18.0.5', '5672', '')
-    const exchange = Amqp.initExchange('group', 'topic', { durable: false })
-
-    await instanceAmqp.send(exchange, convId, msg)
   })
 
   socket.on('GET::MESSAGES', async convId => {
@@ -40,7 +34,6 @@ const tchat = (instance: Socket, socket: any ) => {
     const messages = await cursor.toArray()
 
     for (let message of messages) {
-      console.log(message)
       message.user = await user.get(message.userId)
     }
 

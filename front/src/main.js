@@ -10,6 +10,16 @@ import store from '@/renderer/vuex/store';
 import '@/registerServiceWorker';
 Vue.config.productionTip = false;
 axios.defaults.baseURL = 'qwirk.test:4100';
+const Pusher = require('pusher-js');
+Pusher.logToConsole = true;
+const pusher = new Pusher('e0aa787b85b50bfa58eb', {
+    cluster: 'eu',
+    forceTLS: true
+});
+const channel = pusher.subscribe('my-channel');
+channel.bind('my-event', (data) => {
+    console.log(JSON.stringify(data));
+});
 const socketInstance = io('qwirk.test:6100', {
     transports: ['websocket']
 });

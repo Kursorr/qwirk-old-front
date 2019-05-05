@@ -26,6 +26,7 @@
     "node-notifier": "^5.2.1",
     "nodemailer": "^4.4.2",
     "nodemon": "^1.18.3",
+    "pusher": "^2.2.0",
     "rethinkdb": "^2.3.3",
     "socket.io": "^2.0.4",
     "socket.io-redis": "^5.2.0",

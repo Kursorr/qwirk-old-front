@@ -8,7 +8,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const Amqp_1 = require("../../../scripts/class/Amqp");
 const Message_1 = require("../../models/Message");
 const User_1 = require("../../models/User");
 const tchat = (instance, socket) => {
@@ -34,15 +33,11 @@ const tchat = (instance, socket) => {
         }
         const msg = yield message.get(cursor.generated_keys[0]);
         msg.user = yield user.get(msg.userId);
-        const instanceAmqp = new Amqp_1.Amqp('guest', 'guest', '172.18.0.5', '5672', '');
-        const exchange = Amqp_1.Amqp.initExchange('group', 'topic', { durable: false });
-        yield instanceAmqp.send(exchange, convId, msg);
     }));
     socket.on('GET::MESSAGES', (convId) => __awaiter(this, void 0, void 0, function* () {
         const cursor = yield message.ascOrder('postedAt', { convId: parseInt(convId) });
         const messages = yield cursor.toArray();
         for (let message of messages) {
-            console.log(message);
             message.user = yield user.get(message.userId);
         }
         socket.emit('updateMessage', messages);
