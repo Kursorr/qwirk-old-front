@@ -7,21 +7,23 @@
   </form>
 </template>
 
-<script>
-  export default {
-    name: 'Bar',
-    props: ['message'],
-    methods: {
-      dropzoneToggle () {
-        this.$emit('toggledz')
-      },
-      emojiToggle () {
-        this.$emit('togglemoji')
-      },
-      onChange (e) {
-        console.log(e.target)
-        this.$emit('update', e.target.value)
-      }
+<script lang="ts">
+  import { Component, Vue, Prop } from 'vue-property-decorator'
+
+  @Component
+  export default class Bar extends Vue {
+    @Prop() message: string
+
+    dropzoneToggle () {
+      this.$emit('toggledz')
+    }
+
+    emojiToggle () {
+      this.$emit('togglemoji')
+    }
+
+    onChange (e) {
+      this.$emit('update', e.target.value)
     }
   }
 </script>

@@ -3,23 +3,21 @@
   </dropzone>
 </template>
 
-<script>
-  import Dropzone from 'vue2-dropzone'
+<script lang="ts">
+  import { Component, Vue } from 'vue-property-decorator'
+  const Dropzone = require('vue2-dropzone')
   import 'vue2-dropzone/dist/vue2Dropzone.css'
 
-  export default {
-    name: 'MainApp',
+  @Component({
     components: {
       Dropzone
-    },
-    data () {
-      return {
-        dropzoneOptions: {
-          url: 'http://notyet.com/post',
-          thumbnailWidth: 100,
-          maxFilesize: 8
-        }
-      }
+    }
+  })
+  export default class DropZone extends Vue {
+    dropzoneOptions: any = {
+      url: 'http://notyet.com/post',
+      thumbnailWidth: 100,
+      maxFilesize: 8
     }
   }
 </script>

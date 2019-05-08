@@ -9,23 +9,20 @@
   </section>
 </template>
 
-<script>
-  export default {
-    name: 'addFriend',
-    data () {
-      return {
-        idQwirk: ''
-      }
-    },
-    methods: {
-      sendIt () {
-        this.$http.post('/friends', {
-          idQwirk: this.idQwirk
-        }).then((result) => {
-          console.log(result)
-          this.idQwirk = result.data.idQwirk + '-'
-        })
-      }
+<script lang="ts">
+  import { Component, Vue } from 'vue-property-decorator'
+
+  @Component
+  export default class AddFriend extends Vue {
+    idQwirk: string = ''
+
+    sendIt () {
+      this.$http.post('/friends', {
+        idQwirk: this.idQwirk
+      }).then((result) => {
+        console.log(result)
+        this.idQwirk = result.data.idQwirk + '-'
+      })
     }
   }
 </script>

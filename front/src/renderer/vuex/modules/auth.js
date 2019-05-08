@@ -1,16 +1,14 @@
-import * as types from '../mutation-types'
-
+import * as types from '../mutation-types';
 const state = {
-  user: null
-}
-
+    user: null
+};
 const mutations = {
-  [types.UPDATE_USER] (state, user) {
-    state.user = user
-  }
-}
-
+    [types.UPDATE_USER](state, user) {
+        state.user = user;
+    }
+};
 export default {
-  state,
-  mutations
-}
+    state,
+    mutations
+};
+//# sourceMappingURL=auth.js.map

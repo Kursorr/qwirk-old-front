@@ -32,13 +32,13 @@
 
             <li class="param-content">
               <section class="param">
-                <p>Gérer le groupe</p>
+                <p>Gérer le serveur</p>
                 <div class="checkbox-green">
                   <input type="checkbox" value="1" class="checkboxNone" id="manageGroup" name="manageGroup"><label for="manageGroup" class="labelCircle"></label>
                   <div class="checkboxDiv"></div>
                 </div>
               </section>
-              <p class="section-description">Les membres ayant cette permission peuvent changer le nom du groupe.</p>
+              <p class="section-description">Les membres ayant cette permission peuvent changer le nom du serveur.</p>
             </li>
 
             <li class="param-content">
@@ -250,9 +250,3 @@
     </section>
   </section>
 </template>
-
-<script>
-  export default {
-    name: 'Roles'
-  }
-</script>

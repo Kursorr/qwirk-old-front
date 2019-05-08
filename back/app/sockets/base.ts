@@ -1,5 +1,5 @@
 'use strict'
-
+import * as Pusher from 'pusher'
 import { Socket } from '../../scripts/class/Socket'
 import { register } from './auth/register'
 import { profile } from './edit/profile'
@@ -15,6 +15,7 @@ const base = (instance: Socket) => {
     login(instance, socket)
     profile(instance, socket)
     tchat(instance, socket)
+
 
     socket.on('disconnect', () => {
         console.log(`Customer disconnected id: ${socket.id} from port ${process.argv[2]}`)

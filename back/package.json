@@ -11,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "@types/node": "^10.7.1",
-    "argon2": "^0.19.3",
+    "argon2": "^0.22.0",
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
     "elasticsearch": "^15.1.1",
@@ -24,6 +24,7 @@
     "node-notifier": "^5.2.1",
     "nodemailer": "^4.4.2",
     "nodemon": "^1.18.3",
+    "pusher": "^2.2.0",
     "rethinkdb": "^2.3.3",
     "socket.io": "^2.0.4",
     "socket.io-redis": "^5.2.0",

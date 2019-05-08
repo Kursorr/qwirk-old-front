@@ -116,9 +116,3 @@
     </section>
   </section>
 </template>
-
-<script>
-  export default {
-    name: 'ConfCall'
-  }
-</script>
