@@ -2,12 +2,12 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const database = {
     db: 'qwirk',
-    host: 'rethinkdb',
+    host: '172.18.0.3',
     port: 28015
 };
 exports.database = database;
 const redis = {
-    host: 'redis',
+    host: '172.18.0.2',
     port: '6379'
 };
 exports.redis = redis;

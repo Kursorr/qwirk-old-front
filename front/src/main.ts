@@ -13,8 +13,6 @@ import store from '@/renderer/vuex/store'
 import '@/registerServiceWorker'
 
 Vue.config.productionTip = false
-
-
 Pusher.logToConsole = true;
 
 const pusher = new Pusher('e0aa787b85b50bfa58eb', {
@@ -22,14 +20,15 @@ const pusher = new Pusher('e0aa787b85b50bfa58eb', {
   forceTLS: true
 });
 
-const channel = pusher.subscribe('my-channel')
-channel.bind('my-event', (data) => {
-  console.log(JSON.stringify(data))
+const channel = pusher.subscribe('my-channel');
+
+channel.bind('my-event', function(data) {
+  console.log(JSON.stringify(data));
 });
 
-axios.defaults.baseURL = 'qwirk.test:4100'
+axios.defaults.baseURL = 'localhost:4100'
 
-const socketInstance = io('qwirk.test:6100', {
+const socketInstance = io('localhost:6100', {
   transports: ['websocket']
 })
 

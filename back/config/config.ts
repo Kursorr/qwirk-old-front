@@ -2,12 +2,12 @@ import * as indicative from 'indicative'
 
 const database: any = {
   db: 'qwirk',
-	host: 'rethinkdb',
+	host: '172.18.0.3',
 	port: 28015
 }
 
 const redis: any = {
-	host: 'redis',
+	host: '172.18.0.2',
 	port: '6379'
 }
 

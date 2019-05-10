@@ -6,7 +6,7 @@
 <script lang="ts">
   import { Component, Vue } from 'vue-property-decorator'
   const Dropzone = require('vue2-dropzone')
-  import 'vue2-dropzone/dist/vue2Dropzone.css'
+  import 'vue2-dropzone/dist/vue2Dropzone.min.css'
 
   @Component({
     components: {

@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const jwt = require("jsonwebtoken");
+const Pusher = require("pusher");
 // import * as notifier from 'node-notifier'
 // import * as path from 'path'
 const User_1 = require("../../models/User");
@@ -17,6 +18,16 @@ const login = (instance, socket) => {
     socket.on('login', (data) => __awaiter(this, void 0, void 0, function* () {
         const { DB, Secret } = instance;
         const findUser = new User_1.User(DB);
+        const pusher = new Pusher({
+            appId: '775677',
+            key: 'e0aa787b85b50bfa58eb',
+            secret: 'b4f9d925b8463739fbe3',
+            cluster: 'eu',
+            useTLS: true
+        });
+        pusher.trigger('my-channel', 'my-event', {
+            "message": "hello world"
+        });
         const { email, password } = data;
         const cursor = yield findUser.filter({ email });
         const result = yield cursor.toArray();
