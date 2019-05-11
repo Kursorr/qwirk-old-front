@@ -12,7 +12,7 @@ import * as log4js from 'log4js'
 import { Socket } from './scripts/class/Socket'
 import { base } from './app/sockets/base'
 import { database, JWT } from './config/config'
-import { elasticSearchHelper } from "./scripts/class/ElasticSearchHelper"
+import { ElasticSearch } from "./scripts/class/ElasticSearch"
 
 // Routes
 import confirmAccount from './app/routes/confirm'
@@ -57,7 +57,7 @@ const connectDatabase = r.connect(database)
 connectDatabase.then(async conn => {
   log.info(`Connected to : rethinkdb://${database.host}:${database.port}/${DATABASE}`)
 
-  const health = await new elasticSearchHelper().connect()
+  const health = await new ElasticSearch().connect()
   console.info(health)
 
   app.use((req, res, next) => {

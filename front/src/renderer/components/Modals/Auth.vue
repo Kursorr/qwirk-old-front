@@ -16,7 +16,7 @@
             <a href="#">Avez vous oublié votre mot de passe?</a>
 
             <button type="submit" @click.prevent="connect()"
-                    class="connect"><router-link to="/landing-page">Se connecter</router-link></button>
+                    class="connect"><router-link to="/landing-page">Se connecter</router-link></button> <!-- tag -->
             <p class="authSwitch">Besoin d'un compte ? <router-link to="/register">S'inscrire</router-link></p>
             <div class="message" v-if="login.error">
               {{ login.error }}
@@ -32,6 +32,7 @@
   import { Component, Vue } from 'vue-property-decorator'
   import * as Vuex from 'vuex'
   import { ComponentOptions } from 'vue'
+  declare const Buffer
 
   @Component({
     methods: {
@@ -69,6 +70,7 @@
         this.$emit('close')
       }
     }
+
     connect () {
       this.$socket.emit('login', this.login)
     }

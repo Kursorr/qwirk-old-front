@@ -74,23 +74,23 @@
     }
   })
   export default class ServerParams extends Vue {
-    tab: string = 'global-view'
+    private tab: string = 'global-view'
 
-    closeModal (e) {
+    public loseModal (e) {
       if (e.target.classList.contains('modal')) {
         this.$emit('close')
       }
     }
 
-    finish () {
+    public finish () {
       this.$emit('finish')
     }
 
-    cancel () {
+    public cancel () {
       this.$emit('close')
     }
 
-    setTab (tabName) {
+    public setTab (tabName) {
       this.tab = tabName
     }
   }

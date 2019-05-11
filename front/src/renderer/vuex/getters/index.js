@@ -12,4 +12,3 @@ files.keys().forEach((key) => {
     }
 });
 export default getters;
-//# sourceMappingURL=index.js.map

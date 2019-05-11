@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
@@ -8,17 +8,19 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-class Model {
-    get DB() { return this.db; }
-    get Table() { return this.table; }
-    constructor(db, table) {
-        this.db = db;
-        this.table = table;
+const Model_1 = require("./Model");
+class Channel extends Model_1.Model {
+    constructor(db, data = null) {
+        super(db, 'conversations');
+        this.data = null;
+        this.data = data;
     }
-    insert(data) {
+    allMessagesgById(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.db.r.table(this.table).insert(data).run(this.db.conn);
+            return this.db.r.table('messages').eqJoin('userId', this.db.r.table('users'))
+                .filter({ left: { convId: id } })
+                .run(this.db.conn);
         });
     }
 }
-exports.Model = Model;
+exports.Channel = Channel;

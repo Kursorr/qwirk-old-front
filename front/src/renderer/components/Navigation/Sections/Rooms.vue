@@ -40,12 +40,7 @@
     user!: any
 
     idChan () {
-
       this.$socket.emit('GET::MESSAGES', this.$route.params.convId)
-    }
-
-    mounted () {
-      this.$socket.emit('GET::CHANNELS', this.user.id)
     }
   }
 </script>

@@ -36,11 +36,6 @@ class User extends Model {
     this.data = data
   }
 
-	async insert (data: object): Promise<any>
-	{
-	  return this.db.r.table(this.table).insert(data).run(this.db.conn)
-	}
-
   async filter (data: object): Promise<any>
   {
     return this.db.r.table(this.table).filter(data).run(this.db.conn)
@@ -72,6 +67,13 @@ class User extends Model {
   async get (data: object): Promise<any>
   {
     return this.db.r.table(this.table).get(data).run(this.db.conn)
+  }
+
+  async getAllChannels (id: string) : Promise<any>
+  {
+    return this.db.r.table('conversation_user').eqJoin('convId', this.db.r.table('conversations'))
+      .filter({left: {userId: id }})
+      .run(this.db.conn)
   }
 }
 

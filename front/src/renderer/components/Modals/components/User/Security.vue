@@ -115,10 +115,10 @@
 
   @Component
   export default class Security extends Vue {
-    @Prop() value
+    @Prop() private value
     private res: any = JSON.parse(JSON.stringify(this.value))
 
-    changeSecurity () {
+    public changeSecurity () {
       this.$nextTick(function () {
         this.$emit('input', this.res)
       })

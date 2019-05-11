@@ -3,14 +3,12 @@
 import * as jwt from 'jsonwebtoken'
 import * as Pusher from 'pusher'
 
-// import * as notifier from 'node-notifier'
+import * as notifier from 'node-notifier'
 // import * as path from 'path'
 
 import { User } from '../../models/User'
 import { Socket } from '../../../scripts/class/Socket'
 import { Password } from '../../../scripts/class/Hash'
-import { levels } from '../../../config/config'
-import { logger } from '../../../config/logger'
 
 const login = (instance: Socket, socket: any ) => {
 	socket.on('login', async (data) => {
@@ -40,7 +38,6 @@ const login = (instance: Socket, socket: any ) => {
         success: false,
         message: 'Votre email ou votre mot de passe est incorrect.'
 			})
-			// logger.log('')
 
       return false
     }
@@ -64,7 +61,7 @@ const login = (instance: Socket, socket: any ) => {
 			tag: result[0].tag
 		}, Secret, { expiresIn: 60 })
 
-    /* notifier.notify({
+    notifier.notify({
       title: 'Welcome !',
       message: `Hello ${user.pseudo}`,
       // icon: path.join(`${__dirname}/../../../avatars/${user.avatar}`),
@@ -73,7 +70,7 @@ const login = (instance: Socket, socket: any ) => {
     }, (err, data) => {
       console.log('waited')
       console.log(err, data)
-    }) */
+    })
 
 		socket.emit('connection', {
 			success: true,

@@ -10,4 +10,3 @@ describe('HelloWorld.vue', () => {
         expect(wrapper.text()).to.include(msg);
     });
 });
-//# sourceMappingURL=example.spec.js.map

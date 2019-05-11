@@ -8,4 +8,3 @@ files.keys().forEach((key) => {
     modules[name] = files(key).default;
 });
 export default modules;
-//# sourceMappingURL=index.js.map

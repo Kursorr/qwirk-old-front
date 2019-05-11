@@ -69,7 +69,7 @@
     }
   } as ComponentOptions<Register> )
   export default class Register extends Vue {
-    register: any = {
+    private register: any = {
       pseudo: '',
       email: '',
       password: '',
@@ -78,21 +78,21 @@
       error: null
     }
 
-    closeModal(e) {
+    public closeModal(e) {
       if (e.target.classList.contains('modal')) {
         this.$emit('close')
       }
     }
 
-    uploadChange(newImage) {
+    public uploadChange(newImage) {
       this.register.avatar = newImage
     }
 
-    registration() {
+    public registration() {
       this.$socket.emit('register', this.register)
     }
 
-    test() {
+    public test() {
       this.$i18n.locale = 'en'
     }
   }

@@ -40,4 +40,7 @@ export const addMessage = (state, messages) => {
         });
     });
 };
-//# sourceMappingURL=tchat.js.map
+export const setMessage = (state, messages) => {
+    state.commit(types.CLEAR_MESSAGES);
+    addMessage(state, messages);
+};

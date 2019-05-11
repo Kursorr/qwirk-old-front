@@ -10,6 +10,7 @@ const base = (instance: Socket) => {
 
   IO.on('connection', (socket) => {
     console.log(`Customer connected id: ${socket.id} on port ${process.argv[2]}`)
+
     register(instance, socket)
     login(instance, socket)
     profile(instance, socket)

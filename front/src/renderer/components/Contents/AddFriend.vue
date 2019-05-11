@@ -14,9 +14,9 @@
 
   @Component
   export default class AddFriend extends Vue {
-    idQwirk: string = ''
+    private idQwirk: string = ''
 
-    sendIt () {
+    public sendIt () {
       this.$http.post('/friends', {
         idQwirk: this.idQwirk
       }).then((result) => {

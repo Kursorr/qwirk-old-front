@@ -7,8 +7,8 @@
 
   @Component
   export default class Avatar extends Vue {
-    @Prop() url?: string
-    @Prop({ default: 'small' }) size!: string
+    @Prop private url?: string
+    @Prop({ default: 'small' }) private size!: string
 
     get imagePath () {
       if (this.url === null || this.url === undefined) {
@@ -16,7 +16,7 @@
       } else if (this.url.indexOf('data:') !== -1) {
         return this.url
       } else {
-        return 'http://qwirk.test:4100/avatars/' + this.url
+        return 'http://localhost:4100/avatars/' + this.url
       }
     }
 

@@ -139,6 +139,6 @@
     }
   })
   export default class Appearance extends Vue {
-    user: any
+    private user: any
   }
 </script>

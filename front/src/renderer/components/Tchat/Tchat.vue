@@ -69,10 +69,6 @@
       this.message = ''
       e.target.value = ''
 
-      /*this.$nextTick(function () {
-        this.$emit('input', this.res)
-      })*/
-
       setTimeout(() => {
         const tchatRoom = document.getElementById('convers')
         tchatRoom.scrollTop = tchatRoom.scrollHeight

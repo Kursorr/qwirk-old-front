@@ -45,17 +45,17 @@
     }
   })
   export default class NewOrJoinServer extends Vue {
-    modal: any = {
+    private modal: any = {
       serverParams: false
     }
 
-    closeModal (e) {
+    public closeModal (e) {
       if (e.target.classList.contains('modal')) {
         this.$emit('close')
       }
     }
 
-    setModal (modalName: string, value: boolean) {
+    public setModal (modalName: string, value: boolean) {
       this.modal[modalName] = value
     }
   }

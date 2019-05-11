@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const jwt = require("jsonwebtoken");
 const Pusher = require("pusher");
-// import * as notifier from 'node-notifier'
+const notifier = require("node-notifier");
 // import * as path from 'path'
 const User_1 = require("../../models/User");
 const Hash_1 = require("../../../scripts/class/Hash");
@@ -37,7 +37,6 @@ const login = (instance, socket) => {
                 success: false,
                 message: 'Votre email ou votre mot de passe est incorrect.'
             });
-            // logger.log('')
             return false;
         }
         const userID = result[0].id;
@@ -55,16 +54,16 @@ const login = (instance, socket) => {
             id: userID,
             tag: result[0].tag
         }, Secret, { expiresIn: 60 });
-        /* notifier.notify({
-          title: 'Welcome !',
-          message: `Hello ${user.pseudo}`,
-          // icon: path.join(`${__dirname}/../../../avatars/${user.avatar}`),
-          sound: true,
-          wait: true
+        notifier.notify({
+            title: 'Welcome !',
+            message: `Hello ${user.pseudo}`,
+            // icon: path.join(`${__dirname}/../../../avatars/${user.avatar}`),
+            sound: true,
+            wait: true
         }, (err, data) => {
-          console.log('waited')
-          console.log(err, data)
-        }) */
+            console.log('waited');
+            console.log(err, data);
+        });
         socket.emit('connection', {
             success: true,
             message: 'Vous êtes connecté ! Super !',

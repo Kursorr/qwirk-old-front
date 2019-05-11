@@ -176,14 +176,14 @@
     }
   } as ComponentOptions<UserParams>)
   export default class UserParams extends Vue {
-    tab: string = 'account'
-    passChange: boolean = false
-    edit: boolean = false
-    security: any = {
+    private tab: string = 'account'
+    public passChange: boolean = false
+    public edit: boolean = false
+    public security: any = {
       analyse: 'extreme',
       allowPrivateMsg: true
     }
-    profile: any = {
+    private profile: any = {
       pseudo: '',
       email: '',
       password: '',
@@ -192,13 +192,13 @@
       tag: 0,
       error: null
     }
-    user: IUser
+    private user: IUser
 
     authenticateUser (user) {
       this.$store.dispatch('authenticateUser', user)
     }
 
-    disconnect () {
+    public disconnect () {
       this.authenticateUser(null)
       this.finish()
     }
@@ -209,31 +209,31 @@
       }
     }
 
-    editUserProfile () {
+    public editUserProfile () {
       this.profile.tag = this.tag
       this.$socket.emit('profile', this.profile)
       this.profile.newPassword = ''
     }
 
-    closeModal (e) {
+    public closeModal (e) {
       if (e.target.classList.contains('modal')) {
         this.$emit('close')
       }
     }
 
-    finish () {
+    public finish () {
       this.$emit('close')
     }
 
-    setTab (tabName) {
+    public setTab (tabName) {
       this.tab = tabName
     }
 
-    uploadChange (newImage) {
+    public uploadChange (newImage) {
       this.profile.avatar = newImage
     }
 
-    mounted () {
+    private mounted () {
       this.profile.id = this.user.id
       this.profile.pseudo = this.user.pseudo
       this.profile.email = this.user.email

@@ -22,7 +22,7 @@ const pusher = new Pusher('e0aa787b85b50bfa58eb', {
 
 const channel = pusher.subscribe('my-channel');
 
-channel.bind('my-event', function(data) {
+channel.bind('my-event', (data: any) => {
   console.log(JSON.stringify(data));
 });
 

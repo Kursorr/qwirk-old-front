@@ -47,4 +47,3 @@ export default {
     state,
     mutations
 };
-//# sourceMappingURL=tchat.js.map

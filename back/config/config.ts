@@ -6,6 +6,11 @@ const database: any = {
 	port: 28015
 }
 
+const elastic: any = {
+  host: '172.18.0.4',
+  port: 9200
+}
+
 const redis: any = {
 	host: '172.18.0.2',
 	port: '6379'
@@ -37,4 +42,4 @@ const levels: any = {
   silly: 5
 }
 
-export { database, redis, JWT, userRules, personalData, path, levels }
+export { database, elastic, redis, JWT, userRules, personalData, path, levels }

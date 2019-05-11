@@ -6,4 +6,3 @@ export const updateUser = (state, user) => {
     const updatedUser = JSON.parse(JSON.stringify(user));
     state.commit(types.UPDATE_USER, updatedUser);
 };
-//# sourceMappingURL=auth.js.map

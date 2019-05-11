@@ -6,6 +6,11 @@ const database = {
     port: 28015
 };
 exports.database = database;
+const elastic = {
+    host: '172.18.0.4',
+    port: 9200
+};
+exports.elastic = elastic;
 const redis = {
     host: '172.18.0.2',
     port: '6379'

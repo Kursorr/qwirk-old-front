@@ -66,4 +66,3 @@ electron.app.on('activate', () => {
         mainWindow.loadURL(process.env.WEBPACK_DEV_SERVER_URL);
     }
 });
-//# sourceMappingURL=background.js.map

@@ -28,8 +28,8 @@
     }
   } as ComponentOptions<Upload>)
   export default class Upload extends Vue {
-    image?: string = null
-    user: any
+    private image?: string = null
+    private user: any
 
     get userOrImage () {
       if (this.image !== null) {
@@ -38,14 +38,8 @@
       return null
     }
 
-    onFileChange (e: any) {
-      const files = e.target.files || e.dataTransfer.files
-      if (!files.length) return
-      return this.createImage(files[0])
-    }
-
-    createImage (file: Blob) {
-      let reader = new FileReader()
+    private createImage (file: Blob) {
+      const reader = new FileReader()
 
       reader.onload = (e: any) => {
         this.changeImage(e.target.result)
@@ -53,18 +47,21 @@
       reader.readAsDataURL(file)
     }
 
-    changeImage (image: string) {
+    public onFileChange (e: any) {
+      const files = e.target.files || e.dataTransfer.files
+      if (!files.length) { return }
+      return this.createImage(files[0])
+    }
+
+    public changeImage (image: string) {
       this.image = image
       this.$emit('change', this.image)
     }
 
-    mounted () {
+    private mounted () {
       if (this.user) {
         this.image = this.user.avatar
       }
-      /*this.$on('upload-file', () => {
-        this.onFileChange()
-      })*/
     }
   }
 </script>

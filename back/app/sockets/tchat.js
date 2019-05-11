@@ -15,12 +15,16 @@ const tchat = (instance, socket) => {
     const message = new Message_1.Message(DB);
     const user = new User_1.User(DB);
     socket.on('SEND::MESSAGE', (data) => __awaiter(this, void 0, void 0, function* () {
-        const convId = parseInt(data.route.convId, 10);
+        const convId = data.route.convId;
         const content = data.content;
         const userId = data.author.id;
+        const pseudo = data.author.pseudo;
+        const avatar = data.author.avatar;
         const cursor = yield message.insert({
             convId,
             userId,
+            avatar,
+            pseudo,
             content,
             postedAt: new Date()
         });
@@ -29,7 +33,6 @@ const tchat = (instance, socket) => {
         }
         const msg = yield message.get(cursor.generated_keys[0]);
         msg.user = yield user.get(msg.userId);
-        socket.emit('addMessage', msg);
     }));
     socket.on('GET::MESSAGES', (convId) => __awaiter(this, void 0, void 0, function* () {
         const cursor = yield message.ascOrder('postedAt', { convId: parseInt(convId) });
@@ -40,7 +43,9 @@ const tchat = (instance, socket) => {
         socket.emit('updateMessage', messages);
     }));
     socket.on('GET::CHANNELS', (userId) => __awaiter(this, void 0, void 0, function* () {
-        // console.log(userId)
+        const cursor = yield user.getAllChannels(userId);
+        const channels = yield cursor.toArray();
+        socket.emit('updateChannel', channels);
     }));
 };
 exports.tchat = tchat;

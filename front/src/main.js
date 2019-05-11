@@ -16,7 +16,7 @@ const pusher = new Pusher('e0aa787b85b50bfa58eb', {
     forceTLS: true
 });
 const channel = pusher.subscribe('my-channel');
-channel.bind('my-event', function (data) {
+channel.bind('my-event', (data) => {
     console.log(JSON.stringify(data));
 });
 axios.defaults.baseURL = 'localhost:4100';
@@ -50,4 +50,3 @@ new Vue({
     i18n,
     render: (h) => h(App),
 }).$mount('#app');
-//# sourceMappingURL=main.js.map

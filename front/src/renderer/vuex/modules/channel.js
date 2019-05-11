@@ -1,10 +1,10 @@
 import * as types from '../mutation-types';
 const state = {
-    user: null
+    current: null
 };
 const mutations = {
-    [types.UPDATE_USER](state, user) {
-        state.user = user;
+    [types.SET_CHANNEL](state, channel) {
+        state.current = channel;
     }
 };
 export default {
