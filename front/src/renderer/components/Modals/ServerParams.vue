@@ -76,7 +76,7 @@
   export default class ServerParams extends Vue {
     private tab: string = 'global-view'
 
-    public loseModal (e) {
+    public loseModal (e: any) {
       if (e.target.classList.contains('modal')) {
         this.$emit('close')
       }
@@ -90,7 +90,7 @@
       this.$emit('close')
     }
 
-    public setTab (tabName) {
+    public setTab (tabName: string) {
       this.tab = tabName
     }
   }

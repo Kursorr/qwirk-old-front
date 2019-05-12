@@ -56,12 +56,15 @@
       ])
     },
     sockets: {
-      registration (result) {
+      registration (result: any) {
         if (result.success) {
+          // @ts-ignore
           this.register.error = result.message
         } else {
+          // @ts-ignore
           this.register.error = result.message
           setTimeout(() => {
+            // @ts-ignore
             this.register.error = null
           }, 2000)
         }
@@ -78,13 +81,13 @@
       error: null
     }
 
-    public closeModal(e) {
+    public closeModal(e: any) {
       if (e.target.classList.contains('modal')) {
         this.$emit('close')
       }
     }
 
-    public uploadChange(newImage) {
+    public uploadChange(newImage: any) {
       this.register.avatar = newImage
     }
 

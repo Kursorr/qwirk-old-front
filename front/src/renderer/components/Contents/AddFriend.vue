@@ -19,7 +19,7 @@
     public sendIt () {
       this.$http.post('/friends', {
         idQwirk: this.idQwirk
-      }).then((result) => {
+      }).then((result: any) => {
         console.log(result)
         this.idQwirk = result.data.idQwirk + '-'
       })

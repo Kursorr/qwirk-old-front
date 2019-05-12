@@ -11,57 +11,57 @@
 </template>
 
 <script lang="ts">
-  import { Component, Vue } from 'vue-property-decorator'
-  import * as Vuex from 'vuex'
+import { Component, Vue } from 'vue-property-decorator'
+import * as Vuex from 'vuex'
 
-  import Avatar from './Avatar.vue'
-  import { ComponentOptions } from 'vue'
+import Avatar from './Avatar.vue'
+import { ComponentOptions } from 'vue'
 
-  @Component({
-    components: {
-      Avatar
-    },
-    computed: {
-      ...Vuex.mapGetters([
-        'user'
-      ])
+@Component({
+  components: {
+    Avatar
+  },
+  computed: {
+    ...Vuex.mapGetters([
+      'user'
+    ])
+  }
+} as ComponentOptions<Upload>)
+export default class Upload extends Vue {
+
+  get userOrImage () {
+    if (this.image !== null) {
+      return this.image
     }
-  } as ComponentOptions<Upload>)
-  export default class Upload extends Vue {
-    private image?: string = null
-    private user: any
+    return null
+  }
+  private image?: any = null
+  private user: any
 
-    get userOrImage () {
-      if (this.image !== null) {
-        return this.image
-      }
-      return null
+  public onFileChange (e: any) {
+    const files = e.target.files || e.dataTransfer.files
+    if (!files.length) { return }
+    return this.createImage(files[0])
+  }
+
+  public changeImage (image: string) {
+    this.image = image
+    this.$emit('change', this.image)
+  }
+
+  private createImage (file: Blob) {
+    const reader = new FileReader()
+
+    reader.onload = (e: any) => {
+      this.changeImage(e.target.result)
     }
+    reader.readAsDataURL(file)
+  }
 
-    private createImage (file: Blob) {
-      const reader = new FileReader()
-
-      reader.onload = (e: any) => {
-        this.changeImage(e.target.result)
-      }
-      reader.readAsDataURL(file)
-    }
-
-    public onFileChange (e: any) {
-      const files = e.target.files || e.dataTransfer.files
-      if (!files.length) { return }
-      return this.createImage(files[0])
-    }
-
-    public changeImage (image: string) {
-      this.image = image
-      this.$emit('change', this.image)
-    }
-
-    private mounted () {
-      if (this.user) {
-        this.image = this.user.avatar
-      }
+  private mounted () {
+    if (this.user) {
+      this.image = this.user.avatar
     }
   }
+}
 </script>

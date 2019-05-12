@@ -118,127 +118,126 @@
 </template>
 
 <script lang="ts">
-  import { Component, Vue } from 'vue-property-decorator'
-  import * as Vuex from 'vuex'
-  import store from '../../vuex/store'
-  import { IUser } from '@/types/user.types'
+import { Component, Vue } from 'vue-property-decorator'
+import * as Vuex from 'vuex'
+import store from '../../vuex/store'
+import { IUser } from '@/types/user.types'
 
-  import Avatar from '../Contents/components/Avatar.vue'
-  import Upload from '../Contents/components/Upload.vue'
-  import Security from './components/User/Security.vue'
-  import ConfCall from './components/User/ConfCall.vue'
-  import Notifications from './components/User/Notifications.vue'
-  import OptionsTextImage from './components/User/OptionsTextImage.vue'
-  import Appearance from './components/User/Appearance.vue'
-  import Languages from './components/User/Languages.vue'
-  import { ComponentOptions } from 'vue'
+import Avatar from '../Contents/components/Avatar.vue'
+import Upload from '../Contents/components/Upload.vue'
+import Security from './components/User/Security.vue'
+import ConfCall from './components/User/ConfCall.vue'
+import Notifications from './components/User/Notifications.vue'
+import OptionsTextImage from './components/User/OptionsTextImage.vue'
+import Appearance from './components/User/Appearance.vue'
+import Languages from './components/User/Languages.vue'
+import { ComponentOptions } from 'vue'
 
-  @Component({
-    store,
-    components: {
-      Avatar,
-      Upload,
-      Security,
-      ConfCall,
-      Notifications,
-      OptionsTextImage,
-      Appearance,
-      Languages
-    },
-    methods: {
-      ...Vuex.mapActions([
-        'updateUser'
-      ])
-    },
-    computed: {
-      ...Vuex.mapGetters([
-        'user'
-      ]),
-    },
-    sockets: {
-      profile (result) {
-        if (result.success === true) {
-          this.edit = false
-          this.passChange = false
-          if (result.preparedUser.avatar === undefined) {
-            this.profile.avatar = this.user.avatar
-          } else {
-            this.profile.avatar = result.preparedUser.avatar
-          }
-          this.updateUser(this.profile)
+@Component({
+  store,
+  components: {
+    Avatar,
+    Upload,
+    Security,
+    ConfCall,
+    Notifications,
+    OptionsTextImage,
+    Appearance,
+    Languages
+  },
+  methods: {
+    ...Vuex.mapActions([
+      'updateUser'
+    ])
+  },
+  computed: {
+    ...Vuex.mapGetters([
+      'user'
+    ]),
+  },
+  sockets: {
+    profile (result: any) {
+      if (result.success === true) {
+        this.edit = false
+        this.passChange = false
+        if (result.preparedUser.avatar === undefined) {
+          this.profile.avatar = this.user.avatar
         } else {
-          this.profile.error = result.message
-          setTimeout(() => {
-            this.profile.error = null
-          }, 3000)
+          this.profile.avatar = result.preparedUser.avatar
         }
+        this.updateUser(this.profile)
+      } else {
+        this.profile.error = result.message
+        setTimeout(() => {
+          this.profile.error = null
+        }, 3000)
       }
-    }
-  } as ComponentOptions<UserParams>)
-  export default class UserParams extends Vue {
-    private tab: string = 'account'
-    public passChange: boolean = false
-    public edit: boolean = false
-    public security: any = {
-      analyse: 'extreme',
-      allowPrivateMsg: true
-    }
-    private profile: any = {
-      pseudo: '',
-      email: '',
-      password: '',
-      newPassword: '',
-      avatar: null,
-      tag: 0,
-      error: null
-    }
-    private user: IUser
-
-    authenticateUser (user) {
-      this.$store.dispatch('authenticateUser', user)
-    }
-
-    public disconnect () {
-      this.authenticateUser(null)
-      this.finish()
-    }
-
-    get tag () {
-      if (this.user) {
-        return this.user.tag
-      }
-    }
-
-    public editUserProfile () {
-      this.profile.tag = this.tag
-      this.$socket.emit('profile', this.profile)
-      this.profile.newPassword = ''
-    }
-
-    public closeModal (e) {
-      if (e.target.classList.contains('modal')) {
-        this.$emit('close')
-      }
-    }
-
-    public finish () {
-      this.$emit('close')
-    }
-
-    public setTab (tabName) {
-      this.tab = tabName
-    }
-
-    public uploadChange (newImage) {
-      this.profile.avatar = newImage
-    }
-
-    private mounted () {
-      this.profile.id = this.user.id
-      this.profile.pseudo = this.user.pseudo
-      this.profile.email = this.user.email
-      this.profile.avatar = this.user.avatar
-      this.profile.password = 'root'
     }
   }
+} as ComponentOptions<UserParams>)
+export default class UserParams extends Vue {
+  get tag () {
+    if (this.user) {
+      return this.user.tag
+    }
+  }
+  public passChange: boolean = false
+  public edit: boolean = false
+  public security: any = {
+    analyse: 'extreme',
+    allowPrivateMsg: true
+  }
+  private tab: string = 'account'
+  private profile: any = {
+    pseudo: '',
+    email: '',
+    password: '',
+    newPassword: '',
+    avatar: null,
+    tag: 0,
+    error: null
+  }
+  private user?: IUser
+
+  public authenticateUser (user: any) {
+    this.$store.dispatch('authenticateUser', user)
+  }
+
+  public disconnect () {
+    this.authenticateUser(null)
+    this.finish()
+  }
+
+  public editUserProfile () {
+    this.profile.tag = this.tag
+    this.$socket.emit('profile', this.profile)
+    this.profile.newPassword = ''
+  }
+
+  public closeModal (e: any) {
+    if (e.target.classList.contains('modal')) {
+      this.$emit('close')
+    }
+  }
+
+  public finish () {
+    this.$emit('close')
+  }
+
+  public setTab (tabName: any) {
+    this.tab = tabName
+  }
+
+  public uploadChange (newImage: any) {
+    this.profile.avatar = newImage
+  }
+
+  private mounted () {
+    this.profile.id = this.user.id
+    this.profile.pseudo = this.user.pseudo
+    this.profile.email = this.user.email
+    this.profile.avatar = this.user.avatar
+    this.profile.password = 'root'
+  }
+}
 </script>

@@ -118,27 +118,27 @@
 </template>
 
 <script lang="ts">
-  import { Component, Vue } from 'vue-property-decorator'
-  import * as Vuex from 'vuex'
+import { Component, Vue } from 'vue-property-decorator'
+import * as Vuex from 'vuex'
 
-  import Avatar from '../../../Contents/components/Avatar.vue'
+import Avatar from '../../../Contents/components/Avatar.vue'
 
-  @Component({
-    components: {
-      Avatar
-    },
-    computed: {
-      ...Vuex.mapGetters([
-        'user'
-      ]),
-      tag: function () {
-        if (this.user) {
-          return this.user.tag
-        }
+@Component({
+  components: {
+    Avatar
+  },
+  computed: {
+    ...Vuex.mapGetters([
+      'user'
+    ]),
+    tag () {
+      if (this.user) {
+        return this.user.tag
       }
     }
-  })
-  export default class Appearance extends Vue {
-    private user: any
   }
+})
+export default class Appearance extends Vue {
+  private user: any
+}
 </script>

@@ -73,6 +73,8 @@ const profile = (instance: Socket, socket: any) => {
         preparedUser.avatar = result[0].avatar
       }
 
+      console.log(preparedUser)
+
 			const updateUser = await user.update(userID, preparedUser, password)
 
       updateUser && socket.emit('profile', { success: true, preparedUser})

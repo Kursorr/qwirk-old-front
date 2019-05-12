@@ -7,7 +7,7 @@
 
   @Component
   export default class Avatar extends Vue {
-    @Prop private url?: string
+    @Prop() private url?: string
     @Prop({ default: 'small' }) private size!: string
 
     get imagePath () {

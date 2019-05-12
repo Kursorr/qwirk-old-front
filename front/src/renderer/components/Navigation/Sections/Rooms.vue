@@ -20,27 +20,27 @@
 </template>
 
 <script lang="ts">
-  import { Component, Vue } from 'vue-property-decorator'
-  import * as Vuex from 'vuex'
-  import store from '../../../vuex/store'
+import { Component, Vue } from 'vue-property-decorator'
+import * as Vuex from 'vuex'
+import store from '../../../vuex/store'
 
-  @Component({
-    store,
-    computed: {
-      ...Vuex.mapGetters([
-        'user'
-      ])
-    }
-  })
-  export default class Rooms extends Vue {
-    channel: any = {
-      convId: 0,
-      type: ''
-    }
-    user!: any
-
-    idChan () {
-      this.$socket.emit('GET::MESSAGES', this.$route.params.convId)
-    }
+@Component({
+  store,
+  computed: {
+    ...Vuex.mapGetters([
+      'user'
+    ])
   }
+})
+export default class Rooms extends Vue {
+  public channel: any = {
+    convId: 0,
+    type: ''
+  }
+  public user!: any
+
+  public idChan () {
+    this.$socket.emit('GET::MESSAGES', this.$route.params.convId)
+  }
+}
 </script>

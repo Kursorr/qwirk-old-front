@@ -60,75 +60,75 @@
 </template>
 
 <script lang="ts">
-  import { Component, Vue } from 'vue-property-decorator'
-  import * as Vuex from 'vuex'
-  import store from '../../../vuex/store'
+import { Component, Vue } from 'vue-property-decorator'
+import * as Vuex from 'vuex'
+import store from '../../../vuex/store'
 
-  import UserParams from '../../Modals/UserParams.vue'
-  import Avatar from '../../Contents/components/Avatar.vue'
+import UserParams from '../../Modals/UserParams.vue'
+import Avatar from '../../Contents/components/Avatar.vue'
 
-  @Component({
-    store,
-    components: {
-      UserParams,
-      Avatar
-    },
-    computed: {
-      ...Vuex.mapGetters([
-        'user'
-      ])
-    }
-  })
-  export default class Profile extends Vue {
-    changeStatus: boolean = false
-    status: any = {
-      online: true,
-      idle: false,
-      busy: false,
-      invisible: false
-    }
-    modal: any = {
-      accountSettings: false
-    }
-
-    setModal (modalName, value) {
-      this.modal[modalName] = value
-    }
-
-    toggleStatus () {
-      this.changeStatus = !this.changeStatus
-    }
-
-    getOnlineStatus () {
-      this.status.online = true
-      this.status.idle = false
-      this.status.busy = false
-      this.status.invisible = false
-      this.toggleStatus()
-    }
-
-    getIdleStatus () {
-      this.status.idle = true
-      this.status.online = false
-      this.status.busy = false
-      this.status.invisible = false
-      this.toggleStatus()
-    }
-
-    getBusyStatus () {
-      this.status.busy = true
-      this.status.idle = false
-      this.status.online = false
-      this.status.invisible = false
-      this.toggleStatus()
-    }
-
-    getInvisibleStatus () {
-      this.status.invisible = true
-      this.status.idle = false
-      this.status.busy = false
-      this.status.online = false
-      this.toggleStatus()
-    }
+@Component({
+  store,
+  components: {
+    UserParams,
+    Avatar
+  },
+  computed: {
+    ...Vuex.mapGetters([
+      'user'
+    ])
   }
+})
+export default class Profile extends Vue {
+  public changeStatus: boolean = false
+  public status: any = {
+    online: true,
+    idle: false,
+    busy: false,
+    invisible: false
+  }
+  public modal: any = {
+    accountSettings: false
+  }
+
+  public setModal (modalName: any, value: any) {
+    this.modal[modalName] = value
+  }
+
+  public toggleStatus () {
+    this.changeStatus = !this.changeStatus
+  }
+
+  public getOnlineStatus () {
+    this.status.online = true
+    this.status.idle = false
+    this.status.busy = false
+    this.status.invisible = false
+    this.toggleStatus()
+  }
+
+  public getIdleStatus () {
+    this.status.idle = true
+    this.status.online = false
+    this.status.busy = false
+    this.status.invisible = false
+    this.toggleStatus()
+  }
+
+  public getBusyStatus () {
+    this.status.busy = true
+    this.status.idle = false
+    this.status.online = false
+    this.status.invisible = false
+    this.toggleStatus()
+  }
+
+  public getInvisibleStatus () {
+    this.status.invisible = true
+    this.status.idle = false
+    this.status.busy = false
+    this.status.online = false
+    this.toggleStatus()
+  }
+}
 </script>

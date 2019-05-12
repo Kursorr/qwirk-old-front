@@ -32,59 +32,63 @@
 </template>
 
 <script lang="ts">
-  import { Component, Vue, Watch } from 'vue-property-decorator'
-  const draggable: any = require('vuedraggable')
-  import * as Vuex from 'vuex'
-  import store from '../vuex/store'
+import { Component, Vue, Watch } from 'vue-property-decorator'
+const draggable: any = require('vuedraggable')
+import * as Vuex from 'vuex'
+import store from '../vuex/store'
 
-  import Avatar from './Contents/components/Avatar.vue'
-  import NewOrJoinServer from './Modals/NewOrJoinServer.vue'
+import Avatar from './Contents/components/Avatar.vue'
+import NewOrJoinServer from './Modals/NewOrJoinServer.vue'
+import { ComponentOptions } from 'vue'
 
-  @Component({
-    components: {
-      draggable,
-      Avatar,
-      NewOrJoinServer
-    },
-    store,
-    computed: {
-      ...Vuex.mapGetters([
-        'user',
-        'current'
-      ])
-    },
-    methods: {
-      ...Vuex.mapActions([
-        'setChannel'
-      ])
-    },
-    sockets: {
-      updateChannel (channels) {
-        this.servers = channels.map((channel) => {
-          return channel.right
-        })
-      }
-    }
-  })
-  export default class ServersBar extends Vue {
-    @Watch('user')
-    onUserChanged(val: any, oldVal: any) {
-      if (val !== null) {
-        this.$socket.emit('GET::CHANNELS', val.id)
-      }
-    }
-
-    servers: any = []
-    user!: any
-    modal: any = {
-      newServeur: false
-    }
-
-    setModal(modalName: string, value: boolean) {
-      this.modal[modalName] = value
-      this.$emit('test', this.modal)
+@Component({
+  components: {
+    draggable,
+    Avatar,
+    NewOrJoinServer
+  },
+  store,
+  computed: {
+    ...Vuex.mapGetters([
+      'user',
+      'current'
+    ])
+  },
+  methods: {
+    ...Vuex.mapActions([
+      'setChannel'
+    ])
+  },
+  sockets: {
+    updateChannel (channels: any) {
+      this.servers = channels.map((channel: any) => {
+        return channel.right
+      })
     }
   }
+} as ComponentOptions<ServersBar>)
+export default class ServersBar extends Vue {
+  @Watch('user')
+  public onUserChanged(val: any, oldVal: any) {
+    if (val !== null) {
+      this.$socket.emit('GET::CHANNELS', val.id)
+    }
+  }
+
+  servers: any = []
+  private user!: any
+  private modal: any = {
+    newServeur: false
+  }
+
+  public setModal(modalName: string, value: boolean) {
+    this.modal[modalName] = value
+    this.$emit('test', this.modal)
+  }
+
+  beforeMount () {
+  }
+}
 </script>
 
 <style lang="scss">

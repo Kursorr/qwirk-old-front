@@ -8,22 +8,22 @@
 </template>
 
 <script lang="ts">
-  import { Component, Vue, Prop } from 'vue-property-decorator'
+import { Component, Vue, Prop } from 'vue-property-decorator'
 
-  @Component
-  export default class Bar extends Vue {
-    @Prop() message: string
+@Component
+export default class Bar extends Vue {
+  @Prop() public message?: string
 
-    dropzoneToggle () {
-      this.$emit('toggledz')
-    }
-
-    emojiToggle () {
-      this.$emit('togglemoji')
-    }
-
-    onChange (e) {
-      this.$emit('update', e.target.value)
-    }
+  public dropzoneToggle () {
+    this.$emit('toggledz')
   }
+
+  public emojiToggle () {
+    this.$emit('togglemoji')
+  }
+
+  public onChange (e: any) {
+    this.$emit('update', e.target.value)
+  }
+}
 </script>

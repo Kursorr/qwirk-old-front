@@ -17,62 +17,62 @@
 </template>
 
 <script lang="ts">
-  import { Component, Vue } from 'vue-property-decorator'
-  import * as Vuex from 'vuex'
-  import Members from './components/Members.vue'
-  import Bar from './components/Bar.vue'
-  import DropZone from './components/DropZone.vue'
-  import Conversation from './components/Conversation.vue'
-  import EmojiPicker from './components/EmojiPicker.vue'
+import { Component, Vue } from 'vue-property-decorator'
+import * as Vuex from 'vuex'
+import Members from './components/Members.vue'
+import Bar from './components/Bar.vue'
+import DropZone from './components/DropZone.vue'
+import Conversation from './components/Conversation.vue'
+import EmojiPicker from './components/EmojiPicker.vue'
 
-  @Component({
-    components: {
-      Members,
-      Bar,
-      DropZone,
-      Conversation,
-      EmojiPicker // Causes a slowdown
-    },
-    computed: {
-      ...Vuex.mapGetters([
-        'user'
-      ])
-    }
-  })
-  export default class Tchat extends Vue {
-    toggleDropZone: boolean =  false
-    toggleEmoji: boolean =  false
-    message: string =  ''
-    user: any
-
-    append (emoji) {
-      this.message += emoji
-    }
-
-    getCurrentTap (msg) {
-      this.message = msg
-    }
-
-    onSubmit (e) {
-      e.preventDefault()
-
-      if (this.message === '') {
-        return false
-      }
-
-      this.$socket.emit('SEND::MESSAGE', {
-        route: this.$route.params,
-        author: this.user,
-        content: this.message
-      })
-
-      this.message = ''
-      e.target.value = ''
-
-      setTimeout(() => {
-        const tchatRoom = document.getElementById('convers')
-        tchatRoom.scrollTop = tchatRoom.scrollHeight
-      }, 100)
-    }
+@Component({
+  components: {
+    Members,
+    Bar,
+    DropZone,
+    Conversation,
+    EmojiPicker // Causes a slowdown
+  },
+  computed: {
+    ...Vuex.mapGetters([
+      'user'
+    ])
   }
+})
+export default class Tchat extends Vue {
+  public toggleDropZone: boolean =  false
+  public toggleEmoji: boolean =  false
+  public message: string =  ''
+  public user: any
+
+  public append (emoji: any) {
+    this.message += emoji
+  }
+
+  public getCurrentTap (msg: any) {
+    this.message = msg
+  }
+
+  public onSubmit (e: any) {
+    e.preventDefault()
+
+    if (this.message === '') {
+      return false
+    }
+
+    this.$socket.emit('SEND::MESSAGE', {
+      route: this.$route.params,
+      author: this.user,
+      content: this.message
+    })
+
+    this.message = ''
+    e.target.value = ''
+
+    setTimeout(() => {
+      const tchatRoom: any = document.getElementById('convers')
+      tchatRoom.scrollTop = tchatRoom.scrollHeight
+    }, 100)
+  }
+}
 </script>

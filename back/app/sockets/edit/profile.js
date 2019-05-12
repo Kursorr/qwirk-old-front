@@ -68,6 +68,7 @@ const profile = (instance, socket) => {
             else {
                 preparedUser.avatar = result[0].avatar;
             }
+            console.log(preparedUser);
             const updateUser = yield user.update(userID, preparedUser, password);
             updateUser && socket.emit('profile', { success: true, preparedUser });
         }));

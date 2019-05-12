@@ -35,10 +35,10 @@
       Avatar
     },
     sockets: {
-      updateMessage (messages) {
+      updateMessage (messages: string) {
         this.addMessage(messages)
       },
-      addMessage (message) {
+      addMessage (message: any) {
         this.addMessage([message])
       }
     },

@@ -7,7 +7,7 @@ import VueSocketIO from 'vue-socket.io';
 const Pusher = require('pusher-js');
 import App from './renderer/App.vue';
 import router from '@/renderer/router';
-import store from '@/renderer/vuex/store';
+import store from './renderer/vuex/store';
 import '@/registerServiceWorker';
 Vue.config.productionTip = false;
 Pusher.logToConsole = true;

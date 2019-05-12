@@ -29,50 +29,51 @@
 </template>
 
 <script lang="ts">
-  import { Component, Vue } from 'vue-property-decorator'
-  import * as Vuex from 'vuex'
-  import { ComponentOptions } from 'vue'
-  declare const Buffer
+import { Component, Vue } from 'vue-property-decorator'
+import * as Vuex from 'vuex'
+import { ComponentOptions } from 'vue'
+declare const Buffer: any
 
-  @Component({
-    methods: {
-      ...Vuex.mapActions([
-        'authenticateUser'
-      ])
-    },
-    sockets: {
-      connection (result) {
-        if (result.success) {
-          this.authenticateUser(result.user)
-        } else {
-          this.login.error = result.message
-          setTimeout(() => {
-            this.login.error = null
-          }, 2000)
-        }
-      }
-    },
-    computed: {
-      ...Vuex.mapGetters([
-        'user'
-      ])
-    }
-  } as ComponentOptions<Auth> )
-  export default class Auth extends Vue {
-    login: any = {
-      email: 'kiki@kiki.dur',
-      password: 'root',
-      error: null
-    }
-
-    closeModal (e) {
-      if (e.target.classList.contains('modal')) {
-        this.$emit('close')
+@Component({
+  methods: {
+    ...Vuex.mapActions([
+      'authenticateUser'
+    ])
+  },
+  sockets: {
+    connection (result: any) {
+      if (result.success) {
+        this.authenticateUser(result.user)
+      } else {
+        this.login.error = result.message
+        setTimeout(() => {
+          this.login.error = null
+        }, 2000)
       }
     }
+  },
+  computed: {
+    ...Vuex.mapGetters([
+      'user'
+    ])
+  }
+} as ComponentOptions<Auth> )
+export default class Auth extends Vue {
+  public login: any = {
+    email: 'kiki@kiki.dur',
+    password: 'root',
+    error: null
+  }
 
-    connect () {
-      this.$socket.emit('login', this.login)
+  public closeModal (e) {
+    if (e.target.classList.contains('modal')) {
+      this.$emit('close')
     }
   }
+
+  public connect () {
+    console.log('hello world !')
+    this.$socket.emit('login', this.login)
+  }
+}
 </script>

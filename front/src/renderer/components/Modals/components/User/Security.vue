@@ -115,7 +115,7 @@
 
   @Component
   export default class Security extends Vue {
-    @Prop() private value
+    @Prop() private value?: string;
     private res: any = JSON.parse(JSON.stringify(this.value))
 
     public changeSecurity () {

@@ -49,7 +49,7 @@
       serverParams: false
     }
 
-    public closeModal (e) {
+    public closeModal (e: any) {
       if (e.target.classList.contains('modal')) {
         this.$emit('close')
       }
