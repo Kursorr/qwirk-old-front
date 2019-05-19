@@ -23,6 +23,7 @@ axios.defaults.baseURL = 'localhost:4100';
 const socketInstance = io('localhost:6100', {
     transports: ['websocket']
 });
+Vue.prototype.$pusher = pusher;
 Vue.use(require('vue-electron'));
 Vue.use(VueI18n);
 Vue.use(VueSocketIO, socketInstance);

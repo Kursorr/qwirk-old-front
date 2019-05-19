@@ -976,6 +976,7 @@ section.global > section.view > section.table-content > section.table-line > sec
   height: 14px;
   border-radius: 50%;
   background-color: red;
+  border-color: transparent;
 }
 
 section.global > section.view > section.table-content > section.table-line > section.table-line-common {
@@ -1869,10 +1870,11 @@ span.color {
 
 div.status {
   border-radius: 50%;
-  width: 11px;
-  height: 11px;
-  top: 20px;
-  left: 20px;
+  width: 15px;
+  height: 15px;
+  top: 18px;
+  left: 18px;
+  border: solid #1C1E22 2px;
 }
 
 section.actualStatus {

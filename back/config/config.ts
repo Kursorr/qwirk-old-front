@@ -1,13 +1,14 @@
 import * as indicative from 'indicative'
+import * as Pusher from 'pusher'
 
 const database: any = {
   db: 'qwirk',
-	host: '172.18.0.3',
+	host: '172.18.0.4',
 	port: 28015
 }
 
 const elastic: any = {
-  host: '172.18.0.4',
+  host: '172.18.0.3',
   port: 9200
 }
 
@@ -15,6 +16,14 @@ const redis: any = {
 	host: '172.18.0.2',
 	port: '6379'
 }
+
+const pusher = new Pusher({
+  appId: '775677',
+  key: 'e0aa787b85b50bfa58eb',
+  secret: 'b4f9d925b8463739fbe3',
+  cluster: 'eu',
+  useTLS: true
+});
 
 const JWT: string = 'Qw1rkS3rv3r'
 
@@ -42,4 +51,4 @@ const levels: any = {
   silly: 5
 }
 
-export { database, elastic, redis, JWT, userRules, personalData, path, levels }
+export { database, elastic, redis, pusher, JWT, userRules, personalData, path, levels }

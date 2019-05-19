@@ -10,6 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const Message_1 = require("../models/Message");
 const User_1 = require("../models/User");
+const config_1 = require("../../config/config");
 const tchat = (instance, socket) => {
     const { DB } = instance;
     const message = new Message_1.Message(DB);
@@ -32,7 +33,9 @@ const tchat = (instance, socket) => {
             return;
         }
         const msg = yield message.get(cursor.generated_keys[0]);
-        msg.user = yield user.get(msg.userId);
+        config_1.pusher.trigger(`ch-${convId}`, 'receive', {
+            msg
+        });
     }));
     socket.on('GET::MESSAGES', (convId) => __awaiter(this, void 0, void 0, function* () {
         const cursor = yield message.ascOrder('postedAt', { convId: parseInt(convId) });

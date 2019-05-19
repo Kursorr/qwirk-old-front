@@ -1,6 +1,7 @@
 import { Socket } from '../../scripts/class/Socket'
 import { Message } from '../models/Message'
 import { User } from '../models/User'
+import { pusher } from '../../config/config'
 
 const tchat = (instance: Socket, socket: any) => {
   const { DB } = instance
@@ -26,7 +27,10 @@ const tchat = (instance: Socket, socket: any) => {
     if (!cursor) { return }
 
     const msg = await message.get(cursor.generated_keys[0])
-    msg.user = await user.get(msg.userId)
+
+    pusher.trigger(`ch-${convId}`, 'receive', {
+      msg
+    })
   })
 
   socket.on('GET::MESSAGES', async convId => {

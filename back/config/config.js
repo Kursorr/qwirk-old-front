@@ -1,13 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const Pusher = require("pusher");
 const database = {
     db: 'qwirk',
-    host: '172.18.0.3',
+    host: '172.18.0.4',
     port: 28015
 };
 exports.database = database;
 const elastic = {
-    host: '172.18.0.4',
+    host: '172.18.0.3',
     port: 9200
 };
 exports.elastic = elastic;
@@ -16,6 +17,14 @@ const redis = {
     port: '6379'
 };
 exports.redis = redis;
+const pusher = new Pusher({
+    appId: '775677',
+    key: 'e0aa787b85b50bfa58eb',
+    secret: 'b4f9d925b8463739fbe3',
+    cluster: 'eu',
+    useTLS: true
+});
+exports.pusher = pusher;
 const JWT = 'Qw1rkS3rv3r';
 exports.JWT = JWT;
 const userRules = {

@@ -1,8 +1,6 @@
 'use strict'
 
 import * as jwt from 'jsonwebtoken'
-import * as Pusher from 'pusher'
-
 import * as notifier from 'node-notifier'
 // import * as path from 'path'
 
@@ -14,18 +12,6 @@ const login = (instance: Socket, socket: any ) => {
 	socket.on('login', async (data) => {
 		const { DB, Secret } = instance
 		const findUser = new User(DB)
-
-    const pusher = new Pusher({
-      appId: '775677',
-      key: 'e0aa787b85b50bfa58eb',
-      secret: 'b4f9d925b8463739fbe3',
-      cluster: 'eu',
-      useTLS: true
-    });
-
-    pusher.trigger('my-channel', 'my-event', {
-      "message": "hello world"
-    });
 
 		const { email, password } = data
 

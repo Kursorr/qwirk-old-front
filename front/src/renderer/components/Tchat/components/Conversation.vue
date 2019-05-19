@@ -37,9 +37,6 @@
     sockets: {
       updateMessage (messages: string) {
         this.addMessage(messages)
-      },
-      addMessage (message: any) {
-        this.addMessage([message])
       }
     },
     methods: {

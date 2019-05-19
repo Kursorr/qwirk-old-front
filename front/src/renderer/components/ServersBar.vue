@@ -1,11 +1,13 @@
 <template>
   <div id="leftBar">
     <transition name="fade">
-      <new-or-join-server v-if="modal.newServeur"
-                          @close="setModal('newServeur', false)"></new-or-join-server>
+      <new-or-join-server
+        v-if="modal.newServeur"
+        @close="setModal('newServeur', false)">
+      </new-or-join-server>
     </transition>
 
-    <div class="friendsOnline">7 en ligne {{ current }}</div>
+    <div class="friendsOnline">7 en ligne - {{ current }}</div>
     <div class="separator"></div>
     <div class="servers">
       <draggable v-model="servers">
@@ -14,6 +16,7 @@
                        :to="{name: 'tchat', params: { convId: server.id }}"
                        class="chan set" tag="div">
             <avatar :url="server.icon" size="medium" class="avatar-server"></avatar>
+            <div style="color: #FFF;">{{ server.waitMsg }}</div>
           </router-link>
         </div>
       </draggable>
@@ -62,7 +65,9 @@ import { ComponentOptions } from 'vue'
   sockets: {
     updateChannel (channels: any) {
       this.servers = channels.map((channel: any) => {
-        return channel.right
+        const ch = channel.right
+        ch.waitMsg = 0
+        return ch
       })
     }
   }
@@ -84,9 +89,6 @@ export default class ServersBar extends Vue {
   public setModal(modalName: string, value: boolean) {
     this.modal[modalName] = value
     this.$emit('test', this.modal)
-  }
-
-  beforeMount () {
   }
 }
 </script>

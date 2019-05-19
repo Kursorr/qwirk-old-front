@@ -1,7 +1,12 @@
 <template>
   <form>
     <button id="file" type="button" @click="dropzoneToggle"></button>
-    <textarea id="tchat" rows="1" placeholder="Envoyer un message" :value="message" @keypress.enter="onChange"
+    <textarea
+      id="tchat"
+      rows="1"
+      placeholder="Envoyer un message"
+      :value="message"
+      @keypress.enter="onChange"
     ></textarea>
     <button id="emoji" type="button" @click="emojiToggle">😁</button>
   </form>

@@ -72,7 +72,15 @@ export default class Tchat extends Vue {
     setTimeout(() => {
       const tchatRoom: any = document.getElementById('convers')
       tchatRoom.scrollTop = tchatRoom.scrollHeight
-    }, 100)
+    }, 50)
+  }
+
+  mounted() {
+    /*const channel = this.$pusher.subscribe('ch-1')
+
+    channel.bind('my-event', (data: any) => {
+      console.log(JSON.stringify(data))
+    })*/
   }
 }
 </script>

@@ -13,18 +13,18 @@ import store from './renderer/vuex/store'
 import '@/registerServiceWorker'
 
 Vue.config.productionTip = false
-Pusher.logToConsole = true;
+Pusher.logToConsole = true
 
 const pusher = new Pusher('e0aa787b85b50bfa58eb', {
   cluster: 'eu',
   forceTLS: true
-});
+})
 
-const channel = pusher.subscribe('my-channel');
+const channel = pusher.subscribe('my-channel')
 
 channel.bind('my-event', (data: any) => {
-  console.log(JSON.stringify(data));
-});
+  console.log(JSON.stringify(data))
+})
 
 axios.defaults.baseURL = 'localhost:4100'
 
@@ -35,9 +35,12 @@ const socketInstance = io('localhost:6100', {
 declare module 'vue/types/vue' {
   interface Vue {
     $electron: typeof Electron,
-    $socket: typeof Socket
+    $socket: typeof Socket,
+    $pusher: typeof Pusher
   }
 }
+
+Vue.prototype.$pusher = pusher
 
 Vue.use(require('vue-electron'))
 Vue.use(VueI18n)
