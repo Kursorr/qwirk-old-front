@@ -28,6 +28,8 @@ export const addMessage = (state: any, messages: Array<[IMessage]>) => {
 
     let messageContent = converter.makeHtml(message.content)
 
+    console.log(message)
+
     const parser = new DOMParser()
     const doc = parser.parseFromString(messageContent, 'text/html')
     const preCode = doc.querySelectorAll('pre code')
@@ -40,6 +42,8 @@ export const addMessage = (state: any, messages: Array<[IMessage]>) => {
 
     const regex = /^([0-9]{4})-([0-9]{2})-([0-9]{2})/gi
     const date = message.postedAt.match(regex)
+
+
 
     state.commit(types.ADD_MESSAGE, {
       content: messageContent,

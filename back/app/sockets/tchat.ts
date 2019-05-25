@@ -27,8 +27,12 @@ const tchat = (instance: Socket, socket: any) => {
     if (!cursor) { return }
 
     const msg = await message.get(cursor.generated_keys[0])
+    msg.user = await user.get(msg.userId)
 
-    pusher.trigger(`ch-${convId}`, 'receive', {
+    let channelName = `ch-${convId}`
+    channelName = 'ch-08494fe6-0104-4f51-98f6-83d241f5f3bd'
+
+    pusher.trigger(channelName, 'receive', {
       msg
     })
   })

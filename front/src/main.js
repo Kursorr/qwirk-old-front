@@ -10,20 +10,16 @@ import router from '@/renderer/router';
 import store from './renderer/vuex/store';
 import '@/registerServiceWorker';
 Vue.config.productionTip = false;
-Pusher.logToConsole = true;
-const pusher = new Pusher('e0aa787b85b50bfa58eb', {
-    cluster: 'eu',
-    forceTLS: true
-});
-const channel = pusher.subscribe('my-channel');
-channel.bind('my-event', (data) => {
-    console.log(JSON.stringify(data));
-});
+/*
+const channel = Pusher.subscribe('my-channel')
+
+channel.bind('my-event', (data: any) => {
+  console.log(JSON.stringify(data))
+})*/
 axios.defaults.baseURL = 'localhost:4100';
 const socketInstance = io('localhost:6100', {
     transports: ['websocket']
 });
-Vue.prototype.$pusher = pusher;
 Vue.use(require('vue-electron'));
 Vue.use(VueI18n);
 Vue.use(VueSocketIO, socketInstance);

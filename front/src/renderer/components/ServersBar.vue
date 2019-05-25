@@ -43,6 +43,7 @@ import store from '../vuex/store'
 import Avatar from './Contents/components/Avatar.vue'
 import NewOrJoinServer from './Modals/NewOrJoinServer.vue'
 import { ComponentOptions } from 'vue'
+import pusherStore from '../store/PusherStore'
 
 @Component({
   components: {
@@ -59,7 +60,8 @@ import { ComponentOptions } from 'vue'
   },
   methods: {
     ...Vuex.mapActions([
-      'setChannel'
+      'setChannel',
+      'addMessage'
     ])
   },
   sockets: {
@@ -67,6 +69,7 @@ import { ComponentOptions } from 'vue'
       this.servers = channels.map((channel: any) => {
         const ch = channel.right
         ch.waitMsg = 0
+        pusherStore.subscribe(`ch-${ch.id}`, this.processChannel)
         return ch
       })
     }
@@ -89,6 +92,10 @@ export default class ServersBar extends Vue {
   public setModal(modalName: string, value: boolean) {
     this.modal[modalName] = value
     this.$emit('test', this.modal)
+  }
+
+  public processChannel(data) {
+    this.addMessage([data.msg])
   }
 }
 </script>
