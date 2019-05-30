@@ -3,9 +3,10 @@
     <!-- Tous les MP -->
     <section class="room">
       <h2>Messages Privés</h2>
-      <router-link @click.native="idChan()" :to="{name:'tchat', params: { convId: 123, type: 'private' }}"
-                   class="chan set"
-                   tag="section">
+      <router-link
+        @click.native="idChan()" :to="{name:'tchat', params: { convId: 123, type: 'private' }}"
+        class="chan set"
+        tag="section">
         <section>
           <section class="avatar">
             <img src="http://i0.wp.com/marioasselin.com/wp-content/plugins/buddypress/bp-core/images/mystery-man.jpg" alt="avatar">

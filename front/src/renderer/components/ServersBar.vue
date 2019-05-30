@@ -10,9 +10,9 @@
     <div class="friendsOnline">7 en ligne - {{ current }}</div>
     <div class="separator"></div>
     <div class="servers">
-      <draggable v-model="servers">
-        <div class="server" v-for="server in servers">
-          <router-link @click.native="setChannel(server)"
+      <draggable v-model="getServers">
+        <div class="server" v-for="server in getServers">
+          <router-link @click.native="choiceChannel(server)"
                        :to="{name: 'tchat', params: { convId: server.id }}"
                        class="chan set" tag="div">
             <avatar :url="server.icon" size="medium" class="avatar-server"></avatar>
@@ -54,6 +54,7 @@ import pusherStore from '../store/PusherStore'
   store,
   computed: {
     ...Vuex.mapGetters([
+      'getServers',
       'user',
       'current'
     ])
@@ -61,17 +62,19 @@ import pusherStore from '../store/PusherStore'
   methods: {
     ...Vuex.mapActions([
       'setChannel',
-      'addMessage'
+      'addMessage',
+      'setServers',
+      'upWaitMsg'
     ])
   },
   sockets: {
     updateChannel (channels: any) {
-      this.servers = channels.map((channel: any) => {
+      this.setServers(channels.map((channel: any) => {
         const ch = channel.right
         ch.waitMsg = 0
         pusherStore.subscribe(`ch-${ch.id}`, this.processChannel)
         return ch
-      })
+      }))
     }
   }
 } as ComponentOptions<ServersBar>)
@@ -83,7 +86,6 @@ export default class ServersBar extends Vue {
     }
   }
 
-  servers: any = []
   private user!: any
   private modal: any = {
     newServeur: false
@@ -95,8 +97,18 @@ export default class ServersBar extends Vue {
   }
 
   public processChannel(data) {
-    this.addMessage([data.msg])
+    if (this.current.id === data.channelName) {
+      this.addMessage([data.msg])
+    } else {
+      this.upWaitMsg(data.channelName)
+    }
   }
+
+  public choiceChannel(server) {
+    this.setChannel(server)
+    this.$socket.emit('GET::MESSAGES', server.id)
+  }
+
 }
 </script>
 

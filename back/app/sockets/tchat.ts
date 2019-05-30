@@ -30,7 +30,7 @@ const tchat = (instance: Socket, socket: any) => {
     msg.user = await user.get(msg.userId)
 
     let channelName = `ch-${convId}`
-    channelName = 'ch-08494fe6-0104-4f51-98f6-83d241f5f3bd'
+    // channelName = 'ch-08494fe6-0104-4f51-98f6-83d241f5f3bd'
 
     pusher.trigger(channelName, 'receive', {
       msg
@@ -38,7 +38,7 @@ const tchat = (instance: Socket, socket: any) => {
   })
 
   socket.on('GET::MESSAGES', async convId => {
-    const cursor = await message.ascOrder('postedAt', { convId: parseInt(convId) })
+    const cursor = await message.ascOrder('postedAt', { convId: convId })
     const messages = await cursor.toArray()
 
     for (let message of messages) {

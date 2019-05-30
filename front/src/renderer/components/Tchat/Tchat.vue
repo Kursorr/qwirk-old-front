@@ -74,13 +74,5 @@ export default class Tchat extends Vue {
       tchatRoom.scrollTop = tchatRoom.scrollHeight
     }, 50)
   }
-
-  mounted() {
-    /*const channel = this.$pusher.subscribe('ch-1')
-
-    channel.bind('my-event', (data: any) => {
-      console.log(JSON.stringify(data))
-    })*/
-  }
 }
 </script>

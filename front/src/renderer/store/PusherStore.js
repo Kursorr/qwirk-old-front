@@ -15,7 +15,10 @@ class PusherStore {
     subscribe(subscriber, callback) {
         const sub = this.pusher.subscribe(subscriber);
         console.log(sub);
-        sub.bind('receive', callback);
+        sub.bind('receive', (data) => {
+            data.channelName = subscriber.substring(3);
+            callback(data);
+        });
         this.state.subscribers.push(subscriber);
     }
     unsubscribe(subscriber) {

@@ -24,7 +24,6 @@ export const addMessage = (state, messages) => {
             backslashEscapesHTMLTags: true
         });
         let messageContent = converter.makeHtml(message.content);
-        console.log(message);
         const parser = new DOMParser();
         const doc = parser.parseFromString(messageContent, 'text/html');
         const preCode = doc.querySelectorAll('pre code');

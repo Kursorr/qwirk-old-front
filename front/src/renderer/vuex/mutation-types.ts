@@ -9,3 +9,5 @@ export const CLEAR_CHANNELS = 'CLEAR_CHANNELS'
 
 // Channel
 export const SET_CHANNEL = 'SET_CHANNEL'
+export const UP_WAIT_MESSAGE = 'UP_WAIT_MESSAGE'
+export const SET_SERVERS = 'SET_SERVERS'

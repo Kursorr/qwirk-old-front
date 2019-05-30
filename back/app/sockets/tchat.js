@@ -35,13 +35,13 @@ const tchat = (instance, socket) => {
         const msg = yield message.get(cursor.generated_keys[0]);
         msg.user = yield user.get(msg.userId);
         let channelName = `ch-${convId}`;
-        channelName = 'ch-08494fe6-0104-4f51-98f6-83d241f5f3bd';
+        // channelName = 'ch-08494fe6-0104-4f51-98f6-83d241f5f3bd'
         config_1.pusher.trigger(channelName, 'receive', {
             msg
         });
     }));
     socket.on('GET::MESSAGES', (convId) => __awaiter(this, void 0, void 0, function* () {
-        const cursor = yield message.ascOrder('postedAt', { convId: parseInt(convId) });
+        const cursor = yield message.ascOrder('postedAt', { convId: convId });
         const messages = yield cursor.toArray();
         for (let message of messages) {
             message.user = yield user.get(message.userId);
