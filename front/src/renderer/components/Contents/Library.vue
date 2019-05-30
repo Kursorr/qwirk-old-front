@@ -1,7 +1,7 @@
 <template>
   <section class="global">
-    <bar iconName="Amis">
-      <friend-icon/>
+    <bar iconName="Bibliothèque">
+      <library-icon/>
     </bar>
     <router-view></router-view>
   </section>
@@ -10,13 +10,13 @@
 <script lang="ts">
   import { Component, Vue } from 'vue-property-decorator'
   import Bar from './Bar.vue'
-  import FriendIcon from '../Svg/Menu/FriendIcon.vue'
+  import LibraryIcon from '../Svg/Menu/LibraryIcon.vue'
 
   @Component({
     components: {
       Bar,
-      FriendIcon
+      LibraryIcon
     }
   })
-  export default class Friends extends Vue {}
+  export default class Library extends Vue {}
 </script>

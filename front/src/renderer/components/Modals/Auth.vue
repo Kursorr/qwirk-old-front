@@ -10,7 +10,7 @@
             width="309"
             height="155"
             viewBox="0 0 309 155">
-            <moon/>
+            <moon-icon/>
           </icon-base>-->
           <form autocomplete="off">
             <div class="form">
@@ -41,7 +41,7 @@ import * as Vuex from 'vuex'
 import { ComponentOptions } from 'vue'
 
 import IconBase from '../IconBase.vue'
-import Moon from '../Svg/Moon.vue'
+import Moon from '../Svg/MoonIcon.vue'
 declare const Buffer: any
 
 @Component({

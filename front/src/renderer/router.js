@@ -27,7 +27,14 @@ export default new Router({
                 {
                     path: 'library',
                     name: 'library',
-                    component: () => import('./components/Contents/Grids/Library.vue'),
+                    component: () => import('./components/Contents/Library.vue'),
+                    children: [
+                        {
+                            path: '',
+                            name: 'myGames',
+                            component: () => import('./components/Contents/Grids/LibraryGrid.vue'),
+                        }
+                    ]
                 },
                 {
                     path: 'tchat/:convId',

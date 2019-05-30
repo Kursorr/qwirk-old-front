@@ -733,6 +733,21 @@ section.global > section.bar > section.filters {
   flex: 1;
 }
 
+section.filters > div#friendIconBar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 15px;
+
+  svg {
+    color: #FFF;
+  }
+
+  span {
+    margin-left: 15px;
+  }
+}
+
 section.global > section.bar > section.filters > a {
   margin-left: 20px;
   margin-right: 20px;

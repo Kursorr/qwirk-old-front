@@ -1,50 +1,50 @@
 <template>
   <section class="chans">
-
     <router-link :to="{path:'/landing-page/activity'}" class="chan" tag="section">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-        <g fill="none" fill-rule="evenodd">
-          <path fill="currentColor"
-                d="M5.79335761,5 L18.2066424,5 C19.7805584,5 21.0868816,6.21634264 21.1990185,7.78625885 L21.8575059,17.0050826 C21.9307825,18.0309548 21.1585512,18.9219909 20.132679,18.9952675 C20.088523,18.9984215 20.0442685,19 20,19 C18.8245863,19 17.8000084,18.2000338 17.5149287,17.059715 L17,15 L7,15 L6.48507125,17.059715 C6.19999155,18.2000338 5.1754137,19 4,19 C2.97151413,19 2.13776159,18.1662475 2.13776159,17.1377616 C2.13776159,17.0934931 2.1393401,17.0492386 2.1424941,17.0050826 L2.80098151,7.78625885 C2.91311838,6.21634264 4.21944161,5 5.79335761,5 Z M14.5,10 C15.3284271,10 16,9.32842712 16,8.5 C16,7.67157288 15.3284271,7 14.5,7 C13.6715729,7 13,7.67157288 13,8.5 C13,9.32842712 13.6715729,10 14.5,10 Z M18.5,13 C19.3284271,13 20,12.3284271 20,11.5 C20,10.6715729 19.3284271,10 18.5,10 C17.6715729,10 17,10.6715729 17,11.5 C17,12.3284271 17.6715729,13 18.5,13 Z M6,9 L4,9 L4,11 L6,11 L6,13 L8,13 L8,11 L10,11 L10,9 L8,9 L8,7 L6,7 L6,9 Z">
-          </path>
-          <rect width="24" height="24"></rect>
-        </g>
+        <activity-icon />
       </svg>
       <span class="color">Activité</span>
     </router-link>
 
     <router-link :to="{path:'/landing-page/library'}" class="chan" tag="section">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-        <g fill="none" fill-rule="evenodd">
-          <path fill="currentColor"
-                d="M17,13.6 L17.3999992,13.6 C19.0406735,13.6 20.496781,12.8097754 21.4084757,11.5891722 L21.8198761,18.8298199 C21.913864,20.4840062 20.6490733,21.9011814 18.994887,21.9951692 C18.9382174,21.9983891 18.8814679,22 18.8247069,22 L5.1752931,22 C3.51843885,22 2.1752931,20.6568542 2.1752931,19 C2.1752931,18.943239 2.17690401,18.8864895 2.18012387,18.8298199 L2.59152425,11.5891732 C3.503219,12.8097758 4.95932613,13.6 6.6,13.6 L7,13.6 L7,15 L9,15 L9,13.6 L15,13.6 L15,15 L17,15 L17,13.6 Z M7,16 L7,18 L9,18 L9,16 L7,16 Z M15,16 L17,16 L17,18 L15,18 L15,16 Z M15,11.6 L9,11.6 L9,9 L7,9 L7,11.6 L6.6,11.6 C4.94314575,11.6 3.6,10.2568542 3.6,8.6 L3.6,5 C3.6,3.34314575 4.94314575,2 6.6,2 L17.3999992,2 C19.0568535,2 20.3999992,3.34314575 20.3999992,5 L20.3999992,8.6 C20.3999992,10.2568542 19.0568535,11.6 17.3999992,11.6 L17,11.6 L17,9 L15,9 L15,11.6 Z"></path>
-        </g>
+        <library-icon />
       </svg>
       <span class="color">Bibliothèque</span>
     </router-link>
 
     <router-link :to="{path:'/landing-page/shop'}" class="chan" tag="section">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-        <g fill="none" fill-rule="evenodd">
-          <path fill="currentColor"
-                d="M12,13 C10.895,13 10,12.105 10,11 C10,9.895 10.895,9 12,9 C13.105,9 14,9.895 14,11 C14,12.105 13.105,13 12,13 Z M16,18 L18,18 L18,8.74394144 C18.4691684,8.90976867 18.9740469,9 19.5,9 C19.6690045,9 19.8358331,8.99068334 20,8.97253561 L20,18 L22,18 L22,22 L2,22 L2,18 L4,18 L4,8.97253561 C4.16416693,8.99068334 4.33099545,9 4.5,9 C5.02595313,9 5.53083161,8.90976867 6,8.74394144 L6,18 L8,18 L8,16 C8,14.67 10.665,14 12,14 C13.335,14 16,14.67 16,16 L16,18 Z M2,2 L22,2 L22,4.5 C22,5.88071187 20.8807119,7 19.5,7 C18.1192881,7 17,5.88071187 17,4.5 C17,5.88071187 15.8807119,7 14.5,7 C13.1192881,7 12,5.88071187 12,4.5 C12,5.88071187 10.8807119,7 9.5,7 C8.11928813,7 7,5.88071187 7,4.5 C7,5.88071187 5.88071187,7 4.5,7 C3.11928813,7 2,5.88071187 2,4.5 L2,2 Z"></path>
-          <rect width="24" height="24"></rect>
-        </g>
+        <shop-icon />
       </svg>
       <span class="color">Boutique</span>
     </router-link>
 
     <router-link :to="{path:'/landing-page/friends'}" class="chan" tag="section">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-        <g fill="none" fill-rule="evenodd">
-          <path fill="currentColor" fill-rule="nonzero"
-                d="M0.5,0 L0.5,1.5 C0.5,5.65 2.71,9.28 6,11.3 L6,16 L21,16 L21,14 C21,11.34 15.67,10 13,10 C13,10 12.83,10 12.75,10 C8,10 4,6 4,1.5 L4,0 L0.5,0 Z M13,0 C10.790861,0 9,1.790861 9,4 C9,6.209139 10.790861,8 13,8 C15.209139,8 17,6.209139 17,4 C17,1.790861 15.209139,0 13,0 Z"
-                transform="translate(2 4)"></path>
-          <path d="M0,0 L24,0 L24,24 L0,24 L0,0 Z M0,0 L24,0 L24,24 L0,24 L0,0 Z M0,0 L24,0 L24,24 L0,24 L0,0 Z"></path>
-        </g>
+        <friend-icon />
       </svg>
       <span class="color">Amis</span>
     </router-link>
 
   </section>
 </template>
+
+<script lang="ts">
+  import { Component, Vue } from 'vue-property-decorator'
+  import FriendIcon from '../../Svg/Menu/FriendIcon.vue'
+  import ShopIcon from '../../Svg/Menu/ShopIcon.vue'
+  import LibraryIcon from '../../Svg/Menu/LibraryIcon.vue'
+  import ActivityIcon from '../../Svg/Menu/ActivityIcon.vue'
+
+  @Component({
+    components: {
+      FriendIcon,
+      ShopIcon,
+      LibraryIcon,
+      ActivityIcon
+    }
+  })
+  export default class Menu extends Vue {}
+</script>
