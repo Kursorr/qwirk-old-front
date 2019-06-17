@@ -12,7 +12,9 @@
         <div v-if="text === 'Ajouter un ami'">
           <router-link :to="{name: link}" class="filt add">{{ text }}</router-link>
         </div>
-        <router-link :to="{name: link}" class="filt">{{ text }}</router-link>
+        <div v-else>
+          <router-link :to="{name: link}" class="filt">{{ text }}</router-link>
+        </div>
       </div>
     </section>
   </section>

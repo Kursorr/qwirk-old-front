@@ -6,8 +6,8 @@
         addFriend: 'Ajouter un ami',
         allFriend: 'Tous',
         online: 'En ligne',
-        _: 'En attente',
-        _: 'Bloqué'
+        wait: 'En attente',
+        locked: 'Bloqué'
       }">
       <friend-icon/>
     </bar>

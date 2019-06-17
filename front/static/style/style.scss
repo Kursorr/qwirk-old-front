@@ -777,8 +777,6 @@ div.separator {
 section.global > section.bar > section.filters > div > button.filt.add, a.filt.add, a.filt.router-link-exact-active.router-link-active {
   border-radius: 4px;
   background-color: #7289DA;
-  margin-left: 20px;
-  margin-right: 20px;
   padding: 3px 5px;
   font-size: 14px;
   font-style: normal;
@@ -1972,6 +1970,11 @@ section.avatar {
   div.status.invisible {
     background-color: #747f8d;
   }
+}
+
+a.filt {
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 ::-webkit-scrollbar {
