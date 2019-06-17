@@ -7,7 +7,7 @@
       </new-or-join-server>
     </transition>
 
-    <div class="friendsOnline">7 en ligne - {{ current }}</div>
+    <div class="friendsOnline">8 en ligne - {{ current }}</div>
     <div class="separator"></div>
     <div class="servers">
       <draggable v-model="getServers">

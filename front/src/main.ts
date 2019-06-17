@@ -14,13 +14,6 @@ import '@/registerServiceWorker'
 
 Vue.config.productionTip = false
 
-/*
-const channel = Pusher.subscribe('my-channel')
-
-channel.bind('my-event', (data: any) => {
-  console.log(JSON.stringify(data))
-})*/
-
 axios.defaults.baseURL = 'localhost:4100'
 
 const socketInstance = io('localhost:6100', {
