@@ -1,3 +1,5 @@
+@import './variables.scss';
+
 /* Principal Configuration */
 *, *:before, *:after {
   margin: 0;
@@ -8,7 +10,7 @@
 }
 
 a {
-  color: #fff;
+  color: $white;
   cursor: pointer;
 }
 
@@ -47,7 +49,7 @@ section#app {
   /* Top bar functionnalities */
   section.title-bar {
     height: 40px;
-    background-color: #202225;
+    background-color: $black;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -55,7 +57,7 @@ section#app {
 
     button {
       border: none;
-      background: #202225 no-repeat;
+      background: $black no-repeat;
       background-size: cover;
       width: 28px;
       height: 28px;
@@ -108,7 +110,7 @@ a.specialA:hover {
 }
 
 .section-description {
-  color: #72767d;
+  color: $grey;
   font-size: 14px;
   margin-top: 10px;
 }
@@ -116,7 +118,7 @@ a.specialA:hover {
 .checkbox {
   border-radius: 5px;
   background-color: rgba(32, 34, 37, .3);
-  border: 1px solid #202225;
+  border: 1px solid $black;
   padding: 0.8em;
   margin: 1em;
   display: flex;
@@ -133,7 +135,7 @@ a.specialA:hover {
   margin: 1em;
   width: 25px;
   height: 25px;
-  border: 1px solid #72767d;
+  border: 1px solid $grey;
   border-radius: 5px;
   cursor: pointer;
 
@@ -167,7 +169,7 @@ section.modal {
       flex-direction: column;
       width: 210px;
       background-color: #282b30;
-      border-right: solid #1C1E22 1px;
+      border-right: solid $darkblack 1px;
       border-top-left-radius: 4px;
       border-bottom-left-radius: 4px;
 
@@ -183,7 +185,7 @@ section.modal {
         font-size: 12px;
         font-weight: 700;
         margin-left: 14px;
-        color: #72767d;
+        color: $grey;
         text-transform: uppercase;
       }
 
@@ -196,9 +198,9 @@ section.modal {
         font-size: 11px;
         font-weight: 300;
         text-align: center;
-        border-top: solid #1C1E22 1px;
+        border-top: solid $darkblack 1px;
         margin-top: 20px;
-        color: #72767d;
+        color: $grey;
         text-transform: uppercase;
       }
 
@@ -217,7 +219,7 @@ section.modal {
         &:active {
           border-left: 2px solid #7289da;
           padding-left: 28px;
-          background-image: linear-gradient(to right, #282b30 80%, #2e3136);
+          background-image: linear-gradient(to right, #282b30 80%, $darkgrey);
         }
       }
     }
@@ -227,7 +229,7 @@ section.modal {
     }
 
     button.tab.is-active#nitro {
-      color: #FFF;
+      color: $white;
       background: #7289da;
       border-radius: 4px;
     }
@@ -238,7 +240,7 @@ section.modal {
 
       section.settings {
         flex: 1;
-        color: #FFF;
+        color: $white;
         padding: 12px;
         height: 90%;
         overflow: auto;
@@ -266,7 +268,7 @@ section.modal {
         h2 {
           margin-top: 25px;
           margin-bottom: 25px;
-          color: #FFF;
+          color: $white;
           text-transform: uppercase;
           font-size: 18px;
         }
@@ -282,7 +284,7 @@ section.modal {
             margin-bottom: 12px;
 
             &:hover {
-              color: #fff;
+              color: $white;
             }
           }
 
@@ -336,7 +338,7 @@ section.modal {
 
 .auth-logo {
   width: 230px;
-  background-color: #FFF;
+  background-color: $white;
 }
 
 section.modal.auth {
@@ -368,7 +370,7 @@ section.somethinghere {
 section#account {
   section.account-profil {
     background: rgba(32, 34, 37, .3);
-    border: solid #202225 1px;
+    border: solid $black 1px;
     margin-top: 20px;
     margin-bottom: 20px;
     padding: 10px;
@@ -457,7 +459,7 @@ section#vidParams {
         width: 278px;
         border-radius: 5px;
         background-color: rgba(32, 34, 37, .3);
-        border: 1px solid #202225;
+        border: 1px solid $black;
         margin-top: 10px;
         display: flex;
         justify-content: center;
@@ -482,7 +484,7 @@ img#emojiExample {
 section#theme > section#preview {
   height: 175px;
   overflow: hidden;
-  border: 1px solid #202225;
+  border: 1px solid $black;
   margin-top: 20px;
 
   section#innerSpec {
@@ -525,7 +527,7 @@ section.account {
   height: 70px;
   min-height: 70px;
   padding: 0 10px;
-  background-color: #1C1E22;
+  background-color: $darkblack;
   color: #FEFEFE;
 
   section.profil {
@@ -550,7 +552,7 @@ section.account {
     button {
       width: 37px;
       height: 37px;
-      border: solid #1C1E22 1px;
+      border: solid $darkblack 1px;
       background: #2E3136 no-repeat center;
       background-size: 20px;
       opacity: 0.6;
@@ -588,7 +590,7 @@ section.avatar {
 
 section.avatar > div.status {
   position: absolute;
-  background-color: #FFF;
+  background-color: $white;
 }
 
 /* Chans */
@@ -619,7 +621,7 @@ section.chan {
 
   &:hover svg, &:hover span {
     opacity: 1;
-    color: #FFF;
+    color: $white;
   }
 }
 
@@ -641,7 +643,7 @@ section.chan:hover, section.chan:active, section.chan.router-link-active, sectio
 }
 
 .router-link-active span.color, .router-link-active svg {
-  color: #fff;
+  color: $white;
   opacity: 1!important;
 }
 
@@ -696,7 +698,7 @@ section.rooms > section.room > section.chan:hover button.close-chan {
   flex-direction: column;
   height: 100%;
   width: 240px;
-  background: #202225;
+  background: $black;
 }
 
 .container.setting {
@@ -707,7 +709,7 @@ section.rooms > section.room > section.chan:hover button.close-chan {
   flex-direction: column;
   width: 240px;
   flex-grow: 1;
-  background-color: #2e3136;
+  background-color: $darkgrey;
   overflow: auto;
   border-top-left-radius: 5px;
 }
@@ -740,7 +742,7 @@ section.filters > div#friendIconBar {
   margin: 0 15px;
 
   svg {
-    color: #FFF;
+    color: $white;
   }
 
   span {
@@ -757,7 +759,7 @@ section.bar > section.filters > div > a {
   &:hover {
     border-radius: 4px;
     background-color: #292b2f;
-    color:#FFF;
+    color:$white;
   }
 }
 
@@ -781,7 +783,7 @@ section.bar > section.filters > div > button.filt.add, a.filt.add, a.filt.router
   font-size: 14px;
   font-style: normal;
   font-weight: 100;
-  color: #FFF;
+  color: $white;
 }
 
 a.filt.router-link-exact-active.router-link-active {
@@ -824,14 +826,14 @@ section.table-header-col.platform {
 section.global > section.view > section.table-header > section.table-header-col.lastTimegame {
   width: 220px;
   margin-left: 15px;
-  color: #FFF;
+  color: $white;
 }
 
 section.global > section.view > section.table-header > section.table-header-col.name {
   width: 200px;
 }
 
-section.global > section.view > section.table-header > section.table-header-col.status, section.table-header-col.common {
+section.global > section.view > section.table-header > section.table-header-col.serverStatus, section.table-header-col.common {
   width: 200px;
   margin-left: 20px;
 }
@@ -923,7 +925,7 @@ section.global > section.view > section.table-content > section.game > section.t
   display: flex;
   align-items: center;
   width: 289px;
-  color: #FFF;
+  color: $white;
 }
 
 section.global > section.view > section.table-content > section.game > section.table-line > section.table-line-actions {
@@ -1155,7 +1157,7 @@ section.principal > form > section.logo > section.upload > button > div > input 
 }
 
 section.principal > form > section.logo > section.upload > button {
-  color: #fff;
+  color: $white;
   border: solid hsla(0, 0%, 100%, .3) 1px;
   -webkit-transition: color .17s ease, background-color .17s ease, border-color .17s ease;
   transition: color .17s ease, background-color .17s ease, border-color .17s ease;
@@ -1231,7 +1233,7 @@ input[type= 'radio']:checked ~ .checkbox.red {
 
 input[type= 'radio']:checked ~ .checkbox .fake-checkbox {
   border: 1px solid transparent;
-  background-color: #fff;
+  background-color: $white;
 }
 
 input[type= 'radio']:checked ~ .checkbox.blue .fake-checkbox:after {
@@ -1479,7 +1481,7 @@ section#convers {
 section#tchat {
   display: flex;
   width: 100%;
-  color: #FFF;
+  color: $white;
 
   section#cpnts {
     width: 83%;
@@ -1554,7 +1556,7 @@ section#tchat {
   /* Members */
   section.members {
     width: 240px;
-    background-color: #2e3136;
+    background-color: $darkgrey;
     display: flex;
     justify-content: center;
     overflow: auto;
@@ -1598,7 +1600,7 @@ section.opt {
     outline: none;
     border-radius: 3px;
     transition: border .15s ease;
-    color: #fff;
+    color: $white;
     height: 35px;
     font-size: 13px;
     margin-top: 10px;
@@ -1610,7 +1612,7 @@ section.opt {
       outline: none;
       border-radius: 3px;
       -webkit-transition: border .15s ease;
-      color: #fff;
+      color: $white;
     }
   }
 }
@@ -1654,7 +1656,7 @@ div.checkbox-green, div.checkbox-grey {
 div.checkboxDiv {
   width: 100%;
   height: 100%;
-  background: #72767d;
+  background: $grey;
   border-radius: 50px;
   position: relative;
 }
@@ -1674,7 +1676,7 @@ label.labelCircle {
   top: 5px;
   z-index: 1;
   left: 8px;
-  background: #FFF;
+  background: $white;
 }
 
 div.checkbox-green > input[type=checkbox].checkboxNone:checked ~ div.checkboxDiv {
@@ -1718,7 +1720,7 @@ div.slider {
       top: 50%;
       margin-top: -13px;
       border-radius: 3px;
-      background-color: #fff;
+      background-color: $white;
       border: 1px solid #dcddde;
       -webkit-box-shadow: 0 3px 1px 0 rgba(0, 0, 0, .05), 0 2px 2px 0 rgba(0, 0, 0, .1), 0 3px 3px 0 rgba(0, 0, 0, .05);
       box-shadow: 0 3px 1px 0 rgba(0, 0, 0, .05), 0 2px 2px 0 rgba(0, 0, 0, .1), 0 3px 3px 0 rgba(0, 0, 0, .05);
@@ -1731,7 +1733,7 @@ div.slider {
       }
 
       span.bubble {
-        background-color: #72767d;
+        background-color: $grey;
         position: absolute;
         pointer-espanvents: none;
         border-radius: 3px;
@@ -1855,7 +1857,7 @@ button#deleteImg {
   font-size: 14px;
 
   &:hover {
-    color: #72767d;
+    color: $grey;
   }
 }
 
@@ -1874,7 +1876,7 @@ section.global > section.view > section.table-content > section.table-line > sec
 /* Messages */
 
 div.message {
-  color: #fff;
+  color: $white;
   margin-top: 5px;
 }
 
@@ -1901,11 +1903,11 @@ div.status {
   height: 15px;
   top: 18px;
   left: 15px;
-  border: solid #1C1E22 2px;
+  border: solid $darkblack 2px;
 }
 
 div.status.inside {
-  border: solid #2e3136 2px;
+  border: solid $darkgrey 2px;
 }
 
 section.actualStatus {
@@ -1938,7 +1940,7 @@ section.actualStatus {
   }
 
   &:hover > div.info > h4 {
-    color: #FFF;
+    color: $white;
   }
 }
 

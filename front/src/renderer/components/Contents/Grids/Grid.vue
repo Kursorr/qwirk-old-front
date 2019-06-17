@@ -3,7 +3,7 @@
     <section class="table-header">
       <section class="table-header-col name">Nom</section>
       <div class="separator"></div>
-      <section class="table-header-col status">Status</section>
+      <section class="table-header-col serverStatus">Status</section>
       <div class="separator"></div>
       <section class="table-header-col common">Groupe en commun</section>
       <div class="separator"></div>

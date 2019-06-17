@@ -76,7 +76,7 @@
   export default class ServerParams extends Vue {
     private tab: string = 'global-view'
 
-    public loseModal (e: any) {
+    public closeModal (e: any) {
       if (e.target.classList.contains('modal')) {
         this.$emit('close')
       }
