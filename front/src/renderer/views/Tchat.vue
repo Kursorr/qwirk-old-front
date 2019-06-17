@@ -1,16 +1,25 @@
 <template>
   <section id="tchat">
     <section id="cpnts">
+      <bar
+        :filters="false"
+        :separator="false">
+        <icon-base
+          width="24"
+          height="24"
+          viewBox="0 0 24 24">
+          <arobase-icon />
+        </icon-base>
+      </bar>
       <drop-zone v-if="toggleDropZone" />
       <conversation />
       <emoji-picker v-if="toggleEmoji" @emoji="append" />
-      <bar
+      <input-bar
         @toggledz="toggleDropZone = !toggleDropZone"
         @togglemoji="toggleEmoji = !toggleEmoji"
         :value="message"
         @update="getCurrentTap"
-        @keypress.enter.native="onSubmit"
-      />
+        @keypress.enter.native="onSubmit"/>
     </section>
     <members></members>
   </section>
@@ -19,16 +28,22 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import * as Vuex from 'vuex'
+import IconBase from '../components/IconBase.vue'
+import ArobaseIcon from '../components/Svg/ArobaseIcon.vue'
+import Bar from '../components/Contents/Bar.vue'
 import Members from '../components/Tchat/Members.vue'
-import Bar from '../components/Tchat/Bar.vue'
+import InputBar from '../components/Tchat/InputBar.vue'
 import DropZone from '../components/Tchat/DropZone.vue'
 import Conversation from '../components/Tchat/Conversation.vue'
 import EmojiPicker from '../components/Tchat/EmojiPicker.vue'
 
 @Component({
   components: {
-    Members,
+    IconBase,
+    ArobaseIcon,
     Bar,
+    Members,
+    InputBar,
     DropZone,
     Conversation,
     EmojiPicker // Causes a slowdown
@@ -76,3 +91,6 @@ export default class Tchat extends Vue {
   }
 }
 </script>
+
+<style>
+</style>

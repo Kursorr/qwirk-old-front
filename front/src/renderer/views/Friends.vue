@@ -2,6 +2,8 @@
   <section class="global">
     <bar
       iconName="Amis"
+      :filters="true"
+      :separator="true"
       :links="{
         addFriend: 'Ajouter un ami',
         allFriend: 'Tous',

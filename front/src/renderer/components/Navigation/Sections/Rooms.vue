@@ -10,9 +10,9 @@
         <section>
           <section class="avatar">
             <img src="http://i0.wp.com/marioasselin.com/wp-content/plugins/buddypress/bp-core/images/mystery-man.jpg" alt="avatar">
-            <div class="status"></div>
+            <div class="status inside"></div>
           </section>
-          <span class="color">Purexo</span>
+          <span class="color">Quenti77</span>
         </section>
         <button class="close-chan"></button>
       </router-link>

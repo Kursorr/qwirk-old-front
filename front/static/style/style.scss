@@ -562,7 +562,7 @@ section.account {
       }
     }
 
-    button.mute     {  background-image: url('../../src/renderer/assets/webrtc/mute.svg');     }
+    button.mute     {  background-image: url('../../src/renderer/assets/webrtc/mute.svg');     margin-top: 0;    }
     button.headset  {  background-image: url('../../src/renderer/assets/webrtc/headset.svg');  }
     button.settings {  background-image: url('../../src/renderer/assets/webrtc/settings.svg'); }
   }
@@ -718,14 +718,14 @@ section.global {
   width: 100%;
 }
 
-section.global > section.bar {
+section.bar {
   height: 57px;
   border-bottom: 1px solid #282b30;
   display: flex;
   align-items: center;
 }
 
-section.global > section.bar > section.filters {
+section.bar > section.filters {
   display: flex;
   font-size: 14px;
   font-weight: 500;
@@ -748,7 +748,7 @@ section.filters > div#friendIconBar {
   }
 }
 
-section.global > section.bar > section.filters > div > a {
+section.bar > section.filters > div > a {
   margin-left: 20px;
   margin-right: 20px;
   padding: 3px 5px;
@@ -761,7 +761,7 @@ section.global > section.bar > section.filters > div > a {
   }
 }
 
-section.global > section.bar > section.filters > div {
+section.bar > section.filters > div {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -774,7 +774,7 @@ div.separator {
   flex-shrink: 0;
 }
 
-section.global > section.bar > section.filters > div > button.filt.add, a.filt.add, a.filt.router-link-exact-active.router-link-active {
+section.bar > section.filters > div > button.filt.add, a.filt.add, a.filt.router-link-exact-active.router-link-active {
   border-radius: 4px;
   background-color: #7289DA;
   padding: 3px 5px;
@@ -789,7 +789,7 @@ a.filt.router-link-exact-active.router-link-active {
   color: #FFF!important;
 }
 
-section.global > section.bar > section.filters > div > button.filt.add:hover, a.filt.add:hover {
+section.bar > section.filters > div > button.filt.add:hover, a.filt.add:hover {
   border-radius: 4px;
   background-color: #697ec4;
 }
@@ -1900,8 +1900,12 @@ div.status {
   width: 15px;
   height: 15px;
   top: 18px;
-  left: 18px;
+  left: 15px;
   border: solid #1C1E22 2px;
+}
+
+div.status.inside {
+  border: solid #2e3136 2px;
 }
 
 section.actualStatus {

@@ -2,6 +2,8 @@
   <section class="global">
     <bar
       iconName="Bibliothèque"
+      :filters="true"
+      :separator="true"
       :links="{
         myGames: 'My Games',
         gift: 'Gift Inventory'
