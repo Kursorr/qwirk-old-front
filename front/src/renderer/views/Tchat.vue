@@ -19,11 +19,11 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import * as Vuex from 'vuex'
-import Members from './components/Members.vue'
-import Bar from './components/Bar.vue'
-import DropZone from './components/DropZone.vue'
-import Conversation from './components/Conversation.vue'
-import EmojiPicker from './components/EmojiPicker.vue'
+import Members from '../components/Tchat/Members.vue'
+import Bar from '../components/Tchat/Bar.vue'
+import DropZone from '../components/Tchat/DropZone.vue'
+import Conversation from '../components/Tchat/Conversation.vue'
+import EmojiPicker from '../components/Tchat/EmojiPicker.vue'
 
 @Component({
   components: {

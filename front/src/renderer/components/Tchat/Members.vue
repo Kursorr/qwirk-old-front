@@ -15,8 +15,8 @@
 </template>
 
 <script>
-  import { Component, Vue } from 'vue-property-decorator'
-  import Avatar from '../../Contents/components/Avatar.vue'
+  import { Component, Vue } from 'vue-property-decorator/lib/vue-property-decorator'
+  import Avatar from '../Contents/components/Avatar.vue'
 
   @Component({
     components: {

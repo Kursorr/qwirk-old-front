@@ -748,10 +748,23 @@ section.filters > div#friendIconBar {
   }
 }
 
-section.global > section.bar > section.filters > a {
+section.global > section.bar > section.filters > div > a {
   margin-left: 20px;
   margin-right: 20px;
   padding: 3px 5px;
+  color: #B9BBBE;
+
+  &:hover {
+    border-radius: 4px;
+    background-color: #292b2f;
+    color:#FFF;
+  }
+}
+
+section.global > section.bar > section.filters > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 div.separator {
@@ -761,23 +774,24 @@ div.separator {
   flex-shrink: 0;
 }
 
-section.global > section.bar > section.filters > button.filt.add, a.filt.add, a.filt.router-link-exact-active.router-link-active {
+section.global > section.bar > section.filters > div > button.filt.add, a.filt.add, a.filt.router-link-exact-active.router-link-active {
   border-radius: 4px;
-  background-color: #7289da;
+  background-color: #7289DA;
   margin-left: 20px;
   margin-right: 20px;
   padding: 3px 5px;
   font-size: 14px;
   font-style: normal;
   font-weight: 100;
+  color: #FFF;
 }
 
 a.filt.router-link-exact-active.router-link-active {
-  background-color: #fff;
-  color: #36393E;
+  background-color: #40444b;
+  color: #FFF!important;
 }
 
-section.global > section.bar > section.filters > button.filt.add:hover, a.filt.add:hover {
+section.global > section.bar > section.filters > div > button.filt.add:hover, a.filt.add:hover {
   border-radius: 4px;
   background-color: #697ec4;
 }
@@ -1868,7 +1882,7 @@ div.message {
 
 span.color {
   font-size: 14px;
-  color: grey;
+  color: #B9BBBE;
 }
 
 /* Status */

@@ -10,8 +10,8 @@
   import { Component, Vue } from 'vue-property-decorator'
   import * as Vuex from 'vuex'
 
-  import Auth from './Modals/Auth.vue'
-  import NavigationBar from './Navigation/NavigationBar.vue'
+  import Auth from './Auth.vue'
+  import NavigationBar from '../components/Navigation/NavigationBar.vue'
 
   @Component({
     components: {

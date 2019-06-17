@@ -8,13 +8,12 @@
         <span class="color bar">{{ iconName }}</span>
       </div>
       <div class="separator"></div>
-      <router-link :to="{name: 'addFriend'}" class="filt add">Ajouter un ami</router-link>
-      <div class="separator"></div>
-      <router-link :to="{name: 'allFriend'}" class="filt">Tous</router-link>
-      <router-link :to="{name: 'online'}" class="filt">En ligne</router-link>
-      <a href="#" class="filt">En attente</a>
-      <div class="separator"></div>
-      <a href="#" class="filt">Bloqué</a>
+      <div v-for="(text, link) in links">
+        <div v-if="text === 'Ajouter un ami'">
+          <router-link :to="{name: link}" class="filt add">{{ text }}</router-link>
+        </div>
+        <router-link :to="{name: link}" class="filt">{{ text }}</router-link>
+      </div>
     </section>
   </section>
 </template>
@@ -23,6 +22,7 @@
   import { Component, Prop, Vue } from 'vue-property-decorator'
   @Component
   export default class Bar extends Vue {
-    @Prop() iconName: string;
+    @Prop() iconName: string
+    @Prop() links: any
   }
 </script>

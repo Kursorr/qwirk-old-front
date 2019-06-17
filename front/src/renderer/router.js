@@ -8,26 +8,26 @@ export default new Router({
         {
             path: '/splash-screen',
             name: 'splash-screen',
-            component: () => import('./components/SplashScreen.vue')
+            component: () => import('./views/SplashScreen.vue')
         },
         {
             path: '/',
             name: 'auth',
-            component: () => import('./components/Modals/Auth.vue')
+            component: () => import('./views/Auth.vue')
         },
         {
             path: '/register',
             name: 'register',
-            component: () => import('./components/Modals/Register.vue')
+            component: () => import('./views/Register.vue')
         },
         {
             path: '/landing-page',
-            component: () => import('./components/LandingPage.vue'),
+            component: () => import('./views/LandingPage.vue'),
             children: [
                 {
                     path: 'library',
                     name: 'library',
-                    component: () => import('./components/Contents/Library.vue'),
+                    component: () => import('./views/Library.vue'),
                     children: [
                         {
                             path: '',
@@ -39,11 +39,11 @@ export default new Router({
                 {
                     path: 'tchat/:convId',
                     name: 'tchat',
-                    component: () => import('./components/Tchat/Tchat.vue'),
+                    component: () => import('./views/Tchat.vue'),
                 },
                 {
                     path: 'friends',
-                    component: () => import('./components/Contents/Friends.vue'),
+                    component: () => import('./views/Friends.vue'),
                     children: [
                         {
                             path: '',

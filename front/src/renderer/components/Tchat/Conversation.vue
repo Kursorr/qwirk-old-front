@@ -24,9 +24,9 @@
 <script lang="ts">
   import { Component, Vue } from 'vue-property-decorator'
   import * as Vuex from 'vuex'
-  import store from '../../../vuex/store'
+  import store from '../../vuex/store'
 
-  import Avatar from '../../Contents/components/Avatar.vue'
+  import Avatar from '../Contents/components/Avatar.vue'
   import { ComponentOptions } from 'vue'
 
   @Component({

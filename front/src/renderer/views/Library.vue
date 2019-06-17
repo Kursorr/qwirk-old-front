@@ -1,6 +1,11 @@
 <template>
   <section class="global">
-    <bar iconName="Bibliothèque">
+    <bar
+      iconName="Bibliothèque"
+      :links="{
+        myGames: 'My Games',
+        gift: 'Gift Inventory'
+      }">
       <library-icon/>
     </bar>
     <router-view></router-view>
@@ -9,8 +14,8 @@
 
 <script lang="ts">
   import { Component, Vue } from 'vue-property-decorator'
-  import Bar from './Bar.vue'
-  import LibraryIcon from '../Svg/Menu/LibraryIcon.vue'
+  import Bar from '../components/Contents/Bar.vue'
+  import LibraryIcon from '../components/Svg/Menu/LibraryIcon.vue'
 
   @Component({
     components: {

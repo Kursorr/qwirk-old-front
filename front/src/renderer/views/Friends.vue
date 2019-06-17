@@ -1,6 +1,14 @@
 <template>
   <section class="global">
-    <bar iconName="Amis">
+    <bar
+      iconName="Amis"
+      :links="{
+        addFriend: 'Ajouter un ami',
+        allFriend: 'Tous',
+        online: 'En ligne',
+        _: 'En attente',
+        _: 'Bloqué'
+      }">
       <friend-icon/>
     </bar>
     <router-view></router-view>
@@ -9,8 +17,8 @@
 
 <script lang="ts">
   import { Component, Vue } from 'vue-property-decorator'
-  import Bar from './Bar.vue'
-  import FriendIcon from '../Svg/Menu/FriendIcon.vue'
+  import Bar from '../components/Contents/Bar.vue'
+  import FriendIcon from '../components/Svg/Menu/FriendIcon.vue'
 
   @Component({
     components: {

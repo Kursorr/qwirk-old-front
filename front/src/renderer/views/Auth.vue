@@ -40,8 +40,8 @@ import { Component, Vue } from 'vue-property-decorator'
 import * as Vuex from 'vuex'
 import { ComponentOptions } from 'vue'
 
-import IconBase from '../IconBase.vue'
-import Moon from '../Svg/MoonIcon.vue'
+import IconBase from '../components/IconBase.vue'
+import Moon from '../components/Svg/MoonIcon.vue'
 declare const Buffer: any
 
 @Component({
@@ -79,7 +79,7 @@ export default class Auth extends Vue {
     error: null
   }
 
-  public closeModal (e) {
+  public closeModal (e: any) {
     if (e.target.classList.contains('modal')) {
       this.$emit('close')
     }

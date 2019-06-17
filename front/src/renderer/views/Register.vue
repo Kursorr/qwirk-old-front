@@ -41,8 +41,8 @@
 <script lang="ts">
   import { Component, Vue } from 'vue-property-decorator'
   import * as Vuex from 'vuex'
-  import store from '../../vuex/store'
-  import Upload from '../Contents/components/Upload.vue'
+  import store from '../vuex/store'
+  import Upload from '../components/Contents/components/Upload.vue'
   import { ComponentOptions } from 'vue'
 
   @Component({
