@@ -2,7 +2,7 @@
   <section class="account">
     <transition name="fade">
       <user-params v-if="modal.accountSettings"
-                        @close="setModal('accountSettings', false)"></user-params>
+                   @close="setModal('accountSettings', false)"></user-params>
     </transition>
 
     <section class="avatar">
@@ -37,7 +37,9 @@
           </div>
         </section>
       </section>
+
       <avatar :url="user.avatar" size="small" @click.native="toggleStatus()"></avatar>
+
       <div class="status" :class="{
         online: status.online,
         idle: status.idle,
@@ -52,7 +54,7 @@
     </section>
 
     <section class="options">
-      <button class="mute"></button>
+      <button class="muted"></button>
       <button class="headset"></button>
       <button class="settings" @click="setModal('accountSettings', true)"></button>
     </section>
@@ -132,3 +134,79 @@ export default class Profile extends Vue {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+  section.account {
+    display: flex;
+    align-items: center;
+    height: 70px;
+    min-height: 70px;
+    padding: 0 10px;
+    background-color: #1C1E22;
+    color: #FEFEFE;
+
+    section.profil {
+      display: flex;
+      flex-direction: column;
+
+      span.username {
+        font-size: 14px;
+      }
+
+      span.tag {
+        font-size: 11px;
+        opacity: 0.5;
+      }
+    }
+
+    section.options {
+      display: flex;
+      flex-direction: row;
+      padding-left: 25px;
+
+      button {
+        width: 37px;
+        height: 37px;
+        border: solid #1C1E22 1px;
+        background: #2E3136 no-repeat center;
+        background-size: 20px;
+        opacity: 0.6;
+        cursor: pointer;
+        margin-right: 0;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+
+      button.muted    { background-image: url('../../../assets/webrtc/mute.svg');     }
+      button.headset  { background-image: url('../../../assets/webrtc/headset.svg');  }
+      button.settings { background-image: url('../../../assets/webrtc/settings.svg'); }
+    }
+  }
+
+  section.avatar {
+    position: relative;
+    margin-right: 10px;
+    border-radius: 50%;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    img {
+      border-radius: 50%;
+    }
+
+    div.status {
+      position: absolute;
+      border-radius: 50%;
+      width: 15px;
+      height: 15px;
+      top: 18px;
+      left: 16px;
+      border: solid #1C1E22 2px;
+    }
+  }
+
+</style>

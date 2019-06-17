@@ -3,7 +3,7 @@
     <ul>
       <li>
         <section class="avatar">
-          <avatar :url="null" size="normal"></avatar>
+          <avatar :url="null" size="small"></avatar>
           <div class="status"></div>
         </section>
         <section class="profil">
@@ -26,3 +26,26 @@
   export default class DropZone extends Vue {
   }
 </script>
+
+<style lang="scss" scoped>
+  section.avatar {
+    position: relative;
+    margin-right: 10px;
+    border-radius: 50%;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    div.status {
+      position: absolute;
+      border-radius: 50%;
+      width: 15px;
+      height: 15px;
+      top: 18px;
+      left: 16px;
+      border: solid #2e3136 2px;
+      background-color: #FFF;
+    }
+  }
+</style>

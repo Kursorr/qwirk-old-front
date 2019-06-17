@@ -1,11 +1,11 @@
 <template>
-  <section class="modal choose" @click="closeModal($event)">
+  <section class="modal" @click="closeModal($event)">
     <transition name="fade">
       <server-params v-if="modal.serverParams"
                     @close="setModal('serverParams', false)"
                     @finish="$emit('close')"></server-params>
     </transition>
-    <section class="set" id="actions">
+    <section class="set">
       <header>oh, un autre serveur hein ?</header>
       <section id="choice">
         <section class="action" id="createServer">
@@ -61,11 +61,11 @@
   }
 </script>
 
-<style lang="scss">
-  section.modal.choose {
+<style lang="scss" scoped>
+  section.modal {
     border: solid black 1px;
 
-    section.set#actions {
+    section.set {
       background-color: #FFF;
       background-image: url('../../assets/backgrounds/disc.png');
       background-position: 0 100%,100% 100%;

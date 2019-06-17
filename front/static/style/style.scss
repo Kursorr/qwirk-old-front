@@ -94,10 +94,6 @@ h3.sec-title {
   font-size: 16px;
 }
 
-a.specialA:hover {
-  text-decoration: underline;
-}
-
 .information {
   color: #b9bbbe;
   font-size: 12px;
@@ -145,216 +141,6 @@ a.specialA:hover {
   }
 }
 
-section.modal {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.75);
-  z-index: 9999;
-
-  section.set {
-    display: flex;
-    flex-direction: row;
-    width: 800px;
-    height: 650px;
-    background-color: transparent;
-
-    section.menu {
-      display: flex;
-      flex-direction: column;
-      width: 210px;
-      background-color: #282b30;
-      border-right: solid $darkblack 1px;
-      border-top-left-radius: 4px;
-      border-bottom-left-radius: 4px;
-
-      div.separator {
-        height: 1px;
-        margin: 3px 10px 0 15px;
-        background-color: rgba(114,118,125,.3);
-        width: 170px;
-      }
-
-      h1.title {
-        padding: 20px 0;
-        font-size: 12px;
-        font-weight: 700;
-        margin-left: 14px;
-        color: $grey;
-        text-transform: uppercase;
-      }
-
-      h1.title.sep {
-        margin-top: -6px;
-      }
-
-      h1.subtitle {
-        padding: 20px 0;
-        font-size: 11px;
-        font-weight: 300;
-        text-align: center;
-        border-top: solid $darkblack 1px;
-        margin-top: 20px;
-        color: $grey;
-        text-transform: uppercase;
-      }
-
-      button.tab {
-        padding: 12px 15px;
-        font-size: 14px;
-        background-color: #282b30;
-        color: #b9bbbe;
-        text-align: left;
-        transition: all 200ms ease;
-
-        &:hover {
-          background-image: linear-gradient(to right, #2E3136 100%, #2e3130);
-        }
-
-        &:active {
-          border-left: 2px solid #7289da;
-          padding-left: 28px;
-          background-image: linear-gradient(to right, #282b30 80%, $darkgrey);
-        }
-      }
-    }
-
-    button.tab#nitro {
-      color: rgb(114, 137, 218);
-    }
-
-    button.tab.is-active#nitro {
-      color: $white;
-      background: #7289da;
-      border-radius: 4px;
-    }
-
-    section.content {
-      flex: 1;
-      background-color: #2E3136;
-
-      section.settings {
-        flex: 1;
-        color: $white;
-        padding: 12px;
-        height: 90%;
-        overflow: auto;
-      }
-    }
-
-    section.content.auth {
-      display: flex;
-      background-color: rgba(46, 49, 54, 0.7);
-
-      /*section.auth-logo {
-        background-image: url('../../src/renderer/assets/logo.png');
-        background-repeat: no-repeat;
-        background-size: 144px;
-        background-position-x: 42px;
-        background-position-y: 130px;
-      }*/
-
-      section.panel {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 400px;
-
-        h2 {
-          margin-top: 25px;
-          margin-bottom: 25px;
-          color: $white;
-          text-transform: uppercase;
-          font-size: 18px;
-        }
-
-        form {
-          display: flex;
-          flex: 2;
-          flex-direction: column;
-          width: 70%;
-
-          a {
-            color: #888;
-            margin-bottom: 12px;
-
-            &:hover {
-              color: $white;
-            }
-          }
-
-          div.form {
-            background: #F0EEF0;
-            -webkit-border-radius: 0.3em;
-            border-radius: 0.3em;
-            margin-bottom: 12px;
-
-            input {
-              border-radius: 0.3em;
-              height: 40px;
-              width: 100%;
-            }
-          }
-
-          div.special {
-            height: 50px;
-            width: 175px;
-
-            label.file-select > div.select-button {
-              padding: 1rem;
-              color: #000;
-              border-radius: .3rem;
-              font-weight: bold;
-              display: flex;
-              flex-direction: row;
-              cursor: pointer;
-            }
-
-            label.file-select > input[type="file"] {
-              display: none;
-            }
-
-            label.file-select > div.select-button > span {
-              margin-left: 15px;
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
-/* Auth modal */
-.authSwitch {
-  color: #888;
-  margin-top: 12px;
-  font-size: 12px;
-}
-
-.auth-logo {
-  width: 230px;
-  background-color: $white;
-}
-
-section.modal.auth {
-  background-image: url('../../src/renderer/assets/backgrounds/app/d3.jpg');
-
-  section.set.auth {
-    height: 400px;
-    width: 630px;
-  }
-
-  section.set.auth.register {
-    width: 630px;
-    height: 530px;
-  }
-}
-
 div.upload > div {
   display: flex;
   justify-content: space-between;
@@ -364,73 +150,6 @@ div.upload > div {
 /* Account Settings modal */
 section.somethinghere {
   margin-top: 20px;
-}
-
-/* My Account */
-section#account {
-  section.account-profil {
-    background: rgba(32, 34, 37, .3);
-    border: solid $black 1px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    padding: 10px;
-
-    section#entireForm {
-      display: flex;
-
-      section.logo-ce {
-        margin: 0 20px 0 0;
-      }
-
-      form, form > label {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        margin-top: 5px;
-
-        input {
-          color: #f6f6f7;
-          background-color: rgba(0, 0, 0, .1);
-          width: 100%;
-          border: 1px solid rgba(0, 0, 0, .3);
-          border-radius: 3px;
-          padding: 10px;
-          height: 30px;
-          margin-top: 10px;
-          margin-bottom: 10px;
-        }
-      }
-    }
-
-    section.buttons {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-
-      a {
-        margin-right: 30px;
-      }
-    }
-  }
-
-  section.account-profil.noEdit {
-    display: flex;
-
-    section#user-informations {
-      margin-top: 5px;
-      margin-left: 15px;
-      margin-right: 120px;
-
-      h3.information.label.marg {
-        margin-top: 10px;
-      }
-
-      span.information {
-        text-transform: inherit;
-        font-size: 14px;
-      }
-    }
-  }
 }
 
 /* ConfCall */
@@ -472,7 +191,6 @@ section#vidParams {
     }
   }
 }
-
 
 /* Text & Images */
 img#emojiExample {
@@ -520,124 +238,6 @@ section#languageList > ul > li.param-content {
   }
 }
 
-/* Account */
-section.account {
-  display: flex;
-  align-items: center;
-  height: 70px;
-  min-height: 70px;
-  padding: 0 10px;
-  background-color: $darkblack;
-  color: #FEFEFE;
-
-  section.profil {
-    display: flex;
-    flex-direction: column;
-
-    span.username {
-      font-size: 14px;
-    }
-
-    span.tag {
-      font-size: 11px;
-      opacity: 0.5;
-    }
-  }
-
-  section.options {
-    display: flex;
-    flex-direction: row;
-    padding-left: 25px;
-
-    button {
-      width: 37px;
-      height: 37px;
-      border: solid $darkblack 1px;
-      background: #2E3136 no-repeat center;
-      background-size: 20px;
-      opacity: 0.6;
-      cursor: pointer;
-      margin-right: 0;
-
-      &:hover {
-        opacity: 1;
-      }
-    }
-
-    button.mute     {  background-image: url('../../src/renderer/assets/webrtc/mute.svg');     margin-top: 0;    }
-    button.headset  {  background-image: url('../../src/renderer/assets/webrtc/headset.svg');  }
-    button.settings {  background-image: url('../../src/renderer/assets/webrtc/settings.svg'); }
-  }
-}
-
-section.avatar {
-  position: relative;
-  width: 30px;
-  height: 30px;
-  margin-right: 10px;
-  border-radius: 50%;
-
-  &:hover {
-    cursor: pointer;
-  }
-
-  img {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-  }
-}
-
-section.avatar > div.status {
-  position: absolute;
-  background-color: $white;
-}
-
-/* Chans */
-section.chans {
-  display: flex;
-  flex-direction: column;
-  margin-top: 8px;
-  margin-left: 10px;
-}
-
-section.chan {
-  display: flex;
-  align-items: center;
-  padding: 8px 4px;
-  font-size: 16px;
-  color: #f6f6f7;
-  text-align: center;
-  border: none;
-  cursor: pointer;
-  transition: all 200ms ease;
-  border-radius: 2px;
-  margin-right: 10px;
-
-  svg {
-    margin-right: 15px;
-    opacity: .6;
-  }
-
-  &:hover svg, &:hover span {
-    opacity: 1;
-    color: $white;
-  }
-}
-
-section.chan.set {
-  justify-content: space-between;
-  margin-left: 10px;
-}
-
-section.chan > div {
-  width: 30px;
-  height: 30px;
-  opacity: 0.6;
-  transition: opacity .05s;
-  margin-right: 12px;
-}
-
 section.chan:hover, section.chan:active, section.chan.router-link-active, section.room.router-link-active {
   background-color: rgba(79,84,92,.6);
 }
@@ -645,51 +245,6 @@ section.chan:hover, section.chan:active, section.chan.router-link-active, sectio
 .router-link-active span.color, .router-link-active svg {
   color: $white;
   opacity: 1!important;
-}
-
-section.chan > a {
-  height: 100%;
-  width: 100%;
-  text-align: left;
-  padding: 8px 0;
-}
-
-/* Rooms */
-section.rooms {
-  flex: 1;
-}
-
-section.rooms > section.room > h2 {
-  margin: 15px 0;
-  padding: 0 15px;
-  font-size: 13px;
-  text-transform: uppercase;
-  color: #758080;
-}
-
-section.rooms > section.room > span {
-  flex: 1;
-}
-
-section.rooms > section.room > section.chan button.close-chan {
-  display: none;
-  background: transparent url('../../src/renderer/assets/close.png') no-repeat;
-  background-size: 15px;
-  width: 20px;
-  height: 20px;
-  color: #758080;
-  border: none;
-  cursor: pointer;
-  margin-top: 6px;
-}
-
-section.rooms > section.room > section.chan > section {
-  display: flex;
-  align-items: center;
-}
-
-section.rooms > section.room > section.chan:hover button.close-chan {
-  display: block;
 }
 
 /* SideBar */
@@ -720,55 +275,6 @@ section.global {
   width: 100%;
 }
 
-section.bar {
-  height: 57px;
-  border-bottom: 1px solid #282b30;
-  display: flex;
-  align-items: center;
-}
-
-section.bar > section.filters {
-  display: flex;
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: .4px;
-  flex: 1;
-}
-
-section.filters > div#friendIconBar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 15px;
-
-  svg {
-    color: $white;
-  }
-
-  span {
-    margin-left: 15px;
-  }
-}
-
-section.bar > section.filters > div > a {
-  margin-left: 20px;
-  margin-right: 20px;
-  padding: 3px 5px;
-  color: #B9BBBE;
-
-  &:hover {
-    border-radius: 4px;
-    background-color: #292b2f;
-    color:$white;
-  }
-}
-
-section.bar > section.filters > div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 div.separator {
   background-color: hsla(0, 0%, 100%, .1);
   width: 1px;
@@ -776,28 +282,10 @@ div.separator {
   flex-shrink: 0;
 }
 
-section.bar > section.filters > div > button.filt.add, a.filt.add, a.filt.router-link-exact-active.router-link-active {
-  border-radius: 4px;
-  background-color: #7289DA;
-  padding: 3px 5px;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 100;
-  color: $white;
-}
 
-a.filt.router-link-exact-active.router-link-active {
-  background-color: #40444b;
-  color: #FFF!important;
-}
-
-section.bar > section.filters > div > button.filt.add:hover, a.filt.add:hover {
-  border-radius: 4px;
-  background-color: #697ec4;
-}
+// START HERE ! :)
 
 /* Table Header */
-
 section.global > section.view > section.table-header {
   display: flex;
   border-bottom: 1px solid hsla(0, 0%, 100%, .1);
@@ -1443,6 +931,7 @@ section#ban > section > section.listing {
 section#convers {
   height: 100%;
   overflow-y: auto;
+  overflow-x: hidden;
 
   section.onechat {
     margin: 20px;
@@ -1455,6 +944,7 @@ section#convers {
       flex-direction: column;
       align-items: flex-start;
       width: 95%;
+      margin-left: 25px;
 
       span.username {
         margin-bottom: 15px;
@@ -1768,21 +1258,6 @@ div.slider {
       }
     }
   }
-
-  div.barr {
-    background: #4f545c;
-    position: relative;
-    top: 16px;
-    height: 8px;
-    border-radius: 4px;
-    display: block;
-    overflow: hidden;
-
-    div.barFill {
-      background: #7289da;
-      height: 100%;
-    }
-  }
 }
 
 span.bubble {
@@ -1895,19 +1370,6 @@ span.color {
   left: -3px;
   width: 226px;
   border-radius: 5px;
-}
-
-div.status {
-  border-radius: 50%;
-  width: 15px;
-  height: 15px;
-  top: 18px;
-  left: 15px;
-  border: solid $darkblack 2px;
-}
-
-div.status.inside {
-  border: solid $darkgrey 2px;
 }
 
 section.actualStatus {

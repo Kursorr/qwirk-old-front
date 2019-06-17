@@ -48,3 +48,37 @@
   })
   export default class Menu extends Vue {}
 </script>
+
+<style lang="scss">
+  section.chans {
+    display: flex;
+    flex-direction: column;
+    margin-top: 8px;
+    margin-left: 10px;
+
+    section.chan {
+      display: flex;
+      align-items: center;
+      padding: 8px 4px;
+      font-size: 16px;
+      color: #f6f6f7;
+      text-align: center;
+      border: none;
+      cursor: pointer;
+      transition: all 200ms ease;
+      border-radius: 2px;
+      margin-right: 10px;
+
+      svg {
+        margin-right: 15px;
+        opacity: .6;
+      }
+
+      &:hover svg, &:hover span {
+        opacity: 1;
+        color: #FFF;
+      }
+    }
+
+  }
+</style>

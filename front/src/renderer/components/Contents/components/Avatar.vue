@@ -31,23 +31,20 @@
 </script>
 
 <style>
-  .avatar {
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-  }
-
   .avatar-small {
-    width: 32px;
-    height: 32px;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
   }
 
   .avatar-medium {
+    border-radius: 50%;
     width: 50px;
     height: 50px;
   }
 
   .avatar-normal {
+    border-radius: 50%;
     width: 100px;
     height: 100px;
   }

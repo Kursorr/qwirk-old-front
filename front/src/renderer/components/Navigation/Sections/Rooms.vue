@@ -9,8 +9,8 @@
         tag="section">
         <section>
           <section class="avatar">
-            <img src="http://i0.wp.com/marioasselin.com/wp-content/plugins/buddypress/bp-core/images/mystery-man.jpg" alt="avatar">
-            <div class="status inside"></div>
+            <avatar :url="null" size="small"></avatar>
+            <div class="status"></div>
           </section>
           <span class="color">Quenti77</span>
         </section>
@@ -24,9 +24,13 @@
 import { Component, Vue } from 'vue-property-decorator'
 import * as Vuex from 'vuex'
 import store from '../../../vuex/store'
+import Avatar from '../../Contents/components/Avatar.vue'
 
 @Component({
   store,
+  components: {
+    Avatar
+  },
   computed: {
     ...Vuex.mapGetters([
       'user'
@@ -45,3 +49,105 @@ export default class Rooms extends Vue {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+  // Profile
+  section.avatar {
+    position: relative;
+    margin-right: 10px;
+    border-radius: 50%;
+    margin-top: 3px;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    img {
+      border-radius: 50%;
+    }
+
+    div.status {
+      position: absolute;
+      border-radius: 50%;
+      width: 15px;
+      height: 15px;
+      top: 18px;
+      left: 16px;
+      border: solid #2e3136 2px;
+      background-color: #FFF;
+    }
+  }
+
+  // Rooms
+  section.rooms {
+    flex: 1;
+
+    section.room {
+      h2 {
+        margin: 15px 0;
+        padding: 0 15px;
+        font-size: 13px;
+        text-transform: uppercase;
+        color: #758080;
+      }
+      span { flex: 1; }
+
+      section.chan {
+        > section {
+          display: flex;
+          align-items: center;
+        }
+
+        button.close-chan {
+          display: none;
+          background: transparent url('../../../assets/close.png') no-repeat;
+          background-size: 15px;
+          width: 20px;
+          height: 20px;
+          color: #758080;
+          border: none;
+          cursor: pointer;
+          margin-top: 6px;
+        }
+      }
+
+      &:hover button.close-chan {
+        display: block;
+      }
+    }
+  }
+
+  section.chan {
+    display: flex;
+    align-items: center;
+    padding: 8px 4px;
+    font-size: 16px;
+    color: #f6f6f7;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    transition: all 200ms ease;
+    border-radius: 2px;
+    margin-right: 10px;
+
+    > div {
+      width: 30px;
+      height: 30px;
+      opacity: 0.6;
+      transition: opacity .05s;
+      margin-right: 12px;
+    }
+
+    > a {
+      height: 100%;
+      width: 100%;
+      text-align: left;
+      padding: 8px 0;
+    }
+
+    &.set {
+      justify-content: space-between;
+      margin-left: 10px;
+    }
+  }
+</style>

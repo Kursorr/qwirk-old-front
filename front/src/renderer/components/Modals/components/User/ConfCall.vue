@@ -13,7 +13,7 @@
         <div class="slider">
           <input type="number" class="input-slider" value="50" readonly="">
           <div class="track"></div>
-          <div class="barr">
+          <div class="bar">
             <div class="barFill" style="width: 50%;"></div>
           </div>
           <div class="track">
@@ -34,7 +34,7 @@
         <div class="slider">
           <input type="number" class="input-slider" value="50" readonly="">
           <div class="track"></div>
-          <div class="barr">
+          <div class="bar">
             <div class="barFill" style="width: 50%;"></div>
           </div>
           <div class="track">
@@ -82,7 +82,7 @@
       <div class="slider">
         <input type="number" class="input-slider" value="50" readonly="">
         <div class="track"></div>
-        <div class="barr">
+        <div class="bar">
           <div class="barFill" style="width: 50%;"></div>
         </div>
         <div class="track">
@@ -116,3 +116,20 @@
     </section>
   </section>
 </template>
+
+<style lang="scss" scoped>
+  div.bar {
+    background: #4f545c;
+    position: relative;
+    top: 16px;
+    height: 8px;
+    border-radius: 4px;
+    display: block;
+    overflow: hidden;
+
+    div.barFill {
+      background: #7289da;
+      height: 100%;
+    }
+  }
+</style>

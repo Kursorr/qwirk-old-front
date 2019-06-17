@@ -9,7 +9,9 @@
       </div>
       <div v-if="separator" class="separator"></div>
       <div v-for="(text, link) in links">
-        <router-link v-if="text === 'Ajouter un ami'" :to="{name: link}" class="filt add">{{ text }}</router-link>
+        <router-link v-if="text === 'Ajouter un ami'" :to="{name: link}" class="filt add">
+          {{ text }}
+        </router-link>
         <router-link v-else :to="{name: link}" class="filt">{{ text }}</router-link>
       </div>
     </section>
@@ -137,7 +139,78 @@
   }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+  section.bar {
+    height: 57px;
+    border-bottom: 1px solid #282b30;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 1px 0 rgba(0,0,0,.2), 0 1.5px 0 rgba(0,0,0,.05), 0 2px 0 rgba(0,0,0,.05);
+
+    section.filters {
+      display: flex;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: .4px;
+      flex: 1;
+
+      div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        a {
+          margin-left: 20px;
+          margin-right: 20px;
+          padding: 3px 5px;
+          color: #B9BBBE;
+
+          &:hover {
+            border-radius: 4px;
+            background-color: #292b2f;
+            color: #FFF;
+          }
+        }
+      }
+
+      div#friendIconBar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 15px;
+
+        svg {
+          color: #FFF;
+        }
+
+        span {
+          margin-left: 15px;
+        }
+      }
+    }
+  }
+
+  button.filt.add, a.filt.add, a.filt.router-link-exact-active.router-link-active {
+    border-radius: 4px;
+    background-color: #7289DA;
+    padding: 3px 5px;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 100;
+    color: #FFF;
+  }
+
+  button.filt.add:hover, a.filt.add:hover {
+    border-radius: 4px;
+    background-color: #697ec4;
+  }
+
+  a.filt.router-link-exact-active.router-link-active {
+    background-color: #40444b;
+    color: #FFF!important;
+  }
+
+  // Top menu functionnalities
   .topMenu {
     background-color: #36393f;
     display: flex;
@@ -175,7 +248,7 @@
   }
 
   .pseudo {
-    color: #fff;
+    color: #FFF;
   }
 
   .status {

@@ -1,7 +1,7 @@
 <template>
-  <section class="modal auth" @click="closeModal($event)">
-    <section class="set auth">
-      <section class="content auth">
+  <section class="modal" @click="closeModal($event)">
+    <section class="set">
+      <section class="content">
         <section class="auth-logo"></section>
         <section class="panel">
           <h2>Bon retour parmi nous !</h2>
@@ -22,8 +22,9 @@
 
             <a href="#">Avez vous oublié votre mot de passe?</a>
 
-            <button type="submit" @click.prevent="connect()"
-                    class="connect"><router-link to="/landing-page">Se connecter</router-link></button> <!-- tag -->
+            <button type="submit" @click.prevent="connect()" class="connect">
+              <router-link to="/landing-page">Se connecter</router-link>
+            </button> <!-- tag -->
             <p class="authSwitch">Besoin d'un compte ? <router-link to="/register">S'inscrire</router-link></p>
             <div class="message" v-if="login.error">
               {{ login.error }}
@@ -90,3 +91,110 @@ export default class Auth extends Vue {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+  section.modal {
+    background-image: url('../assets/backgrounds/app/d3.jpg');
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+    z-index: 9999;
+
+    section.set {
+      display: flex;
+      flex-direction: row;
+      background-color: transparent;
+      height: 400px;
+      width: 630px;
+
+      section.content {
+        display: flex;
+        background-color: rgba(46, 49, 54, 0.7);
+
+        .auth-logo {
+          width: 230px;
+          background-color: #FFF;
+        }
+
+        section.panel {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 400px;
+
+          h2 {
+            margin-top: 25px;
+            margin-bottom: 25px;
+            color: #FFF;
+            text-transform: uppercase;
+            font-size: 18px;
+          }
+
+          form {
+            display: flex;
+            flex: 2;
+            flex-direction: column;
+            width: 70%;
+
+            a {
+              color: #888;
+              margin-bottom: 12px;
+
+              &:hover {
+                color: #FFF;
+              }
+            }
+
+            div.form {
+              background: #F0EEF0;
+              -webkit-border-radius: 0.3em;
+              border-radius: 0.3em;
+              margin-bottom: 12px;
+
+              input {
+                border-radius: 0.3em;
+                height: 40px;
+                width: 100%;
+              }
+            }
+
+            div.special {
+              height: 50px;
+              width: 175px;
+
+              label.file-select > div.select-button {
+                padding: 1rem;
+                color: #000;
+                border-radius: .3rem;
+                font-weight: bold;
+                display: flex;
+                flex-direction: row;
+                cursor: pointer;
+              }
+
+              label.file-select > input[type="file"] {
+                display: none;
+              }
+
+              label.file-select > div.select-button > span {
+                margin-left: 15px;
+              }
+            }
+
+            .authSwitch {
+              color: #888;
+              margin-top: 12px;
+              font-size: 12px;
+            }
+          }
+        }
+      }
+    }
+  }
+</style>

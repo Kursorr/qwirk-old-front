@@ -112,7 +112,7 @@ export default class ServersBar extends Vue {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   #leftBar {
     width: 70px;
     background-color: #202225;
@@ -128,7 +128,7 @@ export default class ServersBar extends Vue {
       text-transform: uppercase;
     }
 
-    div.separator {
+    > div.separator {
       transform: rotate(90deg);
     }
 
@@ -188,6 +188,40 @@ export default class ServersBar extends Vue {
       &:hover {
         border-radius: 38%;
       }
+    }
+  }
+
+  section.chan {
+    display: flex;
+    align-items: center;
+    padding: 8px 4px;
+    font-size: 16px;
+    color: #f6f6f7;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    transition: all 200ms ease;
+    border-radius: 2px;
+    margin-right: 10px;
+
+    > div {
+      width: 30px;
+      height: 30px;
+      opacity: 0.6;
+      transition: opacity .05s;
+      margin-right: 12px;
+    }
+
+    > a {
+      height: 100%;
+      width: 100%;
+      text-align: left;
+      padding: 8px 0;
+    }
+
+    &.set {
+      justify-content: space-between;
+      margin-left: 10px;
     }
   }
 </style>
