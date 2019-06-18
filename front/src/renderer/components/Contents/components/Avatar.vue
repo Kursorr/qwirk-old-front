@@ -16,7 +16,7 @@
       } else if (this.url.indexOf('data:') !== -1) {
         return this.url
       } else {
-        return 'http://172.18.0.5:4100/avatars/' + this.url
+        return 'http://localhost:4100/avatars/' + this.url
       }
     }
 

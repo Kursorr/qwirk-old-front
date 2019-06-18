@@ -36,7 +36,7 @@
     }
   })
   export default class Search extends Vue {
-    baseUrl: string = 'http://172.18.0.5:4100'
+    baseUrl: string = 'http://localhost:4100'
     searchTerm: string = ''
     searchDebounce = null
     searchResults = []
