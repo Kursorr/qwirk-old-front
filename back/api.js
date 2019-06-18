@@ -22,6 +22,7 @@ const config_1 = require("./config/config");
 const ElasticSearch_1 = require("./scripts/class/ElasticSearch");
 // Routes
 const confirm_1 = require("./app/routes/confirm");
+const search_1 = require("./app/routes/search");
 // Env setting
 const JWT_SECRET = process.env.JWT_SECRET || config_1.JWT;
 const DATABASE = process.env.DATABASE || config_1.database.db;
@@ -86,6 +87,7 @@ connectDatabase.then((conn) => __awaiter(this, void 0, void 0, function* () {
         res.status(200).json(req.body);
     });
     app.use('/confirm-account', confirm_1.default);
+    app.use('/search', search_1.default);
     // Launch application
     app.listen(process.argv[2], () => {
         log.info(`API running on port ${process.argv[2]}`);

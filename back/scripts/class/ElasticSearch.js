@@ -15,7 +15,7 @@ class ElasticSearch {
         this.config = {
             index: 'data',
             type: 'message',
-            client: new elasticsearch.Client({ host: { host: config_1.elastic.host, port: config_1.elastic.port } }) // IP Elastic
+            client: new elasticsearch.Client({ host: { host: config_1.elastic.host, port: config_1.elastic.port } })
         };
     }
     connect() {

@@ -16,6 +16,7 @@ import { ElasticSearch } from "./scripts/class/ElasticSearch"
 
 // Routes
 import confirmAccount from './app/routes/confirm'
+import search from './app/routes/search'
 
 // Env setting
 const JWT_SECRET  : string = process.env.JWT_SECRET     || JWT
@@ -99,6 +100,7 @@ connectDatabase.then(async conn => {
   })
 
 	app.use('/confirm-account', confirmAccount)
+  app.use('/search', search)
 
   // Launch application
   app.listen(process.argv[2], () => {

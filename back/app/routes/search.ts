@@ -7,7 +7,7 @@ const search = express.Router()
 search.get('/', async (req, res) => {
   const search = new ElasticSearch()
   const result = await search.getText(req.query.term, req.query.offset)
-  // console.log(req.query)
+  console.log(req.query)
   res.status(200).json({
     result
   })

@@ -1,5 +1,18 @@
 version: "3.4"
 services:
+  back:
+    container_name: qwirk_api
+    build:
+      context: ./back/
+    ports:
+      - "4100"
+      - "6100"
+    volumes:
+      - ./back:/app
+      - ./data:/usr/app/data
+    depends_on:
+      - rethinkdb
+      - redis
   rethinkdb:
     image: "rethinkdb:2.3"
     container_name: rethinkdb

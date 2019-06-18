@@ -8,12 +8,12 @@ const database: any = {
 }
 
 const elastic: any = {
-  host: '172.18.0.4',
+  host: '172.18.0.2',
   port: 9200
 }
 
 const redis: any = {
-	host: '172.18.0.2',
+	host: '172.18.0.4',
 	port: '6379'
 }
 

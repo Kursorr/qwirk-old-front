@@ -10,13 +10,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const jwt = require("jsonwebtoken");
 const notifier = require("node-notifier");
+const r = require("rethinkdb");
 // import * as path from 'path'
 const User_1 = require("../../models/User");
 const Hash_1 = require("../../../scripts/class/Hash");
+const ElasticSearch_1 = require("../../../scripts/class/ElasticSearch");
+const Message_1 = require("../../models/Message");
 const login = (instance, socket) => {
     socket.on('login', (data) => __awaiter(this, void 0, void 0, function* () {
         const { DB, Secret } = instance;
         const findUser = new User_1.User(DB);
+        const findMessages = new Message_1.Message(DB);
         const { email, password } = data;
         const cursor = yield findUser.filter({ email });
         const result = yield cursor.toArray();
@@ -59,6 +63,19 @@ const login = (instance, socket) => {
             token,
             user
         });
+        const messages = yield findMessages.filter(r.row('content'));
+        const resultMsgs = yield messages.toArray();
+        const messagesToInsert = [];
+        for (let i = 0; i < resultMsgs.length; i++) {
+            messagesToInsert.push({
+                avatar: resultMsgs[i].avatar,
+                pseudo: resultMsgs[i].pseudo,
+                content: resultMsgs[i].content
+            });
+        }
+        const health = yield new ElasticSearch_1.ElasticSearch();
+        yield health.connect();
+        yield health.readAndInsertData(messagesToInsert);
         yield findUser.update(userID, { token, tokenDeath: new Date(60 * 1000) });
     }));
 };

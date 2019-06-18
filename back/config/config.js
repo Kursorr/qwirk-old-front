@@ -8,12 +8,12 @@ const database = {
 };
 exports.database = database;
 const elastic = {
-    host: '172.18.0.4',
+    host: '172.18.0.2',
     port: 9200
 };
 exports.elastic = elastic;
 const redis = {
-    host: '172.18.0.2',
+    host: '172.18.0.4',
     port: '6379'
 };
 exports.redis = redis;

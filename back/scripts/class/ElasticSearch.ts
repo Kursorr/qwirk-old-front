@@ -13,7 +13,7 @@ class ElasticSearch {
   private readonly config: Data = {
     index: 'data',
     type: 'message',
-    client: new elasticsearch.Client({ host: { host: elastic.host, port: elastic.port} }) // IP Elastic
+    client: new elasticsearch.Client({ host: { host: elastic.host, port: elastic.port} })
   }
 
   constructor () {}

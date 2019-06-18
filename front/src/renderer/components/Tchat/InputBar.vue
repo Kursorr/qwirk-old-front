@@ -8,14 +8,20 @@
       :value="message"
       @keypress.enter="onChange"
     ></textarea>
+    <search-beta></search-beta>
     <button id="emoji" type="button" @click="emojiToggle">😁</button>
   </form>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator'
+import SearchBeta from './SearchBeta.vue'
 
-@Component
+@Component({
+  components: {
+    SearchBeta
+  }
+})
 export default class Bar extends Vue {
   @Prop() public message?: string
 

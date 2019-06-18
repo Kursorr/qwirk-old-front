@@ -14,9 +14,9 @@ import '@/registerServiceWorker'
 
 Vue.config.productionTip = false
 
-axios.defaults.baseURL = 'localhost:4100'
+axios.defaults.baseURL = '172.18.0.5:4100'
 
-const socketInstance = io('localhost:6100', {
+const socketInstance = io('172.18.0.5:6100', {
   transports: ['websocket']
 })
 
