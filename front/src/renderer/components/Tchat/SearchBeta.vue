@@ -30,6 +30,7 @@
 <script lang="ts">
   import { Component, Vue } from 'vue-property-decorator'
   import Avatar from '../Contents/components/Avatar'
+
   @Component({
     components: {
       Avatar
@@ -78,6 +79,6 @@
 
 <style>
   em {
-    background: rgba(250,166,26,.3);
+    background: rgba(250, 166, 26, .3);
   }
 </style>
