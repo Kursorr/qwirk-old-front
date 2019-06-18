@@ -135,3 +135,13 @@
     </section>
   </section>
 </template>
+
+<style lang="scss">
+  section#verification-members {
+    margin-top: 15px;
+
+    section.text {
+      margin-bottom: 10px;
+    }
+  }
+</style>

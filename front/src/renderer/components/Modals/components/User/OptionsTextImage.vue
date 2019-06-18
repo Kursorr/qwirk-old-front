@@ -77,3 +77,10 @@
     </section>
   </section>
 </template>
+
+<style>
+  img#emojiExample {
+    height: 24px;
+    width: 24px;
+  }
+</style>

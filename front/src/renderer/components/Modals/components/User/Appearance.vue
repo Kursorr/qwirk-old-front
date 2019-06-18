@@ -142,3 +142,16 @@ export default class Appearance extends Vue {
   private user: any
 }
 </script>
+
+<style lang="scss">
+  section#theme > section#preview {
+    height: 175px;
+    overflow: hidden;
+    border: 1px solid #202225;
+    margin-top: 20px;
+
+    section#innerSpec {
+      margin-top: -40px;
+    }
+  }
+</style>

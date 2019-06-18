@@ -129,6 +129,10 @@ export default class ServersBar extends Vue {
     }
 
     > div.separator {
+      background-color: hsla(0, 0%, 100%, .1);
+      width: 1px;
+      height: 22px;
+      flex-shrink: 0;
       transform: rotate(90deg);
     }
 

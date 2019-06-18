@@ -48,7 +48,7 @@ export default new Router({
                         {
                             path: '',
                             name: 'allFriend',
-                            component: () => import('./components/Contents/Grids/Grid.vue'),
+                            component: () => import('./components/Contents/Grids/FriendGrid.vue'),
                         },
                         {
                             path: 'add',

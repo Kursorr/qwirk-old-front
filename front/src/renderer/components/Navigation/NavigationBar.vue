@@ -25,3 +25,22 @@
   export default class NavigationBar extends Vue {
   }
 </script>
+
+<style>
+  .container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 240px;
+    background: #202225;
+  }
+
+  .components {
+    flex-direction: column;
+    width: 240px;
+    flex-grow: 1;
+    background-color: #2e3136;
+    overflow: auto;
+    border-top-left-radius: 5px;
+  }
+</style>

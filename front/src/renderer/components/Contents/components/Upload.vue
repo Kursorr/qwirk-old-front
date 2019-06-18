@@ -65,3 +65,15 @@ export default class Upload extends Vue {
   }
 }
 </script>
+
+<style lang="scss">
+  button#deleteImg {
+    background: none;
+    color: #b9bbbe;
+    font-size: 14px;
+
+    &:hover {
+      color: #72767d;
+    }
+  }
+</style>

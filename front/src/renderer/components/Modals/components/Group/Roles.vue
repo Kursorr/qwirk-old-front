@@ -250,3 +250,87 @@
     </section>
   </section>
 </template>
+
+<style lang="scss" scoped>
+  section.role-content {
+    display: flex;
+
+    section.role-list {
+      width: 30%;
+
+      ul {
+        margin-top: 20px;
+
+        li {
+          padding: 6px 10px;
+          background-color: #7289da;
+          border-radius: 3px;
+        }
+      }
+
+      section.add {
+        display: flex;
+
+        h1 {
+          font-size: 16px;
+          text-transform: uppercase;
+          margin-top: 7px;
+        }
+
+        button.adds {
+          background: none;
+          border: solid #4f545c 1px;
+          padding: 5px 10px;
+          margin-left: 15px;
+        }
+      }
+    }
+
+    section.new-role {
+      margin-left: 20px;
+
+      h2 {
+        font-size: 14px;
+        text-transform: uppercase;
+        margin-top: 7px;
+        color: #b9bbbe;
+      }
+
+      ul {
+        margin-bottom: 15px;
+      }
+
+      input {
+        color: #f6f6f7;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .3) 1px;
+        margin: 20px 0;
+        height: 30px;
+        border-radius: 4px;
+        padding: 0 0 0 7px;
+      }
+
+      button.delete-role {
+        color: #f04747;
+        background: 0;
+        border: solid rgba(240, 71, 71, .3) 1px;
+        transition: color .17s ease, background-color .17s ease, border-color .17s ease;
+
+        &:hover {
+          border-color: rgba(240, 71, 71, .6);
+        }
+      }
+
+      section.permission > h3 {
+        font-size: 14px;
+        text-transform: uppercase;
+        color: #b9bbbe;
+        margin-bottom: 15px;
+
+        ul > li:last-child {
+          margin-bottom: 20px;
+        }
+      }
+    }
+  }
+</style>

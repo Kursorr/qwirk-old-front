@@ -25,3 +25,32 @@
     </section>
   </section>
 </template>
+
+<style lang="scss">
+  section#languageList > ul > li.param-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    section.langueAndCheck > label {
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: center;
+      width: 110px;
+      justify-content: space-around;
+
+      input {
+        margin-right: 10px;
+      }
+    }
+
+    section.drapAndLogo {
+      display: flex;
+      align-items: flex-end;
+
+      img {
+        margin-left: 10px;
+      }
+    }
+  }
+</style>

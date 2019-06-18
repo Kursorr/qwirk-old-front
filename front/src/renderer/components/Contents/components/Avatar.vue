@@ -1,5 +1,5 @@
 <template>
-  <img :src="imagePath" alt="avatar" class="avatar" :class="avatarSize">
+  <img :src="imagePath" alt="avatar" :class="avatarSize">
 </template>
 
 <script lang="ts">

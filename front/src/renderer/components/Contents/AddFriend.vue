@@ -28,5 +28,35 @@
 </script>
 
 <style lang="scss">
+  #add_friend {
+    padding: 15px;
+    color: white;
 
+    h1 {
+      text-transform: uppercase;
+      font-size: 16px;
+    }
+
+    p {
+      margin: 10px 0;
+      font-size: 14px;
+    }
+
+    form {
+      display: flex;
+
+      input {
+        border-radius: 4px;
+        border: solid grey 1px;
+        height: 44px;
+        width: 240px;
+      }
+      button {
+        border-radius: 4px;
+        border: solid #3F91C0 1px;
+        background-color: #3F91C0;
+        color: white;
+      }
+    }
+  }
 </style>

@@ -132,4 +132,127 @@
       height: 100%;
     }
   }
+
+  section#inOut {
+    display: flex;
+
+    section.periph {
+      width: 50%;
+    }
+  }
+
+  section#vidParams {
+    section#vid {
+      display: flex;
+      flex-direction: row;
+
+      section#cam {
+        margin-right: 20px;
+      }
+
+      section#cam, section#previsualisation {
+        width: 50%;
+
+        div#tryCam {
+          height: 178px;
+          width: 278px;
+          border-radius: 5px;
+          background-color: rgba(32, 34, 37, .3);
+          border: 1px solid #202225;
+          margin-top: 10px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          button.connect {
+            height: 40px;
+          }
+        }
+      }
+    }
+  }
+
+  div.grabber, div.track {
+    position: absolute;
+  }
+
+  div.slider {
+    width: 100%;
+    height: 40px;
+    position: relative;
+
+    input.input-slider {
+      display: none;
+    }
+
+    div.track {
+      top: 0;
+      right: 5px;
+      bottom: 0;
+      left: 5px;
+
+      div.grabber {
+        left: 0;
+        width: 10px;
+        height: 24px;
+        margin-left: -5px;
+        top: 50%;
+        margin-top: -13px;
+        border-radius: 3px;
+        background-color: #FFF;
+        border: 1px solid #dcddde;
+        -webkit-box-shadow: 0 3px 1px 0 rgba(0, 0, 0, .05), 0 2px 2px 0 rgba(0, 0, 0, .1), 0 3px 3px 0 rgba(0, 0, 0, .05);
+        box-shadow: 0 3px 1px 0 rgba(0, 0, 0, .05), 0 2px 2px 0 rgba(0, 0, 0, .1), 0 3px 3px 0 rgba(0, 0, 0, .05);
+        cursor: ew-resize;
+        position: absolute;
+
+        span.elevation {
+          -webkit-box-shadow: 0 2px 10px 0 rgba(0, 0, 0, .2);
+          box-shadow: 0 2px 10px 0 rgba(0, 0, 0, .2);
+        }
+
+        span.bubble {
+          background-color: #72767d;
+          position: absolute;
+          pointer-espanvents: none;
+          border-radius: 3px;
+          top: -32px;
+          left: -21px;
+          width: 50px;
+          height: 22px;
+          line-height: 22px;
+          text-align: center;
+          font-weight: 600;
+          font-size: 12px;
+          color: #f6f6f7;
+          opacity: 0;
+          -webkit-transition: opacity .2s ease-out;
+          transition: opacity .2s ease-out;
+          pointer-events: none;
+
+          &:before {
+            left: 50%;
+            border: 5px solid transparent;
+            content: " ";
+            width: 0;
+            height: 0;
+            margin-left: -5px;
+            top: 100%;
+          }
+        }
+        &:hover {
+          span.bubble {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+
+  span.bubble {
+    &:before {
+      position: absolute;
+      pointer-events: none;
+    }
+  }
 </style>

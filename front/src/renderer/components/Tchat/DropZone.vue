@@ -21,3 +21,20 @@ export default class DropZone extends Vue {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+  .vue-dropzone.dropzone.dz-clickable {
+    min-height: 175px;
+    overflow-x: auto;
+    background-color: #36393e;
+    border-bottom: solid black 1px;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+  }
+
+  .vue-dropzone .dz-preview .dz-image {
+    height: 100px;
+    width: 100px;
+  }
+</style>

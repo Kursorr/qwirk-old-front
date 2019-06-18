@@ -51,34 +51,6 @@ export default class Rooms extends Vue {
 </script>
 
 <style lang="scss" scoped>
-  // Profile
-  section.avatar {
-    position: relative;
-    margin-right: 10px;
-    border-radius: 50%;
-    margin-top: 3px;
-
-    &:hover {
-      cursor: pointer;
-    }
-
-    img {
-      border-radius: 50%;
-    }
-
-    div.status {
-      position: absolute;
-      border-radius: 50%;
-      width: 15px;
-      height: 15px;
-      top: 18px;
-      left: 16px;
-      border: solid #2e3136 2px;
-      background-color: #FFF;
-    }
-  }
-
-  // Rooms
   section.rooms {
     flex: 1;
 

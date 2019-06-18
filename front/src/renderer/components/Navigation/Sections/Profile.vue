@@ -148,21 +148,25 @@ export default class Profile extends Vue {
     section.profil {
       display: flex;
       flex-direction: column;
+      text-overflow: ellipsis;
+      overflow: hidden;
 
       span.username {
         font-size: 14px;
+        text-overflow: ellipsis;
+        overflow: hidden;
       }
 
       span.tag {
         font-size: 11px;
         opacity: 0.5;
+        margin-right: 40px;
       }
     }
 
     section.options {
       display: flex;
       flex-direction: row;
-      padding-left: 25px;
 
       button {
         width: 37px;
@@ -185,28 +189,58 @@ export default class Profile extends Vue {
     }
   }
 
-  section.avatar {
-    position: relative;
-    margin-right: 10px;
-    border-radius: 50%;
+  #changeStatus {
+    position: absolute;
+    top: -237px;
+    background: #282b30;
+    color: #000;
+    left: -3px;
+    width: 226px;
+    border-radius: 5px;
 
-    &:hover {
-      cursor: pointer;
-    }
+    section.actualStatus {
+      display: flex;
+      align-items: center;
+      padding: 12px;
+      position: relative;
 
-    img {
-      border-radius: 50%;
-    }
+      div.status {
+        top: 12px;
+        left: 8px;
+        border: solid #282b30 2px;
+      }
 
-    div.status {
-      position: absolute;
-      border-radius: 50%;
-      width: 15px;
-      height: 15px;
-      top: 18px;
-      left: 16px;
-      border: solid #1C1E22 2px;
+      h4 {
+        font-size: 12px;
+        color: #99AAB5;
+      }
+
+      &:hover {
+        background-color: #25282d;
+      }
+
+      div.info {
+        width: 185px;
+        margin-left: 15px;
+
+        h4 {
+          color: #99AAB5;
+          font-size: 12px;
+        }
+
+        p {
+          font-size: 11px;
+          color: rgba(153, 170, 181, .8);
+        }
+      }
+
+      &:hover > div.info > h4 {
+        color: #FFF;
+      }
     }
   }
 
+  section.actualStatus.principal {
+    border-bottom: 1px solid hsla(0,0%,96.1%,.08);
+  }
 </style>

@@ -243,117 +243,39 @@ export default class UserParams extends Vue {
 </script>
 
 <style lang="scss" scoped>
-  section.modal {
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background-color: rgba(0, 0, 0, 0.75);
-    z-index: 9999;
+  .set {
+    width: 800px;
+    height: 650px;
 
-    section.set {
-      display: flex;
-      flex-direction: row;
-      width: 800px;
-      height: 650px;
-      background-color: transparent;
+    .tab#nitro {
+      color: rgb(114, 137, 218);
+    }
 
-      section.menu {
-        display: flex;
-        flex-direction: column;
-        width: 210px;
-        background-color: #282b30;
-        border-right: solid #1C1E22 1px;
-        border-top-left-radius: 4px;
-        border-bottom-left-radius: 4px;
+    .tab.is-active#nitro {
+      color: #FFF;
+      background: #7289da;
+      border-radius: 4px;
+    }
 
-        div.separator {
-          height: 1px;
-          margin: 3px 10px 0 15px;
-          background-color: rgba(114, 118, 125, .3);
-          width: 170px;
-        }
-
-        h1.title {
-          padding: 20px 0;
-          font-size: 12px;
-          font-weight: 700;
-          margin-left: 14px;
-          color: #72767d;
-          text-transform: uppercase;
-        }
-
-        h1.subtitle {
-          padding: 20px 0;
-          font-size: 11px;
-          font-weight: 700;
-          color: #72767d;
-          text-transform: uppercase;
-          margin-left: 14px;
-        }
-
-        button.tab {
-          padding: 12px 15px;
-          font-size: 14px;
-          background-color: #282b30;
-          color: #b9bbbe;
-          text-align: left;
-          transition: all 200ms ease;
-
-          &:hover {
-            background-image: linear-gradient(to right, #2E3136 100%, #2e3130);
-          }
-
-          &:active {
-            border-left: 2px solid #7289da;
-            padding-left: 28px;
-            background-image: linear-gradient(to right, #282b30 80%, #2e3136);
-          }
-        }
-      }
-
-      button.tab#nitro {
-        color: rgb(114, 137, 218);
-      }
-
-      button.tab.is-active#nitro {
-        color: #FFF;
-        background: #7289da;
-        border-radius: 4px;
-      }
-
-      section.content {
-        flex: 1;
-        background-color: #2E3136;
-
-        section.settings {
-          flex: 1;
-          color: #FFF;
-          padding: 12px;
-          height: 90%;
-          overflow: auto;
-        }
-      }
+    .content {
+      flex: 1;
+      background-color: #2E3136;
     }
   }
 
   /* My Account */
-  section#account {
-    section.account-profil {
+  #account {
+    .account-profil {
       background: rgba(32, 34, 37, .3);
       border: solid #202225 1px;
       margin-top: 20px;
       margin-bottom: 20px;
       padding: 10px;
 
-      section#entireForm {
+      #entireForm {
         display: flex;
 
-        section.logo-ce {
+        .logo-ce {
           margin: 0 20px 0 0;
         }
 
@@ -377,7 +299,7 @@ export default class UserParams extends Vue {
         }
       }
 
-      section.buttons {
+      .buttons {
         display: flex;
         justify-content: flex-end;
         align-items: center;
@@ -388,19 +310,19 @@ export default class UserParams extends Vue {
       }
     }
 
-    section.account-profil.noEdit {
+    .account-profil.noEdit {
       display: flex;
 
-      section#user-informations {
+      #user-informations {
         margin-top: 5px;
         margin-left: 15px;
         margin-right: 120px;
 
-        h3.information.label.marg {
+        .information.label.marg {
           margin-top: 10px;
         }
 
-        span.information {
+        .information {
           text-transform: inherit;
           font-size: 14px;
         }
@@ -408,7 +330,7 @@ export default class UserParams extends Vue {
     }
   }
 
-  a.specialA:hover {
+  .specialA:hover {
     text-decoration: underline;
   }
 </style>

@@ -19,3 +19,12 @@ export default class EmojiPicker extends Vue {
   }
 }
 </script>
+
+<style>
+  div.emoji-mart {
+    overflow: hidden;
+    align-self: flex-end;
+    position: absolute;
+    bottom: 55px;
+  }
+</style>

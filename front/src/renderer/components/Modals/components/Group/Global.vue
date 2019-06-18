@@ -30,14 +30,14 @@
 
         <section class="afk">
           <section class="options">
-            <section class="opt w">
+            <section class="opt">
               <label for="salonAfk" class="information">Salon AFK</label>
               <select name="salonAfk" id="salonAfk">
                 <option value="none">Aucun salon AFK</option>
                 <option value="general">General</option>
               </select>
             </section>
-            <section class="opt w">
+            <section class="opt">
               <label for="delay" class="information">Délai avant inactivité</label>
               <select name="delay" id="delay">
                 <option value="1min">1 minute</option>
@@ -54,3 +54,80 @@
     </section>
   </section>
 </template>
+
+<style lang="scss" scoped>
+  form {
+    margin-top: 20px;
+
+    section.logo {
+      display: flex;
+      align-items: center;
+
+      p.section-description {
+        margin: 0 15px;
+        width: 195px;
+      }
+
+      button {
+        color: #FFF;
+        border: solid hsla(0, 0%, 100%, .3) 1px;
+        -webkit-transition: color .17s ease, background-color .17s ease, border-color .17s ease;
+        transition: color .17s ease, background-color .17s ease, border-color .17s ease;
+        background-color: hsla(0, 0%, 100%, .0);
+        margin: 10px 0 0 14px;
+
+        &:hover {
+          border-color: hsla(0, 0%, 100%, .6);
+        }
+      }
+
+      section.upload input {
+        opacity: 0;
+        top: 0;
+        left: 0;
+        position: absolute;
+      }
+
+      section.name > input {
+        color: #f6f6f7;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .3) 1px;
+        padding: 10px;
+        margin-top: 10px;
+
+        &:focus {
+          border-color: #7289da;
+        }
+      }
+    }
+
+    section.afk {
+      section.options {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 20px;
+
+        section.opt {
+          display: flex;
+          flex-direction: column;
+          width: 250px;
+        }
+      }
+    }
+  }
+
+  section.bckg {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, .1), inset 0 0 120px rgba(0, 0, 0, .6);
+    display: none;
+  }
+
+  section.logo-group:hover > section.upload-file,  section.logo-group:hover > section.bckg,
+  section#entireForm > section.logo-ce > section.logo-group:hover > section.bckg,
+  section#entireForm > section.logo-ce > section.logo-group:hover > section.upload-file {
+    display: block;
+  }
+
+</style>

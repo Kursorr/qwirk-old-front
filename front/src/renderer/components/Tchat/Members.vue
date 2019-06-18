@@ -28,24 +28,35 @@
 </script>
 
 <style lang="scss" scoped>
-  section.avatar {
-    position: relative;
-    margin-right: 10px;
-    border-radius: 50%;
+  section.members {
+    width: 240px;
+    background-color: #2e3136;
+    display: flex;
+    justify-content: center;
+    overflow: auto;
 
-    &:hover {
-      cursor: pointer;
-    }
+    ul {
+      margin-top: 15px;
+      width: 100%;
 
-    div.status {
-      position: absolute;
-      border-radius: 50%;
-      width: 15px;
-      height: 15px;
-      top: 18px;
-      left: 16px;
-      border: solid #2e3136 2px;
-      background-color: #FFF;
+      li {
+        display: flex;
+        flex-direction: row;
+        padding: 10px 0 10px 10px;
+        margin-left: 5px;
+        margin-right: 5px;
+        border-radius: 4px;
+
+        &:hover {
+          background: linear-gradient(90deg, #282b30 85%, #2f3136);
+          cursor: pointer;
+        }
+
+        section.profil {
+          display: flex;
+          align-items: center;
+        }
+      }
     }
   }
 </style>
