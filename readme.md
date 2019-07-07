@@ -28,6 +28,9 @@ You need Docker and Docker-Compose to be able to run this project.
 
 If you don't have typescript and/or @vue/cli installed, you need it first.
 
+- `npm install -g typescript`
+- `npm install -g @vue/cli`
+
 If you have problem with `npm i` on the back folder, you need to:
 
 - `sudo apt-get install python-minimal`
