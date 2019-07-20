@@ -1,6 +1,6 @@
 # Welcome to Qwirk !
 
-![Qwirk](https://image.ibb.co/cdo4TK/logo.png)
+![Qwirk](https://i.ibb.co/tbtLnRW/Qwirk.png)
 
 Qwirk is an application like [Discord](https://discordapp.com/) - An all-in-one voice and text chat. 
 
@@ -80,7 +80,7 @@ I use [SemVer](http://semver.org/) for versioning.
 - \[x] Remove step 4 to 6 included on the install' steps...
 - \[ ] Big refactoring CSS to SASS would be greatful
 - \[ ] A website to present the project and have the possibility to download it
-- \[ ] A new logo
+- \[x] A new logo
 - \[ ] Using TensorFlowJS
 
 ## License
