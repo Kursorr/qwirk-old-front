@@ -41,10 +41,10 @@ export default class Bar extends Vue {
 
 <style lang="scss">
   section#cpnts {
-    width: 83%;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    flex-grow: 2;
+    justify-content: space-between;
 
     form {
       padding: 15px;
