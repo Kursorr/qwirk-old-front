@@ -36,6 +36,7 @@
           width="16"
           height="16"
           viewBox="0 0 24 24"
+          @click="videoCall()"
           v-bind:class="{'disabled': css.disabled}">
           <g fill="none" fill-rule="evenodd">
             <polygon points="0 0 24 0 24 24 0 24"></polygon>
@@ -56,8 +57,8 @@
             width="16"
             height="16"
             viewBox="0 0 24 24"
-            v-bind:class="{'disabled': css.disabled}"
-          >
+            @click="phoneCall()"
+            v-bind:class="{'disabled': css.disabled}">
             <g fill="none" fill-rule="evenodd">
               <polygon points="0 0 24 0 24 24 0 24"></polygon>
               <path
@@ -122,6 +123,57 @@
           </svg>
         </span>
       </section>
+
+      <section class="onCall" v-if="onCall">
+        <div id="videos" v-if="onVideoCall">
+          <video id="emitter"></video>
+          <video id="receiver"></video>
+        </div>
+        <div id="avatarsCall" v-if="onPhoneCall">
+          <h1>yolo!</h1>
+        </div>
+        <div class="optionsCall">
+          <div class="screenSharing">
+            <img class="sharescreen" src="../../assets/webrtc/confcall/sharescreen.svg" alt="sharescreen">
+          </div>
+          <div class="camera" @click="toggleCam()">
+          <span tabindex="0" v-if="!icon.camera">
+            <svg name="VideoCamera" class="videoCamera" width="16" height="16" viewBox="0 0 24 24">
+              <g fill="none" fill-rule="evenodd">
+                <polygon points="0 0 24 0 24 24 0 24"></polygon>
+                <path
+                  class="iconForeground-3y9f0B"
+                  fill="currentColor"
+                  fill-rule="nonzero"
+                  d="M17,10.5 L17,7 C17,6.45 16.55,6 16,6 L4,6 C3.45,6 3,6.45 3,7 L3,17 C3,17.55 3.45,18 4,18 L16,18 C16.55,18 17,17.55 17,17 L17,13.5 L21,17.5 L21,6.5 L17,10.5 Z"
+                ></path>
+                <rect width="24" height="24"></rect>
+              </g>
+            </svg>
+          </span>
+            <div v-else>
+              <img src="../../assets/webrtc/confcall/nocam.svg" alt="nocam" class="nocam">
+            </div>
+          </div>
+          <button @click="leaveCall()">quitter l'appel</button>
+          <div class="muteOrNot" @click="toggleMic()">
+            <div v-if="!icon.audio">
+              <img src="../../assets/webrtc/confcall/mute.svg" alt="mute" class="mute">
+            </div>
+            <div v-else>
+              <img src="../../assets/webrtc/confcall/nomute.svg" alt="nomute" class="nomute">
+            </div>
+          </div>
+        </div>
+        <canvas class="soundSaturation"></canvas>
+        <textarea name="offer" id="offer" cols="10" rows="1"></textarea>
+
+        <form id="incoming">
+          <textarea cols="10" rows="1" id="receiveroffre"></textarea>
+          <button @click.prevent="acceptCall()">accept</button>
+        </form>
+      </section>
+
     </section>
   </div>
 </template>
@@ -139,6 +191,187 @@
       isActive: false,
       disabled: false
     }
+    public onCall: boolean = false
+    public onVideoCall: boolean = false
+    public onPhoneCall: boolean = false
+
+    public icon = {
+      camera: false,
+      audio: true
+    }
+
+    public video: boolean = false
+    public mute: boolean = true
+    public p = null
+
+    toggleMic() {
+      this.mute ? (this.mute = false) : (this.mute = true);
+
+      for (let audioTrack of this.$stream.getAudioTracks()) {
+        audioTrack.enabled = this.mute;
+      }
+
+      this.icon.audio = !this.icon.audio;
+    }
+
+    toggleCam() {
+      this.$stream.getTracks()[1].enabled = !this.$stream.getTracks()[1]
+        .enabled;
+      this.icon.camera = !this.icon.camera;
+    }
+
+    call(audio, video) {
+      this.onCall = true;
+      this.css.isActive = true;
+      this.css.disabled = true;
+
+      video ? (this.video = true) : (this.video = false);
+
+      navigator.getUserMedia(
+        {
+          video: this.video,
+          audio: {
+            echoCancellation: true,
+            noiseSuppression: true,
+            autoGainControl: true
+          }
+        },
+        stream => {
+          this.$stream = stream;
+
+          this.p = new SimplePeer({
+            initiator: true,
+            stream,
+            trickle: false
+          });
+
+          this.bindEvents(this.p);
+
+          if (video) {
+            let emitter = document.getElementById('emitter');
+            emitter.srcObject = stream;
+            emitter.play();
+          }
+
+          this.soundSaturation(stream);
+        },
+        err => console.log(err)
+      )
+    }
+
+    videoCall() {
+      this.onVideoCall = true;
+      this.call(true, true);
+    }
+
+    phoneCall() {
+      this.onPhoneCall = true;
+      this.call(true, false);
+    }
+
+    soundSaturation(stream) {
+      const audioContext = new window.AudioContext();
+      let analyseur = audioContext.createAnalyser();
+      let source = audioContext.createMediaStreamSource(stream);
+      source.connect(analyseur);
+      analyseur.fftSize = 256;
+      const canvas = document.querySelector('.soundSaturation');
+      const ctx = canvas.getContext('2d');
+
+      const LARGEUR = 400;
+      const HAUTEUR = 150;
+
+      let sizeMemoryBuffer = analyseur.frequencyBinCount;
+      let data = new Uint8Array(sizeMemoryBuffer);
+
+      analyseur.getByteTimeDomainData(data);
+      ctx.clearRect(0, 0, LARGEUR, HAUTEUR);
+
+      function update() {
+        requestAnimationFrame(update);
+        analyseur.getByteTimeDomainData(data);
+
+        ctx.fillStyle = '#36393E';
+        ctx.fillRect(0, 0, LARGEUR, HAUTEUR);
+
+        let largeurBarre = LARGEUR / sizeMemoryBuffer;
+        let hauteurBarre = null;
+        let x = 0;
+
+        ctx.fillStyle = 'rgb(250, 50, 50)';
+
+        for (let i = 0; i < sizeMemoryBuffer; i += 1) {
+          hauteurBarre = data[i] - 64;
+
+          ctx.fillStyle = "rgb(250, 50, 50)";
+          ctx.fillRect(
+            x,
+            HAUTEUR - hauteurBarre * 1.7 + 100,
+            largeurBarre,
+            hauteurBarre
+          );
+          x += largeurBarre + 0.5;
+        }
+      }
+      update();
+    }
+
+    acceptCall() {
+      if (this.p === null) {
+        this.p = new SimplePeer({
+          initiator: false,
+          trickle: false
+        });
+        this.onCall = true;
+        this.onVideoCall = true;
+        this.onPhoneCall = true;
+        this.bindEvents(this.p);
+      }
+
+      this.p.signal(JSON.parse(document.getElementById('receiveroffre').value));
+    }
+
+    leaveCall() {
+      this.css.disabled = false;
+      this.onVideoCall = false;
+      this.onPhoneCall = false;
+      let emitter = document.getElementById('emitter');
+      let receiver = document.getElementById('receiver');
+
+      if (emitter) emitter.src = '';
+      if (receiver) receiver.src = '';
+
+      // get video / audio track and close it
+      this.$stream.getTracks().forEach(track => {
+        console.log(track);
+        track.stop();
+      });
+
+      this.onCall = false;
+      this.css.isActive = false;
+    }
+
+    bindEvents(p) {
+      p.on('error', err => {
+        console.log(err);
+      });
+
+      p.on('signal', data => {
+        document.getElementById('offer').textContent = JSON.stringify(data);
+      });
+
+      p.on('stream', stream => {
+        let receiver = document.getElementById('receiver');
+        receiver.srcObject = stream;
+        receiver.play();
+      });
+
+      p.on('track', (track, stream) => {
+        this.soundSaturation(stream);
+        console.log(track);
+        console.log(stream);
+      });
+    }
   }
 </script>
 
@@ -148,6 +381,7 @@
     display: flex;
     align-items: center;
     box-shadow: 0 1px 0 rgba(0,0,0,.2), 0 1.5px 0 rgba(0,0,0,.05), 0 2px 0 rgba(0,0,0,.05);
+    position: relative;
 
     &.tchat {
       justify-content: space-between;
@@ -379,4 +613,75 @@
     width: 1px;
   }
 
+  .onCall {
+    display: flex;
+    background-color: #202225;
+    justify-content: center;
+    height: 250px;
+    position: absolute;
+    z-index: 9999;
+    top: 48px;
+    width: 100%;
+  }
+
+  .onCall div#videos > video#receiver {
+    width: 100%;
+    height: 312px;
+  }
+
+  .onCall div#videos > video#emitter {
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    bottom: 0;
+    height: 140px;
+  }
+
+  .optionsCall {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 25px;
+    padding: 3px 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-color: rgba(0, 0, 0, 0.9);
+    border-radius: 4px;
+  }
+
+  .optionsCall > div.screenSharing {
+    margin-left: 10px;
+    margin-top: 5px;
+  }
+
+  .optionsCall > button {
+    background-color: #d84040;
+    text-transform: uppercase;
+    margin: 0 12px;
+    cursor: pointer;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    height: 32px;
+    line-height: 11px;
+    font-size: 14px;
+  }
+
+  .optionsCall > div.camera > span > svg.videoCamera,
+  .optionsCall > div.camera > div > img.nocam {
+    margin-right: 0;
+  }
+
+  .videoCamera.disabled,
+  .phone.disabled {
+    display: none;
+  }
+
+  canvas.soundSaturation {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 300px;
+    height: 45px;
+  }
 </style>
