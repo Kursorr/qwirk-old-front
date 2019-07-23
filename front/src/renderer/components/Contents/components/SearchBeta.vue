@@ -2,10 +2,10 @@
   <section>
     <div class="search">
       <input v-model="searchTerm" type="text" placeholder="Search" @keyup="onSearchInput()">
-      <img src="../../assets/webrtc/confcall/search.svg" alt="search">
+      <img src="../../../assets/webrtc/confcall/search.svg" alt="search">
     </div>
 
-    <div v-if="searchTerm !== ''">
+    <div v-if="searchTerm !== ''" id="searchResults">
       <div>{{ numHits }} Hits</div>
       <div>Displaying Results {{ searchOffset }} - {{ searchOffset + 9 }}</div>
       <div>
@@ -33,7 +33,7 @@
 
 <script lang="ts">
   import { Component, Vue } from 'vue-property-decorator'
-  import Avatar from '../Contents/components/Avatar'
+  import Avatar from './Avatar.vue'
 
   @Component({
     components: {
@@ -127,5 +127,10 @@
     top: 4px;
     right: 6px;
     opacity: 0.3;
+  }
+
+  #searchResults {
+    position: absolute;
+    top: 55px;
   }
 </style>
