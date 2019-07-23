@@ -55,9 +55,9 @@ import EmojiPicker from '../components/Tchat/EmojiPicker.vue'
   }
 })
 export default class Tchat extends Vue {
-  public toggleDropZone: boolean =  false
-  public toggleEmoji: boolean =  false
-  public message: string =  ''
+  public toggleDropZone: boolean = false
+  public toggleEmoji: boolean = false
+  public message: string = ''
   public user: any
 
   public append (emoji: any) {
