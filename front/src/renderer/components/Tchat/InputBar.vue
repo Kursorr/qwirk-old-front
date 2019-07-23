@@ -5,6 +5,7 @@
       id="tchat"
       rows="1"
       placeholder="Envoyer un message"
+      :value="message"
       @keypress.enter="onChange()"
     ></textarea>
     <button id="emoji" type="button" @click="emojiToggle">😁</button>
@@ -15,7 +16,6 @@
 import { Component, Vue, Prop } from 'vue-property-decorator'
 
 export default class Bar extends Vue {
-
   public dropzoneToggle () {
     this.$emit('toggledz')
   }
