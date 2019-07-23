@@ -5,25 +5,16 @@
       id="tchat"
       rows="1"
       placeholder="Envoyer un message"
-      :value="message"
-      @keypress.enter="onChange"
+      @keypress.enter="onChange()"
     ></textarea>
-    <search-beta></search-beta>
     <button id="emoji" type="button" @click="emojiToggle">😁</button>
   </form>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator'
-import SearchBeta from './SearchBeta.vue'
 
-@Component({
-  components: {
-    SearchBeta
-  }
-})
 export default class Bar extends Vue {
-  @Prop() public message?: string
 
   public dropzoneToggle () {
     this.$emit('toggledz')
