@@ -71,9 +71,8 @@ export default class Tchat extends Vue {
   public onSubmit (e: any) {
     e.preventDefault()
 
-    if (this.message === '') {
+    if (this.message === '')
       return false
-    }
 
     this.$socket.emit('SEND::MESSAGE', {
       route: this.$route.params,
