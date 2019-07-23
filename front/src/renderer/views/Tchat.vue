@@ -86,7 +86,7 @@ export default class Tchat extends Vue {
     setTimeout(() => {
       const tchatRoom: any = document.getElementById('convers')
       tchatRoom.scrollTop = tchatRoom.scrollHeight
-    }, 50)
+    }, 500)
   }
 }
 </script>
