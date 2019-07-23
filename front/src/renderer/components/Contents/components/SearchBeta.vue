@@ -1,6 +1,10 @@
 <template>
   <section>
-    <input v-model="searchTerm" type="text" placeholder="Search" @keyup="onSearchInput()">
+    <div class="search">
+      <input v-model="searchTerm" type="text" placeholder="Search" @keyup="onSearchInput()">
+      <img src="../../assets/webrtc/confcall/search.svg" alt="search">
+    </div>
+
     <div v-if="searchTerm !== ''">
       <div>{{ numHits }} Hits</div>
       <div>Displaying Results {{ searchOffset }} - {{ searchOffset + 9 }}</div>
@@ -80,5 +84,48 @@
 <style>
   em {
     background: rgba(250, 166, 26, .3);
+  }
+
+  .search {
+    position: relative;
+    font-weight: 500;
+    overflow: hidden;
+    margin-right: 10px;
+    font-size: 14px;
+  }
+
+  .search > input {
+    padding-left: 6px;
+    height: 28px;
+    border: none;
+    position: relative;
+    z-index: 1;
+    color: #fff;
+    background-color: hsla(0, 0%, 100%, 0.1);
+    border-radius: 4px;
+    -ms-flex-align: stretch;
+    -webkit-box-align: stretch;
+    -webkit-box-shadow: none;
+    -webkit-box-sizing: border-box;
+    -webkit-transition: width 0.2s ease-in-out;
+    align-items: stretch;
+    border-radius: 3px;
+    box-shadow: none;
+    box-sizing: border-box;
+    transition: width 0.2s ease-in-out;
+    width: 144px;
+  }
+
+  .search > input:focus {
+    width: 200px;
+  }
+
+  .search > img {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    top: 4px;
+    right: 6px;
+    opacity: 0.3;
   }
 </style>
