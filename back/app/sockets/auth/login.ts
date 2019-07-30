@@ -1,9 +1,9 @@
 'use strict'
 
+import * as path from 'path';
 import * as jwt from 'jsonwebtoken'
 import * as notifier from 'node-notifier'
 import * as r from 'rethinkdb'
-// import * as path from 'path'
 
 import { User } from '../../models/User'
 import { Socket } from '../../../scripts/class/Socket'
@@ -54,7 +54,7 @@ const login = (instance: Socket, socket: any ) => {
     notifier.notify({
       title: 'Welcome !',
       message: `Hello ${user.pseudo}`,
-      // icon: path.join(`${__dirname}/../../../avatars/${user.avatar}`),
+      icon: path.join(`${__dirname}/../../../avatars/${user.avatar}`),
       sound: true,
       wait: true
     }, (err, data) => {
@@ -84,7 +84,6 @@ const login = (instance: Socket, socket: any ) => {
     const health = await new ElasticSearch()
     await health.connect()
     await health.readAndInsertData(messagesToInsert)
-
 
     await findUser.update(userID, { token, tokenDeath: new Date(60 * 1000) })
 	})
