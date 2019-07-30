@@ -20,7 +20,8 @@ interface IUserModel
 	createdAt?      : Date,
 	modifiedAt?     : Date,
 	emailVerified?  : boolean,
-	file?           : string
+	file?           : string,
+  friends         : Array<Object>
 }
 
 class User extends Model {
@@ -69,10 +70,21 @@ class User extends Model {
     return this.db.r.table(this.table).get(data).run(this.db.conn)
   }
 
+  async getSpecificData (id: string, ...data: Array<string>): Promise<any>
+  {
+    return this.db.r.table(this.table).get(id).pluck(data).run(this.db.conn)
+  }
+
   async getAllChannels (id: string) : Promise<any>
   {
     return this.db.r.table('conversation_user').eqJoin('convId', this.db.r.table('conversations'))
       .filter({left: {userId: id }})
+      .run(this.db.conn)
+  }
+
+  async getFriends (id: string): Promise<any>
+  {
+    return this.db.r.table(this.table).get(id)('friends')
       .run(this.db.conn)
   }
 }

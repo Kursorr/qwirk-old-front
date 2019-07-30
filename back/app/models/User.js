@@ -57,10 +57,21 @@ class User extends Model_1.Model {
             return this.db.r.table(this.table).get(data).run(this.db.conn);
         });
     }
+    getSpecificData(id, ...data) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.db.r.table(this.table).get(id).pluck(data).run(this.db.conn);
+        });
+    }
     getAllChannels(id) {
         return __awaiter(this, void 0, void 0, function* () {
             return this.db.r.table('conversation_user').eqJoin('convId', this.db.r.table('conversations'))
                 .filter({ left: { userId: id } })
+                .run(this.db.conn);
+        });
+    }
+    getFriends(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.db.r.table(this.table).get(id)('friends')
                 .run(this.db.conn);
         });
     }
