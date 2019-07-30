@@ -53,6 +53,21 @@ export default new Router({
               component: () => import('./components/Contents/Grids/FriendGrid.vue'),
             },
             {
+              path: 'online',
+              name: 'online',
+              component: () => import('./components/Contents/Grids/FriendGrid.vue'),
+            },
+            {
+              path: 'wait',
+              name: 'wait',
+              component: () => import('./components/Contents/Grids/FriendWaitGrid.vue'),
+            },
+            {
+              path: 'locked',
+              name: 'locked',
+              component: () => import('./components/Contents/Grids/FriendGrid.vue'),
+            },
+            {
               path: 'add',
               name: 'addFriend',
               component: () => import('./components/Contents/AddFriend.vue'),
