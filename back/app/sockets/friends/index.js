@@ -28,9 +28,11 @@ const friends = (instance, socket) => {
             pseudo: '',
             tag: '',
             avatar: '',
-            status: ''
+            status: '',
+            requestedBy: ''
         };
         const friendsStatus = cursor.map(({ status }) => status);
+        const requestedBy = cursor.map(({ requestedBy }) => requestedBy);
         let i = 0;
         try {
             for (var cursor_1 = __asyncValues(cursor), cursor_1_1; cursor_1_1 = yield cursor_1.next(), !cursor_1_1.done;) {
@@ -41,6 +43,7 @@ const friends = (instance, socket) => {
                 obj.tag = tag;
                 obj.avatar = avatar;
                 obj.status = friendsStatus[i];
+                obj.requestedBy = requestedBy[i];
                 let three = Object.assign({}, obj, total);
                 friends.push(three);
                 i++;

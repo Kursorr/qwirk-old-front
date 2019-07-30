@@ -17,10 +17,12 @@ const friends = (instance: Socket, socket: any) => {
       pseudo: '',
       tag: '',
       avatar: '',
-      status: ''
+      status: '',
+      requestedBy: ''
     }
 
     const friendsStatus: Array<string> = cursor.map(({ status }) => status)
+    const requestedBy: Array<string> = cursor.map(({ requestedBy }) => requestedBy)
 
     let i = 0;
     for await (const friend of cursor) {
@@ -31,6 +33,7 @@ const friends = (instance: Socket, socket: any) => {
       obj.tag = tag
       obj.avatar = avatar
       obj.status = friendsStatus[i]
+      obj.requestedBy = requestedBy[i]
 
       let three = Object.assign({}, obj, total)
 
