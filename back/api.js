@@ -82,10 +82,6 @@ connectDatabase.then((conn) => __awaiter(this, void 0, void 0, function* () {
             message: `Welcome to Qwirk API`
         });
     });
-    app.post('/friends', (req, res) => {
-        console.log(req.body);
-        res.status(200).json(req.body);
-    });
     app.use('/confirm-account', confirm_1.default);
     app.use('/search', search_1.default);
     // Launch application
