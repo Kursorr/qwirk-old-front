@@ -10,12 +10,13 @@
     </section>
 
     <section class="table-content">
-      <section class="table-line">
+
+      <section class="table-line" v-for="friend in friends">
         <section class="table-line-name">
-          <section class="avatar"></section>
+          <img class="avatar" :src="'http://localhost:4100/avatars/' + friend.avatar">
           <section class="tag-name">
-            <span class="pseudo">Ravaniss</span>
-            <span class="tag">#2495</span>
+            <span class="pseudo">{{ friend.pseudo }}</span>
+            <span class="tag">#{{ friend.tag }}</span>
           </section>
         </section>
 
@@ -39,7 +40,40 @@
   </section>
 </template>
 
+<script lang="ts">
+  import { Component, Vue } from 'vue-property-decorator'
+  import store from '../../../vuex/store'
+  import * as Vuex from 'vuex'
+
+  @Component({
+    store,
+    computed: {
+      ...Vuex.mapGetters([
+        'user'
+      ])
+    },
+    sockets: {
+      getFriends (data) {
+        this.friends = data
+        console.log(data)
+      }
+    },
+  })
+  export default class FriendGrid extends Vue {
+    friends = ''
+
+    mounted() {
+      this.$socket.emit('friends', this.user.id)
+    }
+  }
+</script>
+
 <style lang="scss" scoped>
+  img.avatar {
+    height: 30px;
+    width: 30px;
+  }
+
   .name {
     width: 200px;
   }
