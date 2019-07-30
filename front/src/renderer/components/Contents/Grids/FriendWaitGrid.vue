@@ -30,9 +30,24 @@
         </section>
 
         <section class="table-line-actions">
-          <button class="action video-call"></button>
-          <button class="action voice-call"></button>
-          <button class="action remove"></button>
+          <button class="action accept" v-if="friend.requestedBy === true">
+            <icon-base
+              icon-name="accept"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24">
+              <accept-icon/>
+            </icon-base>
+          </button>
+          <button class="action revoke">
+            <icon-base
+              icon-name="revoke"
+              width="16"
+              height="16"
+              viewBox="0 0 16 16">
+              <revoke-icon/>
+            </icon-base>
+          </button>
         </section>
       </section>
     </section>
@@ -44,7 +59,16 @@
   import store from '../../../vuex/store'
   import * as Vuex from 'vuex'
 
+  import IconBase from '../../IconBase.vue'
+  import RevokeIcon from '../../Svg/Grids/RevokeIcon.vue'
+  import AcceptIcon from '../../Svg/Grids/AcceptIcon.vue'
+
   @Component({
+    components: {
+      IconBase,
+      AcceptIcon,
+      RevokeIcon
+    },
     store,
     computed: {
       ...Vuex.mapGetters([
@@ -53,12 +77,16 @@
     },
     sockets: {
       getFriends (data) {
-        this.friends = data.filter(d => d.status === 1)
+        this.friends = data.filter(d => d.status === 2)
+        this.requestedBy = data.filter(d => d.requestedBy === '')
+
+        console.log(this.requestedBy)
       }
     },
   })
   export default class FriendGrid extends Vue {
     friends = ''
+    requestedBy = ''
 
     mounted() {
       this.$socket.emit('friends', this.user.id)
@@ -148,33 +176,19 @@
         width: 36px;
         background-color: #2f3136;
 
-        &.voice-call {
-          background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICA8ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgogICAgPHBvbHlnb24gcG9pbnRzPSIwIDAgMjQgMCAyNCAyNCAwIDI0Ii8+CiAgICA8cGF0aCBmaWxsPSIjRkZGRkZGIiBkPSJNNy41LDEwLjUgQzguOTQsMTMuMzMgMTAuNjY5MTI4MSwxNS4wNSAxMy40OTkxMjgxLDE2LjUgTDE1LjQxLDE1LjE4IEMxNS42OCwxNC45MSAxNi4wOCwxNC44MiAxNi40MywxNC45NCBDMTcuNTUsMTUuMzEgMTguNzYsMTUuNTEgMjAsMTUuNTEgQzIwLjU1LDE1LjUxIDIxLDE1Ljk2IDIxLDE2LjUxIEwyMSwyMCBDMjEsMjAuNTUgMjAuNTUsMjEgMjAsMjEgQzEwLjYxLDIxIDIuNzkzOTk5MDcsMTMuNjQwNDQ0OSAzLDQgQzMuMDExNzQ5OTQsMy40NTAxMjU3MyAzLjQ1LDMgNCwzIEw3LjUsMyBDOC4wNSwzIDguNSwzLjQ1IDguNSw0IEM4LjUsNS4yNSA4LjcsNi40NSA5LjA3LDcuNTcgQzkuMTgsNy45MiA5LjEsOC4zMSA4LjgyLDguNTkgTDcuNSwxMC41IFoiLz4KICA8L2c+Cjwvc3ZnPgo=");
-          background-repeat: no-repeat;
-          background-position: 6px;
-
-          &:hover {
-            background-color: #4F545C;
-          }
-        }
-
-        &.video-call {
-          background-image: url('https://discordapp.com/assets/f67374a8fd6b116362596d65cc516747.svg');
-          background-repeat: no-repeat;
-          background-position: 6px;
-
-          &:hover {
-            background-color: #4F545C;
-          }
-        }
-
-        &.remove {
-          background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCI+CiAgPGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KICAgIDxwYXRoIGZpbGw9IiNGRkYiIGQ9Ik0xMCAxMmMyLjIxIDAgNC0xLjc5IDQtNHMtMS43OS00LTQtNC00IDEuNzktNCA0IDEuNzkgNCA0IDR6bTAgMmMtMi42NyAwLTggMS4zNC04IDR2MmgxNnYtMmMwLTIuNjYtNS4zMy00LTgtNHptOS4zMDczOTk5LTMuNTA2NjMzM2wxLjY3MjQzMjYtMS42NzI0MzI1NWMuMTI0NTk2LS4xMjQ1OTYwNi4zOTY3NS0uMzk2NzUwMS0uMDA0MDIwMi0uNzk3NTIwMzctLjQwMDc3MDMtLjQwMDc3MDI4LS42NzY5MDA2LS4xMzI1OTI1LS44MDE0OTY3LS4wMDc5OTY0M2wtMS42NzI0MzI1IDEuNjcyNDMyNTItMS42MzY4MjEtMS42MzY4MjFjLS4xMjM2OTY0LS4xMjM2OTY0Ni0uNDI5NzE5MS0uNDI5NzE5MTctLjgzNDQ2NTctLjAyNDk3MjY1LS40MDQ3NDY1LjQwNDc0NjUzLS4wOTk1MDM5LjcxMTU0OTQuMDI0MTkyNS44MzUyNDU4NWwxLjYzNjgyMSAxLjYzNjgyMTAzLTEuNjI1ODI3MyAxLjYyNTgyNzNjLS4xMjM2OTY1LjEyMzY5NjUtLjQzODU5ODkuNDQ2NTUxNC0uMDM3ODI4Ni44NDczMjE3LjQwMDc3MDMuNDAwNzcwMi42NzkyMjgyLjEyMjMxMjMuODAyOTI0Ny0uMDAxMzg0MmwxLjY2NjI0OC0xLjY2NjI0OCAxLjY1NDAxNzQgMS42NTQwMTczYy4xMjQxNDYyLjEyNDE0NjMuNDE5OTIxNi40MTgzNjE0LjgyNDY2ODIuMDEzNjE0OS40MDQ3NDY1LS40MDQ3NDY2LjEwOTc1MTItLjY5OTc0MTgtLjAxNDM5NS0uODIzODg4MWwtMS42NTQwMTc0LTEuNjU0MDE3M3oiLz4KICAgIDxwYXRoIGQ9Ik0wIDBoMjR2MjRIMCIvPgogIDwvZz4KPC9zdmc+");
-          background-repeat: no-repeat;
-          background-position: 6px;
+        &.revoke {
+          padding: 0;
 
           &:hover {
             background-color: #DC4242;
+          }
+        }
+
+        &.accept {
+          padding: 0;
+
+          &:hover {
+            background-color: #4F545C;
           }
         }
       }
