@@ -36,12 +36,14 @@
     },
     sockets: {
       updateMessage (messages: string) {
+        this.clearMessage()
         this.addMessage(messages)
       }
     },
     methods: {
       ...Vuex.mapActions([
-        'addMessage'
+        'addMessage',
+        'clearMessage'
       ])
     },
     computed: {
