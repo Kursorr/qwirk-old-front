@@ -40,7 +40,6 @@ export const addMessage = (state, messages) => {
         });
     });
 };
-export const setMessage = (state, messages) => {
+export const clearMessage = (state) => {
     state.commit(types.CLEAR_MESSAGES);
-    addMessage(state, messages);
 };

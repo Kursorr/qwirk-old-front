@@ -49,7 +49,6 @@ export const addMessage = (state: any, messages: Array<[IMessage]>) => {
   })
 }
 
-export const setMessage = (state: any, messages: Array<[IMessage]>) => {
+export const clearMessage = (state: any) => {
   state.commit(types.CLEAR_MESSAGES)
-  addMessage(state, messages)
 }
