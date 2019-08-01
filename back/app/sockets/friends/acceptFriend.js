@@ -28,6 +28,7 @@ const acceptFriend = (instance, socket) => {
         const existingRelation2 = yield existingRelationCursor2.toArray();
         console.log(existingRelation);
         console.log(existingRelation2);
+        // Need to fix index
         /*
           await userDb.updateFriend(user, i, {
             status: 1

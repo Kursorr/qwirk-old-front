@@ -27,6 +27,8 @@ const acceptFriend = (instance: Socket, socket: any) => {
     console.log(existingRelation);
     console.log(existingRelation2);
 
+    // Need to fix index
+
   /*
     await userDb.updateFriend(user, i, {
       status: 1
