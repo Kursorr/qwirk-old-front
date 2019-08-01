@@ -42,6 +42,11 @@ class User extends Model {
     return this.db.r.table(this.table).filter(data).run(this.db.conn)
   }
 
+  async filterPluck (id: string, data: Object): Promise<any>
+  {
+    return this.db.r.table(this.table).get(id)('friends').filter(data).run(this.db.conn)
+  }
+
   private async opt (id: string, data: object): Promise<any>
   {
     return this.db.r.table(this.table).get(id).update(data).run(this.db.conn)
@@ -75,7 +80,7 @@ class User extends Model {
     return this.db.r.table(this.table).get(id).pluck(data).run(this.db.conn)
   }
 
-  async getAllChannels (id: string) : Promise<any>
+  async getAllChannels (id: string): Promise<any>
   {
     return this.db.r.table('conversation_user').eqJoin('convId', this.db.r.table('conversations'))
       .filter({left: {userId: id }})
@@ -87,6 +92,22 @@ class User extends Model {
     return this.db.r.table(this.table).get(id)('friends')
       .run(this.db.conn)
   }
+
+  async addFriend (id: string, appendData: Object): Promise<any>
+  {
+    return this.db.r.table(this.table).get(id).update(
+      { friends: this.db.r.row('friends').append(appendData) }
+    ).run(this.db.conn)
+  }
+
+  async updateFriend (id: string, index: number, data: Object): Promise<any>
+  {
+    return this.db.r.table(this.table).get(id).update({
+      friends: this.db.r.row('friends')
+        .changeAt(index, this.db.r.row('friends').nth(index).merge(data))
+    }).run(this.db.conn)
+  }
+
 }
 
 export { User, IUserModel }

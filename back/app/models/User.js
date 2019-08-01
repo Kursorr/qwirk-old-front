@@ -29,6 +29,11 @@ class User extends Model_1.Model {
             return this.db.r.table(this.table).filter(data).run(this.db.conn);
         });
     }
+    filterPluck(id, data) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.db.r.table(this.table).get(id)('friends').filter(data).run(this.db.conn);
+        });
+    }
     opt(id, data) {
         return __awaiter(this, void 0, void 0, function* () {
             return this.db.r.table(this.table).get(id).update(data).run(this.db.conn);
@@ -73,6 +78,19 @@ class User extends Model_1.Model {
         return __awaiter(this, void 0, void 0, function* () {
             return this.db.r.table(this.table).get(id)('friends')
                 .run(this.db.conn);
+        });
+    }
+    addFriend(id, appendData) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.db.r.table(this.table).get(id).update({ friends: this.db.r.row('friends').append(appendData) }).run(this.db.conn);
+        });
+    }
+    updateFriend(id, index, data) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.db.r.table(this.table).get(id).update({
+                friends: this.db.r.row('friends')
+                    .changeAt(index, this.db.r.row('friends').nth(index).merge(data))
+            }).run(this.db.conn);
         });
     }
 }
