@@ -6,6 +6,7 @@ const login_1 = require("./auth/login");
 const tchat_1 = require("./tchat");
 const friends_1 = require("./friends");
 const addFriend_1 = require("./friends/addFriend");
+const acceptFriend_1 = require("./friends/acceptFriend");
 const base = (instance) => {
     const { IO } = instance;
     IO.on('connection', (socket) => {
@@ -15,6 +16,7 @@ const base = (instance) => {
         profile_1.profile(instance, socket);
         tchat_1.tchat(instance, socket);
         addFriend_1.addFriend(instance, socket);
+        acceptFriend_1.acceptFriend(instance, socket);
         friends_1.friends(instance, socket);
         socket.on('disconnect', () => {
             console.log(`Customer disconnected id: ${socket.id} from port ${process.argv[2]}`);

@@ -6,6 +6,7 @@ import { login } from './auth/login'
 import { tchat } from './tchat'
 import { friends } from './friends'
 import { addFriend } from './friends/addFriend';
+import { acceptFriend } from './friends/acceptFriend';
 
 const base = (instance: Socket) => {
   const { IO } = instance
@@ -18,6 +19,7 @@ const base = (instance: Socket) => {
     profile(instance, socket)
     tchat(instance, socket)
     addFriend(instance, socket)
+    acceptFriend(instance, socket)
     friends(instance, socket)
 
     socket.on('disconnect', () => {
