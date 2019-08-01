@@ -8,13 +8,36 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const r = require("rethinkdb");
+const User_1 = require("../../models/User");
 const addFriend = (instance, socket) => {
     socket.on('addFriend', (data) => __awaiter(this, void 0, void 0, function* () {
+        const { DB } = instance;
+        const userDb = new User_1.User(DB);
         const { user, friend } = data;
-        console.log(user, friend);
-        r.db('qwirk').table('users').filter({ pseudo: 'quenti77' });
-        r.db('qwirk').table('users').get('308be1e2-946f-4219-bcfb-aea558f36617').update({ friends: r.row('friends').append({ 'zfzef': 'zefzef' }) });
+        const friendCursor = yield userDb.filter({ pseudo: friend });
+        const requestedFriend = yield friendCursor.toArray();
+        if (requestedFriend.length === 0) {
+            return socket.emit('sendFriendRequest', {
+                requestResult: false
+            });
+        }
+        // Need to fix index
+        yield userDb.addFriend(user, {
+            from: user,
+            status: 2,
+            requestedBy: true,
+            to: requestedFriend[0].id
+        });
+        yield userDb.addFriend(requestedFriend[0].id, {
+            from: requestedFriend[0].id,
+            status: 2,
+            requestedBy: false,
+            to: user
+        });
+        socket.emit('sendFriendRequest', {
+            requestResult: true,
+            pseudo: requestedFriend[0].pseudo
+        });
     }));
 };
 exports.addFriend = addFriend;
