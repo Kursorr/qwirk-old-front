@@ -1,5 +1,3 @@
-import * as r from 'rethinkdb'
-
 import { Socket } from '../../../scripts/class/Socket'
 import { User } from '../../models/User'
 
