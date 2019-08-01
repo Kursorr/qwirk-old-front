@@ -10,7 +10,7 @@
     </section>
 
     <section class="table-content">
-      <section class="table-line" v-for="friend in friends">
+      <section class="table-line" v-for="(friend, index) in friends">
         <section class="table-line-name">
           <img class="avatar" :src="'http://localhost:4100/avatars/' + friend.avatar">
           <section class="tag-name">
@@ -30,7 +30,10 @@
         </section>
 
         <section class="table-line-actions">
-          <button class="action accept" v-if="friend.requestedBy === true">
+          <button
+            class="action accept"
+            v-if="friend.requestedBy === true"
+            @click="acceptFriend(friend, index)">
             <icon-base
               icon-name="accept"
               width="24"
@@ -79,8 +82,6 @@
       getFriends (data) {
         this.friends = data.filter(d => d.status === 2)
         this.requestedBy = data.filter(d => d.requestedBy === '')
-
-        console.log(this.requestedBy)
       }
     },
   })
@@ -88,9 +89,23 @@
     friends = ''
     requestedBy = ''
 
-    mounted() {
+    acceptFriend (friend, i) {
+      this.$socket.emit('acceptFriend', {
+        user: this.user.id,
+        friend: friend.pseudo,
+        i
+      })
       this.$socket.emit('friends', this.user.id)
     }
+
+    mounted () {
+      if (this.user) {
+        if (this.user.id) {
+          this.$socket.emit('friends', this.user.id)
+        }
+      }
+    }
+
   }
 </script>
 
