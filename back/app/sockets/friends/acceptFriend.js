@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const User_1 = require("../../models/User");
 const acceptFriend = (instance, socket) => {
-    socket.on('acceptFriend', (data) => __awaiter(this, void 0, void 0, function* () {
+    socket.on('GET::NEW::FRIEND', (data) => __awaiter(this, void 0, void 0, function* () {
         const { DB } = instance;
         const userDb = new User_1.User(DB);
         const { user, friend } = data;
