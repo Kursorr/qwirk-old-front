@@ -8,6 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const uuidv4 = require('uuid/v4');
 const User_1 = require("../../models/User");
 const addFriend = (instance, socket) => {
     socket.on('addFriend', (data) => __awaiter(this, void 0, void 0, function* () {
@@ -21,14 +22,15 @@ const addFriend = (instance, socket) => {
                 requestResult: false
             });
         }
-        // Need to fix index
         yield userDb.addFriend(user, {
+            id: uuidv4(),
             from: user,
             status: 2,
             requestedBy: true,
             to: requestedFriend[0].id
         });
         yield userDb.addFriend(requestedFriend[0].id, {
+            id: uuidv4(),
             from: requestedFriend[0].id,
             status: 2,
             requestedBy: false,

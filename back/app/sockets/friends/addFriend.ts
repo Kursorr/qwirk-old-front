@@ -1,3 +1,5 @@
+const uuidv4 = require('uuid/v4')
+
 import { Socket } from '../../../scripts/class/Socket'
 import { User } from '../../models/User'
 
@@ -17,9 +19,8 @@ const addFriend = (instance: Socket, socket: any) => {
       })
     }
 
-    // Need to fix index
-
     await userDb.addFriend(user, {
+      id: uuidv4(),
       from: user,
       status: 2,
       requestedBy: true,
@@ -27,6 +28,7 @@ const addFriend = (instance: Socket, socket: any) => {
     })
 
     await userDb.addFriend(requestedFriend[0].id, {
+      id: uuidv4(),
       from: requestedFriend[0].id,
       status: 2,
       requestedBy: false,
