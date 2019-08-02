@@ -13,34 +13,18 @@ const acceptFriend = (instance, socket) => {
     socket.on('acceptFriend', (data) => __awaiter(this, void 0, void 0, function* () {
         const { DB } = instance;
         const userDb = new User_1.User(DB);
-        const { user, friend, i } = data;
+        const { user, friend } = data;
+        const userCursor = yield userDb.filter({ id: user });
+        const sender = yield userCursor.toArray();
         const friendCursor = yield userDb.filter({ pseudo: friend });
-        const requestedFriend = yield friendCursor.toArray();
-        const existingRelationCursor = yield userDb.filterPluck(user, {
-            from: user,
-            to: requestedFriend[0].id
-        });
-        const existingRelation = yield existingRelationCursor.toArray();
-        const existingRelationCursor2 = yield userDb.filterPluck(requestedFriend[0].id, {
-            from: requestedFriend[0].id,
-            to: user
-        });
-        const existingRelation2 = yield existingRelationCursor2.toArray();
-        console.log(existingRelation);
-        console.log(existingRelation2);
-        // Need to fix index
-        /*
-          await userDb.updateFriend(user, i, {
+        const receiver = yield friendCursor.toArray();
+        yield userDb.updateFriend(user, sender[0].friends[0].id, {
             status: 1
-          })
-      
-          await userDb.updateFriend(requestedFriend[0].id, i, {
+        });
+        yield userDb.updateFriend(receiver[0].id, receiver[0].friends[0].id, {
             status: 1
-          })
-      
-          socket.emit('acceptedFriend')
-      
-         */
+        });
+        socket.emit('acceptedFriend');
     }));
 };
 exports.acceptFriend = acceptFriend;

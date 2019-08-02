@@ -6,41 +6,22 @@ const acceptFriend = (instance: Socket, socket: any) => {
     const { DB } = instance
     const userDb = new User(DB)
 
-    const { user, friend, i } = data
+    const { user, friend } = data
 
+    const userCursor = await userDb.filter({id: user})
+    const sender = await userCursor.toArray()
     const friendCursor = await userDb.filter({ pseudo: friend })
-    const requestedFriend = await friendCursor.toArray()
+    const receiver = await friendCursor.toArray()
 
-
-    const existingRelationCursor = await userDb.filterPluck(user, {
-      from: user,
-      to: requestedFriend[0].id
-    })
-    const existingRelation = await existingRelationCursor.toArray()
-
-    const existingRelationCursor2 = await userDb.filterPluck(requestedFriend[0].id, {
-      from: requestedFriend[0].id,
-      to: user
-    })
-    const existingRelation2 = await existingRelationCursor2.toArray()
-
-    console.log(existingRelation);
-    console.log(existingRelation2);
-
-    // Need to fix index
-
-  /*
-    await userDb.updateFriend(user, i, {
+    await userDb.updateFriend(user, sender[0].friends[0].id, {
       status: 1
     })
 
-    await userDb.updateFriend(requestedFriend[0].id, i, {
+    await userDb.updateFriend(receiver[0].id, receiver[0].friends[0].id, {
       status: 1
     })
 
     socket.emit('acceptedFriend')
-
-   */
   })
 }
 
