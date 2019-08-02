@@ -4,7 +4,7 @@ import { register } from './auth/register'
 import { profile } from './edit/profile'
 import { login } from './auth/login'
 import { tchat } from './tchat'
-import { friends } from './friends'
+import { friends } from './friends/getFriends'
 import { addFriend } from './friends/addFriend';
 import { acceptFriend } from './friends/acceptFriend';
 
