@@ -1,7 +1,5 @@
 'use strict'
 
-import * as r from 'rethinkdb'
-
 import { IDB, Model } from './Model'
 import { Password } from '../../scripts/class/Hash'
 
