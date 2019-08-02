@@ -17,7 +17,7 @@ var __asyncValues = (this && this.__asyncValues) || function (o) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const User_1 = require("../../models/User");
 const friends = (instance, socket) => {
-    socket.on('friends', (userId) => __awaiter(this, void 0, void 0, function* () {
+    socket.on('GET::FRIENDS', (userId) => __awaiter(this, void 0, void 0, function* () {
         var e_1, _a;
         const { DB } = instance;
         const user = new User_1.User(DB);

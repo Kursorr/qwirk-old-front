@@ -2,7 +2,7 @@ import { Socket } from '../../../scripts/class/Socket'
 import { User } from '../../models/User'
 
 const friends = (instance: Socket, socket: any) => {
-  socket.on('friends', async (userId) => {
+  socket.on('GET::FRIENDS', async (userId) => {
     const { DB } = instance
     const user = new User(DB)
 
