@@ -1,5 +1,7 @@
 'use strict'
 
+import * as r from 'rethinkdb'
+
 import { IDB, Model } from './Model'
 import { Password } from '../../scripts/class/Hash'
 
@@ -100,11 +102,16 @@ class User extends Model {
     ).run(this.db.conn)
   }
 
-  async updateFriend (id: string, index: number, data: Object): Promise<any>
+  async updateFriend (id: string, eq: string, data: Object): Promise<any>
   {
-    return this.db.r.table(this.table).get(id).update({
-      friends: this.db.r.row('friends')
-        .changeAt(index, this.db.r.row('friends').nth(index).merge(data))
+    return this.db.r.table(this.table).get(id).update(function(row) {
+      return row('friends').offsetsOf(function(x) {
+        return x('id').eq(eq)
+      })(0).do(function(index) {
+        return {
+          friends: row('friends').changeAt(index, row('friends')(index).merge(data))
+        }
+      })
     }).run(this.db.conn)
   }
 
