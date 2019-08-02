@@ -38,7 +38,7 @@
               icon-name="accept"
               width="24"
               height="24"
-              viewBox="0 0 kiki@kiki.dur24 24">
+              viewBox="0 0 24 24">
               <accept-icon/>
             </icon-base>
           </button>
@@ -84,7 +84,7 @@
         this.requestedBy = data.filter(d => d.requestedBy === '')
       },
       acceptedFriend () {
-        this.$socket.emit('friends', this.user.id)
+        this.$socket.emit('GET::FRIENDS', this.user.id)
       }
     },
   })
@@ -93,7 +93,7 @@
     requestedBy = ''
 
     acceptFriend (friend) {
-      this.$socket.emit('acceptFriend', {
+      this.$socket.emit('GET::NEW::FRIEND', {
         user: this.user.id,
         friend: friend.pseudo
       })
@@ -102,7 +102,7 @@
     mounted () {
       if (this.user) {
         if (this.user.id) {
-          this.$socket.emit('friends', this.user.id)
+          this.$socket.emit('GET::FRIENDS', this.user.id)
         }
       }
     }

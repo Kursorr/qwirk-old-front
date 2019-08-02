@@ -38,7 +38,7 @@
     public request = {}
 
     public addNewFriend () {
-      this.$socket.emit('addFriend', {
+      this.$socket.emit('ADD::FRIEND', {
         user: this.user.id,
         friend: this.newFriend
       })

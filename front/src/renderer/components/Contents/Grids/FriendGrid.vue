@@ -61,7 +61,7 @@
     friends = ''
 
     mounted() {
-      this.$socket.emit('friends', this.user.id)
+      this.$socket.emit('GET::FRIENDS', this.user.id)
     }
   }
 </script>
