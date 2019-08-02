@@ -4,7 +4,7 @@ import { Socket } from '../../../scripts/class/Socket'
 import { User } from '../../models/User'
 
 const addFriend = (instance: Socket, socket: any) => {
-  socket.on('addFriend', async (data) => {
+  socket.on('ADD::FRIEND', async (data) => {
     const { DB } = instance
     const userDb = new User(DB)
 

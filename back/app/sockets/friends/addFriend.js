@@ -11,7 +11,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const uuidv4 = require('uuid/v4');
 const User_1 = require("../../models/User");
 const addFriend = (instance, socket) => {
-    socket.on('addFriend', (data) => __awaiter(this, void 0, void 0, function* () {
+    socket.on('ADD::FRIEND', (data) => __awaiter(this, void 0, void 0, function* () {
         const { DB } = instance;
         const userDb = new User_1.User(DB);
         const { user, friend } = data;
