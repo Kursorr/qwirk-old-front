@@ -14,8 +14,9 @@ const addFriend = (instance, socket) => {
     socket.on('ADD::FRIEND', (data) => __awaiter(this, void 0, void 0, function* () {
         const { DB } = instance;
         const userDb = new User_1.User(DB);
-        const { user, friend } = data;
-        const friendCursor = yield userDb.filter({ pseudo: friend });
+        const { user, friend, tag } = data;
+        console.log(data);
+        const friendCursor = yield userDb.filter({ pseudo: friend, tag: tag });
         const requestedFriend = yield friendCursor.toArray();
         if (requestedFriend.length === 0) {
             return socket.emit('sendFriendRequest', {
