@@ -42,7 +42,9 @@
               <accept-icon/>
             </icon-base>
           </button>
-          <button class="action revoke">
+          <button
+            class="action revoke"
+            @click="revokeFriend(friend)">
             <icon-base
               icon-name="revoke"
               width="16"
@@ -85,6 +87,9 @@
       },
       acceptedFriend () {
         this.$socket.emit('GET::FRIENDS', this.user.id)
+      },
+      revokedFriend () {
+        this.$socket.emit('GET::FRIENDS', this.user.id)
       }
     },
   })
@@ -94,6 +99,13 @@
 
     acceptFriend (friend) {
       this.$socket.emit('GET::NEW::FRIEND', {
+        user: this.user.id,
+        friend: friend.pseudo
+      })
+    }
+
+    revokeFriend (friend) {
+      this.$socket.emit('REVOKE::FRIEND', {
         user: this.user.id,
         friend: friend.pseudo
       })
