@@ -5,8 +5,9 @@ import { profile } from './edit/profile'
 import { login } from './auth/login'
 import { tchat } from './tchat'
 import { friends } from './friends/getFriends'
-import { addFriend } from './friends/addFriend';
-import { acceptFriend } from './friends/acceptFriend';
+import { addFriend } from './friends/addFriend'
+import { acceptFriend } from './friends/acceptFriend'
+import { revokeFriend } from './friends/revokeFriend'
 
 const base = (instance: Socket) => {
   const { IO } = instance
@@ -20,6 +21,7 @@ const base = (instance: Socket) => {
     tchat(instance, socket)
     addFriend(instance, socket)
     acceptFriend(instance, socket)
+    revokeFriend(instance, socket)
     friends(instance, socket)
 
     socket.on('disconnect', () => {
