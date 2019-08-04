@@ -1,12 +1,13 @@
 <template>
-  <section id="add_friend">
+  <section id="addFriend">
     <h1>Ajouter un ami</h1>
-    <p>Vous pouvez ajouter un ami grâce à leur identifiant Qwirk.</p>
-    <div v-if="request.requestResult === false">
+    <p>Tu peux ajouter un ami grâce à son Qwirk Tag.</p>
+    <div v-if="request.requestResult === false" class="error">
       Mhm, ça n'a pas marché. Vérifie bien sur la casse, l'orthographe, les espaces et les chiffres sont corrects.
     </div>
-    <div v-if="request.requestResult === true">
-      Mission accompli ! Attends, qu'est ce que... C'est un oiseau ? c'est un avion ? Non, c'est Superman qui envoie ta demande d'amis à {{ request.pseudo }} ! Un mec bien, ce Clark.
+    <div v-if="request.requestResult === true" class="success">
+      Mission accompli ! Attends, qu'est ce que... C'est un oiseau ? c'est un avion ? Non, c'est Superman qui envoie
+      ta demande d'amis à <strong>{{ request.pseudo }}</strong> ! Un mec bien, ce Clark.
     </div>
     <form method="POST" @submit.prevent="addNewFriend()">
       <input type="text" placeholder="Entrez un identifiant qwirk #0000" v-model="newFriend">
@@ -47,34 +48,72 @@
 </script>
 
 <style lang="scss">
-  #add_friend {
+  #addFriend {
     padding: 15px;
     color: white;
 
+    .error {
+      font-weight: 500;
+      font-size: 14px;
+      color: #f04747;
+    }
+
+    .success {
+      font-weight: 500;
+      font-size: 14px;
+      color: #43b581;
+
+      strong {
+        font-weight: 700;
+      }
+    }
+
     h1 {
-      text-transform: uppercase;
+      color: #FFF;
+      font-weight: 700;
       font-size: 16px;
+      text-transform: uppercase;
+      margin: 5px 0;
     }
 
     p {
       margin: 10px 0;
       font-size: 14px;
+      color: hsla(0,0%,100%,.6);
     }
 
     form {
       display: flex;
+      border: 1px solid rgba(0,0,0,.2);
+      background-color: rgba(36,39,43,.2);
+      margin: 13px 0;
+      position: relative;
+      border-radius: 3px;
+      flex-direction: row;
+      align-items: center;
+      height: 52px;
 
       input {
         border-radius: 4px;
-        border: solid grey 1px;
-        height: 44px;
-        width: 240px;
+        border-color: rgba(0,0,0,.2);
+        background-color: rgba(36,39,43,.2);
+        height: 52px;
+        flex: 1;
       }
+
       button {
         border-radius: 4px;
-        border: solid #3F91C0 1px;
-        background-color: #3F91C0;
+        border: solid #7289da 1px;
+        background-color: #7289da;
         color: white;
+        opacity: .5;
+        width: auto;
+        height: 32px;
+        transition: background-color .17s ease,color .17s ease;
+        font-weight: 500;
+        line-height: 16px;
+        padding: 2px 16px;
+        font-size: 14px;
       }
     }
   }
