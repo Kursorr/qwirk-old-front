@@ -10,7 +10,7 @@
       ta demande d'amis à <strong>{{ request.pseudo }}</strong> ! Un mec bien, ce Clark.
     </div>
     <form method="POST" @submit.prevent="addNewFriend()">
-      <input type="text" placeholder="Entrez un identifiant qwirk #0000" v-model="newFriend">
+      <input type="text" placeholder="Entrez un identifiant qwirk#0000" v-model="newFriend">
       <button>Envoyer une requête d'ami</button>
     </form>
   </section>
