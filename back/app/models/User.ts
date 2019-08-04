@@ -113,6 +113,19 @@ class User extends Model {
     }).run(this.db.conn)
   }
 
+  async deleteFriend (id: string, eq: string): Promise<any>
+  {
+    return this.db.r.table(this.table).get(id).update(function(row) {
+      return row('friends').offsetsOf(function(x) {
+        return x('id').eq(eq)
+      })(0).do(function(index) {
+        return {
+          friends: row('friends').deleteAt(index)
+        }
+      })
+    }).run(this.db.conn)
+  }
+
 }
 
 export { User, IUserModel }

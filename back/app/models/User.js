@@ -98,5 +98,18 @@ class User extends Model_1.Model {
             }).run(this.db.conn);
         });
     }
+    deleteFriend(id, eq) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.db.r.table(this.table).get(id).update(function (row) {
+                return row('friends').offsetsOf(function (x) {
+                    return x('id').eq(eq);
+                })(0).do(function (index) {
+                    return {
+                        friends: row('friends').deleteAt(index)
+                    };
+                });
+            }).run(this.db.conn);
+        });
+    }
 }
 exports.User = User;
