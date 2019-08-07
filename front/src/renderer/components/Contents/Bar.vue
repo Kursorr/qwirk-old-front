@@ -260,7 +260,6 @@
 
           this.p = new SimplePeer({
             initiator: true,
-            stream,
             trickle: false
           });
 
@@ -279,7 +278,6 @@
     }
 
     videoCall() {
-      console.log('hello world ! :)')
       this.onVideoCall = true;
       this.call(true, true);
     }
