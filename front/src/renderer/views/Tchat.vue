@@ -16,7 +16,7 @@
       <tchat-bar
         :filters="false"
         :separator="false"
-        channel="Cyprien"
+        channel="general"
         :privateMessage="false">
         <icon-base
           width="24"
