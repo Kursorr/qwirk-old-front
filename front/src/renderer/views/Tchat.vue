@@ -4,7 +4,7 @@
       <tchat-bar
         :filters="false"
         :separator="false"
-        talkTo="quenti77"
+        channel="quenti77"
         :privateMessage="true">
         <icon-base
           width="24"
@@ -16,7 +16,7 @@
       <tchat-bar
         :filters="false"
         :separator="false"
-        talkTo="Cyprien"
+        channel="Cyprien"
         :privateMessage="false">
         <icon-base
           width="24"

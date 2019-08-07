@@ -6,10 +6,11 @@
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
             <slot/>
           </svg>
-          <span class="pseudo bar">{{ talkTo }}</span>
+          <span class="pseudo bar">{{ channel }}</span>
         </span>
         <div class="status outside" v-if="privateMessage"></div>
       </section>
+
       <section class="functionnalities">
         <span tabindex="0" @click="videoCall()">
           <icon-base
@@ -48,6 +49,18 @@
           </icon-base>
         </span>
 
+        <span tabindex="0">
+          <icon-base
+            icon-name="members"
+            class="members"
+            width="24"
+            height="24"
+            view-box="0 0 24 24"
+            v-if="!privateMessage">
+            <members-icon></members-icon>
+          </icon-base>
+        </span>
+
         <search-beta></search-beta>
 
         <div class="divider"></div>
@@ -73,6 +86,7 @@
             <mention-icon></mention-icon>
           </icon-base>
         </span>
+
         <span tabindex="0">
           <icon-base
             icon-name="QuestionMark"
@@ -186,7 +200,7 @@
     }
   })
   export default class Bar extends Vue {
-    @Prop() talkTo: string
+    @Prop() channel: string
     @Prop() privateMessage: boolean
 
     public css: any = {
@@ -449,7 +463,8 @@
   .sharescreen,
   .mute,
   .nomute,
-  .nocam {
+  .nocam,
+  .members {
     height: 24px;
     width: 24px;
     opacity: 0.6;
@@ -457,6 +472,9 @@
     cursor: pointer;
     margin-right: 10px;
     margin-top: 5px;
+    &:hover {
+      opacity: 0.8;
+    }
   }
 
   .update {
@@ -465,19 +483,6 @@
     opacity: 0.6;
     cursor: pointer;
     margin: 5px 10px 0 10px;
-  }
-
-  .videoCamera:hover,
-  .phone:hover,
-  .pin:hover,
-  .update:hover,
-  .mention:hover,
-  .questionMark:hover,
-  .sharescreen:hover,
-  .mute:hover,
-  .nomute:hover,
-  .nocam:hover {
-    opacity: 0.8;
   }
 
   div.divider {
