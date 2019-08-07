@@ -32,7 +32,9 @@
         <section class="table-line-actions">
           <button class="action video-call"></button>
           <button class="action voice-call"></button>
-          <button class="action remove"></button>
+          <button class="action remove"
+                  @click="revokeFriend(friend)"
+          ></button>
         </section>
       </section>
     </section>
@@ -54,11 +56,21 @@
     sockets: {
       getFriends (data) {
         this.friends = data.filter(d => d.status === 1)
+      },
+      revokedFriend () {
+        this.$socket.emit('GET::FRIENDS', this.user.id)
       }
     },
   })
   export default class FriendGrid extends Vue {
     friends = ''
+
+    revokeFriend (friend) {
+      this.$socket.emit('REVOKE::FRIEND', {
+        user: this.user.id,
+        friend: friend.pseudo
+      })
+    }
 
     mounted() {
       this.$socket.emit('GET::FRIENDS', this.user.id)
