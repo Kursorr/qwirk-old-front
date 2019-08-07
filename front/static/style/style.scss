@@ -296,8 +296,14 @@ section.table-content {
 
     &:hover {
       background-color: #414449;
+      cursor: pointer;
 
       > .table-line-actions {
+        visibility: visible;
+        cursor: pointer;
+      }
+
+      > .table-line-name > .tag-name > span.tag {
         visibility: visible;
       }
     }
@@ -316,6 +322,13 @@ section.table-content {
         display: flex;
         align-items: center;
         width: 160px;
+
+        span.tag {
+          visibility: hidden;
+          font-size: 12px;
+          line-height: 16px;
+          opacity: .6;
+        }
       }
     }
 
