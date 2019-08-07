@@ -43,13 +43,12 @@
 
 <script lang="ts">
   import { Component, Vue } from 'vue-property-decorator'
-  import store from '../../../vuex/store'
-  import * as Vuex from 'vuex'
+  import { Store, mapGetters } from 'vuex'
 
   @Component({
-    store,
+    Store,
     computed: {
-      ...Vuex.mapGetters([
+      ...mapGetters([
         'user'
       ])
     },
