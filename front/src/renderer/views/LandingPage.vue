@@ -8,7 +8,7 @@
 
 <script lang="ts">
   import { Component, Vue } from 'vue-property-decorator'
-  import * as Vuex from 'vuex'
+  import { mapGetters } from 'vuex'
 
   import Auth from './Auth.vue'
   import NavigationBar from '../components/Navigation/NavigationBar.vue'
@@ -19,7 +19,7 @@
       Auth
     },
     computed: {
-      ...Vuex.mapGetters({
+      ...mapGetters({
         user: 'user'
       })
     }

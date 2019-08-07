@@ -20,11 +20,10 @@
 
 <script lang="ts">
   import { Component, Vue, Watch } from 'vue-property-decorator'
-  import { mapGetters }from 'vuex'
-  import store from '../../vuex/store'
+  import { Store, mapGetters } from 'vuex'
 
   @Component({
-    store,
+    Store,
     computed: {
       ...mapGetters([
         'user'

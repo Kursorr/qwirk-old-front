@@ -119,7 +119,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import * as Vuex from 'vuex'
+import { mapGetters } from 'vuex'
 
 import Avatar from '../../../Contents/components/Avatar.vue'
 
@@ -128,7 +128,7 @@ import Avatar from '../../../Contents/components/Avatar.vue'
     Avatar
   },
   computed: {
-    ...Vuex.mapGetters([
+    ...mapGetters([
       'user'
     ]),
     tag () {

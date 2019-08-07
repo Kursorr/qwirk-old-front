@@ -37,8 +37,7 @@
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator'
 const draggable: any = require('vuedraggable')
-import * as Vuex from 'vuex'
-import store from '../vuex/store'
+import { Store, mapGetters, mapActions } from 'vuex'
 
 import Avatar from './Contents/components/Avatar.vue'
 import NewOrJoinServer from './Modals/NewOrJoinServer.vue'
@@ -51,16 +50,16 @@ import pusherStore from '../store/PusherStore'
     Avatar,
     NewOrJoinServer
   },
-  store,
+  Store,
   computed: {
-    ...Vuex.mapGetters([
+    ...mapGetters([
       'getServers',
       'user',
       'current'
     ])
   },
   methods: {
-    ...Vuex.mapActions([
+    ...mapActions([
       'setChannel',
       'addMessage',
       'setServers',

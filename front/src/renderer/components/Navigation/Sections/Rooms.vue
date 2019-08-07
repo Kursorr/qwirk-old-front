@@ -22,17 +22,16 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import * as Vuex from 'vuex'
-import store from '../../../vuex/store'
+import { Store, mapGetters } from 'vuex'
 import Avatar from '../../Contents/components/Avatar.vue'
 
 @Component({
-  store,
+  Store,
   components: {
     Avatar
   },
   computed: {
-    ...Vuex.mapGetters([
+    ...mapGetters([
       'user'
     ])
   }

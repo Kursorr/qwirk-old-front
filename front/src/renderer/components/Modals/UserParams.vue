@@ -119,8 +119,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import * as Vuex from 'vuex'
-import store from '../../vuex/store'
+import { Store, mapGetters, mapActions } from 'vuex'
 import { IUser } from '@/types/user.types'
 
 import Avatar from '../Contents/components/Avatar.vue'
@@ -134,7 +133,7 @@ import Languages from './components/User/Languages.vue'
 import { ComponentOptions } from 'vue'
 
 @Component({
-  store,
+  Store,
   components: {
     Avatar,
     Upload,
@@ -146,12 +145,12 @@ import { ComponentOptions } from 'vue'
     Languages
   },
   methods: {
-    ...Vuex.mapActions([
+    ...mapActions([
       'updateUser'
     ])
   },
   computed: {
-    ...Vuex.mapGetters([
+    ...mapGetters([
       'user'
     ]),
   },

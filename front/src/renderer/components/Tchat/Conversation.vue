@@ -23,14 +23,13 @@
 
 <script lang="ts">
   import { Component, Vue } from 'vue-property-decorator'
-  import * as Vuex from 'vuex'
-  import store from '../../vuex/store'
+  import { Store, mapActions, mapGetters } from 'vuex'
 
   import Avatar from '../Contents/components/Avatar.vue'
   import { ComponentOptions } from 'vue'
 
   @Component({
-    store,
+    Store,
     components: {
       Avatar
     },
@@ -41,13 +40,13 @@
       }
     },
     methods: {
-      ...Vuex.mapActions([
+      ...mapActions([
         'addMessage',
         'clearMessage'
       ])
     },
     computed: {
-      ...Vuex.mapGetters([
+      ...mapGetters([
         'messages'
       ])
     }

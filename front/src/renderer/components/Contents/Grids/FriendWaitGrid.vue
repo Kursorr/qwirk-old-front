@@ -61,8 +61,7 @@
 
 <script lang="ts">
   import { Component, Vue } from 'vue-property-decorator'
-  import store from '../../../vuex/store'
-  import * as Vuex from 'vuex'
+  import { Store, mapGetters } from 'vuex'
 
   import IconBase from '../../IconBase.vue'
   import RevokeIcon from '../../Svg/Grids/RevokeIcon.vue'
@@ -74,9 +73,9 @@
       AcceptIcon,
       RevokeIcon
     },
-    store,
+    Store,
     computed: {
-      ...Vuex.mapGetters([
+      ...mapGetters([
         'user'
       ])
     },

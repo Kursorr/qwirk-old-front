@@ -38,7 +38,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import * as Vuex from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import { ComponentOptions } from 'vue'
 
 import IconBase from '../components/IconBase.vue'
@@ -51,7 +51,7 @@ declare const Buffer: any
     Moon
   },
   methods: {
-    ...Vuex.mapActions([
+    ...mapActions([
       'authenticateUser'
     ])
   },
@@ -68,7 +68,7 @@ declare const Buffer: any
     }
   },
   computed: {
-    ...Vuex.mapGetters([
+    ...mapGetters([
       'user'
     ])
   }

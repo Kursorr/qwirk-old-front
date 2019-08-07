@@ -12,7 +12,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import * as Vuex from 'vuex'
+import { mapGetters } from 'vuex'
 
 import Avatar from './Avatar.vue'
 import { ComponentOptions } from 'vue'
@@ -22,7 +22,7 @@ import { ComponentOptions } from 'vue'
     Avatar
   },
   computed: {
-    ...Vuex.mapGetters([
+    ...mapGetters([
       'user'
     ])
   }

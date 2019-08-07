@@ -27,7 +27,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import * as Vuex from 'vuex'
+import { mapGetters } from 'vuex'
 import IconBase from '../components/IconBase.vue'
 import ArobaseIcon from '../components/Svg/ArobaseIcon.vue'
 import Bar from '../components/Contents/Bar.vue'
@@ -49,7 +49,7 @@ import EmojiPicker from '../components/Tchat/EmojiPicker.vue'
     EmojiPicker // Causes a slowdown
   },
   computed: {
-    ...Vuex.mapGetters([
+    ...mapGetters([
       'user'
     ])
   }
