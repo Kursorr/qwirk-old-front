@@ -1,6 +1,6 @@
 <template>
   <section class="global">
-    <bar
+    <menu-bar
       iconName="Amis"
       :filters="true"
       :separator="true"
@@ -12,19 +12,19 @@
         locked: 'Bloqué'
       }">
       <friend-icon/>
-    </bar>
+    </menu-bar>
     <router-view></router-view>
   </section>
 </template>
 
 <script lang="ts">
   import { Component, Vue } from 'vue-property-decorator'
-  import Bar from '../components/Contents/Bar.vue'
+  import MenuBar from '../components/Contents/MenuBar.vue'
   import FriendIcon from '../components/Svg/Menu/FriendIcon.vue'
 
   @Component({
     components: {
-      Bar,
+      MenuBar,
       FriendIcon
     }
   })

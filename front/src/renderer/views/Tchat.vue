@@ -1,16 +1,30 @@
 <template>
   <section id="tchat">
     <section id="cpnts">
-      <bar
+      <tchat-bar
         :filters="false"
-        :separator="false">
+        :separator="false"
+        talkTo="quenti77"
+        :privateMessage="true">
         <icon-base
           width="24"
           height="24"
           viewBox="0 0 24 24">
           <arobase-icon />
         </icon-base>
-      </bar>
+      </tchat-bar>
+      <tchat-bar
+        :filters="false"
+        :separator="false"
+        talkTo="Cyprien"
+        :privateMessage="false">
+        <icon-base
+          width="24"
+          height="24"
+          viewBox="0 0 24 24">
+          <diese-icon />
+        </icon-base>
+      </tchat-bar>
       <drop-zone v-if="toggleDropZone" />
       <conversation />
       <emoji-picker v-if="toggleEmoji" @emoji="append" />
@@ -30,7 +44,8 @@ import { Component, Vue } from 'vue-property-decorator'
 import { mapGetters } from 'vuex'
 import IconBase from '../components/IconBase.vue'
 import ArobaseIcon from '../components/Svg/Bar/ArobaseIcon.vue'
-import Bar from '../components/Contents/Bar.vue'
+import DieseIcon from '../components/Svg/Bar/DieseIcon.vue'
+import TchatBar from '../components/Contents/TchatBar.vue'
 import Members from '../components/Tchat/Members.vue'
 import InputBar from '../components/Tchat/InputBar.vue'
 import DropZone from '../components/Tchat/DropZone.vue'
@@ -41,7 +56,8 @@ import EmojiPicker from '../components/Tchat/EmojiPicker.vue'
   components: {
     IconBase,
     ArobaseIcon,
-    Bar,
+    DieseIcon,
+    TchatBar,
     Members,
     InputBar,
     DropZone,

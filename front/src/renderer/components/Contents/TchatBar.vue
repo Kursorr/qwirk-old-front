@@ -1,36 +1,14 @@
 <template>
   <div>
-    <section v-if="filters" class="bar">
-      <section class="filters">
-        <div id="friendIconBar">
+    <section v-bind:class="{'active': css.isActive}" class="bar tchat">
+      <section class="who">
+        <span tabindex="0">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
             <slot/>
           </svg>
-          <span class="color bar">{{ iconName }}</span>
-        </div>
-        <div v-if="separator" class="separator"></div>
-        <div v-for="(text, link) in links">
-          <router-link v-if="text === 'Ajouter un ami'" :to="{name: link}" class="filt add">
-            {{ text }}
-          </router-link>
-          <router-link v-else :to="{name: link}">{{ text }}</router-link>
-        </div>
-      </section>
-    </section>
-
-    <section v-else v-bind:class="{'active': css.isActive}" class="bar tchat">
-      <section class="who">
-        <span tabindex="0">
-          <icon-base
-            icon-name="arobase"
-            width="24"
-            height="24"
-            view-box="0 0 24 24">
-            <arobase-icon></arobase-icon>
-          </icon-base>
-          <span class="pseudo bar">quenti77</span>
+          <span class="pseudo bar">{{ talkTo }}</span>
         </span>
-        <div class="status outside"></div>
+        <div class="status outside" v-if="privateMessage"></div>
       </section>
       <section class="functionnalities">
         <span tabindex="0" @click="videoCall()">
@@ -40,6 +18,7 @@
             width="24"
             height="24"
             view-box="0 0 24 24"
+            v-if="privateMessage"
             v-bind:class="{'disabled': css.disabled}">
             <camera-icon></camera-icon>
           </icon-base>
@@ -52,6 +31,7 @@
             width="24"
             height="24"
             view-box="0 0 24 24"
+            v-if="privateMessage"
             v-bind:class="{'disabled': css.disabled}">
             <phone-icon></phone-icon>
           </icon-base>
@@ -156,6 +136,7 @@
             </div>
           </div>
         </div>
+
         <canvas class="soundSaturation"></canvas>
         <textarea name="offer" id="offer" cols="10" rows="1"></textarea>
 
@@ -182,6 +163,8 @@
   import QuestionIcon from '../Svg/Bar/QuestionIcon.vue'
   import MuteIcon from '../Svg/Bar/MuteIcon.vue'
   import NomuteIcon from '../Svg/Bar/NomuteIcon.vue'
+  import DieseIcon from '../Svg/Bar/DieseIcon.vue'
+  import MembersIcon from '../Svg/Bar/MembersIcon.vue'
 
   const SimplePeer = require('simple-peer')
 
@@ -197,14 +180,14 @@
       MentionIcon,
       QuestionIcon,
       MuteIcon,
-      NomuteIcon
+      NomuteIcon,
+      DieseIcon,
+      MembersIcon
     }
   })
   export default class Bar extends Vue {
-    @Prop() filters: boolean
-    @Prop() separator: boolean
-    @Prop() iconName: string
-    @Prop() links: any
+    @Prop() talkTo: string
+    @Prop() privateMessage: boolean
 
     public css: any = {
       isActive: false,
@@ -395,95 +378,11 @@
 
 <style lang="scss" scoped>
   section.bar {
-    height: 48px;
-    display: flex;
-    align-items: center;
-    box-shadow: 0 1px 0 rgba(0,0,0,.2), 0 1.5px 0 rgba(0,0,0,.05), 0 2px 0 rgba(0,0,0,.05);
-    position: relative;
-
     &.tchat {
       justify-content: space-between;
     }
-
-    section.filters {
-      display: flex;
-      font-size: 14px;
-      font-weight: 500;
-      letter-spacing: .4px;
-      flex: 1;
-
-      div {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        a {
-          margin-left: 20px;
-          margin-right: 20px;
-          padding: 3px 5px;
-          color: #B9BBBE;
-
-          &:hover {
-            border-radius: 4px;
-            background-color: #292b2f;
-            color: #FFF;
-          }
-        }
-      }
-
-      div#friendIconBar {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 0 18px;
-
-        svg {
-          color: #FFF;
-        }
-
-        span {
-          margin-left: 15px;
-        }
-      }
-    }
   }
 
-  a.filt.add {
-    background-color: #7289DA;
-    color: #FFF!important;
-  }
-
-  a.filt.add.router-link-exact-active.router-link-active {
-    border-radius: 4px;
-    background-color: #7289DA;
-    padding: 3px 5px;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 100;
-    color: #FFF;
-  }
-
-  .add, .router-link-exact-active.router-link-active {
-    border-radius: 4px;
-    background-color: #40444b;
-    padding: 3px 5px;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 100;
-    color: #FFF;
-  }
-
-  .add:hover {
-    border-radius: 4px;
-    background-color: #40444b;
-  }
-
-  a.filt.router-link-exact-active.router-link-active {
-    background-color: #40444b;
-    color: #FFF!important;
-  }
-
-  // Top menu functionnalities
   .topMenu {
     background-color: #36393f;
     display: flex;
