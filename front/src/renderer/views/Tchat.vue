@@ -29,7 +29,7 @@
 import { Component, Vue } from 'vue-property-decorator'
 import { mapGetters } from 'vuex'
 import IconBase from '../components/IconBase.vue'
-import ArobaseIcon from '../components/Svg/ArobaseIcon.vue'
+import ArobaseIcon from '../components/Svg/Bar/ArobaseIcon.vue'
 import Bar from '../components/Contents/Bar.vue'
 import Members from '../components/Tchat/Members.vue'
 import InputBar from '../components/Tchat/InputBar.vue'

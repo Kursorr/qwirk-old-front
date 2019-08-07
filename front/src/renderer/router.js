@@ -32,7 +32,7 @@ export default new Router({
                         {
                             path: '',
                             name: 'myGames',
-                            component: () => import('./components/Contents/Grids/LibraryGrid.vue'),
+                            component: () => import('./views/Grids/LibraryGrid.vue'),
                         }
                     ]
                 },
@@ -48,27 +48,27 @@ export default new Router({
                         {
                             path: '',
                             name: 'allFriend',
-                            component: () => import('./components/Contents/Grids/FriendGrid.vue'),
+                            component: () => import('./views/Grids/FriendGrid.vue'),
                         },
                         {
                             path: 'online',
                             name: 'online',
-                            component: () => import('./components/Contents/Grids/FriendGrid.vue'),
+                            component: () => import('./views/Grids/FriendGrid.vue'),
                         },
                         {
                             path: 'wait',
                             name: 'wait',
-                            component: () => import('./components/Contents/Grids/FriendWaitGrid.vue'),
+                            component: () => import('./views/Grids/FriendWaitGrid.vue'),
                         },
                         {
                             path: 'locked',
                             name: 'locked',
-                            component: () => import('./components/Contents/Grids/FriendGrid.vue'),
+                            component: () => import('./views/Grids/FriendGrid.vue'),
                         },
                         {
                             path: 'add',
                             name: 'addFriend',
-                            component: () => import('./components/Contents/AddFriend.vue'),
+                            component: () => import('./views/AddFriend.vue'),
                         }
                     ]
                 }
