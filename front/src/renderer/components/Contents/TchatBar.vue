@@ -99,19 +99,19 @@
         </span>
       </section>
 
-      <section class="onCall" v-if="onCall">
-        <div id="videos" v-if="onVideoCall">
+      <section class="onCall">
+        <div id="videos">
           <video id="emitter"></video>
           <video id="receiver"></video>
         </div>
-        <div id="avatarsCall" v-if="onPhoneCall">
+        <div id="avatarsCall">
           <h1>yolo!</h1>
         </div>
         <div class="optionsCall">
           <div class="screenSharing">
             <img class="sharescreen" src="../../assets/webrtc/confcall/sharescreen.svg" alt="sharescreen">
           </div>
-          <div class="camera" @click="toggleCam()">
+          <div class="camera" @click="phoneCall()">
           <span tabindex="0" v-if="!icon.camera">
             <icon-base
               icon-name="Camera"
@@ -203,7 +203,7 @@
       MembersIcon
     }
   })
-  export default class Bar extends Vue {
+  export default class TchatBar extends Vue {
     @Prop() channel: string
     @Prop() privateMessage: boolean
 
@@ -324,6 +324,10 @@
     }
 
     bindEvents(p) {
+      p.on('connect', () => {
+        console.log('connecteddddd !!! :)')
+      })
+
       p.on('error', err => {
         console.log(err)
       })

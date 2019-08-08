@@ -13,7 +13,7 @@
           <arobase-icon />
         </icon-base>
       </tchat-bar>
-      <tchat-bar
+      <!--<tchat-bar
         :filters="false"
         :separator="false"
         channel="general"
@@ -24,7 +24,7 @@
           viewBox="0 0 24 24">
           <diese-icon />
         </icon-base>
-      </tchat-bar>
+      </tchat-bar>-->
       <drop-zone v-if="toggleDropZone" />
       <conversation />
       <emoji-picker v-if="toggleEmoji" @emoji="append" />
@@ -68,6 +68,11 @@ import EmojiPicker from '../components/Tchat/EmojiPicker.vue'
     ...mapGetters([
       'user'
     ])
+  },
+  sockets: {
+    test(msg) {
+      console.log(msg)
+    }
   }
 })
 export default class Tchat extends Vue {
