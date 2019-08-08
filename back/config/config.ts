@@ -23,7 +23,7 @@ const pusher = new Pusher({
   secret: 'b4f9d925b8463739fbe3',
   cluster: 'eu',
   useTLS: true
-});
+})
 
 const JWT: string = 'Qw1rkS3rv3r'
 
@@ -39,16 +39,7 @@ const personalData: any = {
 }
 
 const path: any = {
-  img: '/app/avatars/'
+  img: '/avatars/'
 }
 
-const levels: any = {
-	error: 0,
-  warn: 1,
-  info: 2,
-  verbose: 3,
-  debug: 4,
-  silly: 5
-}
-
-export { database, elastic, redis, pusher, JWT, userRules, personalData, path, levels }
+export { database, elastic, redis, pusher, JWT, userRules, personalData, path }
