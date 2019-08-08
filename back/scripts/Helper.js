@@ -14,7 +14,7 @@ const decodeBase64Image = (data) => {
     const matches = data.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/);
     let response = {};
     response.type = matches[1];
-    response.data = new Buffer(matches[2], 'base64');
+    response.data = Buffer.from(matches[2], 'base64');
     return response;
 };
 exports.decodeBase64Image = decodeBase64Image;

@@ -57,13 +57,10 @@
     sockets: {
       registration (result: any) {
         if (result.success) {
-          // @ts-ignore
           this.register.error = result.message
         } else {
-          // @ts-ignore
           this.register.error = result.message
           setTimeout(() => {
-            // @ts-ignore
             this.register.error = null
           }, 2000)
         }

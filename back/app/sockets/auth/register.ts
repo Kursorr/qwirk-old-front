@@ -70,7 +70,11 @@ const register = (instance: Socket, socket: any) => {
 			verifAcc
 		})
 
-		fs.writeFile(path.img + imgName, imgBuffer.data, _ => {})
+		fs.appendFile(path.img + imgName, imgBuffer.data, (err) => {
+		  console.log(path.img + imgName)
+      if (err) throw err;
+      console.log('The file has been saved!');
+    })
 
 		if (newUser) {
 			socket.emit('registration', {
