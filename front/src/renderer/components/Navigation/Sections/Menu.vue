@@ -28,6 +28,12 @@
       <span class="color">Amis</span>
     </router-link>
 
+    <router-link :to="{path:'/landing-page/success'}" class="chan" tag="section">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="-7 -5 48 48">
+        <success-icon />
+      </svg>
+      <span class="color">Succès</span>
+    </router-link>
   </section>
 </template>
 
@@ -37,13 +43,15 @@
   import ShopIcon from '../../Svg/Menu/ShopIcon.vue'
   import LibraryIcon from '../../Svg/Menu/LibraryIcon.vue'
   import ActivityIcon from '../../Svg/Menu/ActivityIcon.vue'
+  import SuccessIcon from '../../Svg/Menu/SuccessIcon.vue'
 
   @Component({
     components: {
       FriendIcon,
       ShopIcon,
       LibraryIcon,
-      ActivityIcon
+      ActivityIcon,
+      SuccessIcon
     }
   })
   export default class Menu extends Vue {}
