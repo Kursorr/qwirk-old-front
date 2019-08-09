@@ -1,15 +1,41 @@
 <template>
   <div id="landingPage">
+    <!--
     <div class="panel left" :class="[transition ? 'transition' : '']"></div>
     <button @click="play()">Play</button>
-    <div class="panel right" :class="[transition ? 'transition' : '']"></div>
+    <div class="panel right" :class="[transition ? 'transition' : '']"></div>-->
+
+    <icon-base
+      icon-name="moon"
+      width="309"
+      height="155"
+      viewBox="0 0 309 155">
+      <moon-icon/>
+    </icon-base>
+
+    <icon-base
+      icon-name="open-chest"
+      width="76.875px"
+      height="68px"
+      viewBox="17.375 -51.75 76.875 68">
+      <open-chest-icon/>
+    </icon-base>
   </div>
 </template>
 
 <script lang="ts">
   import { Component, Vue } from 'vue-property-decorator'
+  import IconBase from '../components/IconBase.vue'
+  import OpenChestIcon from '../components/Svg/Game/chest/OpenChestIcon.vue'
+  import MoonIcon from '../components/Svg/Game/MoonIcon.vue'
 
-  @Component
+  @Component({
+    components: {
+      IconBase,
+      MoonIcon,
+      OpenChestIcon
+    }
+  })
   export default class Success extends Vue {
     public transition: boolean = false;
 
