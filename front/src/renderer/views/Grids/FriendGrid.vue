@@ -39,8 +39,8 @@
               icon-name="revoke"
               width="24"
               height="24"
-              viewBox="0 0 16 16">
-              <revoke-icon/>
+              viewBox="0 0 24 24">
+              <remove-icon/>
             </icon-base>
           </button>
         </section>
@@ -52,8 +52,14 @@
 <script lang="ts">
   import { Component, Vue } from 'vue-property-decorator'
   import { Store, mapGetters } from 'vuex'
+  import IconBase from '../../components/IconBase.vue'
+  import RemoveIcon from '../../components/Svg/Grids/RemoveIcon.vue'
 
   @Component({
+    components: {
+      IconBase,
+      RemoveIcon
+    },
     Store,
     computed: {
       ...mapGetters([
