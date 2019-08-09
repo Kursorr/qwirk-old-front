@@ -71,6 +71,11 @@ export default new Router({
                             component: () => import('./views/AddFriend.vue'),
                         }
                     ]
+                },
+                {
+                    path: 'success',
+                    name: 'success',
+                    component: () => import('./views/Success.vue')
                 }
             ]
         },
