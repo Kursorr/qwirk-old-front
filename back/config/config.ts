@@ -3,7 +3,7 @@ import * as Pusher from 'pusher'
 
 const database: any = {
   db: 'qwirk',
-	host: '172.18.0.2',
+	host: '172.18.0.4',
 	port: 28015
 }
 
@@ -13,7 +13,7 @@ const elastic: any = {
 }
 
 const redis: any = {
-	host: '172.18.0.4',
+	host: '172.18.0.2',
 	port: '6379'
 }
 

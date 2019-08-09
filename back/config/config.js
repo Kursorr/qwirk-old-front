@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Pusher = require("pusher");
 const database = {
     db: 'qwirk',
-    host: '172.18.0.2',
+    host: '172.18.0.4',
     port: 28015
 };
 exports.database = database;
@@ -13,7 +13,7 @@ const elastic = {
 };
 exports.elastic = elastic;
 const redis = {
-    host: '172.18.0.4',
+    host: '172.18.0.2',
     port: '6379'
 };
 exports.redis = redis;
