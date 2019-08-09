@@ -22,7 +22,7 @@ const friends = (instance: Socket, socket: any) => {
     const friendsStatus: Array<string> = cursor.map(({ status }) => status)
     const requestedBy: Array<string> = cursor.map(({ requestedBy }) => requestedBy)
 
-    let i = 0;
+    let i = 0
     for await (const friend of cursor) {
       const cursorFriendData = await user.getSpecificData(friend.to, 'pseudo', 'tag', 'avatar')
       const { pseudo, tag, avatar } = cursorFriendData
