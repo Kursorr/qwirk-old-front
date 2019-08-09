@@ -5,13 +5,6 @@
         <section class="auth-logo"></section>
         <section class="panel">
           <h2>Bon retour parmi nous !</h2>
-          <!--<icon-base
-            icon-name="moon"
-            width="309"
-            height="155"
-            viewBox="0 0 309 155">
-            <moon-icon/>
-          </icon-base>-->
           <form autocomplete="off">
             <div class="form">
               <input type="email" name="loginEmail" placeholder="Email" v-model="login.email">
@@ -41,15 +34,9 @@ import { Component, Vue } from 'vue-property-decorator'
 import { mapGetters, mapActions } from 'vuex'
 import { ComponentOptions } from 'vue'
 
-import IconBase from '../components/IconBase.vue'
-import Moon from '../components/Svg/MoonIcon.vue'
 declare const Buffer: any
 
 @Component({
-  components: {
-    IconBase,
-    Moon
-  },
   methods: {
     ...mapActions([
       'authenticateUser'
