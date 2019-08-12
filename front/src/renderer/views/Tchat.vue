@@ -66,13 +66,9 @@ import EmojiPicker from '../components/Tchat/EmojiPicker.vue'
   },
   computed: {
     ...mapGetters([
-      'user'
+      'user',
+      'currentChannel'
     ])
-  },
-  sockets: {
-    test(msg) {
-      console.log(msg)
-    }
   }
 })
 export default class Tchat extends Vue {
