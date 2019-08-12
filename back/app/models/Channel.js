@@ -22,5 +22,12 @@ class Channel extends Model_1.Model {
                 .run(this.db.conn);
         });
     }
+    getUsers(convId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.db.r.table('conversation_user')
+                .filter({ convId })('userId')
+                .run(this.db.conn);
+        });
+    }
 }
 exports.Channel = Channel;

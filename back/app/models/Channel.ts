@@ -22,9 +22,17 @@ class Channel extends Model {
     this.data = data
   }
 
-  async allMessagesgById (id: string): Promise<any> {
+  async allMessagesgById (id: string): Promise<any>
+  {
     return this.db.r.table('messages').eqJoin('userId', this.db.r.table('users'))
       .filter({ left: { convId: id }})
+      .run(this.db.conn)
+  }
+
+  async getUsers (convId: string): Promise<any>
+  {
+    return this.db.r.table('conversation_user')
+      .filter({ convId })('userId')
       .run(this.db.conn)
   }
 }
