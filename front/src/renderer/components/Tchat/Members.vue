@@ -1,13 +1,13 @@
 <template>
   <section class="members">
     <ul>
-      <li>
+      <li v-for="user in users">
         <section class="avatar">
-          <avatar :url="null" size="small"></avatar>
+          <avatar :url="user.avatar" size="small"></avatar>
           <div class="status"></div>
         </section>
         <section class="profil">
-          <span class="username">Ravaniss</span>
+          <span class="username">{{ user.pseudo }}</span>
         </section>
       </li>
     </ul>
@@ -17,13 +17,26 @@
 <script>
   import { Component, Vue } from 'vue-property-decorator/lib/vue-property-decorator'
   import Avatar from '../Contents/components/Avatar.vue'
+  import { Store, mapGetters } from 'vuex'
 
   @Component({
+    Store,
+    computed: {
+      ...mapGetters([
+        'currentChannel'
+      ])
+    },
     components: {
       Avatar
+    },
+    sockets: {
+      getUsersFromChannel(data) {
+        this.users = data
+      }
     }
   })
-  export default class DropZone extends Vue {
+  export default class Members extends Vue {
+    users = []
   }
 </script>
 
