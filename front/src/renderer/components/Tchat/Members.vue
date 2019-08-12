@@ -4,7 +4,7 @@
       <li v-for="user in users">
         <section class="avatar">
           <avatar :url="user.avatar" size="small"></avatar>
-          <div class="status"></div>
+          <div class="status" :class="user.status"></div>
         </section>
         <section class="profil">
           <span class="username">{{ user.pseudo }}</span>
