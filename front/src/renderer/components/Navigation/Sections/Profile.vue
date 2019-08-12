@@ -6,22 +6,22 @@
     </transition>
 
     <section class="avatar">
-      <section id="changeStatus" v-show="changeStatus">
-        <section class="actualStatus principal" @click="getOnlineStatus()">
+      <section id="changeStatus" v-show="changeStatusContainer">
+        <section class="actualStatus principal" @click="changeStatus('online')">
           <div class="status online"></div>
           <div class="info">
             <h4>En ligne</h4>
           </div>
         </section>
 
-        <section class="actualStatus" @click="getIdleStatus()">
+        <section class="actualStatus" @click="changeStatus('idle')">
           <div class="status idle"></div>
           <div class="info">
             <h4>Inactif</h4>
           </div>
         </section>
 
-        <section class="actualStatus" @click="getBusyStatus()">
+        <section class="actualStatus" @click="changeStatus('busy')">
           <div class="status busy"></div>
           <div class="info">
             <h4>Ne pas déranger</h4>
@@ -29,7 +29,7 @@
           </div>
         </section>
 
-        <section class="actualStatus" @click="getInvisibleStatus()">
+        <section class="actualStatus" @click="changeStatus('invisible')">
           <div class="status invisible"></div>
           <div class="info">
             <h4>Invisible</h4>
@@ -40,12 +40,7 @@
 
       <avatar :url="user.avatar" size="small" @click.native="toggleStatus()"></avatar>
 
-      <div class="status" :class="{
-        online: status.online,
-        idle: status.idle,
-        busy: status.busy,
-        invisible: status.invisible
-      }"></div>
+      <div class="status" :class="user.status"></div>
     </section>
 
     <section class="profil">
@@ -63,7 +58,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { Store, mapGetters } from 'vuex'
+import { Store, mapGetters, mapActions } from 'vuex'
 
 import UserParams from '../../Modals/UserParams.vue'
 import Avatar from '../../Contents/components/Avatar.vue'
@@ -78,16 +73,21 @@ import Avatar from '../../Contents/components/Avatar.vue'
     ...mapGetters([
       'user'
     ])
+  },
+  methods: {
+    ...mapActions([
+      'updateStatus'
+    ])
+  },
+  sockets: {
+    getStatus(status) {
+      // this.updateStatus(status)
+    }
   }
 })
 export default class Profile extends Vue {
-  public changeStatus: boolean = false
-  public status: any = {
-    online: true,
-    idle: false,
-    busy: false,
-    invisible: false
-  }
+  public changeStatusContainer: boolean = false
+
   public modal: any = {
     accountSettings: false
   }
@@ -97,39 +97,11 @@ export default class Profile extends Vue {
   }
 
   public toggleStatus () {
-    this.changeStatus = !this.changeStatus
+    this.changeStatusContainer = !this.changeStatusContainer
   }
 
-  public getOnlineStatus () {
-    this.status.online = true
-    this.status.idle = false
-    this.status.busy = false
-    this.status.invisible = false
-    this.toggleStatus()
-  }
-
-  public getIdleStatus () {
-    this.status.idle = true
-    this.status.online = false
-    this.status.busy = false
-    this.status.invisible = false
-    this.toggleStatus()
-  }
-
-  public getBusyStatus () {
-    this.status.busy = true
-    this.status.idle = false
-    this.status.online = false
-    this.status.invisible = false
-    this.toggleStatus()
-  }
-
-  public getInvisibleStatus () {
-    this.status.invisible = true
-    this.status.idle = false
-    this.status.busy = false
-    this.status.online = false
-    this.toggleStatus()
+  public changeStatus (status: string) {
+    this.$socket.emit('CHANGE::STATUS', { userId: this.user.id, status })
   }
 }
 </script>
