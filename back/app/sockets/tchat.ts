@@ -62,17 +62,19 @@ const tchat = (instance: Socket, socket: any) => {
 
     let obj = {
       pseudo: '',
-      avatar: ''
+      avatar: '',
+      status: ''
     }
     let temp = {}
     let usersInChannel = []
 
     for await (const userId of users) {
-      const userData = await user.getSpecificData(userId, 'pseudo', 'avatar')
-      const { pseudo, avatar } = userData
+      const userData = await user.getSpecificData(userId, 'pseudo', 'avatar', 'status')
+      const { pseudo, avatar, status } = userData
 
       obj.pseudo = pseudo
       obj.avatar = avatar
+      obj.status = status
 
       let tempObject = Object.assign({}, obj, temp)
       usersInChannel.push(tempObject)

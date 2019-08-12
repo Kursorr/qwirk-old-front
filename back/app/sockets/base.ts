@@ -8,6 +8,7 @@ import { friends } from './friends/getFriends'
 import { addFriend } from './friends/addFriend'
 import { acceptFriend } from './friends/acceptFriend'
 import { revokeFriend } from './friends/revokeFriend'
+import { status } from './status'
 
 const base = (instance: Socket) => {
   const { IO } = instance
@@ -23,6 +24,7 @@ const base = (instance: Socket) => {
     acceptFriend(instance, socket)
     revokeFriend(instance, socket)
     friends(instance, socket)
+    status(instance, socket)
 
     socket.on('disconnect', () => {
         console.log(`Customer disconnected id: ${socket.id} from port ${process.argv[2]}`)

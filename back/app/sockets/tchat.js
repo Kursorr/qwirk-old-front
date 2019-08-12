@@ -67,17 +67,19 @@ const tchat = (instance, socket) => {
         const users = yield cursor.toArray();
         let obj = {
             pseudo: '',
-            avatar: ''
+            avatar: '',
+            status: ''
         };
         let temp = {};
         let usersInChannel = [];
         try {
             for (var users_1 = __asyncValues(users), users_1_1; users_1_1 = yield users_1.next(), !users_1_1.done;) {
                 const userId = users_1_1.value;
-                const userData = yield user.getSpecificData(userId, 'pseudo', 'avatar');
-                const { pseudo, avatar } = userData;
+                const userData = yield user.getSpecificData(userId, 'pseudo', 'avatar', 'status');
+                const { pseudo, avatar, status } = userData;
                 obj.pseudo = pseudo;
                 obj.avatar = avatar;
+                obj.status = status;
                 let tempObject = Object.assign({}, obj, temp);
                 usersInChannel.push(tempObject);
             }
