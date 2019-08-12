@@ -99,12 +99,12 @@
         </span>
       </section>
 
-      <section class="onCall">
-        <div id="videos">
+      <section class="onCall" v-if="onCall">
+        <div id="videos" v-if="onVideoCall">
           <video id="emitter"></video>
           <video id="receiver"></video>
         </div>
-        <div id="avatarsCall">
+        <div id="avatarsCall" v-if="onPhoneCall">
           <h1>yolo!</h1>
         </div>
         <div class="optionsCall">
