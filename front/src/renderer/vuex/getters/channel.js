@@ -1,5 +1,5 @@
-export const current = (state) => {
-    return state.channel.current;
+export const currentChannel = (state) => {
+    return state.channel.currentChannel;
 };
 export const getServers = (state) => {
     return state.channel.servers;

@@ -7,7 +7,7 @@
       </new-or-join-server>
     </transition>
 
-    <div class="friendsOnline">8 en ligne - {{ current }}</div>
+    <div class="friendsOnline">8 en ligne - {{ currentChannel }}</div>
     <div class="separator"></div>
     <div class="servers">
       <draggable v-model="getServers">
@@ -55,7 +55,7 @@ import pusherStore from '../store/PusherStore'
     ...mapGetters([
       'getServers',
       'user',
-      'current'
+      'currentChannel'
     ])
   },
   methods: {
@@ -96,7 +96,7 @@ export default class ServersBar extends Vue {
   }
 
   public processChannel(data) {
-    if (this.current.id === data.channelName) {
+    if (this.currentChannel.id === data.channelName) {
       this.addMessage([data.msg])
     } else {
       this.upWaitMsg(data.channelName)
@@ -106,6 +106,7 @@ export default class ServersBar extends Vue {
   public choiceChannel(server) {
     this.setChannel(server)
     this.$socket.emit('GET::MESSAGES', server.id)
+    this.$socket.emit('GET::USERS', server.id)
   }
 
 }
