@@ -180,6 +180,7 @@ export default class UserParams extends Vue {
       return this.user.tag
     }
   }
+
   public passChange: boolean = false
   public edit: boolean = false
   public security: any = {
