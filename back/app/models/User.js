@@ -39,6 +39,11 @@ class User extends Model_1.Model {
             return this.db.r.table(this.table).get(id).update(data).run(this.db.conn);
         });
     }
+    updateData(id, data) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.db.r.table(this.table).get(id).update(data).run(this.db.conn);
+        });
+    }
     update(id, data, password) {
         return __awaiter(this, void 0, void 0, function* () {
             const cursor = yield this.filter({ id });

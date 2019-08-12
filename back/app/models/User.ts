@@ -52,6 +52,11 @@ class User extends Model {
     return this.db.r.table(this.table).get(id).update(data).run(this.db.conn)
   }
 
+  async updateData (id: string, data: Object): Promise<any>
+  {
+    return this.db.r.table(this.table).get(id).update(data).run(this.db.conn)
+  }
+
   async update (id: string, data: object, password?: string): Promise<any>
   {
     const cursor = await this.filter({ id })
