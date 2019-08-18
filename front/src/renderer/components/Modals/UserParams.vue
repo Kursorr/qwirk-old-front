@@ -39,7 +39,7 @@
           <!-- User Informations -->
           <section class="account-profil noEdit" v-show="!edit">
             <section class="logo-group">
-              <avatar :url="user.avatar" size="normal"></avatar>
+              <avatar :url="user.avatar" size="big"></avatar>
             </section>
             <section id="user-informations">
               <h3 class="information label">Nom d'utilisateur</h3>
