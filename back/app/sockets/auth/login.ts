@@ -1,21 +1,17 @@
 'use strict'
 
-import * as path from 'path';
+import * as path from 'path'
 import * as jwt from 'jsonwebtoken'
 import * as notifier from 'node-notifier'
-import * as r from 'rethinkdb'
 
 import { User } from '../../models/User'
 import { Socket } from '../../../scripts/class/Socket'
 import { Password } from '../../../scripts/class/Hash'
-import { ElasticSearch } from '../../../scripts/class/ElasticSearch'
-import { Message } from '../../models/Message'
 
 const login = (instance: Socket, socket: any ) => {
 	socket.on('login', async (data) => {
 		const { DB, Secret } = instance
 		const findUser = new User(DB)
-    const findMessages = new Message(DB)
 
 		const { email, password } = data
 
@@ -57,10 +53,7 @@ const login = (instance: Socket, socket: any ) => {
       icon: path.join(`${__dirname}/../../../avatars/${user.avatar}`),
       sound: true,
       wait: true
-    }, (err, data) => {
-      console.log('waited')
-      console.log(err, data)
-    })
+    }, (err, data) => {})
 
 		socket.emit('connection', {
 			success: true,
@@ -68,22 +61,6 @@ const login = (instance: Socket, socket: any ) => {
 			token,
 			user
 		})
-
-    const messages = await findMessages.filter(r.row('content'))
-    const resultMsgs = await messages.toArray()
-    const messagesToInsert = []
-
-    for (let i = 0; i < resultMsgs.length; i++) {
-      messagesToInsert.push({
-        avatar: resultMsgs[i].avatar,
-        pseudo: resultMsgs[i].pseudo,
-        content: resultMsgs[i].content
-      })
-    }
-
-    const health = await new ElasticSearch()
-    await health.connect()
-    await health.readAndInsertData(messagesToInsert)
 
     await findUser.update(userID, { token, tokenDeath: new Date(60 * 1000) })
 	})
