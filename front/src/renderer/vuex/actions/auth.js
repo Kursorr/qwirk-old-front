@@ -6,3 +6,6 @@ export const updateUser = (state, user) => {
     const updatedUser = JSON.parse(JSON.stringify(user));
     state.commit(types.UPDATE_USER, updatedUser);
 };
+export const setUsers = (state, users) => {
+    state.commit(types.SET_USERS, users);
+};

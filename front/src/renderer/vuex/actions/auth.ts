@@ -9,3 +9,7 @@ export const updateUser = (state: any, user: IUser) => {
   const updatedUser = JSON.parse(JSON.stringify(user))
   state.commit(types.UPDATE_USER, updatedUser)
 }
+
+export const setUsers = (state: any, users: []) => {
+  state.commit(types.SET_USERS, users)
+}
