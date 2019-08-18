@@ -7,7 +7,7 @@
       </new-or-join-server>
     </transition>
 
-    <div class="friendsOnline">8 en ligne - {{ currentChannel }}</div>
+    <div class="friendsOnline">8 en ligne</div>
     <div class="separator"></div>
     <div class="servers">
       <draggable v-model="getServers">
@@ -69,7 +69,7 @@ import pusherStore from '../store/PusherStore'
   sockets: {
     updateChannel (channels: any) {
       this.setServers(channels.map((channel: any) => {
-        const ch = channel.right
+        const ch = channel
         ch.waitMsg = 0
         pusherStore.subscribe(`ch-${ch.id}`, this.processChannel)
         return ch
