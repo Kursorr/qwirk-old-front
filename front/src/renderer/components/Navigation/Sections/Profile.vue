@@ -5,8 +5,9 @@
                    @close="setModal('accountSettings', false)"></user-params>
     </transition>
 
-    <section class="avatar">
-      <section id="changeStatus" v-show="changeStatusContainer">
+    <section class="avatar" >
+      <section id="changeStatus"
+               v-show="changeStatusContainer">
         <section class="actualStatus principal" @click="changeStatus('online')">
           <div class="status online"></div>
           <div class="info">
@@ -38,7 +39,10 @@
         </section>
       </section>
 
-      <avatar :url="user.avatar" size="small" @click.native="toggleStatus()"></avatar>
+      <avatar :url="user.avatar"
+              size="small"
+              v-click-outside="hideStatusContainer"
+              @click.stop.native="toggleStatus"></avatar>
 
       <div class="status" :class="user.status"></div>
     </section>
@@ -76,12 +80,14 @@ import Avatar from '../../Contents/components/Avatar.vue'
   },
   methods: {
     ...mapActions([
-      'updateStatus'
+      'updateUser'
     ])
   },
   sockets: {
     getStatus(status) {
-      // this.updateStatus(status)
+      const updateUser = JSON.parse(JSON.stringify(this.user))
+      updateUser.status = status
+      this.updateUser(updateUser)
     }
   }
 })
@@ -94,6 +100,10 @@ export default class Profile extends Vue {
 
   public setModal (modalName: any, value: any) {
     this.modal[modalName] = value
+  }
+
+  public hideStatusContainer () {
+    this.changeStatusContainer = false
   }
 
   public toggleStatus () {
