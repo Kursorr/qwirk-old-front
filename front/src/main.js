@@ -10,6 +10,25 @@ import router from '@/renderer/router';
 import store from './renderer/vuex/store';
 import '@/registerServiceWorker';
 Vue.config.productionTip = false;
+Vue.directive('click-outside', {
+    bind: function (el, binding, vnode) {
+        const bubble = binding.modifiers.bubble;
+        const handler = (e) => {
+            if (bubble || (!el.contains(e.target) && el !== e.target)) {
+                binding.value(e);
+            }
+        };
+        // @ts-ignore
+        el.__vueClickOutside__ = handler;
+        document.addEventListener('click', handler);
+    },
+    unbind: function (el, binding) {
+        // @ts-ignore
+        document.removeEventListener('click', el.__vueClickOutside__);
+        // @ts-ignore
+        el.__vueClickOutside__ = null;
+    }
+});
 axios.defaults.baseURL = 'localhost:4100';
 const socketInstance = io('localhost:6100', {
     transports: ['websocket']
