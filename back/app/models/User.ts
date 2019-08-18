@@ -80,22 +80,14 @@ class User extends Model {
     return this.db.r.table(this.table).get(data).run(this.db.conn)
   }
 
-  async getSpecificData (id: string, ...data: Array<string>): Promise<any>
+  async getServers (id: string): Promise<any>
   {
-    return this.db.r.table(this.table).get(id).pluck(data).run(this.db.conn)
-  }
-
-  async getAllChannels (id: string): Promise<any>
-  {
-    return this.db.r.table('conversation_user').eqJoin('convId', this.db.r.table('conversations'))
-      .filter({left: {userId: id }})
-      .run(this.db.conn)
+    return this.db.r.table(this.table).get(id)('servers').run(this.db.conn)
   }
 
   async getFriends (id: string): Promise<any>
   {
-    return this.db.r.table(this.table).get(id)('friends')
-      .run(this.db.conn)
+    return this.db.r.table(this.table).get(id)('friends').run(this.db.conn)
   }
 
   async addFriend (id: string, appendData: Object): Promise<any>
