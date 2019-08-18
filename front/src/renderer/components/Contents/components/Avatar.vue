@@ -45,6 +45,12 @@
 
   .avatar-normal {
     border-radius: 50%;
+    width: 80px;
+    height: 80px;
+  }
+
+  .avatar-big {
+    border-radius: 50%;
     width: 100px;
     height: 100px;
   }
