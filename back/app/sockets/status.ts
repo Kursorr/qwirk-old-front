@@ -6,7 +6,6 @@ const status = (instance: Socket, socket: any) => {
   const user = new User(DB)
 
   socket.on('CHANGE::STATUS', async data => {
-    console.log(data)
     const { userId, status } = data
 
     await user.updateData(userId, { status })

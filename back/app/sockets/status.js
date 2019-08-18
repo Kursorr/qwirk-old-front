@@ -13,7 +13,6 @@ const status = (instance, socket) => {
     const { DB } = instance;
     const user = new User_1.User(DB);
     socket.on('CHANGE::STATUS', (data) => __awaiter(this, void 0, void 0, function* () {
-        console.log(data);
         const { userId, status } = data;
         yield user.updateData(userId, { status });
         socket.emit('getStatus', status);
