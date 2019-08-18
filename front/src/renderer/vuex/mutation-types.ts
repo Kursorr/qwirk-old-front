@@ -1,4 +1,5 @@
 export const UPDATE_USER = 'UPDATE_USER'
+export const SET_USERS = 'SET_USERS'
 
 // Tchat
 export const GET_CHANNELS = 'GET_CHANNELS'
