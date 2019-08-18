@@ -1,12 +1,13 @@
+import { getDatas } from '../../scripts/Helper'
+
+import { pusher } from '../../config/config'
 import { Socket } from '../../scripts/class/Socket'
-import { Message } from '../models/Message'
 import { User } from '../models/User'
 import { Channel } from '../models/Channel'
-import { pusher } from '../../config/config'
+import { ElasticSearch } from '../../scripts/class/ElasticSearch'
 
 const tchat = (instance: Socket, socket: any) => {
   const { DB } = instance
-  const message = new Message(DB)
   const user = new User(DB)
   const channel = new Channel(DB)
 
@@ -14,22 +15,17 @@ const tchat = (instance: Socket, socket: any) => {
     const convId = data.route.convId
     const content = data.content
     const userId = data.author.id
-    const pseudo = data.author.pseudo
-    const avatar = data.author.avatar
 
-    const cursor = await message.insert({
-      convId,
+    const cursor = await channel.insertMessage(convId, {
       userId,
-      avatar,
-      pseudo,
       content,
       postedAt: new Date()
     })
 
     if (!cursor) { return }
 
-    const msg = await message.get(cursor.generated_keys[0])
-    msg.user = await user.get(msg.userId)
+    const msg = await channel.getLastMessage(convId)
+    msg.user = await user.get(userId)
 
     let channelName = `ch-${convId}`
 
@@ -38,20 +34,39 @@ const tchat = (instance: Socket, socket: any) => {
     })
   })
 
-  socket.on('GET::MESSAGES', async convId => {
-    const cursor = await message.ascOrder('postedAt', { convId: convId })
+  socket.on('GET::MESSAGES', async (serverId: string) => {
+    const cursor = await channel.getMessages(serverId)
     const messages = await cursor.toArray()
+
+    const messagesToInsert = []
 
     for (let message of messages) {
       message.user = await user.get(message.userId)
+
+      messagesToInsert.push({
+        avatar: message.user.avatar,
+        pseudo: message.user.pseudo,
+        content: message.content
+      })
     }
+
+    const health = await new ElasticSearch()
+    await health.connect()
+    await health.readAndInsertData(messagesToInsert)
 
     socket.emit('updateMessage', messages)
   })
 
   socket.on('GET::CHANNELS', async userId => {
-    const cursor = await user.getAllChannels(userId)
-    const channels = await cursor.toArray()
+    const cursor = await user.getServers(userId)
+    const channelsId = await cursor.toArray()
+
+    const channels = await getDatas(
+      channelsId,
+      async (channelId) => {
+        return await channel.getSpecificData(channelId, 'icon', 'name')
+      }
+    )
 
     socket.emit('updateChannel', channels)
   })
@@ -60,25 +75,12 @@ const tchat = (instance: Socket, socket: any) => {
     const cursor = await channel.getUsers(channelId)
     const users = await cursor.toArray()
 
-    let obj = {
-      pseudo: '',
-      avatar: '',
-      status: ''
-    }
-    let temp = {}
-    let usersInChannel = []
-
-    for await (const userId of users) {
-      const userData = await user.getSpecificData(userId, 'pseudo', 'avatar', 'status')
-      const { pseudo, avatar, status } = userData
-
-      obj.pseudo = pseudo
-      obj.avatar = avatar
-      obj.status = status
-
-      let tempObject = Object.assign({}, obj, temp)
-      usersInChannel.push(tempObject)
-    }
+    const usersInChannel = await getDatas(
+      users,
+      async (u) => {
+        return await user.getSpecificData(u.userId, 'pseudo', 'avatar', 'status', 'tag')
+      }
+    )
 
     socket.emit('getUsersFromChannel', usersInChannel)
   })
