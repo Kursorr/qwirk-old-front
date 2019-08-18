@@ -23,6 +23,11 @@ class Model {
   {
     return this.db.r.table(this.table).insert(data).run(this.db.conn)
   }
+
+  async getSpecificData (id: string, ...data: Array<string>): Promise<any>
+  {
+    return this.db.r.table(this.table).get(id).pluck(['id', ...data]).run(this.db.conn)
+  }
 }
 
 export { IDB, Model }
