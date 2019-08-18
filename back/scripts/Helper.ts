@@ -39,4 +39,15 @@ function randomText (value) {
 	return text
 }
 
-export { isEmpty, randomTag, decodeBase64Image, imgPath, randomText }
+async function getDatas (ids, specificDataCallback) {
+  let results = []
+
+  for await (const id of ids) {
+    const data = await specificDataCallback(id)
+    results.push(data)
+  }
+
+  return results
+}
+
+export { isEmpty, randomTag, decodeBase64Image, imgPath, randomText, getDatas }
