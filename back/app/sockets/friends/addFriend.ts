@@ -10,8 +10,6 @@ const addFriend = (instance: Socket, socket: any) => {
 
     const { user, friend, tag } = data
 
-    console.log(data)
-
     const friendCursor = await userDb.filter({ pseudo: friend, tag: tag })
     const requestedFriend = await friendCursor.toArray()
 
