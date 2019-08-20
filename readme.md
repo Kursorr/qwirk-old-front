@@ -2,7 +2,7 @@
 
 ![Qwirk](https://i.ibb.co/F5n13kr/Qwirk.png)
 
-Qwirk is an application like [Discord](https://discordapp.com/) - An all-in-one voice and text chat. 
+Qwirk is a [Discord](https://discordapp.com/) like application  - An all-in-one voice and text chat. 
 
 ## Why ?
 
