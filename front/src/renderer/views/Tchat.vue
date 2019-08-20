@@ -42,7 +42,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { mapGetters } from 'vuex'
-import IconBase from '../components/IconBase.vue'
+import IconBase from '../components/Svg/IconBase.vue'
 import ArobaseIcon from '../components/Svg/Bar/ArobaseIcon.vue'
 import DieseIcon from '../components/Svg/Bar/DieseIcon.vue'
 import TchatBar from '../components/Contents/TchatBar.vue'

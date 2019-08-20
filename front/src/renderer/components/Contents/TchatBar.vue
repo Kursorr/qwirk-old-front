@@ -168,7 +168,7 @@
 <script lang="ts">
   import { Component, Prop, Vue } from 'vue-property-decorator'
   import SearchBeta from './components/SearchBeta.vue'
-  import IconBase from '../IconBase.vue'
+  import IconBase from '../Svg/IconBase.vue'
   import SoundSaturation from '../Webrtc/SoundSaturation'
 
   import ArobaseIcon from '../Svg/Bar/ArobaseIcon.vue'

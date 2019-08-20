@@ -52,7 +52,7 @@
 <script lang="ts">
   import { Component, Vue } from 'vue-property-decorator'
   import { Store, mapGetters } from 'vuex'
-  import IconBase from '../../components/IconBase.vue'
+  import IconBase from '../../components/Svg/IconBase.vue'
   import RemoveIcon from '../../components/Svg/Grids/RemoveIcon.vue'
 
   @Component({

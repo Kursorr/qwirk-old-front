@@ -25,7 +25,7 @@
 
 <script lang="ts">
   import { Component, Vue } from 'vue-property-decorator'
-  import IconBase from '../components/IconBase.vue'
+  import IconBase from '../components/Svg/IconBase.vue'
   import OpenChestIcon from '../components/Svg/Game/chest/OpenChestIcon.vue'
   import MoonIcon from '../components/Svg/Game/MoonIcon.vue'
 

@@ -63,7 +63,7 @@
   import { Component, Vue } from 'vue-property-decorator'
   import { Store, mapGetters } from 'vuex'
 
-  import IconBase from '../../components/IconBase.vue'
+  import IconBase from '../../components/Svg/IconBase.vue'
   import RevokeIcon from '../../components/Svg/Grids/RevokeIcon.vue'
   import AcceptIcon from '../../components/Svg/Grids/AcceptIcon.vue'
 
