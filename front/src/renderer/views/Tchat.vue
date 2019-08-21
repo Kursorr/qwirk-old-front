@@ -1,6 +1,5 @@
 <template>
   <section id="main">
-    <navigation-channel></navigation-channel>
     <section id="tchat">
       <section id="cpnts">
         <tchat-bar
@@ -117,5 +116,6 @@ export default class Tchat extends Vue {
   #main {
     display: flex;
     height: 100%;
+    flex: 2;
   }
 </style>
