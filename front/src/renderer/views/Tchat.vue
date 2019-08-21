@@ -1,41 +1,44 @@
 <template>
-  <section id="tchat">
-    <section id="cpnts">
-      <tchat-bar
-        :filters="false"
-        :separator="false"
-        channel="quenti77"
-        :privateMessage="true">
-        <icon-base
-          width="24"
-          height="24"
-          viewBox="0 0 24 24">
-          <arobase-icon />
-        </icon-base>
-      </tchat-bar>
-      <!--<tchat-bar
-        :filters="false"
-        :separator="false"
-        channel="general"
-        :privateMessage="false">
-        <icon-base
-          width="24"
-          height="24"
-          viewBox="0 0 24 24">
-          <diese-icon />
-        </icon-base>
-      </tchat-bar>-->
-      <drop-zone v-if="toggleDropZone" />
-      <conversation />
-      <emoji-picker v-if="toggleEmoji" @emoji="append" />
-      <input-bar
-        @toggledz="toggleDropZone = !toggleDropZone"
-        @togglemoji="toggleEmoji = !toggleEmoji"
-        :value="message"
-        @update="getCurrentTap"
-        @keypress.enter.native="onSubmit"/>
+  <section id="main">
+    <navigation-channel></navigation-channel>
+    <section id="tchat">
+      <section id="cpnts">
+        <tchat-bar
+          :filters="false"
+          :separator="false"
+          channel="quenti77"
+          :privateMessage="true">
+          <icon-base
+            width="24"
+            height="24"
+            viewBox="0 0 24 24">
+            <arobase-icon />
+          </icon-base>
+        </tchat-bar>
+        <!--<tchat-bar
+          :filters="false"
+          :separator="false"
+          channel="general"
+          :privateMessage="false">
+          <icon-base
+            width="24"
+            height="24"
+            viewBox="0 0 24 24">
+            <diese-icon />
+          </icon-base>
+        </tchat-bar>-->
+        <drop-zone v-if="toggleDropZone" />
+        <conversation />
+        <emoji-picker v-if="toggleEmoji" @emoji="append" />
+        <input-bar
+          @toggledz="toggleDropZone = !toggleDropZone"
+          @togglemoji="toggleEmoji = !toggleEmoji"
+          :value="message"
+          @update="getCurrentTap"
+          @keypress.enter.native="onSubmit"/>
+      </section>
+      <members></members>
     </section>
-    <members></members>
   </section>
 </template>
 
@@ -51,6 +54,7 @@ import InputBar from '../components/Tchat/InputBar.vue'
 import DropZone from '../components/Tchat/DropZone.vue'
 import Conversation from '../components/Tchat/Conversation.vue'
 import EmojiPicker from '../components/Tchat/EmojiPicker.vue'
+import NavigationChannel from '../components/Navigation/NavigationChannel.vue'
 
 @Component({
   components: {
@@ -62,7 +66,8 @@ import EmojiPicker from '../components/Tchat/EmojiPicker.vue'
     InputBar,
     DropZone,
     Conversation,
-    EmojiPicker // Causes a slowdown
+    EmojiPicker, // Causes a slowdown
+    NavigationChannel
   },
   computed: {
     ...mapGetters([
@@ -109,4 +114,8 @@ export default class Tchat extends Vue {
 </script>
 
 <style>
+  #main {
+    display: flex;
+    height: 100%;
+  }
 </style>
