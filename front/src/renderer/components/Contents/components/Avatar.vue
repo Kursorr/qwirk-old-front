@@ -24,7 +24,8 @@
       return {
         'avatar-small': this.size === 'small',
         'avatar-medium': this.size === 'medium',
-        'avatar-normal': this.size === 'normal'
+        'avatar-normal': this.size === 'normal',
+        'avatar-big': this.size === 'big'
       }
     }
   }
