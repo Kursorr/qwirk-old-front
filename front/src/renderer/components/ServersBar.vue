@@ -8,7 +8,7 @@
     </transition>
 
     <h1>QWIRK</h1>
-    <router-link :to="{name: 'landing-page'}"
+    <router-link :to="{name: 'landing-page', params: {type: 'private'}}"
                  class="chan set" tag="div">
       <div class="logo"></div>
     </router-link>
@@ -16,8 +16,8 @@
     <div class="servers">
       <draggable v-model="getServers">
         <div class="server" v-for="server in getServers">
-          <router-link @click.native="choiceChannel(server)"
-                       :to="{name: 'tchat', params: { convId: server.id }}"
+          <router-link @click.native="choiceServer(server)"
+                       :to="{name: 'tchat', params: { convId: server.name, type: 'public' }}"
                        class="chan set" tag="div">
             <avatar :url="server.icon" size="medium" class="avatar-server"></avatar>
             <div style="color: #FFF;">{{ server.waitMsg }}</div>
@@ -71,7 +71,7 @@ import pusherStore from '../store/PusherStore'
     ])
   },
   sockets: {
-    updateChannel (channels: any) {
+    updateServers (channels: any) {
       this.setServers(channels.map((channel: any) => {
         const ch = channel
         ch.waitMsg = 0
@@ -85,7 +85,7 @@ export default class ServersBar extends Vue {
   @Watch('user')
   public onUserChanged(val: any, oldVal: any) {
     if (val !== null) {
-      this.$socket.emit('GET::CHANNELS', val.id)
+      this.$socket.emit('GET::SERVERS', val.id)
     }
   }
 
@@ -107,9 +107,10 @@ export default class ServersBar extends Vue {
     }
   }
 
-  public choiceChannel(server) {
+  public choiceServer(server) {
     this.setChannel(server)
-    this.$socket.emit('GET::MESSAGES', server.id)
+    this.$socket.emit('GET::CHANNELS::NAME', server.id)
+    // this.$socket.emit('GET::MESSAGES', server.id)
     this.$socket.emit('GET::USERS', server.id)
   }
 
@@ -140,7 +141,7 @@ export default class ServersBar extends Vue {
     }
   }
 
-  div.chan.set.router-link-active:before {
+  div.chan.set.router-link-exact-active:before {
     background: #FFF;
     border-radius: 20px;
     content: " ";
