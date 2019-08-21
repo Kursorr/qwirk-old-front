@@ -100,14 +100,6 @@ export default class Auth extends Vue {
       section.content {
         display: flex;
         background-color: rgba(46, 49, 54, 0.7);
-
-        .auth-logo {
-          width: 230px;
-          background-color: #FFF;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
       }
     }
   }

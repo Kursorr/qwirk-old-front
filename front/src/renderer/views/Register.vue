@@ -2,7 +2,9 @@
   <section class="modal" @click="closeModal($event)">
     <section class="set">
       <section class="content">
-        <section class="auth-logo"></section>
+        <section class="auth-logo">
+          <div class="logo"></div>
+        </section>
         <section class="panel">
           <h2>Créer un compte</h2>
           <!-- <button @click="test()">{{ $t("message.hello") }}</button> -->
@@ -98,6 +100,14 @@
 </script>
 
 <style lang="scss" scoped>
+  .logo {
+    background-image: url('../assets/logos/Qwirk.png');
+    height: 140px;
+    width: 140px;
+    background-size: 140px 140px;
+    background-repeat: no-repeat;
+  }
+
   .modal {
     background-image: url('../assets/backgrounds/app/d3.jpg');
 
@@ -108,11 +118,6 @@
       section.content {
         display: flex;
         background-color: rgba(46, 49, 54, 0.7);
-
-        .auth-logo {
-          width: 230px;
-          background-color: #FFF;
-        }
       }
     }
   }
