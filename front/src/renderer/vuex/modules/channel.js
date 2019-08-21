@@ -1,12 +1,12 @@
 import * as types from '../mutation-types';
 const state = {
-    currentChannel: null,
+    currentServer: null,
     servers: []
 };
 const mutations = {
     [types.SET_CHANNEL](state, channel) {
-        state.currentChannel = channel;
-        state.currentChannel.waitMsg = 0;
+        state.currentServer = channel;
+        state.currentServer.waitMsg = 0;
     },
     [types.UP_WAIT_MESSAGE](state, server) {
         const i = state.servers.findIndex((s) => {
