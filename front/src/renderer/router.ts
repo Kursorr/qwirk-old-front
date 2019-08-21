@@ -23,15 +23,15 @@ export default new Router({
       component: () => import('./views/Register.vue')
     },
     {
-      path: 'tchat/:convId',
-      name: 'tchat',
-      component: () => import('./views/Tchat.vue'),
-    },
-    {
       path: '/landing-page',
       name: 'landing-page',
       component: () => import('./views/LandingPage.vue'),
       children: [
+        {
+          path: 'tchat/:convId/:type',
+          name: 'tchat',
+          component: () => import('./views/Tchat.vue'),
+        },
         {
           path: 'library',
           name: 'library',
