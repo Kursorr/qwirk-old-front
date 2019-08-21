@@ -2,7 +2,9 @@
   <section class="modal" @click="closeModal($event)">
     <section class="set">
       <section class="content">
-        <section class="auth-logo"></section>
+        <section class="auth-logo">
+          <div class="logo"></div>
+        </section>
         <section class="panel">
           <h2>Bon retour parmi nous !</h2>
           <form autocomplete="off">
@@ -80,6 +82,14 @@ export default class Auth extends Vue {
 </script>
 
 <style lang="scss" scoped>
+  .logo {
+    background-image: url('../assets/logos/Qwirk.png');
+    height: 140px;
+    width: 140px;
+    background-size: 140px 140px;
+    background-repeat: no-repeat;
+  }
+
   .modal {
     background-image: url('../assets/backgrounds/app/d3.jpg');
 
@@ -94,6 +104,9 @@ export default class Auth extends Vue {
         .auth-logo {
           width: 230px;
           background-color: #FFF;
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
       }
     }
