@@ -1,6 +1,11 @@
 <template>
   <section id="wrapper">
-    <navigation-bar v-if="user"></navigation-bar>
+    <navigation-channel v-if="user && this.$route.params.type === 'public'"
+    ></navigation-channel>
+
+    <navigation-bar v-if="user && this.$route.params.type === 'private' ||
+      (user && this.$route.path.includes('/landing-page') && this.$route.params.type !== 'public')"
+    ></navigation-bar>
     <auth v-if="!user"></auth>
     <router-view></router-view>
   </section>
@@ -12,10 +17,12 @@
 
   import Auth from './Auth.vue'
   import NavigationBar from '../components/Navigation/NavigationBar.vue'
+  import NavigationChannel from '../components/Navigation/NavigationChannel.vue'
 
   @Component({
     components: {
       NavigationBar,
+      NavigationChannel,
       Auth
     },
     computed: {
