@@ -57,18 +57,25 @@ const tchat = (instance: Socket, socket: any) => {
     socket.emit('updateMessage', messages)
   })
 
-  socket.on('GET::CHANNELS', async userId => {
+  socket.on('GET::SERVERS', async userId => {
     const cursor = await user.getServers(userId)
-    const channelsId = await cursor.toArray()
+    const serversId = await cursor.toArray()
 
-    const channels = await getDatas(
-      channelsId,
+    const servers = await getDatas(
+      serversId,
       async (channelId) => {
         return await channel.getSpecificData(channelId, 'icon', 'name')
       }
     )
 
-    socket.emit('updateChannel', channels)
+    socket.emit('updateServers', servers)
+  })
+
+  socket.on('GET::CHANNELS::NAME', async serverId => {
+    const name = await channel.getServerName(serverId)
+    const channelsName = await channel.getChannelsName(serverId)
+
+    socket.emit('updateChannel', { name, channelsName })
   })
 
   socket.on('GET::USERS', async channelId => {

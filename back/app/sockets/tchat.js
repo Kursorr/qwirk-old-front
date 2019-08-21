@@ -53,13 +53,18 @@ const tchat = (instance, socket) => {
         yield health.readAndInsertData(messagesToInsert);
         socket.emit('updateMessage', messages);
     }));
-    socket.on('GET::CHANNELS', (userId) => __awaiter(this, void 0, void 0, function* () {
+    socket.on('GET::SERVERS', (userId) => __awaiter(this, void 0, void 0, function* () {
         const cursor = yield user.getServers(userId);
-        const channelsId = yield cursor.toArray();
-        const channels = yield Helper_1.getDatas(channelsId, (channelId) => __awaiter(this, void 0, void 0, function* () {
+        const serversId = yield cursor.toArray();
+        const servers = yield Helper_1.getDatas(serversId, (channelId) => __awaiter(this, void 0, void 0, function* () {
             return yield channel.getSpecificData(channelId, 'icon', 'name');
         }));
-        socket.emit('updateChannel', channels);
+        socket.emit('updateServers', servers);
+    }));
+    socket.on('GET::CHANNELS::NAME', (serverId) => __awaiter(this, void 0, void 0, function* () {
+        const name = yield channel.getServerName(serverId);
+        const channelsName = yield channel.getChannelsName(serverId);
+        socket.emit('updateChannel', { name, channelsName });
     }));
     socket.on('GET::USERS', (channelId) => __awaiter(this, void 0, void 0, function* () {
         const cursor = yield channel.getUsers(channelId);
