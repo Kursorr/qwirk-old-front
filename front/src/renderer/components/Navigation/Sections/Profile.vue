@@ -5,7 +5,7 @@
                    @close="setModal('accountSettings', false)"></user-params>
     </transition>
 
-    <section class="avatar" >
+    <section class="avatar">
       <section id="changeStatus"
                v-show="changeStatusContainer">
         <section class="actualStatus principal" @click="changeStatus('online')">
