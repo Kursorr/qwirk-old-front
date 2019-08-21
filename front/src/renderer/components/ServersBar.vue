@@ -7,7 +7,11 @@
       </new-or-join-server>
     </transition>
 
-    <div class="friendsOnline">8 en ligne</div>
+    <h1>QWIRK</h1>
+    <router-link :to="{name: 'landing-page'}"
+                 class="chan set" tag="div">
+      <div class="logo"></div>
+    </router-link>
     <div class="separator"></div>
     <div class="servers">
       <draggable v-model="getServers">
@@ -113,6 +117,40 @@ export default class ServersBar extends Vue {
 </script>
 
 <style lang="scss" scoped>
+  h1 {
+    font-size: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #FFF;
+  }
+
+  div.logo {
+    background-image: url('../assets/logos/Qwirk.png');
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-position-y: 0;
+    background-size: 50px 60px;
+    transition: border-radius .15s ease-out;
+
+    &:hover {
+      cursor: pointer;
+      border-radius: 38%;
+    }
+  }
+
+  div.chan.set.router-link-active:before {
+    background: #FFF;
+    border-radius: 20px;
+    content: " ";
+    position: absolute;
+    width: 10px;
+    height: 40px;
+    left: -5px;
+    margin-top: 5px;
+  }
+
   #leftBar {
     width: 70px;
     background-color: #202225;
@@ -143,11 +181,21 @@ export default class ServersBar extends Vue {
         border-radius: 50%;
         margin-top: 5px;
 
-        &:hover { cursor: pointer; }
+        &:hover {
+          cursor: pointer;
+        }
+
         &:first-child { margin-top: 0; }
 
         div.chan.set {
           position: relative;
+
+          img {
+            transition: border-radius .15s ease-out;
+            &:hover {
+              border-radius: 38%;
+            }
+          }
         }
 
         div.chan.set.router-link-active:before {
