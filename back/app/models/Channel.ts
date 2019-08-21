@@ -24,9 +24,12 @@ class Channel extends Model {
     this.data = data
   }
 
-  async getMessages (id: string): Promise<any>
+  async getMessages (id: string): Promise<any> // , data: Object
   {
     return this.db.r.table(this.table).get(id)('messages').run(this.db.conn)
+
+    /*return this.db.r.table(this.table).get(id)('channels').filter(data).pluck('messages')
+      .run(this.db.conn)*/
   }
 
   async insertMessage (id: string, data: Object): Promise<any>
@@ -44,6 +47,16 @@ class Channel extends Model {
   async getLastMessage (serverId: string): Promise<any>
   {
     return this.db.r.table(this.table).get(serverId)('messages').nth(-1).run(this.db.conn)
+  }
+
+  async getServerName (serverId: string): Promise<any>
+  {
+    return this.db.r.table(this.table).get(serverId)('name').run(this.db.conn)
+  }
+
+  async getChannelsName (serverId: string): Promise<Object>
+  {
+    return this.db.r.table(this.table).get(serverId)('channels').pluck('name').run(this.db.conn)
   }
 }
 

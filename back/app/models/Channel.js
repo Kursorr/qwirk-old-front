@@ -18,6 +18,8 @@ class Channel extends Model_1.Model {
     getMessages(id) {
         return __awaiter(this, void 0, void 0, function* () {
             return this.db.r.table(this.table).get(id)('messages').run(this.db.conn);
+            /*return this.db.r.table(this.table).get(id)('channels').filter(data).pluck('messages')
+              .run(this.db.conn)*/
         });
     }
     insertMessage(id, data) {
@@ -35,6 +37,16 @@ class Channel extends Model_1.Model {
     getLastMessage(serverId) {
         return __awaiter(this, void 0, void 0, function* () {
             return this.db.r.table(this.table).get(serverId)('messages').nth(-1).run(this.db.conn);
+        });
+    }
+    getServerName(serverId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.db.r.table(this.table).get(serverId)('name').run(this.db.conn);
+        });
+    }
+    getChannelsName(serverId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.db.r.table(this.table).get(serverId)('channels').pluck('name').run(this.db.conn);
         });
     }
 }
