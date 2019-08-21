@@ -2,7 +2,7 @@
   <div class="upload">
     <section class="logo-ce">
       <section class="logo-group">
-        <avatar :url="userOrImage" size="normal"></avatar>
+        <avatar :url="userOrImage" size="big"></avatar>
         <input type="file" class="file-input" accept=".jpg,.jpeg,.png,.gif" @change="onFileChange">
       </section>
     </section>
