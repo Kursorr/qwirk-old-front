@@ -8,7 +8,7 @@
     </transition>
 
     <h1>QWIRK</h1>
-    <router-link :to="{name: 'landing-page', params: {type: 'private'}}"
+    <router-link :to="{name: 'landing-page'}"
                  class="chan set" tag="div">
       <div class="logo"></div>
     </router-link>
