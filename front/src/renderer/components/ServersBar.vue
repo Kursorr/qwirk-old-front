@@ -141,7 +141,7 @@ export default class ServersBar extends Vue {
     }
   }
 
-  div.chan.set.router-link-exact-active:before {
+  div.chan.set.router-link-active:before {
     background: #FFF;
     border-radius: 20px;
     content: " ";
