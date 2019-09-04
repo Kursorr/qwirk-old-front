@@ -1,6 +1,8 @@
 <template>
   <section id="main">
     <section id="tchat">
+      <navigation-channel v-if="user && this.$route.params.type === 'public'"
+      ></navigation-channel>
       <section id="cpnts">
         <tchat-bar
           :filters="false"

@@ -1,8 +1,5 @@
 <template>
   <section id="wrapper">
-    <navigation-channel v-if="user && this.$route.params.type === 'public'"
-    ></navigation-channel>
-
     <navigation-bar v-if="user && this.$route.params.type === 'private' ||
       (user && this.$route.path.includes('/landing-page') && this.$route.params.type !== 'public')"
     ></navigation-bar>

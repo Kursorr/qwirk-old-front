@@ -7,7 +7,7 @@
       </new-or-join-server>
     </transition>
 
-    <h1>QWIRK {{ this.$route.path }}</h1>
+    <h1>QWIRK</h1>
     <router-link :to="{name: 'landing-page'}"
                  class="chan set" tag="div">
       <div class="logo"></div>
@@ -17,7 +17,7 @@
       <draggable v-model="getServers">
         <div class="server" v-for="server in getServers">
           <router-link @click.native="choiceServer(server)"
-                       :to="{name: 'tchat', params: { convId: server.id, type: 'public' }}"
+                       :to="{name: 'server', params: { serverId: server.id, type: 'public' }}"
                        class="chan set" tag="div">
             <avatar :url="server.icon" size="medium" class="avatar-server"></avatar>
             <div style="color: #FFF;">{{ server.waitMsg }}</div>

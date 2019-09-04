@@ -23,6 +23,18 @@ export default new Router({
       component: () => import('./views/Register.vue')
     },
     {
+      path: 'server/:serverId',
+      name: 'server',
+      component: () => import('./views/Tchat.vue'),
+      children: [
+        {
+          path: 'tchat/:convId/:type',
+          name: 'tchatServer',
+          component: () => import('./views/Tchat.vue'),
+        }
+      ]
+    },
+    {
       path: '/landing-page',
       name: 'landing-page',
       component: () => import('./views/LandingPage.vue'),

@@ -7,7 +7,7 @@
 
       <div class="channels">
         <router-link @click.native="choiceChannel(channel)"
-                     :to="{name: 'tchat', params: { convId: channel.id, type: 'public' }}"
+                     :to="{name: 'tchatServer', params: { convId: channel.id, type: 'public' }}"
                      class="chan set" tag="div"
                      v-for="channel in channels">
           <icon-base
