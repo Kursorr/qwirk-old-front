@@ -71,7 +71,8 @@ import NavigationChannel from '../components/Navigation/NavigationChannel.vue'
   computed: {
     ...mapGetters([
       'user',
-      'currentChannel'
+      'currentChannel',
+      'currentServer'
     ])
   }
 })
@@ -98,7 +99,8 @@ export default class Tchat extends Vue {
     this.$socket.emit('SEND::MESSAGE', {
       route: this.$route.params,
       author: this.user,
-      content: this.message
+      content: this.message,
+      serverId: this.currentServer.id
     })
 
     this.message = ''
