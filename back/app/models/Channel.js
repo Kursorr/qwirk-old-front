@@ -15,18 +15,22 @@ class Channel extends Model_1.Model {
         this.data = null;
         this.data = data;
     }
-    getMessages(id) {
+    getMessages(id, data) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.db.r.table(this.table).get(id)('messages').run(this.db.conn);
-            /*return this.db.r.table(this.table).get(id)('channels').filter(data).pluck('messages')
-              .run(this.db.conn)*/
+            return this.db.r.table(this.table).get(id)('channels').filter(data)('messages').nth(-1)
+                .run(this.db.conn);
         });
     }
-    insertMessage(id, data) {
+    insertMessage(serverId, convId, msg) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.db.r.table(this.table).get(id).update({
-                messages: this.db.r.row('messages').append(data)
-            }).run(this.db.conn);
+            const cursor = yield this.db.r.table(this.table).get(serverId)('channels').run(this.db.conn);
+            const channels = yield cursor.toArray();
+            // @ts-ignore
+            const channel = channels.find(c => c.id === convId.id);
+            channel.messages.push(msg);
+            yield this.db.r.table(this.table).get(serverId)
+                .update({ channels })
+                .run(this.db.conn);
         });
     }
     getUsers(serverId) {
@@ -34,9 +38,11 @@ class Channel extends Model_1.Model {
             return this.db.r.table(this.table).get(serverId)('members').run(this.db.conn);
         });
     }
-    getLastMessage(serverId) {
+    getLastMessage(serverId, data) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.db.r.table(this.table).get(serverId)('messages').nth(-1).run(this.db.conn);
+            return this.db.r.table(this.table).get(serverId)('channels').filter(data)('messages')
+                .nth(0).nth(-1)
+                .run(this.db.conn);
         });
     }
     getServerName(serverId) {
@@ -46,7 +52,7 @@ class Channel extends Model_1.Model {
     }
     getChannelsName(serverId) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.db.r.table(this.table).get(serverId)('channels').pluck('name').run(this.db.conn);
+            return this.db.r.table(this.table).get(serverId)('channels').pluck('id', 'name').run(this.db.conn);
         });
     }
 }
