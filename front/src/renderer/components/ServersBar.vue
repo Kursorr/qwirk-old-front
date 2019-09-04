@@ -17,7 +17,7 @@
       <draggable v-model="getServers">
         <div class="server" v-for="server in getServers">
           <router-link @click.native="choiceServer(server)"
-                       :to="{name: 'tchat', params: { convId: server.name, type: 'public' }}"
+                       :to="{name: 'tchat', params: { convId: server.id, type: 'public' }}"
                        class="chan set" tag="div">
             <avatar :url="server.icon" size="medium" class="avatar-server"></avatar>
             <div style="color: #FFF;">{{ server.waitMsg }}</div>
@@ -46,7 +46,6 @@ import { Store, mapGetters, mapActions } from 'vuex'
 import Avatar from './Contents/components/Avatar.vue'
 import NewOrJoinServer from './Modals/NewOrJoinServer.vue'
 import { ComponentOptions } from 'vue'
-import pusherStore from '../store/PusherStore'
 
 @Component({
   components: {
@@ -58,24 +57,20 @@ import pusherStore from '../store/PusherStore'
   computed: {
     ...mapGetters([
       'getServers',
-      'user',
-      'currentChannel'
+      'user'
     ])
   },
   methods: {
     ...mapActions([
-      'setChannel',
-      'addMessage',
-      'setServers',
-      'upWaitMsg'
+      'setServer',
+      'setServers'
     ])
   },
   sockets: {
-    updateServers (channels: any) {
-      this.setServers(channels.map((channel: any) => {
-        const ch = channel
+    updateServers (servers: any) {
+      this.setServers(servers.map((server: any) => {
+        const ch = server
         ch.waitMsg = 0
-        pusherStore.subscribe(`ch-${ch.id}`, this.processChannel)
         return ch
       }))
     }
@@ -99,18 +94,9 @@ export default class ServersBar extends Vue {
     this.$emit('test', this.modal)
   }
 
-  public processChannel(data) {
-    if (this.currentChannel.id === data.channelName) {
-      this.addMessage([data.msg])
-    } else {
-      this.upWaitMsg(data.channelName)
-    }
-  }
-
   public choiceServer(server) {
-    this.setChannel(server)
+    this.setServer(server)
     this.$socket.emit('GET::CHANNELS::NAME', server.id)
-    // this.$socket.emit('GET::MESSAGES', server.id)
     this.$socket.emit('GET::USERS', server.id)
   }
 
