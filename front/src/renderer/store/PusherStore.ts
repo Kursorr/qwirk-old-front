@@ -22,7 +22,6 @@ class PusherStore {
 
   public subscribe (subscriber: any, callback: any) {
     const sub = this.pusher.subscribe(subscriber)
-    console.log(sub)
     sub.bind('receive', (data: any) => {
       data.channelName = subscriber.substring(3)
       callback(data)
@@ -32,7 +31,6 @@ class PusherStore {
 
   public unsubscribe (subscriber: any) {
     const sub = this.pusher.unsubscribe(subscriber)
-    console.log(sub)
     this.state.subscribers = this.state.subscriber.filter((sub: any) => {
       return sub !== subscriber
     })

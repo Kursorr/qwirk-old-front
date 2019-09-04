@@ -7,7 +7,7 @@
       </new-or-join-server>
     </transition>
 
-    <h1>QWIRK</h1>
+    <h1>QWIRK {{ this.$route.path }}</h1>
     <router-link :to="{name: 'landing-page'}"
                  class="chan set" tag="div">
       <div class="logo"></div>
