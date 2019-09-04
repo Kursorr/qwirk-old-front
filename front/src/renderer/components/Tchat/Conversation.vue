@@ -34,7 +34,7 @@
       Avatar
     },
     sockets: {
-      updateMessage (messages: string) {
+      updateMessage (messages) {
         this.clearMessage()
         this.addMessage(messages)
       }
