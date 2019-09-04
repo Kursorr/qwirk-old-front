@@ -39,12 +39,12 @@ export const addMessage = (state: any, messages: Array<[IMessage]>) => {
     messageContent = doc!.querySelector('body')!.innerHTML
 
     const regex = /^([0-9]{4})-([0-9]{2})-([0-9]{2})/gi
-    const date = message.postedAt.match(regex)
+    // const date = message.postedAt.match(regex)
 
     state.commit(types.ADD_MESSAGE, {
       content: messageContent,
       user: message.user,
-      postedAt: moment(date[0]).fromNow()
+      // postedAt: moment(date[0]).fromNow()
     })
   })
 }

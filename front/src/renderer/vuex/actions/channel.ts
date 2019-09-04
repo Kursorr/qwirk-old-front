@@ -1,7 +1,7 @@
 import * as types from '../mutation-types'
 
-export const setChannel = (state: any, channel: any) => {
-  state.commit(types.SET_CHANNEL, channel)
+export const setServer = (state: any, server: any) => {
+  state.commit(types.SET_SERVER, server)
 }
 
 export const upWaitMsg = (state: any, server: any) => {
@@ -10,4 +10,8 @@ export const upWaitMsg = (state: any, server: any) => {
 
 export const setServers = (state: any, servers: any) => {
   state.commit(types.SET_SERVERS, servers)
+}
+
+export const setChannel = (state: any, channel: any) => {
+  state.commit(types.SET_CHANNEL, channel)
 }
