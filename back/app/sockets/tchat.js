@@ -20,24 +20,22 @@ const tchat = (instance, socket) => {
     socket.on('SEND::MESSAGE', (data) => __awaiter(this, void 0, void 0, function* () {
         const convId = data.route.convId;
         const content = data.content;
+        const serverId = data.serverId;
         const userId = data.author.id;
-        const cursor = yield channel.insertMessage(convId, {
+        yield channel.insertMessage(serverId, { id: convId }, {
             userId,
             content,
             postedAt: new Date()
         });
-        if (!cursor) {
-            return;
-        }
-        const msg = yield channel.getLastMessage(convId);
+        const msg = yield channel.getLastMessage(serverId, { id: convId });
         msg.user = yield user.get(userId);
         let channelName = `ch-${convId}`;
         config_1.pusher.trigger(channelName, 'receive', {
             msg
         });
     }));
-    socket.on('GET::MESSAGES', (serverId) => __awaiter(this, void 0, void 0, function* () {
-        const cursor = yield channel.getMessages(serverId);
+    socket.on('GET::MESSAGES', (data) => __awaiter(this, void 0, void 0, function* () {
+        const cursor = yield channel.getMessages(data.serverId, { id: data.id, name: data.name });
         const messages = yield cursor.toArray();
         const messagesToInsert = [];
         for (let message of messages) {
@@ -51,6 +49,7 @@ const tchat = (instance, socket) => {
         const health = yield new ElasticSearch_1.ElasticSearch();
         yield health.connect();
         yield health.readAndInsertData(messagesToInsert);
+        console.log(messages);
         socket.emit('updateMessage', messages);
     }));
     socket.on('GET::SERVERS', (userId) => __awaiter(this, void 0, void 0, function* () {
@@ -63,8 +62,8 @@ const tchat = (instance, socket) => {
     }));
     socket.on('GET::CHANNELS::NAME', (serverId) => __awaiter(this, void 0, void 0, function* () {
         const name = yield channel.getServerName(serverId);
-        const channelsName = yield channel.getChannelsName(serverId);
-        socket.emit('updateChannel', { name, channelsName });
+        const channels = yield channel.getChannelsName(serverId);
+        socket.emit('updateChannel', { name, channels });
     }));
     socket.on('GET::USERS', (channelId) => __awaiter(this, void 0, void 0, function* () {
         const cursor = yield channel.getUsers(channelId);

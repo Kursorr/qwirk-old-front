@@ -14,17 +14,16 @@ const tchat = (instance: Socket, socket: any) => {
   socket.on('SEND::MESSAGE', async data => {
     const convId = data.route.convId
     const content = data.content
+    const serverId = data.serverId
     const userId = data.author.id
 
-    const cursor = await channel.insertMessage(convId, {
+    await channel.insertMessage(serverId, { id: convId }, {
       userId,
       content,
       postedAt: new Date()
     })
 
-    if (!cursor) { return }
-
-    const msg = await channel.getLastMessage(convId)
+    const msg = await channel.getLastMessage(serverId, { id: convId })
     msg.user = await user.get(userId)
 
     let channelName = `ch-${convId}`
@@ -34,10 +33,9 @@ const tchat = (instance: Socket, socket: any) => {
     })
   })
 
-  socket.on('GET::MESSAGES', async (serverId: string) => {
-    const cursor = await channel.getMessages(serverId)
+  socket.on('GET::MESSAGES', async (data: any) => {
+    const cursor = await channel.getMessages(data.serverId, {id: data.id, name: data.name})
     const messages = await cursor.toArray()
-
     const messagesToInsert = []
 
     for (let message of messages) {
@@ -54,6 +52,7 @@ const tchat = (instance: Socket, socket: any) => {
     await health.connect()
     await health.readAndInsertData(messagesToInsert)
 
+    console.log(messages)
     socket.emit('updateMessage', messages)
   })
 
@@ -73,9 +72,9 @@ const tchat = (instance: Socket, socket: any) => {
 
   socket.on('GET::CHANNELS::NAME', async serverId => {
     const name = await channel.getServerName(serverId)
-    const channelsName = await channel.getChannelsName(serverId)
+    const channels = await channel.getChannelsName(serverId)
 
-    socket.emit('updateChannel', { name, channelsName })
+    socket.emit('updateChannel', { name, channels })
   })
 
   socket.on('GET::USERS', async channelId => {
