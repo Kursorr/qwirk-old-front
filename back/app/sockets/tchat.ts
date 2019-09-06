@@ -52,7 +52,6 @@ const tchat = (instance: Socket, socket: any) => {
     await health.connect()
     await health.readAndInsertData(messagesToInsert)
 
-    console.log(messages)
     socket.emit('updateMessage', messages)
   })
 
@@ -89,6 +88,16 @@ const tchat = (instance: Socket, socket: any) => {
     )
 
     socket.emit('getUsersFromChannel', usersInChannel)
+  })
+
+  socket.on('DELETE::CHANNEL', async ch => {
+    const { id, serverId } = ch
+    await channel.deleteChannel(serverId, id)
+
+    const name = await channel.getServerName(serverId)
+    const channels = await channel.getChannelsName(serverId)
+
+    socket.emit('updateChannel', { name, channels })
   })
 }
 

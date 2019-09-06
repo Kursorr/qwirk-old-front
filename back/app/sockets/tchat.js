@@ -49,7 +49,6 @@ const tchat = (instance, socket) => {
         const health = yield new ElasticSearch_1.ElasticSearch();
         yield health.connect();
         yield health.readAndInsertData(messagesToInsert);
-        console.log(messages);
         socket.emit('updateMessage', messages);
     }));
     socket.on('GET::SERVERS', (userId) => __awaiter(this, void 0, void 0, function* () {
@@ -72,6 +71,13 @@ const tchat = (instance, socket) => {
             return yield user.getSpecificData(u.userId, 'pseudo', 'avatar', 'status', 'tag');
         }));
         socket.emit('getUsersFromChannel', usersInChannel);
+    }));
+    socket.on('DELETE::CHANNEL', (ch) => __awaiter(this, void 0, void 0, function* () {
+        const { id, serverId } = ch;
+        yield channel.deleteChannel(serverId, id);
+        const name = yield channel.getServerName(serverId);
+        const channels = yield channel.getChannelsName(serverId);
+        socket.emit('updateChannel', { name, channels });
     }));
 };
 exports.tchat = tchat;
