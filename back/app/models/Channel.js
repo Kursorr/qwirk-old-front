@@ -21,6 +21,21 @@ class Channel extends Model_1.Model {
                 .run(this.db.conn);
         });
     }
+    addNewChannel(serverId, data) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.db.r.table(this.table).get(serverId).update({ channels: this.db.r.row('channels').append(data) }).run(this.db.conn);
+        });
+    }
+    deleteChannel(serverId, eq) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.db.r.table(this.table).get(serverId).update(function (row) {
+                return {
+                    'channels': row('channels')
+                        .filter(function (item) { return item('id').ne(eq); })
+                };
+            }).run(this.db.conn);
+        });
+    }
     insertMessage(serverId, convId, msg) {
         return __awaiter(this, void 0, void 0, function* () {
             const cursor = yield this.db.r.table(this.table).get(serverId)('channels').run(this.db.conn);

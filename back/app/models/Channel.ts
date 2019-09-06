@@ -30,6 +30,23 @@ class Channel extends Model {
       .run(this.db.conn)
   }
 
+  async addNewChannel (serverId: string, data: Object): Promise<any>
+  {
+    return this.db.r.table(this.table).get(serverId).update(
+      { channels: this.db.r.row('channels').append(data) }
+    ).run(this.db.conn)
+  }
+
+  async deleteChannel (serverId: string, eq: string): Promise<any>
+  {
+    return this.db.r.table(this.table).get(serverId).update(function (row)  {
+      return {
+        'channels': row('channels')
+          .filter(function (item) { return item('id').ne(eq) })
+      }
+    }).run(this.db.conn)
+  }
+
   async insertMessage (serverId: string, convId: Object, msg: Object): Promise<any>
   {
     const cursor = await this.db.r.table(this.table).get(serverId)('channels').run(this.db.conn)
