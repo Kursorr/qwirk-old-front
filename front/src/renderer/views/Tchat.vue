@@ -5,6 +5,7 @@
       ></navigation-channel>
       <section id="cpnts">
         <tchat-bar
+          v-if="this.$route.path.includes('landing-page')"
           :filters="false"
           :separator="false"
           channel="quenti77"
@@ -16,7 +17,8 @@
             <arobase-icon />
           </icon-base>
         </tchat-bar>
-        <!--<tchat-bar
+        <tchat-bar
+          v-if="this.$route.path.includes('server')"
           :filters="false"
           :separator="false"
           channel="general"
@@ -27,7 +29,7 @@
             viewBox="0 0 24 24">
             <diese-icon />
           </icon-base>
-        </tchat-bar>-->
+        </tchat-bar>
         <drop-zone v-if="toggleDropZone" />
         <conversation />
         <emoji-picker v-if="toggleEmoji" @emoji="append" />
