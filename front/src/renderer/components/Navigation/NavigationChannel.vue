@@ -10,15 +10,18 @@
                      :to="{name: 'tchatServer', params: { convId: channel.id, type: 'public' }}"
                      class="chan set" tag="div"
                      v-for="channel in channels">
-          <icon-base
-            icon-name="diese"
-            class="diese"
-            width="16"
-            height="16"
-            view-box="0 0 24 24">
-            <diese-icon></diese-icon>
-          </icon-base>
-          {{ channel.name }}
+          <div>
+            <icon-base
+              icon-name="diese"
+              class="diese"
+              width="16"
+              height="16"
+              view-box="0 0 24 24">
+              <diese-icon></diese-icon>
+            </icon-base>
+            <span>{{ channel.name }}</span>
+          </div>
+          <button @click="deleteChannel(channel)">x</button>
         </router-link>
       </div>
     </section>
@@ -85,6 +88,12 @@
       this.setChannel(channel)
       this.$socket.emit('GET::MESSAGES', data)
     }
+
+    public deleteChannel(channel) {
+      const data = channel
+      data.serverId = this.currentServer.id
+      this.$socket.emit('DELETE::CHANNEL', data)
+    }
   }
 </script>
 
@@ -100,6 +109,8 @@
     color: #DCDDDE;
 
     .chan.set {
+      display: flex;
+      justify-content: space-between;
       margin: 0 10px;
       padding: 6px 8px;
       border-radius: 3px;
@@ -107,6 +118,18 @@
       &:hover {
         cursor: pointer;
         background-color: #292B2F;
+
+        button {
+          display: block;
+        }
+      }
+
+      button {
+        height: 16px;
+        width: 16px;
+        padding: 0;
+        margin: 0;
+        display: none;
       }
     }
 
