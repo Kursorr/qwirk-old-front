@@ -33,8 +33,9 @@ If you don't have typescript and/or @vue/cli installed, you need it first.
 
 If you have problem with `npm i` on the back folder, you need to:
 
-- `sudo apt-get install python-minimal`
-- `sudo apt-get install build-essential`
+- `sudo apt install make
+- `sudo apt install python-minimal`
+- `sudo apt install build-essential`
 
 And here, if you have problem with `npm i` on the front folder:
 
