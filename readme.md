@@ -82,6 +82,7 @@ I use [SemVer](http://semver.org/) for versioning.
 - \[ ] A website to present the project and have the possibility to download it
 - \[x] A new logo
 - \[ ] Using TensorFlowJS
+- \[ ] Move to Vue 3
 
 ## License
 
