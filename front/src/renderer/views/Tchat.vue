@@ -100,6 +100,8 @@ export default class Tchat extends Vue {
     if (this.message === '')
       return false
 
+    console.log(this.currentServer)
+
     this.$socket.emit('SEND::MESSAGE', {
       route: this.$route.params,
       author: this.user,

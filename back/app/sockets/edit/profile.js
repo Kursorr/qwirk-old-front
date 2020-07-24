@@ -1,9 +1,10 @@
 'use strict';
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -17,7 +18,7 @@ const config_1 = require("../../../config/config");
 const Helper_1 = require("../../../scripts/Helper");
 const limiter = new limiter_1.RateLimiter(5, 'hour', true);
 const profile = (instance, socket) => {
-    socket.on('profile', (data) => __awaiter(this, void 0, void 0, function* () {
+    socket.on('profile', (data) => __awaiter(void 0, void 0, void 0, function* () {
         const { DB } = instance;
         const user = new User_1.User(DB);
         const isValid = yield indicative.validate(data, config_1.userRules)
@@ -43,7 +44,7 @@ const profile = (instance, socket) => {
             });
             return false;
         }
-        return limiter.removeTokens(1, (err, remainingRequests) => __awaiter(this, void 0, void 0, function* () {
+        return limiter.removeTokens(1, (err, remainingRequests) => __awaiter(void 0, void 0, void 0, function* () {
             /*
               if (remainingRequests < 1) {
                   return socket.emit('profile', {

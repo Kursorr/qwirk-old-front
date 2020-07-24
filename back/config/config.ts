@@ -1,6 +1,12 @@
 import * as indicative from 'indicative'
 import * as Pusher from 'pusher'
 
+/**
+ * Get host
+ * - sudo docker ps -a
+ * - docker inspect id | grep "IPAddress"
+ */
+
 const database: any = {
   db: 'qwirk',
 	host: '172.18.0.3',

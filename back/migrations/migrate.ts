@@ -8,9 +8,8 @@ r.connect(database, async (err, conn) => {
   await r.dbList().contains(database.db)
     .do(databaseExist => {
       return r.branch(databaseExist, {
-        dbs_created: 0 },
-        r.dbCreate(database.db)
-      )
+        dbs_created: 0
+      }, r.dbCreate(database.db))
     }).run(conn)
 
   await r(tables)
@@ -20,3 +19,5 @@ r.connect(database, async (err, conn) => {
 
   await conn.close()
 })
+
+// Kiki#1501

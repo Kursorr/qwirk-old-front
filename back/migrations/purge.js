@@ -9,14 +9,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const express = require("express");
-const ElasticSearch_1 = require("../../scripts/class/ElasticSearch");
-const search = express.Router();
-search.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const search = new ElasticSearch_1.ElasticSearch();
-    const result = yield search.getText(req.query.term, req.query.offset);
-    res.status(200).json({
-        result
-    });
+const r = require("rethinkdb");
+const config_1 = require("../config/config");
+r.connect(config_1.database, (err, conn) => __awaiter(void 0, void 0, void 0, function* () {
+    yield r.dbDrop('qwirk').run(conn);
+    yield conn.close();
 }));
-exports.default = search;

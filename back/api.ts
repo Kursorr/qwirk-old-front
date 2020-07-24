@@ -58,8 +58,7 @@ const connectDatabase = r.connect(database)
 connectDatabase.then(async conn => {
   log.info(`Connected to : rethinkdb://${database.host}:${database.port}/${DATABASE}`)
 
-  const health = await new ElasticSearch().connect()
-  console.info(health)
+  await new ElasticSearch().connect()
 
   app.use((req, res, next) => {
     req.secretJWT = JWT_SECRET
@@ -69,7 +68,7 @@ connectDatabase.then(async conn => {
     req.bearer = null
 
     if (req.headers.authorization) {
-      const auth = req.headers.authorization.split(' ')
+      const auth = req.headers["authorization"].split(' ')
       if (auth.length === 2 && auth[0] === 'bearer') {
         req.bearer = auth[1]
       }
@@ -100,6 +99,7 @@ connectDatabase.then(async conn => {
   // Launch application
   app.listen(process.argv[2], () => {
     log.info(`API running on port ${process.argv[2]}`)
+    log.info(`Connection success to : rethinkdb://${database.host}:${database.port}/${DATABASE}`)
   })
 })
 

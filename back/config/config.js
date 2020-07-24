@@ -1,6 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const Pusher = require("pusher");
+/**
+ * Get host
+ * - sudo docker ps -a
+ * - docker inspect id | grep "IPAddress"
+ */
 const database = {
     db: 'qwirk',
     host: '172.18.0.3',

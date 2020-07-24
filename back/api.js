@@ -1,9 +1,10 @@
 'use strict';
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -53,17 +54,16 @@ app.use(bodyParser.json());
 app.use('/avatars', express.static('avatars'));
 log.debug(`Connecting to database : rethinkdb://${config_1.database.host}:${config_1.database.port}/${DATABASE}`);
 const connectDatabase = r.connect(config_1.database);
-connectDatabase.then((conn) => __awaiter(this, void 0, void 0, function* () {
+connectDatabase.then((conn) => __awaiter(void 0, void 0, void 0, function* () {
     log.info(`Connected to : rethinkdb://${config_1.database.host}:${config_1.database.port}/${DATABASE}`);
-    const health = yield new ElasticSearch_1.ElasticSearch().connect();
-    console.info(health);
+    yield new ElasticSearch_1.ElasticSearch().connect();
     app.use((req, res, next) => {
         req.secretJWT = JWT_SECRET;
         req.db = { r, conn };
         // Auth token
         req.bearer = null;
         if (req.headers.authorization) {
-            const auth = req.headers.authorization.split(' ');
+            const auth = req.headers["authorization"].split(' ');
             if (auth.length === 2 && auth[0] === 'bearer') {
                 req.bearer = auth[1];
             }
@@ -87,6 +87,7 @@ connectDatabase.then((conn) => __awaiter(this, void 0, void 0, function* () {
     // Launch application
     app.listen(process.argv[2], () => {
         log.info(`API running on port ${process.argv[2]}`);
+        log.info(`Connection success to : rethinkdb://${config_1.database.host}:${config_1.database.port}/${DATABASE}`);
     });
 }));
 connectDatabase.error((error) => {

@@ -67,7 +67,8 @@ const register = (instance: Socket, socket: any) => {
 			modifiedAt: new Date(),
 			emailVerified: false,
 			avatar: imgName,
-			verifAcc
+			verifAcc,
+      friends: []
 		})
 
 		fs.appendFile(path.img + imgName, imgBuffer.data, (err) => {

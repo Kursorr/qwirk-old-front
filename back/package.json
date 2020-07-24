@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "nodemon api.js 4100 6100",
     "migrate": "node ./migrations/migrate.js",
-    "dump": "node ./migrations/dump.js"
+    "dump": "node ./migrations/dump.js",
+	  "purge": "node ./migrations/purge.js"
   },
   "author": "SENECHAL Maxime aka Ravaniss",
   "license": "ISC",
