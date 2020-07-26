@@ -2,8 +2,8 @@ const Pusher = require('pusher-js')
 import Vue from 'vue'
 
 class PusherStore {
-  private pusher: any;
-  private state: any;
+  private pusher: any
+  private state: any
 
   constructor() {
     this.state = {
