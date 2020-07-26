@@ -41,6 +41,14 @@ And here, if you have problem with `npm i` on the front folder:
 
 `sudo apt-get install libgconf-2-4`
 
+## Running the project
+
+- `cd front && npm run dev`
+- `cd back && sudo docker-compose up --build`
+- Inside the back folder : `npm run dev`
+
+Docker has RethinkDB, Redis and ElasticSearch.
+
 ## Running the tests
 
 You can run some test from the front folder :
