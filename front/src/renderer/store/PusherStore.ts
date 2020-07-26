@@ -39,4 +39,5 @@ class PusherStore {
 }
 
 const pusherStore = new PusherStore()
+
 export default pusherStore
