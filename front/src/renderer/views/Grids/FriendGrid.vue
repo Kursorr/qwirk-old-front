@@ -85,8 +85,10 @@
       })
     }
 
-    mounted() {
-      this.$socket.emit('GET::FRIENDS', this.user.id)
+    mounted () {
+      if (this.user) {
+        this.$socket.emit('GET::FRIENDS', this.user.id)
+      }
     }
   }
 </script>
