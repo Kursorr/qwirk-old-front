@@ -32,12 +32,12 @@ const friends = (instance, socket) => {
             status: '',
             requestedBy: ''
         };
-        const friendsStatus = cursor.friends.map(({ status }) => status);
-        const requestedBy = cursor.friends.map(({ requestedBy }) => requestedBy);
+        const friendsStatus = cursor.map(({ status }) => status);
+        const requestedBy = cursor.map(({ requestedBy }) => requestedBy);
         let i = 0;
         try {
-            for (var _b = __asyncValues(cursor.friends), _c; _c = yield _b.next(), !_c.done;) {
-                const friend = _c.value;
+            for (var cursor_1 = __asyncValues(cursor), cursor_1_1; cursor_1_1 = yield cursor_1.next(), !cursor_1_1.done;) {
+                const friend = cursor_1_1.value;
                 const cursorFriendData = yield user.getSpecificData(friend.to, 'pseudo', 'tag', 'avatar');
                 const { pseudo, tag, avatar } = cursorFriendData;
                 obj.pseudo = pseudo;
@@ -53,7 +53,7 @@ const friends = (instance, socket) => {
         catch (e_1_1) { e_1 = { error: e_1_1 }; }
         finally {
             try {
-                if (_c && !_c.done && (_a = _b.return)) yield _a.call(_b);
+                if (cursor_1_1 && !cursor_1_1.done && (_a = cursor_1.return)) yield _a.call(cursor_1);
             }
             finally { if (e_1) throw e_1.error; }
         }
