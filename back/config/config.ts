@@ -12,6 +12,7 @@ const database: any = {
 	host: '172.18.0.3',
 	port: 28015
 }
+// http://172.18.0.3:8080
 
 const elastic: any = {
   host: '172.18.0.4',

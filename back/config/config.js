@@ -12,6 +12,7 @@ const database = {
     port: 28015
 };
 exports.database = database;
+// http://172.18.0.3:8080
 const elastic = {
     host: '172.18.0.4',
     port: 9200
