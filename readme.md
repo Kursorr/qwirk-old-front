@@ -82,7 +82,7 @@ I use [SemVer](http://semver.org/) for versioning.
 
 ## Author
 
-* **SENECHAL Maxime** - *FullStack Developer* - Aka [Ravaniss](https://github.com/Ravaniss)
+* **SENECHAL Maxime** - *FullStack Developer* - Aka [Kursorr](https://github.com/Kursorr)
 
 ## What to come ?
 
