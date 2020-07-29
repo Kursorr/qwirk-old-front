@@ -64,7 +64,7 @@ declare const Buffer: any
 } as ComponentOptions<Auth> )
 export default class Auth extends Vue {
   public login: any = {
-    email: 'kiki@kiki.dur',
+    email: 'test06@gmail.com',
     password: 'root',
     error: null
   }
