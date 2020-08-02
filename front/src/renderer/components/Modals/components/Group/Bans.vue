@@ -8,7 +8,7 @@
     <section class="listing">
       <section class="ban-member">
         <avatar :url="null" size="small" @click.native="toggleStatus()"></avatar>
-        <span>Grafikart</span>
+        <span class="pseudo">Grafikart</span>
         <span> #2497</span>
       </section>
     </section>
@@ -39,6 +39,10 @@
       padding: 10px;
       align-items: center;
       width: 100%;
+
+      span.pseudo {
+        margin-left: 14px;
+      }
 
       &:hover {
         background-color: #33363c;

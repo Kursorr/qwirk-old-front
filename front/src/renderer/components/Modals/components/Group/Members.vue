@@ -6,7 +6,7 @@
     <section class="listing">
       <section class="member">
         <avatar :url="null" size="small" @click.native="toggleStatus()"></avatar>
-        <span>Grafikart</span>
+        <span class="pseudo">Grafikart</span>
         <span> #2497</span>
         <button type="button" class="add-role">+</button>
       </section>
@@ -47,6 +47,10 @@
       background-color: #33363c;
       border-color: #2b2e32;
       cursor: pointer;
+    }
+
+    span.pseudo {
+      margin-left: 14px;
     }
 
     button.add-role {
