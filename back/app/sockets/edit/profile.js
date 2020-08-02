@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.profile = void 0;
 const indicative = require("indicative");
 const limiter_1 = require("limiter");
 const fs = require("fs");

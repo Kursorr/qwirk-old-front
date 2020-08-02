@@ -16,6 +16,7 @@ var __asyncValues = (this && this.__asyncValues) || function (o) {
     function settle(resolve, reject, d, v) { Promise.resolve(v).then(function(v) { resolve({ value: v, done: d }); }, reject); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.friends = void 0;
 const User_1 = require("../../models/User");
 const friends = (instance, socket) => {
     socket.on('GET::FRIENDS', (userId) => __awaiter(void 0, void 0, void 0, function* () {

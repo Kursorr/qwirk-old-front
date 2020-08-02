@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.status = void 0;
 const User_1 = require("../models/User");
 const status = (instance, socket) => {
     const { DB } = instance;

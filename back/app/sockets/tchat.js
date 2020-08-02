@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.tchat = void 0;
 const Helper_1 = require("../../scripts/Helper");
 const config_1 = require("../../config/config");
 const User_1 = require("../models/User");

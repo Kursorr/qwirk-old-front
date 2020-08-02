@@ -1,5 +1,6 @@
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Socket = void 0;
 const socketio = require("socket.io");
 const redis = require("socket.io-redis");
 const config = require('../../config/config');

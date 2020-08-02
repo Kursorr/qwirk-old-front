@@ -1,5 +1,6 @@
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.base = void 0;
 const register_1 = require("./auth/register");
 const profile_1 = require("./edit/profile");
 const login_1 = require("./auth/login");

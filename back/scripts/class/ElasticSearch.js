@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ElasticSearch = void 0;
 const elasticsearch = require("elasticsearch");
 const config_1 = require("../../config/config");
 class ElasticSearch {

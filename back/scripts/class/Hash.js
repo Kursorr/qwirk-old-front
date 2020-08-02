@@ -1,5 +1,6 @@
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Password = void 0;
 const argon2 = require("argon2");
 class Password {
     static hash(password) {

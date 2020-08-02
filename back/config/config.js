@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.path = exports.personalData = exports.userRules = exports.JWT = exports.pusher = exports.redis = exports.elastic = exports.database = void 0;
 const Pusher = require("pusher");
 /**
  * Get host
@@ -8,13 +9,13 @@ const Pusher = require("pusher");
  */
 const database = {
     db: 'qwirk',
-    host: '172.18.0.3',
+    host: '172.18.0.4',
     port: 28015
 };
 exports.database = database;
 // http://172.18.0.3:8080
 const elastic = {
-    host: '172.18.0.4',
+    host: '172.18.0.3',
     port: 9200
 };
 exports.elastic = elastic;

@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Channel = void 0;
 const Model_1 = require("./Model");
 class Channel extends Model_1.Model {
     constructor(db, data = null) {

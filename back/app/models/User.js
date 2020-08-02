@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.User = void 0;
 const Model_1 = require("./Model");
 const Hash_1 = require("../../scripts/class/Hash");
 var REASON;
