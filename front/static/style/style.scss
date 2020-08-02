@@ -814,6 +814,10 @@ button.connect {
   background-color: #7289da;
   &:hover {
     background-color: #697ec4;
+
+    a {
+      color: #FFF!important;
+    }
   }
 }
 
