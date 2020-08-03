@@ -20,7 +20,7 @@ const elastic: any = {
 }
 
 const redis: any = {
-	host: '172.18.0.2',
+	host: '172.18.0.3',
 	port: '6379'
 }
 
