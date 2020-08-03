@@ -55,6 +55,11 @@ export default new Router({
                     ]
                 },
                 {
+                    path: 'store',
+                    name: 'store',
+                    component: () => import('./views/Store.vue'),
+                },
+                {
                     path: 'friends',
                     component: () => import('./views/Friends.vue'),
                     children: [
