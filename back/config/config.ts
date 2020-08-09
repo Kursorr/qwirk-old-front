@@ -7,6 +7,7 @@ import * as Pusher from 'pusher'
  * - docker inspect id | grep "IPAddress"
  */
 
+// c4
 const database: any = {
   db: 'qwirk',
 	host: '172.18.0.4',
@@ -14,13 +15,15 @@ const database: any = {
 }
 // http://172.18.0.3:8080
 
+// d7
 const elastic: any = {
   host: '172.18.0.3',
   port: 9200
 }
 
+// 0f
 const redis: any = {
-	host: '172.18.0.3',
+	host: '172.18.0.2',
 	port: '6379'
 }
 

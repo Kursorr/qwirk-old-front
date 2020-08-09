@@ -7,6 +7,7 @@ const Pusher = require("pusher");
  * - sudo docker ps -a
  * - docker inspect id | grep "IPAddress"
  */
+// c4
 const database = {
     db: 'qwirk',
     host: '172.18.0.4',
@@ -14,13 +15,15 @@ const database = {
 };
 exports.database = database;
 // http://172.18.0.3:8080
+// d7
 const elastic = {
     host: '172.18.0.3',
     port: 9200
 };
 exports.elastic = elastic;
+// 0f
 const redis = {
-    host: '172.18.0.3',
+    host: '172.18.0.2',
     port: '6379'
 };
 exports.redis = redis;
