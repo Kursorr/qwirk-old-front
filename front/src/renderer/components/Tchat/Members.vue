@@ -39,7 +39,7 @@
 </template>
 
 <script lang="ts">
-  import { Component, Vue } from 'vue-property-decorator/lib/vue-property-decorator'
+  import { Component, Vue } from 'vue-property-decorator'
   import Avatar from '../Contents/components/Avatar.vue'
   import { Store, mapGetters, mapActions } from 'vuex'
 
@@ -88,7 +88,7 @@
     public getUserInfo (user, index) {
       if (this.userInfo !== null && this.userInfo === user) {
         this.userInfo = null
-        return;
+        return
       }
 
       this.userInfo = {
@@ -98,7 +98,6 @@
         status: user.status,
         index
       }
-
     }
 
     public hideUserInfo () {
