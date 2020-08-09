@@ -13,14 +13,14 @@ import { decodeBase64Image, imgPath } from '../../../scripts/Helper'
 const limiter = new RateLimiter(5, 'hour', true)
 
 const profile = (instance: Socket, socket: any) => {
-	socket.on('profile', async data => {
+	socket.on('UPDATE::PROFILE', async data => {
 		const { DB } = instance
 		const user = new User(DB)
 
 		const isValid = await indicative.validate(data, userRules)
 			.then(() => true)
 			.catch(err => {
-				socket.emit('profile', {
+				socket.emit('UPDATE::PROFILE', {
 					success: false,
 					message: `${err[0].field} obligatoire`
 				})
@@ -38,7 +38,7 @@ const profile = (instance: Socket, socket: any) => {
 		const verifPassword = await Password.compare(result[0].password, password)
 
 		if (!verifPassword) {
-			socket.emit('profile', {
+			socket.emit('updateProfile', {
 				success: false,
 				message: 'Mot de passe invalide'
 			})
@@ -48,7 +48,7 @@ const profile = (instance: Socket, socket: any) => {
 		return limiter.removeTokens(1, async (err, remainingRequests) => {
 		  /*
 			if (remainingRequests < 1) {
-				return socket.emit('profile', {
+				return socket.emit('UPDATE::PROFILE', {
 					success: false,
 					message: 'Vous changez vos informations trop rapidement, veuillez réessayer plus tard.'
 				})
@@ -75,7 +75,7 @@ const profile = (instance: Socket, socket: any) => {
 
 			const updateUser = await user.update(userID, preparedUser, password)
 
-      updateUser && socket.emit('profile', { success: true, preparedUser})
+      updateUser && socket.emit('UPDATE::PROFILE', { success: true, preparedUser})
 		})
 	})
 }
