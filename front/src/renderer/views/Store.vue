@@ -49,7 +49,7 @@
 
 <style lang="scss">
   #image {
-    background: url('../assets/store/deadcells.jpeg') no-repeat;
+    background: url('../assets/store/deadcells.jpg') no-repeat;
     background-size: cover;
     height: 60%;
     margin-top: 1px;
@@ -69,7 +69,7 @@
 
         .featured {
           text-transform: uppercase;
-          color: #797A7F;
+          color: #D6D7D8;
           font-size: 12px;
         }
 
@@ -83,6 +83,7 @@
           width: 75%;
           color: #FFF;
           margin-bottom: 25px;
+          line-height: 25px;
         }
 
         .priceLearnMore {
