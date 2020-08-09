@@ -39,7 +39,7 @@
           <!-- User Informations -->
           <section class="account-profil noEdit" v-show="!edit">
             <section class="logo-group">
-              <avatar :url="user.avatar" size="big"></avatar>
+              <avatar :url="user.avatar" size="big"/>
             </section>
             <section id="user-informations">
               <h3 class="information label">Nom d'utilisateur</h3>
@@ -55,7 +55,7 @@
           <!-- Edit Mode -->
           <section class="account-profil" v-show="edit">
             <section id="entireForm">
-              <upload @change="uploadChange"></upload>
+              <upload @change="uploadChange"/>
               <form autocomplete="off">
                 <label for="pseudo" class="information">Nom d'Utilisateur
                   <input type="text" name="pseudo" id="pseudo" v-model="profile.pseudo">
@@ -69,7 +69,7 @@
                 <label for="passwordChange" class="information" v-if="passChange === true">Nouveau mot de passe
                   <input type="password" name="newPassword" id="passwordChange" v-model="profile.newPassword">
                 </label>
-                <a class="specialA" href="#" v-else="passChange === false" @click="passChange = true">Changer le mot de passe ?</a>
+                <a class="specialA" href="#" v-else @click="passChange = true">Changer le mot de passe ?</a>
 
                 <div class="message" v-if="profile.error">
                   {{ profile.error }}
@@ -79,7 +79,7 @@
             <hr>
             <section class="buttons">
               <a class="specialA" href="#" @click="edit = false, passChange = false">Annuler</a>
-              <button type="submit" class="success" @click.prevent="editUserProfile()">Sauvegarder</button>
+              <button class="success" @click.prevent="editUserProfile()">Sauvegarder</button>
             </section>
           </section>
         </section>
@@ -155,7 +155,7 @@ import { ComponentOptions } from 'vue'
     ]),
   },
   sockets: {
-    profile (result: any) {
+    updateProfile (result: any) {
       if (result.success === true) {
         this.edit = false
         this.passChange = false
@@ -164,6 +164,7 @@ import { ComponentOptions } from 'vue'
         } else {
           this.profile.avatar = result.preparedUser.avatar
         }
+
         this.updateUser(this.profile)
       } else {
         this.profile.error = result.message
@@ -210,7 +211,7 @@ export default class UserParams extends Vue {
 
   public editUserProfile () {
     this.profile.tag = this.tag
-    this.$socket.emit('profile', this.profile)
+    this.$socket.emit('UPDATE::PROFILE', this.profile)
     this.profile.newPassword = ''
   }
 
