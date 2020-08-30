@@ -1,7 +1,0 @@
-debug.log
-node_modules/
-.vscode/
-server-api.log
-.idea
-avatars/*
-!.gitkeep
