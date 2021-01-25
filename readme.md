@@ -1,3 +1,3 @@
-# qwirk-front
+# qwirk-old-front
 
-You will find the doc here : https://app.gitbook.com/@senechal-max06/s/qwirk/
+old front end work for Qwirk
